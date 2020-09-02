@@ -4,44 +4,11 @@
 
 ## elpaの扱い
 
-elpaのパッケージはsubmoduleとして別のレポジトリで管理することにした．
+elpaのパッケージは別のレポジトリで管理し、.gitignoreしている．
 
-### cloneするとき
+## prerequisites
 
-初めにcloneするときは
-
-```
-git clone --recursive git@github.com/soblin/dotfiles
-```
-
-する．
-
-### pullするとき
-
-変更を確認する．
-
-```
-git fetch
-```
-
-その後取り込む．
-
-```
-git merge origin/master
-```
-
-### elpaをupdateした後
-
-
-pullしてelpaの変更を取り込むには
-
-```
-git submodule update --remote
-```
-
-でsubmoduleの更新を取り込める．
-
-### elpa以外をupdateした後
+- ritcy-diminished-powerline
 
 ## tmux
 
