@@ -117,6 +117,7 @@ if ! shopt -oq posix; then
 fi
 
 export PATH=$PATH:~/mycmd/
-export PATH=$PATH:/usr/local/go/bin
+
+export DISPLAY=localhost:1.0
 
 alias emacs='emacs 2>/dev/null'
