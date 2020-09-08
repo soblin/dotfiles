@@ -34,7 +34,7 @@
 #     set -g theme_display_nix no
 #     set -g theme_display_ruby no
 #     set -g theme_display_user ssh
-set -g theme_display_hostname no
+#     set -g theme_display_hostname ssh
 #     set -g theme_display_sudo_user yes
 #     set -g theme_display_vi no
 #     set -g theme_display_nvm yes
