@@ -120,3 +120,4 @@ export PATH=$PATH:~/mycmd/
 export PATH=$PATH:/usr/local/go/bin
 
 alias emacs='emacs 2>/dev/null'
+eval `dircolors -b ~/.config/ls/dir_colours_dracula`
