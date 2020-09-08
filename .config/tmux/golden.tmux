@@ -108,7 +108,7 @@ RS="#[fg=$TC,bg=$GR2] $time_icon %T #[fg=$TC,bg=$GR2]#[fg=$GR0,bg=$TC] $date_
 if "$show_download_speed"; then
     RS="#[fg=$GR1,bg=$BG]#[fg=$TC,bg=$GR1] $download_speed_icon#{download_speed} #[fg=$GR2,bg=$GR1]$RS"
 else
-    RS="#[fg=$TC,bg=$GR1]#[fg=$GR1,bg=$TC] 💉 (tmux-mem-cpu-load -g 5 --interval 1) #[fg=$GR2,bg=$TC]$RS"
+    RS="#[fg=$TC,bg=$GR1]#[fg=$GR1,bg=$TC] 💉 #(tmux-mem-cpu-load -g 5 --interval 1) #[fg=$GR2,bg=$TC]$RS"
 fi
 if [[ $prefix_highlight_pos == 'R' || $prefix_highlight_pos == 'LR' ]]; then
     RS="#{prefix_highlight}$RS"
