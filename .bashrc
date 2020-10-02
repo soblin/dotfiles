@@ -117,7 +117,6 @@ if ! shopt -oq posix; then
 fi
 
 export PATH=$PATH:~/mycmd/
-export PATH=$PATH:/usr/local/go/bin
+export PATH=$PATH:~/local/bin
 
-alias emacs='emacs 2>/dev/null'
 eval `dircolors -b ~/.config/ls/dir_colours_dracula`

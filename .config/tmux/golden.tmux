@@ -83,7 +83,7 @@ tmux_set @prefix_highlight_copy_mode_attr "fg=$TC,bg=$BG,bold"
 tmux_set @prefix_highlight_output_prefix "#[fg=$TC]#[bg=$BG]#[bg=$TC]#[fg=$BG]"
 tmux_set @prefix_highlight_output_suffix "#[fg=$TC]#[bg=$BG]"
 
-#     
+#
 # Left side of status bar
 tmux_set status-left-bg "$GR0"
 tmux_set status-left-fg colour243
