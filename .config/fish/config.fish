@@ -11,5 +11,8 @@ set -g -x CMAKE_PREFIX_PATH ~/local/lib/cmake $CMAKE_PREFIX_PATH
 
 eval (dircolors -c ~/.config/ls/dir_colours_dracula)
 
+source /opt/ros/melodic/share/rosbash/rosfish
+bass source /opt/ros/melodic/setup.bash
+bass source ~/catkin_ws/devel/setup.bash
 set -g theme_display_hostname no
 set -g theme_display_user no

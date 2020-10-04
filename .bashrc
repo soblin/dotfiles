@@ -119,4 +119,7 @@ fi
 export PATH=$PATH:~/mycmd/
 export PATH=$PATH:~/local/bin/
 
+source /opt/ros/melodic/setup.bash
+source ~/catkin_ws/devel/setup.bash
+
 eval `dircolors -b ~/.config/ls/dir_colours_dracula`
