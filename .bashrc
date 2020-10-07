@@ -118,8 +118,12 @@ fi
 
 export PATH=$PATH:~/mycmd/
 export PATH=$PATH:~/local/bin/
+export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:~/local/lib
+export C_INCLUDE_PATH=$C_INCLUDE_PATH:~/local/include
+export CPLUS_INCLUDE_PATH=$CPLUS_INCLUDE_PATH:~/local/include
+export CMAKE_PREFIX_PATH=$CMAKE_PREFIX_PATH:~/local/lib/cmake
 
-source /opt/ros/melodic/setup.bash
-source ~/catkin_ws/devel/setup.bash
+# source /opt/ros/melodic/setup.bash
+# source ~/catkin_ws/devel/setup.bash
 
-eval `dircolors -b ~/.config/ls/dir_colours_dracula`
+# eval `dircolors -b ~/.config/ls/dir_colours_dracula`
