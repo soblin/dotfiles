@@ -123,7 +123,10 @@ export C_INCLUDE_PATH=$C_INCLUDE_PATH:~/local/include
 export CPLUS_INCLUDE_PATH=$CPLUS_INCLUDE_PATH:~/local/include
 export CMAKE_PREFIX_PATH=$CMAKE_PREFIX_PATH:~/local/lib/cmake
 
-# source /opt/ros/melodic/setup.bash
-# source ~/catkin_ws/devel/setup.bash
+source /opt/ros/melodic/setup.bash
+source ~/catkin_ws/devel/setup.bash
 
 # eval `dircolors -b ~/.config/ls/dir_colours_dracula`
+alias rlqv='kill -2 $(pidgrep rviz)'
+alias rlqt='pkill tmux; rosrun tmux_scripts cleanup.sh; rlqv'
+alias rlt='tmuxp load `rospack find tmux_scripts`/tmuxp_config/husky_sim.yaml; rlqt'

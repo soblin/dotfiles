@@ -32,7 +32,7 @@
  '(cua-mode t nil (cua-base))
  '(global-display-line-numbers-mode t)
  '(package-selected-packages
-   '(undo-tree visual-regexp tabbar helm-migemo markdown-preview-mode zoom-frm go-mode helm sphinx-mode markdown-mode+ google-c-style rtags py-autopep8 jedi markdown-mode matlab-mode sudo-edit restart-emacs yatex js2-mode dracula-theme yaml-mode json-mode html5-schema web-mode js2-modeyasnippet cmake-mode company package-utils init-loader))
+   '(julia-mode undo-tree visual-regexp tabbar helm-migemo markdown-preview-mode zoom-frm go-mode helm sphinx-mode markdown-mode+ google-c-style rtags py-autopep8 jedi markdown-mode matlab-mode sudo-edit restart-emacs yatex js2-mode dracula-theme yaml-mode json-mode html5-schema web-mode js2-modeyasnippet cmake-mode company package-utils init-loader))
  '(safe-local-variable-values '((cmake-tab-width . 4)))
  '(show-paren-mode t)
  '(tabbar-separator '(0.5)))
