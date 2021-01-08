@@ -1,0 +1,7 @@
+#!/bin/bash
+
+if ! kill-emacs; then
+    emacs --daemon
+else
+    emacs --daemon
+fi

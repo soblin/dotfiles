@@ -1,1 +1,0 @@
-/home/mamoru/dotfiles/.emacs.d/

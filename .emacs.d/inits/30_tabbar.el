@@ -63,9 +63,9 @@ That is, a string used to represent it on the tab bar."
   )
 
 (defun my-tabbar-buffer-list2 ()
-  (cons "*scratch*"
-        (remove-if (lambda (buffer) (or (cl-search "*" (buffer-name buffer))
-                                        (cl-search "magit" (buffer-name buffer))
+  (cons "*scratch*" ;; scratchは残す
+        (remove-if (lambda (buffer) (or (cl-search "*" (buffer-name buffer)) ;; *を含むやつ
+                                        (cl-search "magit" (buffer-name buffer)) ;; magitを含むやつ
                                         ))
                    (buffer-list)
                    )

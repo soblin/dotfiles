@@ -2,6 +2,14 @@
 
 個人用の `dotfiles` のレポジトリ.
 
+## シンボリックリンクの設定
+
+```bash
+./install.sh
+```
+
+する．
+
 ## elpaの扱い
 
 elpaのパッケージはsubmoduleとして別のレポジトリで管理することにした．
@@ -50,6 +58,7 @@ tmuxのキーバインドは以下の通り.
 - `C-z c` で新しいwindowをつくる
 - `C-z k` で現在のwindowを消去
 - `C-z n(p)` でnext(right), previous(left)のwindowへ移動
+- `C-z {0-9}` で番号のwindowに移動
 - `C-z |` で縦にpaneを作る
 - `C-z -` で横にpaneを作る
 
