@@ -1,3 +1,8 @@
+[include]
+  path = ~/Admin/core_environment/shared/dotfiles/.gitconfig
+[user]
+	email = mamoru.sobue@jpl.nasa.gov
+	name = soblin
 [core]
     excludesfile = ~/.gitignore
     editor = emacs
