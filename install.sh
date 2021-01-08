@@ -67,10 +67,16 @@ function create_symlink_d() {
 
 create_symlink_f ".emacs"
 create_symlink_d ".emacs.d"
+
 create_symlink_f ".bashrc"
+
+create_symlink_f ".gitignore"
+create_symlink_f ".gitconfig"
+
 create_symlink_f ".tmux.conf"
-create_symlink_d ".config/git"
+
 create_symlink_d ".config/ls"
 create_symlink_d ".config/tmux"
 create_symlink_d ".config/fish"
+
 create_symlink_d ".local/bin/custom"

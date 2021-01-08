@@ -31,6 +31,12 @@ unlink_symlink "$dot_emacs_d_path"
 dot_bashrc_path="${home_path}/.bashrc"
 unlink_symlink "$dot_bashrc_path"
 
+dot_gitignore_path="${home_path}/.gitignore"
+unlink_symlink "$dot_gitignore_path"
+
+dot_gitconfig_path="${home_path}/.gitconfig"
+unlink_symlink "$dot_gitconfig_path"
+
 dot_tmux_conf_path="${home_path}/.tmux.conf"
 unlink_symlink "$dot_tmux_conf_path"
 

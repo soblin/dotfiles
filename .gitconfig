@@ -1,0 +1,18 @@
+[core]
+    excludesfile = ~/.gitignore
+    editor = emacs
+	autocrlf = false
+	ignorecase = false
+	quotepath = false
+[merge]
+	ff = false
+[pull]
+	ff = only
+[help]
+	autocorrect = 20
+[color]
+	ui = true
+[alias]
+	graph = log --graph --color --pretty=format:\"%C(yellow)%H%C(green)%d%C(reset)%n%x20%cd%n%x20%cn%x20(%ce)%n%x20%s%n\"
+[credential]
+	helper = cache --timeout=86400
