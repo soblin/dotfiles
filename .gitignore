@@ -16,3 +16,4 @@ srecode-map.el
 .emacs.d/bookmarks
 .emacs.d/recentf
 .emacs.d/elpa
+.emacs.d/transient

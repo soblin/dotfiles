@@ -1,0 +1,9 @@
+#!/bin/bash
+
+vmstatus=`/mnt/c/Program\ Files/Oracle/VirtualBox/VBoxManage.exe list runningvms`
+
+if [[ $vmstatus == *Ubuntu18* ]]; then
+    /mnt/c/Program\ Files/Oracle/VirtualBox/VBoxManage.exe controlvm Ubuntu18 poweroff
+else
+    echo "VM is already turned off."
+fi

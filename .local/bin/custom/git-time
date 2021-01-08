@@ -1,0 +1,6 @@
+#!/bin/bash
+
+current_time=$(LANG=C date)
+arg=$*
+commit="${arg} (${current_time})"
+git commit -m "${commit}"

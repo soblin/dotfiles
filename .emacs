@@ -31,7 +31,7 @@
  '(cua-mode t nil (cua-base))
  '(package-selected-packages
    (quote
-    (undo-tree visual-regexp tabbar helm-migemo markdown-preview-mode zoom-frm go-mode helm sphinx-mode markdown-mode+ google-c-style rtags py-autopep8 jedi markdown-mode matlab-mode sudo-edit restart-emacs yatex js2-mode dracula-theme yaml-mode json-mode html5-schema web-mode js2-modeyasnippet cmake-mode company package-utils init-loader)))
+    (magit undo-tree visual-regexp tabbar helm-migemo markdown-preview-mode zoom-frm go-mode helm sphinx-mode markdown-mode+ google-c-style rtags py-autopep8 jedi markdown-mode matlab-mode sudo-edit restart-emacs yatex js2-mode dracula-theme yaml-mode json-mode html5-schema web-mode js2-modeyasnippet cmake-mode company package-utils init-loader)))
  '(safe-local-variable-values (quote ((cmake-tab-width . 4))))
  '(show-paren-mode t)
  '(tabbar-separator (quote (0.5))))
