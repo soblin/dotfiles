@@ -1,0 +1,5 @@
+#!/bin/bash
+temp_file=`tempfile`
+tmux save-buffer $temp_file
+xsel -i -b < $temp_file
+rm -rf $temp_file
