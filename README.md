@@ -12,17 +12,7 @@
 
 ## elpaの扱い
 
-elpaのパッケージはsubmoduleとして別のレポジトリで管理することにした．
-
-### cloneするとき
-
-初めにcloneするときは
-
-```
-git clone --recursive git@github.com/soblin/dotfiles
-```
-
-する．
+elpaのパッケージは別のレポジトリで管理することにした．
 
 ### pullするとき
 
@@ -37,19 +27,6 @@ git fetch
 ```
 git merge origin/master
 ```
-
-### elpaをupdateした後
-
-
-pullしてelpaの変更を取り込むには
-
-```
-git submodule update --remote
-```
-
-でsubmoduleの更新を取り込める．
-
-### elpa以外をupdateした後
 
 ## tmux
 
@@ -70,4 +47,4 @@ tmuxのキーバインドは以下の通り.
 4. `Alt-w` でコピーできる.
 5. `C-z C-y` でペースト.
 
-ただしgeditで `C-v` してもペーストできないことから端末内のクリップボードに保存されている様子.
+これをシステムのクリップボードに移すために `pbcopy` コマンドを作った．
