@@ -196,11 +196,11 @@ create_symlink_d ".config/fish"
 create_symlink_d ".local/bin/custom"
 
 
-if [ ! -d "~/.config/tmux/plugin" ]; then
-    mkdir -p ~/.config/tmux/plugin
+if [ ! -d "${home_dir}/.config/tmux/plugin" ]; then
+    mkdir -p "${home_dir}/.config/tmux/plugin"
 fi
 
-if [ ! -d "~/.config/tmux/plugin/tmux-sidebar" ]; then
+if [ ! -d "${home_dir}/.config/tmux/plugin/tmux-sidebar/" ]; then
     echo "Install tmux-sidebar."
-    git clone https://github.com/tmux-plugins/tmux-sidebar.git ~/.config/tmux/plugin/tmux-sidebar
+    git clone https://github.com/tmux-plugins/tmux-sidebar.git "${home_dir}/.config/tmux/plugin/tmux-sidebar"
 fi
