@@ -32,12 +32,13 @@ git merge origin/master
 
 tmuxのキーバインドは以下の通り.
 
-- `C-z c` で新しいwindowをつくる
+- `C-z c` で **ホームディレクトリで** 新しいwindowをつくる
+- `C-z C-c` で **現在のディレクトリで** 新しいwindowをつくる
 - `C-z k` で現在のwindowを消去
 - `C-z n(p)` でnext(right), previous(left)のwindowへ移動
 - `C-z {0-9}` で番号のwindowに移動
-- `C-z |` で縦にpaneを作る
-- `C-z -` で横にpaneを作る
+- `C-z |` で **現在のディレクトリで** 縦にpaneを作る
+- `C-z -` で **現在のディレクトリで** 横にpaneを作る
 
 コピーアンドペーストは以下の手順.
 
