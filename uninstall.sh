@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/bash -xve
 
 function unlink_symlink() {
     path=$1
