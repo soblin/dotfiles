@@ -1,4 +1,118 @@
-#!/bin/bash
+#!/bin/bash -e
+
+APT_OPTION="-qq"
+
+# install prerequisites
+# emacs27, fish3, tmux, tree, xclip, xsel, fonts-powerline
+
+sudo apt-get install tmux tree xclip xsel fonts-powerline
+
+function get_major_ver_num() {
+    echo "$1" | cut -d "." -f1
+}
+
+function get_emacs_ver_string() {
+    # GNU Emacs 26.3 => 26
+    emacs --version | head -n1 | cut -d " " -f3
+}
+
+function get_fish_ver_string() {
+    # fish, version 3.1.2 => 3.1.2
+    fish --version | head -n1 | cut -d " " -f3
+}
+
+uninstall_old_emacs=false
+install_emacs=false
+
+if command -v emacs &> /dev/null; then
+    emacs_ver_string=$(get_emacs_ver_string)
+    emacs_major_ver=$(get_major_ver_num $emacs_ver_string)
+    if [ $emacs_major_ver -lt 26 ]; then
+        echo "Your Emacs version is ${emacs_ver_string}. I want to use Emacs >= 26 !"
+        uninstall_old_emacs=true
+        install_emacs=true
+    else
+        echo "Emacs ${emacs_ver_string} is already installed."
+    fi
+else
+    echo "Emacs was not found."
+    install_emacs=true
+fi
+
+if $uninstall_old_emacs; then
+    read -p "Are you OK to remove old emacs before upgrade? [Yn]: " yn
+    case $yn in
+        [Yy*] )
+            echo "Purging emacs."
+            sudo apt purge ${APT_OPTION} emacs
+            sudo apt ${APT_OPTION} autoremove
+            echo "Done.";;
+        * )
+            echo "Skip this process and exit."
+            exit;;
+    esac
+fi
+
+if $install_emacs; then
+    echo "Adding ppa:kelleyk/emacs."
+    sudo add-apt-repository ppa:kelleyk/emacs
+    sudo apt-get ${APT_OPTION} update
+    echo "Done."
+    read -p "Specify the version 26 or 27(default): " ver
+    case $ver in
+        "26" )
+            sudo apt-get install emacs26
+            sudo apt ${APT_OPTION} clean;;
+        * )
+            sudo apt-get install emacs27
+            sudo apt ${APT_OPTION} clean;;
+    esac
+fi
+
+uninstall_old_fish=false
+install_fish=false
+
+if command -v fish &> /dev/null; then
+   fish_ver_string=$(get_fish_ver_string)
+   fish_major_ver=$(get_major_ver_num $fish_ver_string)
+   if [ $fish_major_ver -lt 3 ]; then
+       echo "Your fish version is ${fish_ver_string}. I want to use fish >= 3 !"
+       uninstall_old_fish=true
+       install_fish=true
+   else
+       echo "fish ${fish_ver_string} is already installed."
+   fi
+else
+    echo "fish was not found."
+    install_fish=true
+fi
+
+if $uninstall_old_fish; then
+    read -p "Are you OK to remove old fish before upgrade? [Yn]: " yn
+    case $yn in
+        [Yy*] )
+            echo "Purging fish."
+            sudo apt purge ${APT_OPTION} fish
+            sudo apt ${APT_OPTION} autoremove
+            echo "Done.";;
+        * )
+            echo "Skip this process and exit."
+            exit;;
+    esac
+fi
+
+if $install_fish; then
+    echo "Adding ppa:fish-shell/release-3"
+    sudo apt-add-repository ppa:fish-shell/release-3
+    sudo apt-get ${APT_OPTION} update
+    echo "Done."
+    sudo apt-get install fish
+    sudo apt ${APT_OPTION} clean
+fi
+
+if ! command -v tmux-mem-cpu-load &> /dev/null; then
+    echo "Please install or set path to tmux-mem-cpu-load to display resource load in tmux status bar"
+fi
 
 # /home/<user>
 home_dir=`realpath ~`
@@ -80,3 +194,13 @@ create_symlink_d ".config/tmux"
 create_symlink_d ".config/fish"
 
 create_symlink_d ".local/bin/custom"
+
+
+if [ ! -d "${home_dir}/.config/tmux/plugin" ]; then
+    mkdir -p "${home_dir}/.config/tmux/plugin"
+fi
+
+if [ ! -d "${home_dir}/.config/tmux/plugin/tmux-sidebar/" ]; then
+    echo "Install tmux-sidebar."
+    git clone https://github.com/tmux-plugins/tmux-sidebar.git "${home_dir}/.config/tmux/plugin/tmux-sidebar"
+fi
