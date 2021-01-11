@@ -5,6 +5,7 @@
 # Source SubT common file
 source ~/Admin/core_environment/shared/dotfiles/.bashrc
 
+export PATH=$PATH:~/.local/bin:~/.local/bin/custom
 
 # ROS workspace (source only a single workspace)
 source /opt/ros/subt/setup.bash
