@@ -5,7 +5,7 @@ APT_OPTION="-qq"
 # install prerequisites
 # emacs27, fish3, tmux, tree, xclip, xsel, fonts-powerline
 
-sudo apt-get install tmux tree xclip xsel fonts-powerline
+sudo apt-get install tmux tree xclip xsel fonts-powerline finger
 
 function get_major_ver_num() {
     echo "$1" | cut -d "." -f1
@@ -202,5 +202,5 @@ fi
 
 if [ ! -d "${home_dir}/.config/tmux/plugin/tmux-sidebar/" ]; then
     echo "Install tmux-sidebar."
-    git clone https://github.com/tmux-plugins/tmux-sidebar.git "${home_dir}/.config/tmux/plugin/tmux-sidebar"
+    git https://github.com/tmux-plugins/tmux-sidebar.git "${home_dir}/.config/tmux/plugin/tmux-sidebar"
 fi
