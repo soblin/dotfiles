@@ -220,7 +220,7 @@ fi
 
 if [ ! -d "${home_dir}/.config/tmux/plugin/tmux-sidebar/" ]; then
     echo "Install tmux-sidebar."
-    git clone https://github.com/tmux-plugins/tmux-sidebar.git "${home_dir}/.config/tmux/plugin/tmux-sidebar"
+    git https://github.com/tmux-plugins/tmux-sidebar.git "${home_dir}/.config/tmux/plugin/tmux-sidebar"
 fi
 
 if [ ! -d "${home_dir}/.config/tmux/plugin/tmux-resurrect" ]; then
