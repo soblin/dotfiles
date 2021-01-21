@@ -32,3 +32,4 @@ export ROS_HOSTNAME=$(hostname)
 # alias rlqt='rosrun tmux_scripts cleanup.sh'
 alias rlqt='tmux kill-session -t husky_sim; rosrun tmux_scripts cleanup.sh'
 alias rlt='tmuxp load `rospack find tmux_scripts`/tmuxp_config/husky_sim.yaml; rlqt'
+export DATA_DIR="~/.ros"
