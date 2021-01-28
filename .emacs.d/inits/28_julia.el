@@ -4,7 +4,7 @@
 ;;
 
 ;;; Code:
-(add-to-list 'load-path "~/dotfiles/.emacs.d/elpa/julia-emacs")
+(add-to-list 'load-path "~/dotfiles_default/.emacs.d/elpa/julia-emacs")
 (require 'julia-mode)
 
 (setq auto-mode-alist

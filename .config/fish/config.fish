@@ -20,5 +20,6 @@ bass source /opt/ros/melodic/setup.bash
 bass source ~/catkin_ws/devel/setup.bash
 
 alias rlqv='kill -2 (pidgrep rviz)'
-alias rlqt='pkill tmux; rosrun tmux_scripts cleanup.sh; rlqv'
+alias rlqt='tmux kill-session -t husky_sim; rosrun tmux_scripts cleanup.sh; rlqv'
 alias rlt='tmuxp load `rospack find tmux_scripts`/tmuxp_config/husky_sim.yaml; rlqt'
+alias rlt2='tmuxp load `rospack find tmux_scripts`/tmuxp_config/husky_simple_sim.yaml; rlqt'
