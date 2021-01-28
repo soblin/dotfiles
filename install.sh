@@ -5,7 +5,25 @@ APT_OPTION="-qq"
 # install prerequisites
 # emacs27, fish3, tmux, tree, xclip, xsel, fonts-powerline
 
-sudo apt-get install tmux tree xclip xsel fonts-powerline finger
+if command -v tmux &>/dev/null; then
+    sudo apt-get ${APT_OPTION} install tmux
+fi
+
+if command -v tree &>/dev/null; then
+    sudo apt-get ${APT_OPTION} install tree
+fi
+
+if command -v xclip &>/dev/null; then
+    sudo apt-get ${APT_OPTION} install xclip
+fi
+
+if command -v xsel &>/dev/null; then
+    sudo apt-get ${APT_OPTION} install xsel
+fi
+
+if command -v tree &>/dev/null; then
+    sudo apt-get ${APT_OPTION} install tree
+fi
 
 function get_major_ver_num() {
     echo "$1" | cut -d "." -f1
@@ -203,4 +221,14 @@ fi
 if [ ! -d "${home_dir}/.config/tmux/plugin/tmux-sidebar/" ]; then
     echo "Install tmux-sidebar."
     git https://github.com/tmux-plugins/tmux-sidebar.git "${home_dir}/.config/tmux/plugin/tmux-sidebar"
+fi
+
+if [ ! -d "${home_dir}/.config/tmux/plugin/tmux-resurrect" ]; then
+    echo "Install tmux-resurrect"
+    git clone https://github.com/tmux-plugins/tmux-resurrect.git "${home_dir}/.config/tmux/plugin/tmux-resurrect"
+fi
+
+if [ ! -d "${home_dir}/.config/tmux/plugin/tmux-continuum" ]; then
+    echo "Install tmux-continuum"
+    git clone https://github.com/tmux-plugins/tmux-continuum.git "${home_dir}/.config/tmux/plugin/tmux-continuum"
 fi
