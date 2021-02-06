@@ -1,8 +1,0 @@
-#!/bin/bash
-
-files=`ls $1.*`
-for file in $files; do
-    if [ ${file} != "$1.tex" ] && [ ${file} != "$1.pdf" ]; then
-        rm $file
-    fi
-done
