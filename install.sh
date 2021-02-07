@@ -79,7 +79,7 @@ if $install_emacs; then
     read -p "Specify the version 26 or 27(default): " ver
     case $ver in
         "26" )
-            sudo apt-get install emacs26
+            sudo apt-get ${APT_OPTION} install emacs26
             sudo apt ${APT_OPTION} clean;;
         * )
             sudo apt-get install emacs27
@@ -124,7 +124,7 @@ if $install_fish; then
     sudo apt-add-repository ppa:fish-shell/release-3
     sudo apt-get ${APT_OPTION} update
     echo "Done."
-    sudo apt-get install fish
+    sudo apt-get ${APT_OPTION} install fish
     sudo apt ${APT_OPTION} clean
 fi
 
@@ -216,6 +216,7 @@ create_symlink_d ".local/bin/custom"
 
 if [ ! -d "${home_dir}/.config/tmux/plugin" ]; then
     mkdir -p "${home_dir}/.config/tmux/plugin"
+    echo "Created ${home_dir}/.config/tmux/plugin."
 fi
 
 if [ ! -d "${home_dir}/.config/tmux/plugin/tmux-sidebar/" ]; then
