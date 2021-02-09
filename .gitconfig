@@ -14,6 +14,8 @@
     ui = true
 [alias]
     graph = log --graph --color --pretty=format:\"%C(yellow)%H%C(green)%d%C(reset)%n%x20%cd%n%x20%cn%x20(%ce)%n%x20%s%n\"
-    status = status -uall
+    st = status -uall
+    ck = checkout
+    cm = commit
 [credential]
     helper = cache --timeout=86400
