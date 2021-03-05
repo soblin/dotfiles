@@ -82,12 +82,12 @@
 (add-hook 'after-save-hool
           'executable-make-buffer-file-executable-if-script-p)
 
-;;(load-file "~/.emacs.d/elpa/frame-fns/frame-fns.el")
-;;(load-file "~/.emacs.d/elpa/frame-cmds/frame-cmds.el")
-;;(load-file "~/.emacs.d/elpa/zoom-frm/zoom-frm.el")
+(load-file "~/.emacs.d/elpa/frame-fns/frame-fns.el")
+(load-file "~/.emacs.d/elpa/frame-cmds/frame-cmds.el")
+(load-file "~/.emacs.d/elpa/zoom-frm/zoom-frm.el")
 
-;;(define-key global-map (kbd "C-x C-+") 'zoom-all-frames-in)
-;;(define-key global-map (kbd "C-x C--") 'zoom-all-frames-out)
+(define-key global-map (kbd "C-x C-+") 'zoom-all-frames-in)
+(define-key global-map (kbd "C-x C--") 'zoom-all-frames-out)
 
 (add-to-list 'exec-path "/usr/bin")
 (add-to-list 'exec-path "/usr/local/bin")
