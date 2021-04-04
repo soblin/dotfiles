@@ -1,4 +1,4 @@
 #!/bin/bash
 sudo rm /var/lib/dpkg/lock
 sudo rm /var/lib/dpkg/lock-frontend
-# sudo rm /var/lib/apt/lists/lock
+sudo rm -rf /var/lib/apt/lists/lock

@@ -138,7 +138,8 @@ cur_dir=`pwd`
 
 function create_symlink_f() {
     file=$1
-    dst="${home_dir}/${file}"
+    dst_path=$2
+    dst="${home_dir}/${dst_path}"
     src="${cur_dir}/${file}"
     if [ ! -L $dst ]; then
         echo "symlink $dst does not exists."
@@ -168,7 +169,8 @@ function create_symlink_f() {
 
 function create_symlink_d() {
     dir=$1
-    dst="${home_dir}/${dir}"
+    dst_dir=$2
+    dst="${home_dir}/${dst_dir}"
     src="${cur_dir}/${dir}"
     if [ ! -L $dst ]; then
         echo "symlink $dst does not exists."
@@ -197,21 +199,25 @@ function create_symlink_d() {
 }
 
 
-create_symlink_f ".emacs"
-create_symlink_d ".emacs.d"
+create_symlink_f ".emacs" ".emacs"
+create_symlink_d ".emacs.d" ".emacs.d"
 
-create_symlink_f ".bashrc"
+create_symlink_f ".bashrc" ".bashrc"
 
-create_symlink_f ".gitignore"
-create_symlink_f ".gitconfig"
+create_symlink_f ".gitignore" ".gitignore"
+create_symlink_f ".gitconfig" ".gitconfig"
 
-create_symlink_f ".tmux.conf"
+create_symlink_f ".tmux.conf" ".tmux.conf"
 
-create_symlink_d ".config/ls"
-create_symlink_d ".config/tmux"
-create_symlink_d ".config/fish"
+create_symlink_d ".config/ls" ".config/ls"
+create_symlink_d ".config/tmux" ".config/tmux"
+create_symlink_d ".config/fish" ".config/fish"
 
-create_symlink_d ".local/bin/custom"
+if [ ! -d "{home_dir}/.julia/config" ]; then
+   create_symlink_d ".config/julia" ".julia/config"
+fi
+
+create_symlink_d ".local/bin/custom" ".local/bin/custom"
 
 
 if [ ! -d "${home_dir}/.config/tmux/plugin" ]; then
