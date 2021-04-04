@@ -5,6 +5,8 @@ APT_OPTION="-qq"
 # install prerequisites
 # emacs27, fish3, tmux, tree, xclip, xsel, fonts-powerline
 
+echo "Installing tmux, tree, xclip, xsel, tree"
+
 if command -v tmux &>/dev/null; then
     sudo apt-get ${APT_OPTION} install tmux
 fi
@@ -24,6 +26,8 @@ fi
 if command -v tree &>/dev/null; then
     sudo apt-get ${APT_OPTION} install tree
 fi
+
+echo "Installed tmux, tree, xclip, xsel, tree"
 
 function get_major_ver_num() {
     echo "$1" | cut -d "." -f1
@@ -156,14 +160,14 @@ function create_symlink_f() {
                     rm -rf "$dst"
                 fi
                 ln -sf "${src}" "${dst}"
-                printf "Created symlink to ${dst}\n\n"
+                printf "Created symlink to ${dst}\n"
                 ;;
             * )
                 echo "Skip."
                 ;;
         esac
     else
-        printf "symlink ${src} => ${dst} already exists, skipping.\n\n"
+        printf "symlink ${src} => ${dst} already exists, skipping.\n"
     fi
 }
 
@@ -187,14 +191,14 @@ function create_symlink_d() {
                     rm -rf "$dst"
                 fi
                 ln -s "${src}" "${dst}"
-                printf "Created symlink to ${dst}\n\n"
+                printf "Created symlink to ${dst}\n"
                 ;;
             * )
                 echo "Skip."
                 ;;
         esac
     else
-        printf "symlink ${src} => ${dst} already exists, skipping.\n\n"
+        printf "symlink ${src} => ${dst} already exists, skipping.\n"
     fi
 }
 
