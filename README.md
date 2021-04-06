@@ -49,3 +49,22 @@ tmuxのキーバインドは以下の通り.
 5. `C-z C-y` でペースト.
 
 これをシステムのクリップボードに移すために `pbcopy` コマンドを作った．
+
+## languages
+
+### Julia
+
+`~/.local/opt/`に`julia-x.x.x`のディレクトリをインストールし，`~/.local/bin/julia`へのsymlinkを張る．
+
+### Haskell
+
+```bash
+sudo apt install haskell-stack
+stack upgrade
+```
+
+で`~/.local/bin/`に`stack`をインストール．
+
+### Rust
+
+`~/.local/bin/`にツールチェーンをインストール．
