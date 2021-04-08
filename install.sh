@@ -83,10 +83,14 @@ if $install_emacs; then
     read -p "Specify the version 26 or 27(default): " ver
     case $ver in
         "26" )
+            echo "Installing Emacs-26"
             sudo apt-get ${APT_OPTION} install emacs26
+            echo "Done"
             sudo apt ${APT_OPTION} clean;;
         * )
+            echo "Installing Emacs-27"
             sudo apt-get install emacs27
+            echo "Done"
             sudo apt ${APT_OPTION} clean;;
     esac
 fi
@@ -128,7 +132,9 @@ if $install_fish; then
     sudo apt-add-repository ppa:fish-shell/release-3
     sudo apt-get ${APT_OPTION} update
     echo "Done."
+    echo "Installing fish-3"
     sudo apt-get ${APT_OPTION} install fish
+    echo "Done"
     sudo apt ${APT_OPTION} clean
 fi
 
@@ -233,16 +239,19 @@ if [ ! -d "${home_dir}/.config/tmux/plugin" ]; then
 fi
 
 if [ ! -d "${home_dir}/.config/tmux/plugin/tmux-sidebar/" ]; then
-    echo "Install tmux-sidebar."
+    echo "Installing tmux-sidebar."
     git https://github.com/tmux-plugins/tmux-sidebar.git "${home_dir}/.config/tmux/plugin/tmux-sidebar"
+    echo "Done"
 fi
 
 if [ ! -d "${home_dir}/.config/tmux/plugin/tmux-resurrect" ]; then
-    echo "Install tmux-resurrect"
+    echo "Installing tmux-resurrect"
     git clone https://github.com/tmux-plugins/tmux-resurrect.git "${home_dir}/.config/tmux/plugin/tmux-resurrect"
+    echo "Done"
 fi
 
 if [ ! -d "${home_dir}/.config/tmux/plugin/tmux-continuum" ]; then
-    echo "Install tmux-continuum"
+    echo "Installing tmux-continuum"
     git clone https://github.com/tmux-plugins/tmux-continuum.git "${home_dir}/.config/tmux/plugin/tmux-continuum"
+    echo "Done"
 fi
