@@ -1,6 +1,7 @@
 # If not running interactively, don't do anything
 [[ $- != *i* ]] && return
 
+source ~/.bash_aliases
 
 # Source SubT common file
 source ~/Admin/core_environment/shared/dotfiles/.bashrc
