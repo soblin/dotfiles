@@ -5,6 +5,8 @@ APT_OPTION="-qq"
 # install prerequisites
 # emacs27, fish3, tmux, tree, xclip, xsel, fonts-powerline
 
+echo "Installing tmux, tree, xclip, xsel, tree"
+
 if command -v tmux &>/dev/null; then
     sudo apt-get ${APT_OPTION} install tmux
 fi
@@ -24,6 +26,8 @@ fi
 if command -v tree &>/dev/null; then
     sudo apt-get ${APT_OPTION} install tree
 fi
+
+echo "Installed tmux, tree, xclip, xsel, tree"
 
 function get_major_ver_num() {
     echo "$1" | cut -d "." -f1
@@ -79,10 +83,14 @@ if $install_emacs; then
     read -p "Specify the version 26 or 27(default): " ver
     case $ver in
         "26" )
-            sudo apt-get install emacs26
+            echo "Installing Emacs-26"
+            sudo apt-get ${APT_OPTION} install emacs26
+            echo "Done"
             sudo apt ${APT_OPTION} clean;;
         * )
+            echo "Installing Emacs-27"
             sudo apt-get install emacs27
+            echo "Done"
             sudo apt ${APT_OPTION} clean;;
     esac
 fi
@@ -124,7 +132,9 @@ if $install_fish; then
     sudo apt-add-repository ppa:fish-shell/release-3
     sudo apt-get ${APT_OPTION} update
     echo "Done."
-    sudo apt-get install fish
+    echo "Installing fish-3"
+    sudo apt-get ${APT_OPTION} install fish
+    echo "Done"
     sudo apt ${APT_OPTION} clean
 fi
 
@@ -138,7 +148,8 @@ cur_dir=`pwd`
 
 function create_symlink_f() {
     file=$1
-    dst="${home_dir}/${file}"
+    dst_path=$2
+    dst="${home_dir}/${dst_path}"
     src="${cur_dir}/${file}"
     if [ ! -L $dst ]; then
         echo "symlink $dst does not exists."
@@ -155,20 +166,21 @@ function create_symlink_f() {
                     rm -rf "$dst"
                 fi
                 ln -sf "${src}" "${dst}"
-                printf "Created symlink to ${dst}\n\n"
+                printf "Created symlink to ${dst}\n"
                 ;;
             * )
                 echo "Skip."
                 ;;
         esac
     else
-        printf "symlink ${src} => ${dst} already exists, skipping.\n\n"
+        printf "symlink ${src} => ${dst} already exists, skipping.\n"
     fi
 }
 
 function create_symlink_d() {
     dir=$1
-    dst="${home_dir}/${dir}"
+    dst_dir=$2
+    dst="${home_dir}/${dst_dir}"
     src="${cur_dir}/${dir}"
     if [ ! -L $dst ]; then
         echo "symlink $dst does not exists."
@@ -185,51 +197,54 @@ function create_symlink_d() {
                     rm -rf "$dst"
                 fi
                 ln -s "${src}" "${dst}"
-                printf "Created symlink to ${dst}\n\n"
+                printf "Created symlink to ${dst}\n"
                 ;;
             * )
                 echo "Skip."
                 ;;
         esac
     else
-        printf "symlink ${src} => ${dst} already exists, skipping.\n\n"
+        printf "symlink ${src} => ${dst} already exists, skipping.\n"
     fi
 }
 
 
-create_symlink_f ".emacs"
-create_symlink_d ".emacs.d"
+create_symlink_f ".emacs" ".emacs"
+create_symlink_d ".emacs.d" ".emacs.d"
 
-create_symlink_f ".bashrc"
-create_symlink_f ".bash_aliases"
+create_symlink_f ".bashrc" ".bashrc"
 
-create_symlink_f ".gitignore"
-create_symlink_f ".gitconfig"
+create_symlink_f ".gitignore" ".gitignore"
+create_symlink_f ".gitconfig" ".gitconfig"
 
-create_symlink_f ".tmux.conf"
+create_symlink_f ".tmux.conf" ".tmux.conf"
 
-create_symlink_d ".config/ls"
-create_symlink_d ".config/tmux"
-create_symlink_d ".config/fish"
+create_symlink_d ".config/ls" ".config/ls"
+create_symlink_d ".config/tmux" ".config/tmux"
+create_symlink_d ".config/fish" ".config/fish"
 
-create_symlink_d ".local/bin/custom"
+create_symlink_d ".local/bin/custom" ".local/bin/custom"
 
 
 if [ ! -d "${home_dir}/.config/tmux/plugin" ]; then
     mkdir -p "${home_dir}/.config/tmux/plugin"
+    echo "Created ${home_dir}/.config/tmux/plugin."
 fi
 
 if [ ! -d "${home_dir}/.config/tmux/plugin/tmux-sidebar/" ]; then
-    echo "Install tmux-sidebar."
+    echo "Installing tmux-sidebar."
     git https://github.com/tmux-plugins/tmux-sidebar.git "${home_dir}/.config/tmux/plugin/tmux-sidebar"
+    echo "Done"
 fi
 
 if [ ! -d "${home_dir}/.config/tmux/plugin/tmux-resurrect" ]; then
-    echo "Install tmux-resurrect"
+    echo "Installing tmux-resurrect"
     git clone https://github.com/tmux-plugins/tmux-resurrect.git "${home_dir}/.config/tmux/plugin/tmux-resurrect"
+    echo "Done"
 fi
 
 if [ ! -d "${home_dir}/.config/tmux/plugin/tmux-continuum" ]; then
-    echo "Install tmux-continuum"
+    echo "Installing tmux-continuum"
     git clone https://github.com/tmux-plugins/tmux-continuum.git "${home_dir}/.config/tmux/plugin/tmux-continuum"
+    echo "Done"
 fi
