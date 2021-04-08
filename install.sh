@@ -201,6 +201,7 @@ create_symlink_f ".emacs"
 create_symlink_d ".emacs.d"
 
 create_symlink_f ".bashrc"
+create_symlink_f ".bash_aliases"
 
 create_symlink_f ".gitignore"
 create_symlink_f ".gitconfig"
