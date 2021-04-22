@@ -213,6 +213,7 @@ create_symlink_f ".emacs" ".emacs"
 create_symlink_d ".emacs.d" ".emacs.d"
 
 create_symlink_f ".bashrc" ".bashrc"
+create_symlink_f ".bash_aliases" ".bash_aliases"
 
 create_symlink_f ".gitignore" ".gitignore"
 create_symlink_f ".gitconfig" ".gitconfig"
@@ -222,6 +223,13 @@ create_symlink_f ".tmux.conf" ".tmux.conf"
 create_symlink_d ".config/ls" ".config/ls"
 create_symlink_d ".config/tmux" ".config/tmux"
 create_symlink_d ".config/fish" ".config/fish"
+
+if [ -d "${home_dir}/.julia" ]; then
+    echo "Detected Julia in ${home_dir}/.julia"
+    if [ ! -d "{home_dir}/.julia/config" ]; then
+        create_symlink_d ".config/julia" ".julia/config"
+    fi
+fi
 
 create_symlink_d ".local/bin/custom" ".local/bin/custom"
 
