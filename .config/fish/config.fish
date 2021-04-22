@@ -14,6 +14,7 @@ set -g -x CPLUS_INCLUDE_PATH "~/.local/include"
 set -g -x CMAKE_PREFIX_PATH ~/.local/lib/cmake $CMAKE_PREFIX_PATH
 
 bass source ~/.bashrc
+bass source ~/.bash_aliases
 
 source /opt/ros/melodic/share/rosbash/rosfish
 bass source /opt/ros/melodic/setup.bash
