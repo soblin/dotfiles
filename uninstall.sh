@@ -1,4 +1,4 @@
-#!/bin/bash -xve
+#!/bin/bash -e
 
 function unlink_symlink() {
     path=$1
@@ -22,35 +22,23 @@ function unlink_symlink() {
 
 home_path=`realpath ~`
 
-dot_emacs_path="${home_path}/.emacs"
-unlink_symlink "$dot_emacs_path"
+unlink_symlink "${home_path}/.bashrc"
+unlink_symlink "${home_path}/.bash_aliases"
+unlink_symlink "${home_path}/.profile"
+unlink_symlink "${home_path}/.dircolors"
+unlink_symlink "${home_path}/.local/bin/custom"
 
-dot_emacs_d_path="${home_path}/.emacs.d"
-unlink_symlink "$dot_emacs_d_path"
+unlink_symlink "${home_path}/.config/fish"
 
-dot_bashrc_path="${home_path}/.bashrc"
-unlink_symlink "$dot_bashrc_path"
+unlink_symlink "${home_path}/.gitignore"
+unlink_symlink "${home_path}/.gitconfig"
 
-dot_gitignore_path="${home_path}/.gitignore"
-unlink_symlink "$dot_gitignore_path"
+unlink_symlink "${home_path}/.emacs"
+unlink_symlink "${home_path}/.emacs.d"
 
-dot_gitconfig_path="${home_path}/.gitconfig"
-unlink_symlink "$dot_gitconfig_path"
+unlink_symlink "${home_path}/.tmux.conf"
+unlink_symlink "${home_path}/.config/tmux"
 
-dot_tmux_conf_path="${home_path}/.tmux.conf"
-unlink_symlink "$dot_tmux_conf_path"
+unlink_symlink "${home_path}/.julia/config"
 
-dot_config_git_path="${home_path}/.config/git"
-unlink_symlink "$dot_config_git_path"
-
-dot_config_ls_path="${home_path}/.config/ls"
-unlink_symlink "$dot_config_ls_path"
-
-dot_config_tmux_path="${home_path}/.config/tmux"
-unlink_symlink "$dot_config_tmux_path"
-
-dot_config_fish_path="${home_path}/.config/fish"
-unlink_symlink "$dot_config_fish_path"
-
-dot_local_bin_custom_path="${home_path}/.local/bin/custom"
-unlink_symlink "$dot_local_bin_custom_path"
+unlink_symlink "${home_path}/.ros2rc"
