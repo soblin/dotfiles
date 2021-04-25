@@ -118,3 +118,7 @@ fi
 
 export PATH=$PATH:~/.local/bin:~/.local/bin/custom
 eval `dircolors -b ~/.config/ls/dir_colours_dracula`
+
+if [ -L ~/.rosrc ]; then
+    source ~/.rosrc
+fi
