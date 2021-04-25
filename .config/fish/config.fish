@@ -14,3 +14,7 @@ bass source ~/.bash_aliases
 
 set -g theme_display_hostname no
 set -g theme_display_user no
+
+if test -d ~/ros2_ws
+    source ~/.config/fish/ros2.fish
+end

@@ -68,3 +68,13 @@ stack upgrade
 ### Rust
 
 `~/.local/bin/`にツールチェーンをインストール．
+
+### ROS2
+
+colconに付属する`argcomplete`はバージョンが古いため`fish`に対応していない．最新の`argcomplete`を[github](https://github.com/kislyuk/argcomplete)からクローンしてきて
+
+```
+python3 setup.py install --user
+```
+
+する．`register-python-argcomplete`を使えるようになる．
