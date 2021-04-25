@@ -5,29 +5,27 @@ APT_OPTION="-qq"
 # install prerequisites
 # emacs27, fish3, tmux, tree, xclip, xsel, fonts-powerline
 
-echo "Installing tmux, tree, xclip, xsel, tree"
+echo "Installing tmux, tree, xclip, xsel, fonts-powerline"
 
-if command -v tmux &>/dev/null; then
+if ! command -v tmux &>/dev/null; then
     sudo apt-get ${APT_OPTION} install tmux
 fi
 
-if command -v tree &>/dev/null; then
+if ! command -v tree &>/dev/null; then
     sudo apt-get ${APT_OPTION} install tree
 fi
 
-if command -v xclip &>/dev/null; then
+if ! command -v xclip &>/dev/null; then
     sudo apt-get ${APT_OPTION} install xclip
 fi
 
-if command -v xsel &>/dev/null; then
+if ! command -v xsel &>/dev/null; then
     sudo apt-get ${APT_OPTION} install xsel
 fi
 
-if command -v tree &>/dev/null; then
-    sudo apt-get ${APT_OPTION} install tree
-fi
+sudo apt-get ${APT_OPTION} install fonts-powerline
 
-echo "Installed tmux, tree, xclip, xsel, tree"
+echo "Installed tmux, tree, xclip, xsel, tree, fonts-powerline"
 
 function get_major_ver_num() {
     echo "$1" | cut -d "." -f1
@@ -214,6 +212,12 @@ function create_symlink_d() {
 create_symlink_f ".emacs" ".emacs"
 create_symlink_d ".emacs.d" ".emacs.d"
 
+if [ ! -d "${home_dir}/.emacs.d/elpa" ]; then
+    echo "Cloning Emacs elpa"
+    git clone https://github.com/soblin/elpa.git "${home_dir}/.emacs.d/elpa"
+    echo "Done"
+fi
+
 create_symlink_f ".bashrc" ".bashrc"
 create_symlink_f ".bash_aliases" ".bash_aliases"
 
@@ -226,13 +230,12 @@ create_symlink_d ".config/ls" ".config/ls"
 create_symlink_d ".config/tmux" ".config/tmux"
 create_symlink_d ".config/fish" ".config/fish"
 
-if [ ! -d "{home_dir}/.local/bin" ];then
-    echo "Creating ${home_dir}/.local/bin"
+if [ ! -d "${home_dir}/.local" ]; then
+    echo "Creating ${home_dir}/.local"
     mkdir -p "${home_dir}/.local/bin"
 fi
 
 create_symlink_d ".local/bin/custom" ".local/bin/custom"
-
 
 if [ ! -d "${home_dir}/.config/tmux/plugin" ]; then
     mkdir -p "${home_dir}/.config/tmux/plugin"
