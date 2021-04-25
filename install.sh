@@ -263,3 +263,7 @@ if [ -d "${home_dir}/.julia" ]; then
         create_symlink_d ".config/julia" ".julia/config"
     fi
 fi
+
+if [ -d "${home_dir}/ros2_ws" ]; then
+    create_symlink_f ".ros2rc" ".ros2rc"
+fi
