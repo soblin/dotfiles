@@ -1,0 +1,17 @@
+#!/bin/bash
+
+ROS2_WS="ros2_ws"
+
+ROS2_VER="foxy"
+if [ -d /opt/ros/foxy ]; then
+    ROS2_VER="foxy"
+elif [ -d /opt/ros/eloquent ]; then
+    ROS2_VER="eloquent"
+fi
+
+source /opt/ros/{ROS2_VER}/setup.bash
+source /usr/share/colcon_cd/function/colcon_cd.sh
+export _colcon_cd_root=~/${ROS2_WS}
+if [ -d ~/${ROS_WS}/install ]; then
+    source ~/${ROS2_WS}/install/local_setup.bash && source ~/${ROS2_WS}/install/setup.bash
+fi
