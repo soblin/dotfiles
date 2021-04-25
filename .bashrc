@@ -116,9 +116,6 @@ if ! shopt -oq posix; then
   fi
 fi
 
-export PATH=$PATH:~/.local/bin:~/.local/bin/custom
-eval `dircolors -b ~/.config/ls/dir_colours_dracula`
-
 if [ -L ~/.ros2rc ]; then
     source ~/.ros2rc
 fi
