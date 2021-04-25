@@ -231,6 +231,11 @@ if [ -d "${home_dir}/.julia" ]; then
     fi
 fi
 
+if [ ! -d "{home_dir}/.local/bin" ];then
+    echo "Creating ${home_dir}/.local/bin"
+    mkdir -p "${home_dir}/.local/bin"
+fi
+
 create_symlink_d ".local/bin/custom" ".local/bin/custom"
 
 
