@@ -139,7 +139,9 @@ if $install_fish; then
 fi
 
 if ! command -v tmux-mem-cpu-load &> /dev/null; then
-    echo "Please install or set path to tmux-mem-cpu-load to display resource load in tmux status bar"
+    echo "Please install or set path to tmux-mem-cpu-load to display resource load in tmux status bar."
+    echo "You can install it from https://github.com/thewtex/tmux-mem-cpu-load."
+    echo "You will need cmake and g++ and/or clang to build this."
 fi
 
 # /home/<user>
@@ -224,13 +226,6 @@ create_symlink_d ".config/ls" ".config/ls"
 create_symlink_d ".config/tmux" ".config/tmux"
 create_symlink_d ".config/fish" ".config/fish"
 
-if [ -d "${home_dir}/.julia" ]; then
-    echo "Detected Julia in ${home_dir}/.julia"
-    if [ ! -d "{home_dir}/.julia/config" ]; then
-        create_symlink_d ".config/julia" ".julia/config"
-    fi
-fi
-
 if [ ! -d "{home_dir}/.local/bin" ];then
     echo "Creating ${home_dir}/.local/bin"
     mkdir -p "${home_dir}/.local/bin"
@@ -260,4 +255,11 @@ if [ ! -d "${home_dir}/.config/tmux/plugin/tmux-continuum" ]; then
     echo "Installing tmux-continuum"
     git clone https://github.com/tmux-plugins/tmux-continuum.git "${home_dir}/.config/tmux/plugin/tmux-continuum"
     echo "Done"
+fi
+
+if [ -d "${home_dir}/.julia" ]; then
+    echo "Detected Julia in ${home_dir}/.julia"
+    if [ ! -d "{home_dir}/.julia/config" ]; then
+        create_symlink_d ".config/julia" ".julia/config"
+    fi
 fi
