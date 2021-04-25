@@ -208,7 +208,27 @@ function create_symlink_d() {
     fi
 }
 
+# system, bash
+create_symlink_f ".bashrc" ".bashrc"
+create_symlink_f ".bash_aliases" ".bash_aliases"
+create_symlink_f ".profile" ".profile"
+create_symlink_d ".dircolors" ".dircolors"
 
+if [ ! -d "${home_dir}/.local/bin" ]; then
+    echo "Creating ${home_dir}/.local/bin"
+    mkdir -p "${home_dir}/.local/bin"
+fi
+
+create_symlink_d ".local/bin/custom" ".local/bin/custom"
+
+# fish
+create_symlink_d ".config/fish" ".config/fish"
+
+# git
+create_symlink_f ".gitignore" ".gitignore"
+create_symlink_f ".gitconfig" ".gitconfig"
+
+# emacs
 create_symlink_f ".emacs" ".emacs"
 create_symlink_d ".emacs.d" ".emacs.d"
 
@@ -218,24 +238,9 @@ if [ ! -d "${home_dir}/.emacs.d/elpa" ]; then
     echo "Done"
 fi
 
-create_symlink_f ".bashrc" ".bashrc"
-create_symlink_f ".bash_aliases" ".bash_aliases"
-
-create_symlink_f ".gitignore" ".gitignore"
-create_symlink_f ".gitconfig" ".gitconfig"
-
+# tmux
 create_symlink_f ".tmux.conf" ".tmux.conf"
-
-create_symlink_d ".config/ls" ".config/ls"
 create_symlink_d ".config/tmux" ".config/tmux"
-create_symlink_d ".config/fish" ".config/fish"
-
-if [ ! -d "${home_dir}/.local/bin" ]; then
-    echo "Creating ${home_dir}/.local/bin"
-    mkdir -p "${home_dir}/.local/bin"
-fi
-
-create_symlink_d ".local/bin/custom" ".local/bin/custom"
 
 if [ ! -d "${home_dir}/.config/tmux/plugin" ]; then
     mkdir -p "${home_dir}/.config/tmux/plugin"
@@ -260,6 +265,7 @@ if [ ! -d "${home_dir}/.config/tmux/plugin/tmux-continuum" ]; then
     echo "Done"
 fi
 
+# Additional
 if [ -d "${home_dir}/.julia" ]; then
     echo "Detected Julia in ${home_dir}/.julia"
     if [ ! -d "{home_dir}/.julia/config" ]; then
