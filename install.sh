@@ -25,7 +25,7 @@ fi
 
 sudo apt-get ${APT_OPTION} install fonts-powerline
 
-echo "Installed tmux, tree, xclip, xsel, tree, fonts-powerline"
+echo "Installed tmux, tree, xclip, xsel, fonts-powerline"
 
 function get_major_ver_num() {
     echo "$1" | cut -d "." -f1
@@ -230,8 +230,8 @@ create_symlink_d ".config/ls" ".config/ls"
 create_symlink_d ".config/tmux" ".config/tmux"
 create_symlink_d ".config/fish" ".config/fish"
 
-if [ ! -d "${home_dir}/.local" ]; then
-    echo "Creating ${home_dir}/.local"
+if [ ! -d "${home_dir}/.local/bin" ]; then
+    echo "Creating ${home_dir}/.local/bin"
     mkdir -p "${home_dir}/.local/bin"
 fi
 
