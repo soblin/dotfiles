@@ -1,12 +1,18 @@
 # If not running interactively, don't do anything
 [[ $- != *i* ]] && return
 
+if [ -d "$HOME/.local/bin" ] ; then
+    PATH="$HOME/.local/bin:$PATH"
+fi
+
+if [ -d "$HOME/.local/bin/custom" ] || [ -L "$HOME/.local/bin/custom" ]; then
+    PATH="$HOME/.local/bin/custom:$PATH"
+fi
+
 source ~/.bash_aliases
 
 # Source SubT common file
 source ~/Admin/core_environment/shared/dotfiles/.bashrc
-
-export PATH=$PATH:~/.local/bin:~/.local/bin/custom
 
 # ROS workspace (source only a single workspace)
 source /opt/ros/subt/setup.bash
@@ -17,7 +23,7 @@ source ~/catkin_ws/devel/setup.bash
 export ROS_MASTER_URI=http://localhost:11311
 export ROS_HOSTNAME=$(hostname)
 # export ROS_IP=
-
+export DATA_DIR="~/.ros"
 
 # Rollocopter aliases
 # alias gnc_run='/home/woody/rollo_ws/src/rollo_core/core_capability/bringup_rollo/scripts/./start_hw.sh'
@@ -31,7 +37,3 @@ export ROS_HOSTNAME=$(hostname)
 # alias launch-<robot>='tmuxp load $(rospack find tmux_scripts)/tmuxp_config/<config>.yaml'
 # alias rlqv='kill -2 $(pidgrep rviz)'
 # alias rlqt='rosrun tmux_scripts cleanup.sh'
-alias rlqt='tmux kill-session -t husky_sim; rosrun tmux_scripts cleanup.sh'
-alias rlt='tmuxp load `rospack find tmux_scripts`/tmuxp_config/husky_sim.yaml; rlqt'
-alias rlt2='tmuxp load `rospack find tmux_scripts`/tmuxp_config/husky_simple_sim.yaml; rlqt'
-export DATA_DIR="~/.ros"

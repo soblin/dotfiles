@@ -5,29 +5,27 @@ APT_OPTION="-qq"
 # install prerequisites
 # emacs27, fish3, tmux, tree, xclip, xsel, fonts-powerline
 
-echo "Installing tmux, tree, xclip, xsel, tree"
+echo "Installing tmux, tree, xclip, xsel, fonts-powerline"
 
-if command -v tmux &>/dev/null; then
+if ! command -v tmux &>/dev/null; then
     sudo apt-get ${APT_OPTION} install tmux
 fi
 
-if command -v tree &>/dev/null; then
+if ! command -v tree &>/dev/null; then
     sudo apt-get ${APT_OPTION} install tree
 fi
 
-if command -v xclip &>/dev/null; then
+if ! command -v xclip &>/dev/null; then
     sudo apt-get ${APT_OPTION} install xclip
 fi
 
-if command -v xsel &>/dev/null; then
+if ! command -v xsel &>/dev/null; then
     sudo apt-get ${APT_OPTION} install xsel
 fi
 
-if command -v tree &>/dev/null; then
-    sudo apt-get ${APT_OPTION} install tree
-fi
+sudo apt-get ${APT_OPTION} install fonts-powerline
 
-echo "Installed tmux, tree, xclip, xsel, tree"
+echo "Installed tmux, tree, xclip, xsel, fonts-powerline"
 
 function get_major_ver_num() {
     echo "$1" | cut -d "." -f1
@@ -139,7 +137,9 @@ if $install_fish; then
 fi
 
 if ! command -v tmux-mem-cpu-load &> /dev/null; then
-    echo "Please install or set path to tmux-mem-cpu-load to display resource load in tmux status bar"
+    echo "Please install or set path to tmux-mem-cpu-load to display resource load in tmux status bar."
+    echo "You can install it from https://github.com/thewtex/tmux-mem-cpu-load."
+    echo "You will need cmake and g++ and/or clang to build this."
 fi
 
 # /home/<user>
@@ -208,31 +208,39 @@ function create_symlink_d() {
     fi
 }
 
-
-create_symlink_f ".emacs" ".emacs"
-create_symlink_d ".emacs.d" ".emacs.d"
-
+# system, bash
 create_symlink_f ".bashrc" ".bashrc"
 create_symlink_f ".bash_aliases" ".bash_aliases"
+create_symlink_f ".profile" ".profile"
+create_symlink_d ".dircolors" ".dircolors"
 
-create_symlink_f ".gitignore" ".gitignore"
-create_symlink_f ".gitconfig" ".gitconfig"
-
-create_symlink_f ".tmux.conf" ".tmux.conf"
-
-create_symlink_d ".config/ls" ".config/ls"
-create_symlink_d ".config/tmux" ".config/tmux"
-create_symlink_d ".config/fish" ".config/fish"
-
-if [ -d "${home_dir}/.julia" ]; then
-    echo "Detected Julia in ${home_dir}/.julia"
-    if [ ! -d "{home_dir}/.julia/config" ]; then
-        create_symlink_d ".config/julia" ".julia/config"
-    fi
+if [ ! -d "${home_dir}/.local/bin" ]; then
+    echo "Creating ${home_dir}/.local/bin"
+    mkdir -p "${home_dir}/.local/bin"
 fi
 
 create_symlink_d ".local/bin/custom" ".local/bin/custom"
 
+# fish
+create_symlink_d ".config/fish" ".config/fish"
+
+# git
+create_symlink_f ".gitignore" ".gitignore"
+create_symlink_f ".gitconfig" ".gitconfig"
+
+# emacs
+create_symlink_f ".emacs" ".emacs"
+create_symlink_d ".emacs.d" ".emacs.d"
+
+if [ ! -d "${home_dir}/.emacs.d/elpa" ]; then
+    echo "Cloning Emacs elpa"
+    git clone https://github.com/soblin/elpa.git "${home_dir}/.emacs.d/elpa"
+    echo "Done"
+fi
+
+# tmux
+create_symlink_f ".tmux.conf" ".tmux.conf"
+create_symlink_d ".config/tmux" ".config/tmux"
 
 if [ ! -d "${home_dir}/.config/tmux/plugin" ]; then
     mkdir -p "${home_dir}/.config/tmux/plugin"
@@ -241,7 +249,7 @@ fi
 
 if [ ! -d "${home_dir}/.config/tmux/plugin/tmux-sidebar/" ]; then
     echo "Installing tmux-sidebar."
-    git https://github.com/tmux-plugins/tmux-sidebar.git "${home_dir}/.config/tmux/plugin/tmux-sidebar"
+    git clone https://github.com/tmux-plugins/tmux-sidebar.git "${home_dir}/.config/tmux/plugin/tmux-sidebar"
     echo "Done"
 fi
 
