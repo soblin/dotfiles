@@ -264,15 +264,3 @@ if [ ! -d "${home_dir}/.config/tmux/plugin/tmux-continuum" ]; then
     git clone https://github.com/tmux-plugins/tmux-continuum.git "${home_dir}/.config/tmux/plugin/tmux-continuum"
     echo "Done"
 fi
-
-# Additional
-if [ -d "${home_dir}/.julia" ]; then
-    echo "Detected Julia in ${home_dir}/.julia"
-    if [ ! -d "{home_dir}/.julia/config" ]; then
-        create_symlink_d ".config/julia" ".julia/config"
-    fi
-fi
-
-if [ -d "/opt/ros" ]; then
-    create_symlink_f ".ros2rc" ".ros2rc"
-fi

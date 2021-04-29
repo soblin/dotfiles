@@ -38,7 +38,3 @@ unlink_symlink "${home_path}/.emacs.d"
 
 unlink_symlink "${home_path}/.tmux.conf"
 unlink_symlink "${home_path}/.config/tmux"
-
-unlink_symlink "${home_path}/.julia/config"
-
-unlink_symlink "${home_path}/.ros2rc"

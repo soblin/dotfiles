@@ -15,20 +15,3 @@ if [ -n "$BASH_VERSION" ]; then
 	. "$HOME/.bashrc"
     fi
 fi
-
-# set PATH so it includes user's private bin if it exists
-if [ -d "$HOME/bin" ] ; then
-    PATH="$HOME/bin:$PATH"
-fi
-
-# set PATH so it includes user's private bin if it exists
-if [ -d "$HOME/.local/bin" ] ; then
-    PATH="$HOME/.local/bin:$PATH"
-fi
-
-if [ -d "$HOME/.local/bin/custom" ] || [ -L "$HOME/.local/bin/custom" ]; then
-    PATH="$HOME/.local/bin/custom:$PATH"
-fi
-
-# from https://astherier.com/blog/2020/08/run-gui-apps-on-wsl2/
-export DISPLAY=$(cat /etc/resolv.conf | grep nameserver | awk '{print $2}'):0.0

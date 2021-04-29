@@ -3,8 +3,6 @@ set -U theme_display_cmd_duration no
 set -g theme_display_hostname no
 set -g theme_display_user no
 
-bass source ~/.profile
-bass source ~/.bash_aliases
 eval (dircolors -c ~/.dircolors)
 
 set -g -x PATH /usr/local/bin $PATH
@@ -15,6 +13,14 @@ set -g -x LD_LIBRARY_PATH ~/.local/lib $LD_LIBRARY_PATH
 set -g -x CPLUS_INCLUDE_PATH "~/.local/include"
 set -g -x CMAKE_PREFIX_PATH ~/.local/lib/cmake $CMAKE_PREFIX_PATH
 
-if test -d ~/ros2_ws
-    source ~/.config/fish/ros2.fish
-end
+bass source ~/.bashrc
+bass source ~/.bash_aliases
+
+source /opt/ros/melodic/share/rosbash/rosfish
+bass source /opt/ros/melodic/setup.bash
+bass source ~/catkin_ws/devel/setup.bash
+
+alias rlqv='kill -2 (pidgrep rviz)'
+alias rlqt='tmux kill-session -t husky_sim; rosrun tmux_scripts cleanup.sh; rlqv'
+alias rlt='tmuxp load `rospack find tmux_scripts`/tmuxp_config/husky_sim.yaml; rlqt'
+alias rlt2='tmuxp load `rospack find tmux_scripts`/tmuxp_config/husky_simple_sim.yaml; rlqt'
