@@ -23,11 +23,9 @@ bass source /opt/ros/{$ROS2_VER}/setup.bash
 bass source /usr/share/colcon_cd/function/colcon_cd.sh
 set -g -x _colcon_cd_root ~/{$ROS2_WS}
 
-if command_exist ros2
-    if command_exist register-python-argcomplete
-        register-python-argcomplete --shell fish ros2 | source
-    end
-
-    bass source ~/{$ROS2_WS}/install/local_setup.bash
-    bass source ~/{$ROS2_WS}/install/setup.bash
+if command_exist register-python-argcomplete
+   register-python-argcomplete --shell fish ros2 | source
 end
+
+bass source ~/{$ROS2_WS}/install/local_setup.bash
+bass source ~/{$ROS2_WS}/install/setup.bash
