@@ -12,17 +12,18 @@
 
 (add-hook 'web-mode-hook
           (lambda ()
-            (setq web-mode-markup-indent-offset   4)
+            (setq web-mode-markup-indent-offset 4)
             (setq web-mode-enable-auto-pairing t)
             (setq web-mode-enable-auto-closing t)
             )
           )
 
-(add-to-list 'auto-mode-alist '("\\.html?$"     . web-mode))
+(add-to-list 'auto-mode-alist '("\\.html?$" . web-mode))
 
 (add-to-list 'auto-mode-alist '("\\.urdf" . nxml-mode))
 (add-to-list 'auto-mode-alist '("\\.xacro" . nxml-mode))
 (add-to-list 'auto-mode-alist '("\\.launch" . nxml-mode))
+(add-to-list 'auto-mode-alist '("\\.launch.py" . python-mode))
 (add-to-list 'auto-mode-alist '("\\.yaml" . yaml-mode))
 
 (add-hook 'nxml-mode-hook
