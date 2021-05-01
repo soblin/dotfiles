@@ -1,0 +1,13 @@
+#!/bin/bash
+
+function colcon_try(){
+    cd ~/ros2_ws && colcon build && cd -
+    return 1
+}
+
+function colcon_error(){
+    cd -
+    exit 1
+}
+
+colcon_try || colcon_error
