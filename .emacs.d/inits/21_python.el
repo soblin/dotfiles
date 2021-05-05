@@ -42,7 +42,7 @@
           (insert (format "-*- coding: %S -*-\n" (my-short-buffer-file-coding-system)))
           (comment-region st (point)))))))
 
-(add-hook 'python-mode-hook 'my-insert-file-local-coding)
+;;; (add-hook 'python-mode-hook 'my-insert-file-local-coding)
 (provide '21_python)
 
 ;;; End:
