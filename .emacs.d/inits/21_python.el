@@ -15,7 +15,7 @@
           (lambda ()
             (define-key python-mode-map (kbd "\C-m") 'newline-and-indent)
             (define-key python-mode-map (kbd "RET") 'newline-and-indent)))
-(add-hook 'python-mode-hook 'py-autopep8-enable-on-save)
+;; (add-hook 'python-mode-hook 'py-autopep8-enable-on-save)
 
 (defun my-short-buffer-file-coding-system (&optional default-coding)
   (let ((coding-str (format "%S" buffer-file-coding-system)))
