@@ -23,4 +23,6 @@
     ck = checkout
     cm = commit
 [credential]
-    helper = cache --timeout=86400
+    helper = cache --timeout=172800
+[init]
+    defaultBranch = main
