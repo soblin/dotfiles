@@ -5,5 +5,10 @@ alias mkdir="mkdir -p"
 alias tree='tree -I ".git|__pycache__|node_modules|.ipynb_checkpoints"'
 alias emacs='emacs 2>/dev/null'
 
+alias gcm='git commit -m'
+alias gst='git status -uall'
+alias gck='git checkout'
 alias gfp='git fetch --prune'
 alias glg='git log --graph --all --oneline'
+alias gls='git log -S'
+alias glgrep='git log --grep'
