@@ -115,7 +115,3 @@ if ! shopt -oq posix; then
     . /etc/bash_completion
   fi
 fi
-
-if [ -L ~/.ros2rc ]; then
-    source ~/.ros2rc
-fi
