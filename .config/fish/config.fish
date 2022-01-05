@@ -14,6 +14,7 @@ set -g -x PATH ~/.local/bin/custom $PATH
 set -g -x LD_LIBRARY_PATH ~/.local/lib $LD_LIBRARY_PATH
 set -g -x CPLUS_INCLUDE_PATH "~/.local/include" $CPLUS_INCLUDE_PATH
 set -g -x CMAKE_PREFIX_PATH ~/.local/lib/cmake $CMAKE_PREFIX_PATH
+set -g -x CMAKE_PREFIX_PATH ~/.local/share/cmake $CMAKE_PREFIX_PATH
 
 if test -d ~/ros2_ws
     source ~/.config/fish/ros2.fish

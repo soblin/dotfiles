@@ -4,6 +4,7 @@ alias cp="cp -i"
 alias mkdir="mkdir -p"
 alias tree='tree -I ".git|__pycache__|node_modules|.ipynb_checkpoints"'
 alias emacs='emacs 2>/dev/null'
+alias dc='cd'
 
 alias gcm='git commit -m'
 alias gst='git status -uall'

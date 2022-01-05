@@ -119,3 +119,7 @@ fi
 if [ -L ~/.ros2rc ]; then
     source ~/.ros2rc
 fi
+
+# https://0h-n0.github.io/blog/2020/05/07/ubuntu-gcc.html
+export CXX='g++-11'
+export CC='gcc-11'
