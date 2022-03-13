@@ -9,7 +9,7 @@
 [pull]
     ff = only
 [help]
-    autocorrect = 20
+    autocorrect = 10
 [color]
     ui = true
 [alias]
