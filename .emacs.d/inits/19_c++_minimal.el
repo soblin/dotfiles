@@ -56,6 +56,9 @@
          (insert (concat "} // namespace " namespace))
          (forward-line -2)))
 
+(use-package clang-format+)
+(add-hook 'c-mode-common-hook #'clang-format+-mode)
+
 (provide '19_c++_minimal)
 
 ;;; End:

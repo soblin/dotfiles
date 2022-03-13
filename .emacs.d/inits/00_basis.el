@@ -133,6 +133,9 @@
 (require 'undo-tree)
 (global-undo-tree-mode)
 
+;;; https://emacs.stackexchange.com/questions/51410/saving-undo-tree-to-restore-in-next-session
+(setq undo-tree-auto-save-history nil)
+
 ;; (define-key global-map (kbd "-w") 'copy-region-as-kill)
 
 ;;; End:
