@@ -33,5 +33,9 @@ fi
 # from https://astherier.com/blog/2020/08/run-gui-apps-on-wsl2/
 # export DISPLAY=$(cat /etc/resolv.conf | grep nameserver | awk '{print $2}'):0.0
 
+if [ -f "$HOME/.cargo/env" ] ; then
+    . "$HOME/.cargo/env"
+fi
+
 # change caps lock to ctrl
 setxkbmap -option "ctrl:nocaps"
