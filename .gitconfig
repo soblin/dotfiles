@@ -19,3 +19,5 @@
     cm = commit
 [credential]
     helper = cache --timeout=86400
+[pager]
+	log = less
