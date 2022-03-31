@@ -10,8 +10,12 @@ elif [ -d /opt/ros/dashing ]; then
     ROS2_VER="dashing"
 fi
 
-source /opt/ros/${ROS2_VER}/setup.bash
-source /usr/share/colcon_cd/function/colcon_cd.sh
+if [ -f /opt/ros/${ROS2_VER}/setup.bash ]; then
+    source /opt/ros/${ROS2_VER}/setup.bash
+fi
+if [ -f /usr/share/colcon_cd/function/colcon_cd.sh ]; then
+    source /usr/share/colcon_cd/function/colcon_cd.sh
+fi
 export _colcon_cd_root=~/${ROS2_WS}
 if [ -d ~/${ROS2_WS}/install ]; then
     source ~/${ROS2_WS}/install/local_setup.bash && source ~/${ROS2_WS}/install/setup.bash
