@@ -276,6 +276,3 @@ fi
 if [ -d "/opt/ros" ]; then
     create_symlink_f ".ros2rc" ".ros2rc"
 fi
-
-# pycodestyle
-create_symlink_f ".config/pycodestyle" ".config/pycodestyle"
