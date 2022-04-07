@@ -116,6 +116,6 @@ if ! shopt -oq posix; then
   fi
 fi
 
-if [ -L ~/.rosrc ]; then
-    source ~/.rosrc
+if [ -L ~/.ros2rc ]; then
+    source ~/.ros2rc
 fi

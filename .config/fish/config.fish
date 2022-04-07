@@ -11,11 +11,4 @@ set -g -x PATH /usr/local/bin $PATH
 set -g -x PATH ~/.local/bin $PATH
 set -g -x PATH ~/.local/bin/custom $PATH
 
-set -l var (realpath ~/.rosrc)
-set -l rosrc (string sub --start=-6 $var)
-if test "$rosrc" = "ros1rc"
-   source ~/.config/fish/ros1.fish
-end
-if test "$rosrc" = "ros2rc"
-   source ~/.config/fish/ros2.fish
-end
+source ~/.config/fish/ros2.fish
