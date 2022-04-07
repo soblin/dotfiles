@@ -71,10 +71,10 @@ stack upgrade
 
 ### ROS2
 
-colconに付属する`argcomplete`はバージョンが古いため`fish`に対応していない．最新の`argcomplete`を[github](https://github.com/kislyuk/argcomplete)からクローンしてきて
+colconに付属する`argcomplete`はバージョンが古いため`fish`に対応していない．
 
 ```
-python3 setup.py install --user
+pip3 install argcomplete=2.0.0 (--user)
 ```
 
-する．`register-python-argcomplete`を使えるようになる．
+すれば，aptで入ったargcompleteとconflictせずに済む．
