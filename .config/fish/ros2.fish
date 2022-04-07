@@ -7,16 +7,16 @@ function command_exist
     end
 end
 
-set -l ROS2_WS "ros2_ws"
+set -g ROS2_WS "ros2_ws"
 
 if test -d /opt/ros/foxy/
-   set -a ROS2_VER "foxy"
+   set -g ROS2_VER "foxy"
 end
 if test -d /opt/ros/eloquent/
-   set -a ROS2_VER "eloquent"
+   set -g ROS2_VER "eloquent"
 end
 if test -d /opt/ros/dashing/
-   set -a ROS2_VER "dashing"
+   set -g ROS2_VER "dashing"
 end
 
 bass source /opt/ros/{$ROS2_VER}/setup.bash
@@ -29,3 +29,5 @@ end
 
 bass source ~/{$ROS2_WS}/install/local_setup.bash
 bass source ~/{$ROS2_WS}/install/setup.bash
+
+echo "ros2.fish: Loaded."

@@ -85,7 +85,7 @@ if [ -x /usr/bin/dircolors ]; then
 fi
 
 # colored GCC warnings and errors
-#export GCC_COLORS='error=01;31:warning=01;35:note=01;36:caret=01;32:locus=01:quote=01'
+export GCC_COLORS='error=01;31:warning=01;35:note=01;36:caret=01;32:locus=01:quote=01'
 
 # some more ls aliases
 alias ll='ls -alF'
@@ -116,10 +116,6 @@ if ! shopt -oq posix; then
   fi
 fi
 
-if [ -L ~/.ros2rc ]; then
-    source ~/.ros2rc
+if [ -L ~/.rosrc ]; then
+    source ~/.rosrc
 fi
-
-# https://0h-n0.github.io/blog/2020/05/07/ubuntu-gcc.html
-export CXX='g++-11'
-export CC='gcc-11'

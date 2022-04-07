@@ -274,5 +274,7 @@ if [ -d "${home_dir}/.julia" ]; then
 fi
 
 if [ -d "/opt/ros" ]; then
+    create_symlink_f ".ros1rc" ".ros1rc"
     create_symlink_f ".ros2rc" ".ros2rc"
+    create_symlink_f ".ros1rc" ".rosrc"
 fi
