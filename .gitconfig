@@ -21,3 +21,5 @@
     helper = cache --timeout=86400
 [pager]
 	log = less
+[init]
+	defaultBranch = main
