@@ -36,3 +36,4 @@ fi
 
 # change caps lock to ctrl
 setxkbmap -option "ctrl:nocaps"
+. "$HOME/.cargo/env"

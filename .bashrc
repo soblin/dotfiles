@@ -122,3 +122,5 @@ export LD_LIBRARY_PATH=/usr/local/cuda/lib64${LD_LIBRARY_PATH:+:${LD_LIBRARY_PAT
 if [ -L ~/.ros2rc ]; then
     source ~/.ros2rc
 fi
+
+. "$HOME/.cargo/env"
