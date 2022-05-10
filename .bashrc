@@ -123,4 +123,6 @@ if [ -L ~/.ros2rc ]; then
     source ~/.ros2rc
 fi
 
-. "$HOME/.cargo/env"
+if [ -f ~/.cargo/env ]; then
+    source "$HOME/.cargo/env"
+fi

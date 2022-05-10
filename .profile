@@ -29,11 +29,3 @@ fi
 if [ -d "$HOME/.local/bin/custom" ] || [ -L "$HOME/.local/bin/custom" ]; then
     PATH="$HOME/.local/bin/custom:$PATH"
 fi
-
-# from https://astherier.com/blog/2020/08/run-gui-apps-on-wsl2/
-# now wsl2 supports native GUI, so this line is not necessary
-# export DISPLAY=$(cat /etc/resolv.conf | grep nameserver | awk '{print $2}'):0.0
-
-# change caps lock to ctrl
-setxkbmap -option "ctrl:nocaps"
-. "$HOME/.cargo/env"
