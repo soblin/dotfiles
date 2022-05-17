@@ -16,9 +16,18 @@ set -g -x PATH ~/.local/bin/custom $PATH
 alias colcon='__colcon_find_workspace_dir > /dev/null && cd (__colcon_find_workspace_dir); command colcon'
 alias roscd="ccd -o"
 register-python-argcomplete --shell fish ros2 | source
+
 function e
   if not emacsclient -nw $argv
     emacs --daemon
     emacsclient -nw $argv
   end
+end
+
+function colcon_all
+  colcon build --symlink-install --continue-on-error --cmake-args -DCMAKE_BUILD_TYPE=Release -DCMAKE_EXPORT_COMPILE_COMMANDS=ON
+end
+
+function colcon_select
+  colcon build --packages-up-to $argv
 end
