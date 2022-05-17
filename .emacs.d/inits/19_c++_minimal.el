@@ -8,15 +8,8 @@
 (add-to-list 'auto-mode-alist '("\\.h\\'" . c++-mode))
 (add-to-list 'auto-mode-alist '("\\.cu\\'" . c++-mode))
 
-(load-file "~/.emacs.d/elpa/google-c-style-20180130.1736/google-c-style.el")
-(require 'google-c-style)
 (load-file "~/.emacs.d/elpa/rtags/rtags.el")
 (require 'rtags)
-
-(add-hook 'c-mode-common-hook 'google-set-c-style)
-(add-hook 'c-mode-hook 'google-set-c-style)
-(add-hook 'c++-mode-hook 'google-set-c-style)
-(add-hook 'c-mode-common-hook 'google-make-newline-indent)
 
 (when (require 'rtags nil 'noerror)
   (add-hook 'c-mode-common-hook
@@ -56,6 +49,7 @@
          (insert (concat "} // namespace " namespace))
          (forward-line -2)))
 
+(require 'use-package)
 (use-package clang-format+)
 (add-hook 'c-mode-common-hook #'clang-format+-mode)
 
