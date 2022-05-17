@@ -16,3 +16,9 @@ set -g -x PATH ~/.local/bin/custom $PATH
 alias colcon='__colcon_find_workspace_dir > /dev/null && cd (__colcon_find_workspace_dir); command colcon'
 alias roscd="ccd -o"
 register-python-argcomplete --shell fish ros2 | source
+function e
+  if not emacsclient -nw $argv
+    emacs --daemon
+    emacsclient -nw $argv
+  end
+end

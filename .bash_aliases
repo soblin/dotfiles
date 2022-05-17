@@ -4,6 +4,12 @@ alias cp="cp -i"
 alias mkdir="mkdir -p"
 alias tree='tree -I ".git|__pycache__|node_modules|.ipynb_checkpoints|build|gitignore"'
 alias emacs='emacs 2>/dev/null'
+e() {
+    if ! emacsclient -nw $@; then
+        emacs --daemon
+        emacsclient -nw $@
+    fi
+}
 alias dc='cd'
 
 alias gcm='git commit --signoff -m'
