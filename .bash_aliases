@@ -14,3 +14,6 @@ alias gls='git log -S'
 alias glgrep='git log --grep'
 alias gdf='git diff'
 alias gdfs='git diff --staged'
+function psgrep() {
+    ps aux | grep "$1"
+}
