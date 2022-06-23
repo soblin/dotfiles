@@ -35,7 +35,8 @@
    '(use-package clang-format+ clang-format projectile magit undo-tree visual-regexp tabbar helm-migemo markdown-preview-mode zoom-frm go-mode helm sphinx-mode markdown-mode+ google-c-style rtags py-autopep8 jedi markdown-mode matlab-mode sudo-edit restart-emacs yatex js2-mode dracula-theme yaml-mode json-mode html5-schema web-mode js2-modeyasnippet cmake-mode company package-utils init-loader))
  '(safe-local-variable-values '((cmake-tab-width . 4)))
  '(show-paren-mode t)
- '(tabbar-separator '(0.5)))
+ '(tabbar-separator '(0.5))
+ '(visible-bell nil))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.

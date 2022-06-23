@@ -136,6 +136,9 @@
 ;;; https://emacs.stackexchange.com/questions/51410/saving-undo-tree-to-restore-in-next-session
 (setq undo-tree-auto-save-history nil)
 
+;;; https://qiita.com/ongaeshi/items/696407fc6c42072add54
+(setq ring-bell-function 'ignore)
+
 ;; (define-key global-map (kbd "-w") 'copy-region-as-kill)
 
 ;;; End:
