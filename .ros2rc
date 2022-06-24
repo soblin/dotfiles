@@ -33,15 +33,18 @@ if [ ! -e /tmp/cycloneDDS_configured ]; then
 	touch /tmp/cycloneDDS_configured
 fi
 
-source ~/workspace/autoware/install/setup.bash
-
 export PATH=/usr/local/cuda-11.6/bin${PATH:+:${PATH}}
 export LD_LIBRARY_PATH=/usr/local/cuda-11.6/lib64${LD_LIBRARY_PATH:+:${LD_LIBRARY_PATH}}
+
+export CC=/usr/lib/ccache/gcc
+export CXX=/usr/lib/ccache/g++
+export USE_CCACHE=1
+export CCACHE_DIR=$HOME/.ccache
 
 colcon_all(){
     colcon build --symlink-install --continue-on-error --cmake-args -DCMAKE_BUILD_TYPE=Release -DCMAKE_EXPORT_COMPILE_COMMANDS=ON
 }
 
 colcon_select(){
-    colcon build --packages-up-to $@
+    colcon build --packages-up-to $@ --cmake-args -DCMAKE_BUILD_TYPE=Release -DCMAKE_EXPORT_COMPILE_COMMANDS=ON
 }
