@@ -14,6 +14,7 @@ elif [ -d /opt/ros/dashing ]; then
 elif [ -d /opt/ros/galactic ]; then
     ROS2_VER="galactic"
 fi
+ROS2_VER="humble"
 
 if [ -f /opt/ros/${ROS2_VER}/setup.bash ]; then
     source /opt/ros/${ROS2_VER}/setup.bash
@@ -32,9 +33,6 @@ if [ ! -e /tmp/cycloneDDS_configured ]; then
 	sudo ifconfig lo multicast
 	touch /tmp/cycloneDDS_configured
 fi
-
-export PATH=/usr/local/cuda-11.6/bin${PATH:+:${PATH}}
-export LD_LIBRARY_PATH=/usr/local/cuda-11.6/lib64${LD_LIBRARY_PATH:+:${LD_LIBRARY_PATH}}
 
 export CC=/usr/lib/ccache/gcc
 export CXX=/usr/lib/ccache/g++

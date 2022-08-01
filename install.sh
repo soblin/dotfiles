@@ -5,7 +5,7 @@ APT_OPTION="-qq"
 # install prerequisites
 # emacs27, fish3, tmux, tree, xclip, xsel, fonts-powerline
 
-echo "Installing tmux, tree, xclip, xsel, fonts-powerline"
+echo "Installing tmux, tree, xclip, xsel, fonts-powerline, mlocate"
 
 if ! command -v tmux &>/dev/null; then
     sudo apt-get ${APT_OPTION} install tmux
