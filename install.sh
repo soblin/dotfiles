@@ -23,7 +23,7 @@ if ! command -v xsel &>/dev/null; then
     sudo apt-get ${APT_OPTION} install xsel
 fi
 
-sudo apt-get ${APT_OPTION} install fonts-powerline
+sudo apt-get ${APT_OPTION} install fonts-powerline fonts-takao-gothic fonts-takao-pgothic
 
 echo "Installed tmux, tree, xclip, xsel, fonts-powerline"
 

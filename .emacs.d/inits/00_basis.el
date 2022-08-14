@@ -6,8 +6,8 @@
 ;;; Code:
 
 ;; japanese settings
-;; (set-fontset-font t 'japanese-jisx0208 "TakaoPGothic")
-;; (add-to-list 'face-font-rescale-alist '(".*Takao P.*" . 0.9)) ; OK
+(set-fontset-font t 'japanese-jisx0208 "TakaoPGothic")
+(add-to-list 'face-font-rescale-alist '(".*Takao P.*" . 0.9)) ; OK
 
 ;; default-theme
 (add-to-list 'load-path "~/.emacs.d/themes")
