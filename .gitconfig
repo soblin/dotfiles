@@ -23,6 +23,3 @@
 	log = less
 [init]
 	defaultBranch = main
-[user]
-	name = Mamoru Sobue
-	email = mamoru.sobue@tier4.jp

@@ -123,7 +123,5 @@ fi
 if [ -f ~/.cargo/env ]; then
     source "$HOME/.cargo/env"
 fi
-source /opt/ros/humble/setup.bash
-export RMW_IMPLEMENTATION=rmw_cyclonedds_cpp
 export PATH="/usr/local/cuda/bin:$PATH"
 export LD_LIBRARY_PATH="/usr/local/cuda/lib64:$LD_LIBRARY_PATH"

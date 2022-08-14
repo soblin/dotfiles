@@ -5,7 +5,7 @@ APT_OPTION="-qq"
 # install prerequisites
 # emacs27, fish3, tmux, tree, xclip, xsel, fonts-powerline
 
-echo "Installing tmux, tree, xclip, xsel, fonts-powerline, mlocate"
+echo "Installing tmux, tree, xclip, xsel, mlocate, htop, fonts-powerline"
 
 if ! command -v tmux &>/dev/null; then
     sudo apt-get ${APT_OPTION} install tmux
@@ -23,9 +23,17 @@ if ! command -v xsel &>/dev/null; then
     sudo apt-get ${APT_OPTION} install xsel
 fi
 
-sudo apt-get ${APT_OPTION} install fonts-powerline
+if ! command -v xsel &>/dev/null; then
+    sudo apt-get ${APT_OPTION} install mlocate
+fi
 
-echo "Installed tmux, tree, xclip, xsel, fonts-powerline"
+if ! command -v xsel &>/dev/null; then
+    sudo apt-get ${APT_OPTION} install htop
+fi
+
+sudo apt-get ${APT_OPTION} install fonts-powerline fonts-takao-gothic fonts-takao-pgothic
+
+echo "Installed tmux, tree, xclip, xsel, mlocate, htop, fonts-powerline"
 
 function get_major_ver_num() {
     echo "$1" | cut -d "." -f1
