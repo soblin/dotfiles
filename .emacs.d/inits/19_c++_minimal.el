@@ -42,13 +42,19 @@
 (add-hook 'c-mode-common-hook #'clang-format+-mode)
 
 ;; https://blog.medalotte.net/archives/473
-(use-package ccls
-  :custom
-  (ccls-executable "~/.local/bin/custom/ccls")
-  (ccls-sem-highlight-method 'font-lock)
-  (ccls-use-default-rainbow-sem-highlight)
-  :hook ((c-mode c++-mode) .
-         (lambda () (require 'ccls) (lsp))))
+
+;; https://qiita.com/kari_tech/items/4754fac39504dccfd7be
+(add-hook 'c++-mode-hook 'company-mode) ; 補完用
+(add-hook 'c++-mode-hook 'flycheck-mode) ; チェック用
+(add-hook 'c++-mode-hook #'lsp)
+
+;; https://granddaifuku.hatenablog.com/entry/emacs-eglot
+(use-package eglot
+  :ensure t
+  :config
+  (add-to-list 'eglot-server-programs '(c++-mode . ("clangd")))
+  (add-hook 'c++-mode-hook 'eglot-ensure) 
+  )
 
 (provide '19_c++_minimal)
 
