@@ -10,20 +10,20 @@
 (setq markdown-preview-stylesheets nil)
 
 (add-hook 'markdown-mode-hook
-          '(lambda ()
-             (local-set-key (kbd "\C-x\C-m") '(lambda (eq)
-                                                (interactive "sEnter LaTeX Equation: ")
-                                                (progn (insert "$$\\begin{align}\n")
-                                                       (insert eq)
-                                                       (insert "\n\\end{align}$$\n"))
-                                                ))))
+          #'(lambda ()
+             (local-set-key (kbd "\C-x\C-m") #'(lambda (eq)
+                                                 (interactive "sEnter LaTeX Equation: ")
+                                                 (progn (insert "$$\\begin{align}\n")
+                                                        (insert eq)
+                                                        (insert "\n\\end{align}$$\n"))
+                                                 ))))
 
 (add-hook 'markdown-mode-hook
-          '(lambda ()
-             (local-set-key (kbd "\C-c\C-m") '(lambda (eq)
-                                                     (interactive "sEnter math snippet: ")
-                                                     (progn (insert (concat " $" eq "$ ")))
-                                                     ))))
+          #'(lambda ()
+             (local-set-key (kbd "\C-c\C-m") #'(lambda (eq)
+                                                 (interactive "sEnter math snippet: ")
+                                                 (progn (insert (concat " $" eq "$ ")))
+                                                 ))))
 
 (provide '27_md)
 

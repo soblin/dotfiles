@@ -13,10 +13,10 @@
 ;;
 (setq frame-background-mode 'dark)
 ;;
-(add-hook 'rst-mode-hook '(lambda() (setq indent-tabs-mode nil)))
+(add-hook 'rst-mode-hook #'(lambda() (setq indent-tabs-mode nil)))
 (add-hook 'rst-mode-hook
-          '(lambda ()
-             (local-set-key (kbd "\C-x\C-m") '(lambda (eq)
+          #'(lambda ()
+             (local-set-key (kbd "\C-x\C-m") #'(lambda (eq)
                                            (interactive "sEnter LaTeX Equation.")
                                            (insert (concat " :math:`" eq "` "))
 

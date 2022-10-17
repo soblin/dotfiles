@@ -22,7 +22,7 @@
 (add-hook 'yatex-mode-hook 'turn-on-reftex)
 
 (add-hook 'yatex-mode-hook
-	  '(lambda ()
+	  #'(lambda ()
 	     (setq YaTeX-use-AMS-LaTeX t) ; align で数式モードになる
 	     (setq YaTeX-use-hilit19 nil
 		   YateX-use-font-lock t)
@@ -40,7 +40,7 @@
 
 ;;YaTeXとlatex-math-preview 最終更新2017/4
 (add-hook 'yatex-mode-hook
-	  '(lambda ()
+	  #'(lambda ()
 	     (YaTeX-define-key "p" 'latex-math-preview-expression)
 	     (YaTeX-define-key "\C-p" 'latex-math-preview-save-image-file)
 	     (YaTeX-define-key "j" 'latex-math-preview-insert-symbol)
