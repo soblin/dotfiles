@@ -10,9 +10,14 @@
 (add-to-list 'face-font-rescale-alist '(".*Takao P.*" . 0.9)) ; OK
 
 ;; default-theme
-(add-to-list 'load-path "~/.emacs.d/themes")
-(add-to-list 'custom-theme-load-path "~/.emacs.d/themes")
-(load-theme 'dracula t)
+;; (add-to-list 'load-path "~/.emacs.d/themes")
+;; (add-to-list 'custom-theme-load-path "~/.emacs.d/themes")
+;; (load-theme 'dracula t)
+
+(use-package doom-themes
+  :ensure t
+  :config
+  (load-theme 'doom-dracula t))
 
 (global-display-line-numbers-mode)
 (set-face-attribute 'line-number nil
