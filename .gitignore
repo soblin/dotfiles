@@ -14,3 +14,7 @@ __pycache__
 *.bbl
 *.elc
 *.~undo-tree~
+.ccls
+.ccls-cache/
+.clangd/
+compile_commands.json

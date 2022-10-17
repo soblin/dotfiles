@@ -5,12 +5,8 @@
 
 ;;; Code:
 
-;;(add-to-list 'load-path "/home/mamoru/.emacs.d/elpa/python-20120402")
 (require 'python)
 (setq auto-mode-alist (cons '("\\.py\\'" . python-mode) auto-mode-alist))
-;; (require 'jedi)
-;; (add-hook 'python-mode-hook 'jedi:setup)
-;; (setq jedi:complete-on-dot t)
 (add-hook 'python-mode-hook
           (lambda ()
             (define-key python-mode-map (kbd "\C-m") 'newline-and-indent)
@@ -43,6 +39,11 @@
           (comment-region st (point)))))))
 
 ;;; (add-hook 'python-mode-hook 'my-insert-file-local-coding)
+
+(add-to-list 'eglot-server-programs
+             `(python-mode . ("pyls" "-v" "--tcp" "--host"
+                              "localhost" "--port" :autoport)))
+
 (provide '21_python)
 
 ;;; End:

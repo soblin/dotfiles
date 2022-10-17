@@ -2,7 +2,7 @@
 
 個人用の `dotfiles` のレポジトリ.
 
-## シンボリックリンクの設定
+## 依存コマンドのインストール・シンボリックリンクの設定
 
 ```bash
 ./install.sh
@@ -12,21 +12,7 @@
 
 ## elpaの扱い
 
-elpaのパッケージは別のレポジトリで管理することにした．
-
-### pullするとき
-
-変更を確認する．
-
-```
-git fetch
-```
-
-その後取り込む．
-
-```
-git merge origin/master
-```
+elpaのパッケージは別のレポジトリで管理する．
 
 ## tmux
 
@@ -78,3 +64,7 @@ pip3 install argcomplete=2.0.0 (--user)
 ```
 
 すれば，aptで入ったargcompleteとconflictせずに済む．
+
+### LSP + ccls
+
+基本的にプロジェクトのrootに`.ccls`を置き，そこに`compile_commands.json`へのシンボリックリンクを貼る(`build/`など)．ROSのようにrootの配下にC++のプロジェクト(vcsで管理されている)が複数配置されている場合は，それぞれのプロジェクトでこの作業が必要になると思われる（良い方法が分からない）．
