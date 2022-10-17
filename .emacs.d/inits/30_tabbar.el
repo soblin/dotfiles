@@ -19,7 +19,7 @@
  'tabbar-selected nil
  :background "light sky blue"
  :foreground "black"
- :height 1.35
+ :height 1.1
  :box '(:line-width 5 :color "light sky blue" :style nil)
  )
 

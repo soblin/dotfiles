@@ -10,10 +10,6 @@
 
 する．
 
-## elpaの扱い
-
-elpaのパッケージは別のレポジトリで管理する．
-
 ## tmux
 
 tmuxのキーバインドは以下の通り.
@@ -55,6 +51,16 @@ pip3 install argcomplete=2.0.0 (--user)
 ```
 
 すれば，aptで入ったargcompleteとconflictせずに済む．
+
+## Emacs
+
+### elpaの扱い
+
+elpaのパッケージは別のレポジトリで管理する．
+
+### all-the-icons
+
+`M-x all-the-icons-install-fonts`をする必要がある．
 
 ### LSP
 

@@ -9,16 +9,6 @@
 (set-fontset-font t 'japanese-jisx0208 "TakaoPGothic")
 (add-to-list 'face-font-rescale-alist '(".*Takao P.*" . 0.9)) ; OK
 
-;; default-theme
-;; (add-to-list 'load-path "~/.emacs.d/themes")
-;; (add-to-list 'custom-theme-load-path "~/.emacs.d/themes")
-;; (load-theme 'dracula t)
-
-(use-package doom-themes
-  :ensure t
-  :config
-  (load-theme 'doom-dracula t))
-
 (global-display-line-numbers-mode)
 (set-face-attribute 'line-number nil
                     :foreground "#f8f8f2"
@@ -67,54 +57,21 @@
 
 (setq scroll-conservatively 1)
 
-(define-key key-translation-map [?\C-h] [?\C-?])
-
 ;; ファイル検索で大文字と小文字を区別しない
 (setq read-buffer-completion-ignore-case t)
 (setq read-file-name-completion-ignore-case t)
-
-(define-key global-map (kbd "C-x C-u") 'undo)
-
-(global-unset-key (kbd "C-\\"))
 
 ;; shebangで始まるファイルを、実行可能にして保存する
 (add-hook 'after-save-hool
           'executable-make-buffer-file-executable-if-script-p)
 
-(load-file "~/.emacs.d/elpa/frame-fns/frame-fns.el")
-(load-file "~/.emacs.d/elpa/frame-cmds/frame-cmds.el")
-(load-file "~/.emacs.d/elpa/zoom-frm/zoom-frm.el")
-
-(define-key global-map (kbd "C-x C-+") 'zoom-all-frames-in)
-(define-key global-map (kbd "C-x C--") 'zoom-all-frames-out)
-
 (add-to-list 'exec-path "/usr/bin")
 (add-to-list 'exec-path "/usr/local/bin")
-
-(global-set-key "\C-h" 'delete-backward-char)
-
-(global-unset-key (kbd "C-x m"))
-
-(global-unset-key (kbd "C-j"))
-
-(defun my-delete-line ()
-  (interactive)
-  (progn (beginning-of-line)
-         (kill-line)
-         ))
-
-(define-key global-map (kbd "C-k") 'my-delete-line)
 
 (cua-mode t)
 (setq cua-enable-cua-keys nil)
 
-(define-key global-map (kbd "C-x C-k") 'kill-buffer)
-
-(global-set-key (kbd "M-%") 'vr/query-replace)
-
 (blink-cursor-mode 0)
-
-(define-key global-map (kbd "C-\\") 'set-mark-command)
 
 (require 'undo-tree)
 (global-undo-tree-mode)
@@ -124,8 +81,6 @@
 
 ;;; https://qiita.com/ongaeshi/items/696407fc6c42072add54
 (setq ring-bell-function 'ignore)
-
-;; (define-key global-map (kbd "-w") 'copy-region-as-kill)
 
 ;;; End:
 
