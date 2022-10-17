@@ -34,7 +34,7 @@
 
 ;; dumb-jump
 (dumb-jump-mode)
-(setq dumb-jump-selector 'ivy)
+(setq dumb-jump-selector 'helm)
 
 ;; smart-jump
 (smart-jump-setup-default-registers)

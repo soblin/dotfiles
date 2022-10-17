@@ -40,9 +40,7 @@
 
 ;;; (add-hook 'python-mode-hook 'my-insert-file-local-coding)
 
-(add-to-list 'eglot-server-programs
-             `(python-mode . ("pyls" "-v" "--tcp" "--host"
-                              "localhost" "--port" :autoport)))
+(add-hook 'python-mode-hook 'eglot-ensure)
 
 (provide '21_python)
 
