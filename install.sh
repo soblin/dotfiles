@@ -3,9 +3,8 @@
 APT_OPTION="-qq"
 
 # install prerequisites
-# emacs27, fish3, tmux, tree, xclip, xsel, fonts-powerline
 
-echo "Installing tmux, tree, xclip, xsel, mlocate, htop, fonts-powerline"
+echo "Installing tmux, tree, xclip, xsel, mlocate, htop, fonts-powerline silversearcher-ag"
 
 if ! command -v tmux &>/dev/null; then
     sudo apt-get ${APT_OPTION} install tmux
@@ -23,17 +22,20 @@ if ! command -v xsel &>/dev/null; then
     sudo apt-get ${APT_OPTION} install xsel
 fi
 
-if ! command -v xsel &>/dev/null; then
+if ! command -v mlocate &>/dev/null; then
     sudo apt-get ${APT_OPTION} install mlocate
 fi
 
-if ! command -v xsel &>/dev/null; then
+if ! command -v htop &>/dev/null; then
     sudo apt-get ${APT_OPTION} install htop
 fi
 
 sudo apt-get ${APT_OPTION} install fonts-powerline fonts-takao-gothic fonts-takao-pgothic
 
-echo "Installed tmux, tree, xclip, xsel, mlocate, htop, fonts-powerline"
+# https://solist.work/blog/posts/language-server-protocol/
+sudo apt install silversearcher-ag ripgrep
+
+echo "Installed dependencies."
 
 function get_major_ver_num() {
     echo "$1" | cut -d "." -f1

@@ -12,14 +12,8 @@
 ;; default-theme
 (add-to-list 'load-path "~/.emacs.d/themes")
 (add-to-list 'custom-theme-load-path "~/.emacs.d/themes")
-;;(load-theme 'tomorrow-night-bright t)
-;;(load-theme 'tomorrow-day t)
-;;(require 'twilight-bright-theme)
 (load-theme 'dracula t)
 
-;; 左に行番号表示
-;; (require 'linum)
-;; (global-linum-mode)
 (global-display-line-numbers-mode)
 (set-face-attribute 'line-number nil
                     :foreground "#f8f8f2"
@@ -91,19 +85,6 @@
 
 (add-to-list 'exec-path "/usr/bin")
 (add-to-list 'exec-path "/usr/local/bin")
-
-(defun maker ()
-  (interactive)
-  (progn
-    (async-shell-command "make -k")                      ; Publish the command
-    (setq cur (selected-window))                         ; save the working buffer
-    (setq w (get-buffer-window "*Async Shell Command*")) ; get height of *Async Shell Command* object
-    (select-window w)                                    ; go to *Async Shell Command* 
-    (setq h (window-height w))                           ; get its height
-    (shrink-window (- h 6))                              ; shrink by the difference
-    (select-window cur)                                  ; return to the working buffer
-    )
-  )
 
 (global-set-key "\C-h" 'delete-backward-char)
 
