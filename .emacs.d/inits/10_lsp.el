@@ -1,3 +1,10 @@
+;;; 10_lsp.el --- LSP settings
+
+;;; Commentary:
+;;
+
+;;; Code:
+
 (require 'company)
 (require 'bind-key)
 (setq company-minimum-prefix-length 2)
@@ -35,3 +42,7 @@
 ;; lspモードの外観改善
 ;; https://emacs-lsp.github.io/lsp-mode/tutorials/how-to-turn-off/
 (setq lsp-headerline-breadcrumb-enable nil)
+
+;;; End:
+
+;;; 10_lsp ends here
