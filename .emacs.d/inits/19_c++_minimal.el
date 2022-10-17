@@ -49,12 +49,15 @@
 (add-hook 'c++-mode-hook #'lsp)
 
 ;; https://granddaifuku.hatenablog.com/entry/emacs-eglot
-(use-package eglot
-  :ensure t
-  :config
-  (add-to-list 'eglot-server-programs '(c++-mode . ("clangd")))
-  (add-hook 'c++-mode-hook 'eglot-ensure) 
-  )
+
+;; https://blog.medalotte.net/archives/473
+(use-package ccls
+  :custom
+  (ccls-executable "/usr/bin/ccls")
+  (ccls-sem-highlight-method 'font-lock)
+  (ccls-use-default-rainbow-sem-highlight)
+  :hook ((c-mode c++-mode objc-mode) .
+         (lambda () (require 'ccls) (lsp))))
 
 (provide '19_c++_minimal)
 
