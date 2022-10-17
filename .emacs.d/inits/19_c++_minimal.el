@@ -44,7 +44,7 @@
 ;; https://blog.medalotte.net/archives/473
 (use-package ccls
   :custom
-  (ccls-executable "/usr/local/bin/ccls")
+  (ccls-executable "~/.local/bin/custom/ccls")
   (ccls-sem-highlight-method 'font-lock)
   (ccls-use-default-rainbow-sem-highlight)
   :hook ((c-mode c++-mode) .
