@@ -3,9 +3,8 @@
 APT_OPTION="-qq"
 
 # install prerequisites
-# emacs27, fish3, tmux, tree, xclip, xsel, fonts-powerline
 
-echo "Installing tmux, tree, xclip, xsel, mlocate, htop, fonts-powerline"
+echo "Installing tmux, tree, xclip, xsel, mlocate, htop, ccls"
 
 if ! command -v tmux &>/dev/null; then
     sudo apt-get ${APT_OPTION} install tmux
@@ -23,17 +22,23 @@ if ! command -v xsel &>/dev/null; then
     sudo apt-get ${APT_OPTION} install xsel
 fi
 
-if ! command -v xsel &>/dev/null; then
+if ! command -v mlocate &>/dev/null; then
     sudo apt-get ${APT_OPTION} install mlocate
 fi
 
-if ! command -v xsel &>/dev/null; then
+if ! command -v htop &>/dev/null; then
     sudo apt-get ${APT_OPTION} install htop
 fi
 
+if ! command -v ccls &>/dev/null; then
+    sudo apt-get ${APT_OPTION} install ccls
+fi
+
+echo "Installing extra fonts"
+
 sudo apt-get ${APT_OPTION} install fonts-powerline fonts-takao-gothic fonts-takao-pgothic
 
-echo "Installed tmux, tree, xclip, xsel, mlocate, htop, fonts-powerline"
+echo "Installed dependencies."
 
 function get_major_ver_num() {
     echo "$1" | cut -d "." -f1
@@ -55,8 +60,8 @@ install_emacs=false
 if command -v emacs &> /dev/null; then
     emacs_ver_string=$(get_emacs_ver_string)
     emacs_major_ver=$(get_major_ver_num $emacs_ver_string)
-    if [ $emacs_major_ver -lt 26 ]; then
-        echo "Your Emacs version is ${emacs_ver_string}. I want to use Emacs >= 26 !"
+    if [ $emacs_major_ver -lt 27 ]; then
+        echo "Your Emacs version is ${emacs_ver_string}. I want to use Emacs >= 27 !"
         uninstall_old_emacs=true
         install_emacs=true
     else
@@ -86,16 +91,16 @@ if $install_emacs; then
     sudo add-apt-repository ppa:kelleyk/emacs
     sudo apt-get ${APT_OPTION} update
     echo "Done."
-    read -p "Specify the version 26 or 27(default): " ver
+    read -p "Specify the version 27 or 28(default): " ver
     case $ver in
-        "26" )
-            echo "Installing Emacs-26"
-            sudo apt-get ${APT_OPTION} install emacs26
+        "27" )
+            echo "Installing Emacs-27"
+            sudo apt-get ${APT_OPTION} install emacs27
             echo "Done"
             sudo apt ${APT_OPTION} clean;;
         * )
-            echo "Installing Emacs-27"
-            sudo apt-get install emacs27
+            echo "Installing Emacs-28"
+            sudo apt-get install emacs28
             echo "Done"
             sudo apt ${APT_OPTION} clean;;
     esac

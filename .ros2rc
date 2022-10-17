@@ -1,9 +1,6 @@
 #!/bin/bash
 
-# https://zenn.dev/kenji_miyake/articles/c149cc1f17e168
-
-ROS2_WS="ros2_ws"
-ROS2_VER="foxy"
+ROS2_VER="None"
 
 if [ -d /opt/ros/foxy ]; then
     ROS2_VER="foxy"
@@ -13,36 +10,36 @@ elif [ -d /opt/ros/dashing ]; then
     ROS2_VER="dashing"
 elif [ -d /opt/ros/galactic ]; then
     ROS2_VER="galactic"
-fi
-ROS2_VER="humble"
-
-if [ -f /opt/ros/${ROS2_VER}/setup.bash ]; then
-    source /opt/ros/${ROS2_VER}/setup.bash
+elif [ -d /opt/ros/humble ]; then
+    ROS2_VER="humble"
 fi
 
-source /usr/share/colcon_argcomplete/hook/colcon-argcomplete.bash
-export RCUTILS_CONSOLE_OUTPUT_FORMAT="[{severity} {time}] [{name}]: {message}"
-export RMW_IMPLEMENTATION=rmw_cyclonedds_cpp
-export ROS_LOCALHOST_ONLY=1
+if [ "$ROS2_VER" != "None" ]; then
+    if [ -f /opt/ros/${ROS2_VER}/setup.bash ]; then
+        source /opt/ros/${ROS2_VER}/setup.bash
+    fi
 
-export ROS_LOCALHOST_ONLY=1
-export RMW_IMPLEMENTATION=rmw_cyclonedds_cpp
+    source /usr/share/colcon_argcomplete/hook/colcon-argcomplete.bash
+    export RCUTILS_CONSOLE_OUTPUT_FORMAT="[{severity} {time}] [{name}]: {message}"
+    export RMW_IMPLEMENTATION=rmw_cyclonedds_cpp
+    export ROS_LOCALHOST_ONLY=1
 
-if [ ! -e /tmp/cycloneDDS_configured ]; then
-	sudo sysctl -w net.core.rmem_max=2147483647
-	sudo ifconfig lo multicast
-	touch /tmp/cycloneDDS_configured
+    if [ ! -e /tmp/cycloneDDS_configured ]; then
+	    sudo sysctl -w net.core.rmem_max=2147483647
+	    sudo ifconfig lo multicast
+	    touch /tmp/cycloneDDS_configured
+    fi
+
+    export CC=/usr/lib/ccache/gcc
+    export CXX=/usr/lib/ccache/g++
+    export USE_CCACHE=1
+    export CCACHE_DIR=$HOME/.ccache
+
+    colcon_all(){
+        colcon build --symlink-install --continue-on-error --cmake-args -DCMAKE_BUILD_TYPE=Release -DCMAKE_EXPORT_COMPILE_COMMANDS=ON
+    }
+
+    colcon_select(){
+        colcon build --packages-up-to $@ --cmake-args -DCMAKE_BUILD_TYPE=Release -DCMAKE_EXPORT_COMPILE_COMMANDS=ON
+    }
 fi
-
-export CC=/usr/lib/ccache/gcc
-export CXX=/usr/lib/ccache/g++
-export USE_CCACHE=1
-export CCACHE_DIR=$HOME/.ccache
-
-colcon_all(){
-    colcon build --symlink-install --continue-on-error --cmake-args -DCMAKE_BUILD_TYPE=Release -DCMAKE_EXPORT_COMPILE_COMMANDS=ON
-}
-
-colcon_select(){
-    colcon build --packages-up-to $@ --cmake-args -DCMAKE_BUILD_TYPE=Release -DCMAKE_EXPORT_COMPILE_COMMANDS=ON
-}

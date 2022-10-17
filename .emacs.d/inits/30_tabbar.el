@@ -57,22 +57,17 @@ That is, a string used to represent it on the tab bar."
 (define-key global-map (kbd "C-x C-p") 'tabbar-forward-tab)
 
 (defun my-tabbar-buffer-list ()
-  (cons "*scratch*"
-        (remove-if (lambda (buffer) (find (aref (buffer-name buffer) 0) " *")) (buffer-list))
-        )
-  )
-
-(defun my-tabbar-buffer-list2 ()
   (cons "*scratch*" ;; scratchは残す
         (remove-if (lambda (buffer) (or (cl-search "*" (buffer-name buffer)) ;; *を含むやつ
                                         (cl-search "magit" (buffer-name buffer)) ;; magitを含むやつ
+                                        (cl-search "markdown-code-fontification" (buffer-name buffer))
                                         ))
                    (buffer-list)
                    )
         )
   )
 
-(setq tabbar-buffer-list-function 'my-tabbar-buffer-list2)
+(setq tabbar-buffer-list-function 'my-tabbar-buffer-list)
 
 (tabbar-mode 1)
 ;;; End:

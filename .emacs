@@ -32,7 +32,7 @@
  '(cua-mode t nil (cua-base))
  '(global-display-line-numbers-mode t)
  '(package-selected-packages
-   '(use-package clang-format+ clang-format projectile magit undo-tree visual-regexp tabbar helm-migemo markdown-preview-mode zoom-frm go-mode helm sphinx-mode markdown-mode+ google-c-style rtags py-autopep8 jedi markdown-mode matlab-mode sudo-edit restart-emacs yatex js2-mode dracula-theme yaml-mode json-mode html5-schema web-mode js2-modeyasnippet cmake-mode company package-utils init-loader))
+   '(fish-mode dumb-jump ivy exec-path-from-shell smart-jump company-quickhelp eglot ccls use-package clang-format+ clang-format magit undo-tree visual-regexp tabbar helm-migemo markdown-preview-mode zoom-frm go-mode helm sphinx-mode markdown-mode+ py-autopep8 jedi markdown-mode matlab-mode sudo-edit restart-emacs yatex js2-mode dracula-theme yaml-mode json-mode html5-schema web-mode js2-modeyasnippet cmake-mode company package-utils init-loader bind-key))
  '(safe-local-variable-values '((cmake-tab-width . 4)))
  '(show-paren-mode t)
  '(tabbar-separator '(0.5))

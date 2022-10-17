@@ -2,7 +2,7 @@
 
 個人用の `dotfiles` のレポジトリ.
 
-## シンボリックリンクの設定
+## 依存コマンドのインストール・シンボリックリンクの設定
 
 ```bash
 ./install.sh
@@ -12,21 +12,7 @@
 
 ## elpaの扱い
 
-elpaのパッケージは別のレポジトリで管理することにした．
-
-### pullするとき
-
-変更を確認する．
-
-```
-git fetch
-```
-
-その後取り込む．
-
-```
-git merge origin/master
-```
+elpaのパッケージは別のレポジトリで管理する．
 
 ## tmux
 
@@ -56,15 +42,6 @@ tmuxのキーバインドは以下の通り.
 
 `~/.local/opt/`に`julia-x.x.x`のディレクトリをインストールし，`~/.local/bin/julia`へのsymlinkを張る．
 
-### Haskell
-
-```bash
-sudo apt install haskell-stack
-stack upgrade
-```
-
-で`~/.local/bin/`に`stack`をインストール．
-
 ### Rust
 
 `~/.local/bin/`にツールチェーンをインストール．
@@ -78,3 +55,29 @@ pip3 install argcomplete=2.0.0 (--user)
 ```
 
 すれば，aptで入ったargcompleteとconflictせずに済む．
+
+### LSP
+
+#### ccls
+
+プロジェクトのrootに`.ccls`を置き，そこに`compile_commands.json`へのシンボリックリンクを貼る(`build/`など)．ROSのようにrootの配下にC++のプロジェクト(vcsで管理されている)が複数配置されている場合は，それぞれのプロジェクトでこの作業が必要になると思われる（良い方法が分からない）．
+
+#### python
+
+```
+pip install --user python-language-server
+pip install --user rope
+pip install --user pyflakes
+pip install --user yapf
+pip install --user autopep8
+```
+
+#### rust
+
+```
+rustup component add rls rust-analysis rust-src
+```
+
+#### 参考
+
+- https://solist.work/blog/posts/language-server-protocol/

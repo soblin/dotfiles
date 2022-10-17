@@ -8,18 +8,6 @@
 (add-to-list 'auto-mode-alist '("\\.h\\'" . c++-mode))
 (add-to-list 'auto-mode-alist '("\\.cu\\'" . c++-mode))
 
-(load-file "~/.emacs.d/elpa/rtags/rtags.el")
-(require 'rtags)
-
-(when (require 'rtags nil 'noerror)
-  (add-hook 'c-mode-common-hook
-            (lambda ()
-              (when (rtags-is-indexed)
-                (local-set-key (kbd "M-.") 'rtags-find-symbol-at-point)
-                (local-set-key (kbd "M-;") 'rtags-find-symbol)
-                (local-set-key (kbd "M-@") 'rtags-find-references)
-                (local-set-key (kbd "M-,") 'rtags-location-stack-back)))))
-
 (defun ins-include-guard (guard)
   "Insert include guard as GUARD."
   (interactive "sEnter include guard:")
@@ -52,6 +40,24 @@
 (require 'use-package)
 (use-package clang-format+)
 (add-hook 'c-mode-common-hook #'clang-format+-mode)
+
+;; https://blog.medalotte.net/archives/473
+
+;; https://qiita.com/kari_tech/items/4754fac39504dccfd7be
+(add-hook 'c++-mode-hook 'company-mode) ; 補完用
+(add-hook 'c++-mode-hook 'flycheck-mode) ; チェック用
+(add-hook 'c++-mode-hook #'lsp)
+
+;; https://granddaifuku.hatenablog.com/entry/emacs-eglot
+
+;; https://blog.medalotte.net/archives/473
+(use-package ccls
+  :custom
+  (ccls-executable "/usr/bin/ccls")
+  (ccls-sem-highlight-method 'font-lock)
+  (ccls-use-default-rainbow-sem-highlight)
+  :hook ((c-mode c++-mode objc-mode) .
+         (lambda () (require 'ccls) (lsp))))
 
 (provide '19_c++_minimal)
 
