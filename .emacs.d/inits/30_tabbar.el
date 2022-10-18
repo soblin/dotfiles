@@ -12,15 +12,15 @@
  'tabbar-unselected nil
  :background "#44475a"
  :foreground "white"
- :height 1.1
- :box '(:line-width 5 :color "#44475a" :style nil)
+ :height 1.0
+ :box '(:line-width 4 :color "#44475a" :style nil)
  )
 (set-face-attribute
  'tabbar-selected nil
  :background "light sky blue"
  :foreground "black"
- :height 1.1
- :box '(:line-width 5 :color "light sky blue" :style nil)
+ :height 1.0
+ :box '(:line-width 4 :color "light sky blue" :style nil)
  )
 
 ;; Change padding of the tabs

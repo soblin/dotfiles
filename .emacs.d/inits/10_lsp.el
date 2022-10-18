@@ -20,7 +20,7 @@
 (bind-key "C-i" 'company-complete-selection company-active-map)
 (bind-key "M-d" 'company-show-doc-buffer company-active-map)
 (add-hook 'after-init-hook 'global-company-mode)
-(setq company-tooltip-maximum-width 50)
+(setq company-tooltip-maximum-width 100)
 
 ;; company-quickhelp
 (setq company-quickhelp-color-foreground "white")
