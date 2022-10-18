@@ -40,6 +40,8 @@
 (setq doom-modeline-unicode-fallback nil)
 (setq doom-modeline-buffer-name t)
 
+(nyan-mode 1)
+
 ;;; End:
 
 ;;; 02_doom ends here
