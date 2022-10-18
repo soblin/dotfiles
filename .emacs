@@ -57,5 +57,12 @@
  '(font-lock-comment-face ((t (:foreground "green yellow"))))
  '(font-lock-doc-face ((t (:foreground "dark orange"))))
  '(font-lock-preprocessor-face ((t (:inherit font-lock-builtin-face :slant italic))))
- '(font-lock-string-face ((t (:foreground "dark orange")))))
+ '(font-lock-string-face ((t (:foreground "dark orange"))))
+ '(tab-bar-tab ((t (:background "DeepPink3" :foreground "#f8f8f2" :box nil :height 1.3))))
+ '(tab-bar-tab-group-current ((t (:inherit tab-bar-tab :box nil :weight bold :height 1.1))))
+ '(tab-bar-tab-group-inactive ((t (:inherit (shadow tab-bar-tab-inactive) :height 1.1))))
+ '(tab-bar-tab-inactive ((t (:inherit tab-line-tab :background "#1E2029" :foreground "#e2e2dc" :box nil :height 1.3))))
+ '(tab-bar-tab-ungrouped ((t (:inherit (shadow tab-bar-tab-inactive) :height 1.1))))
+ '(tab-line ((t (:background "#1E2029" :foreground "#1E2029" :box nil :height 1.1))))
+ '(tabbar-selected ((t (:inherit tabbar-default :background "DodgerBlue3" :foreground "#f8f8f2" :weight bold)))))
 ;;; .emacs ends here

@@ -39,8 +39,11 @@
 (setq doom-modeline-time-icon t)
 (setq doom-modeline-unicode-fallback nil)
 (setq doom-modeline-buffer-name t)
+(setq doom-modeline-lsp t)
 
 (nyan-mode 1)
+
+(tab-bar-mode 1)
 
 ;;; End:
 
