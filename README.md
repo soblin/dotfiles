@@ -64,18 +64,25 @@ elpaのパッケージは別のレポジトリで管理する．
 
 ### LSP
 
+キーバインドは以下の通り
+
+- `M+.`で定義へのジャンプ，`M+,`で戻る
+
 #### ccls
 
-プロジェクトのrootに`.ccls`を置き，そこに`compile_commands.json`へのシンボリックリンクを貼る(`build/`など)．ROSのようにrootの配下にC++のプロジェクト(vcsで管理されている)が複数配置されている場合は，それぞれのプロジェクトでこの作業が必要になると思われる（良い方法が分からない）．
+プロジェクトのrootに`.ccls`を置き，そこに`compile_commands.json`へのシンボリックリンクを貼る(`build/`など)．
+- ROSのようにrootの配下にC++のプロジェクト(vcsで管理されている)が複数配置されている場合は，それぞれのプロジェクトでrootの`compile_commands.json`へのリンクを貼らないといけない(TODO: 良い対処法)
+- `.hpp`のインデクシングが不十分な気がするので，`compdb`の[この機能](https://github.com/Sarcasm/compdb#generate-a-compilation-database-with-header-files)を使う必要がありそう
+
+```
+pip install --user compdb
+compdb -p build/ list > compile_commands.json
+```
 
 #### python
 
 ```
-pip install --user python-language-server
-pip install --user rope
-pip install --user pyflakes
-pip install --user yapf
-pip install --user autopep8
+pip install --user python-language-server rope pyflakes yapf autopep8
 ```
 
 #### rust
