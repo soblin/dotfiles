@@ -1,5 +1,0 @@
-#!/bin/bash
-if ! emacsclient -nw $@; then
-    emacs --daemon
-    emacsclient -nw $@
-fi

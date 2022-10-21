@@ -1,8 +1,0 @@
-#!/usr/bin/bash
-
-# usage: autoware kashiwanoha_all
-# TODO
-# if COLCON_PREFIX_PATH includes xx1 => jpntaxi, aip_xx1
-# else => sample_vehicle, sample_sensor_kit
-map_path=$1
-ros2 launch autoware_launch planning_simulator.launch.xml map_path:=$HOME/workspace/maps/${map_path} vehicle_model:=jpntaxi sensor_model:=aip_xx1 rviz_config:="$(ros2 pkg prefix --share autoware_launch)/rviz/${map_path}.rviz"

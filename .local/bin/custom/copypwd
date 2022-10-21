@@ -1,3 +1,0 @@
-#!/bin/bash
-
-pwd | tr -d \\n | xclip -selection c
