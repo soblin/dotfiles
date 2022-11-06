@@ -82,6 +82,9 @@
 ;;; https://qiita.com/ongaeshi/items/696407fc6c42072add54
 (setq ring-bell-function 'ignore)
 
+;;; https://www.grugrut.net/posts/202104262248/
+(custom-set-variables '(warning-suppress-types '((comp))))
+
 ;;; End:
 
 ;;; 00_basis ends here

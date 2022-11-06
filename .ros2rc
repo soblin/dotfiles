@@ -30,10 +30,12 @@ if [ "$ROS2_VER" != "None" ]; then
 	    touch /tmp/cycloneDDS_configured
     fi
 
-    export CC=/usr/lib/ccache/gcc
-    export CXX=/usr/lib/ccache/g++
-    export USE_CCACHE=1
-    export CCACHE_DIR=$HOME/.ccache
+    if command -v ccache &> /dev/null; then
+        export CC=/usr/lib/ccache/gcc
+        export CXX=/usr/lib/ccache/g++
+        export USE_CCACHE=1
+        export CCACHE_DIR=$HOME/.ccache
+    fi
 
     colcon_all(){
         colcon build --symlink-install --continue-on-error --cmake-args -DCMAKE_BUILD_TYPE=Release -DCMAKE_EXPORT_COMPILE_COMMANDS=ON

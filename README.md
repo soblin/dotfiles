@@ -54,6 +54,10 @@ pip3 install argcomplete=2.0.0 (--user)
 
 ## Emacs
 
+### gccemacsを使う
+
+http://emacs.secretsauce.net/に従ってppaを登録しemacs-nativecompをinstallする（まだofficialでsupportされていないのでinstall.shには入れない）
+
 ### elpaの扱い
 
 elpaのパッケージは別のレポジトリで管理する．
