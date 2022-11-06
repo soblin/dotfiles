@@ -38,6 +38,9 @@
 (define-key global-map (kbd "C-x C-+") 'zoom-all-frames-in)
 (define-key global-map (kbd "C-x C--") 'zoom-all-frames-out)
 
+;; コピペ
+(define-key global-map (kbd "C-S-v") 'cua-paste)
+
 ;; (define-key global-map (kbd "-w") 'copy-region-as-kill)
 
 ;;; End:
