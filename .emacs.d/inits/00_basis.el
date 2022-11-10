@@ -9,7 +9,9 @@
 (set-fontset-font t 'japanese-jisx0208 "TakaoPGothic")
 (add-to-list 'face-font-rescale-alist '(".*Takao P.*" . 0.9)) ; OK
 
-(global-display-line-numbers-mode)
+;; doom-themeの方で設定
+;; (global-display-line-numbers-mode)
+
 (set-face-attribute 'line-number nil
                     :foreground "#f8f8f2"
                     )

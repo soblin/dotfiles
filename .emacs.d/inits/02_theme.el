@@ -27,8 +27,8 @@
   :hook
   (after-init . doom-modeline-mode)
   :config
-  (line-number-mode 0)
-  (column-number-mode 0))
+  (line-number-mode 1)
+  (column-number-mode 1))
 
 ;; https://github.com/seagle0128/doom-modeline#use-package
 (setq doom-modeline-icon t)
