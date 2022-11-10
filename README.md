@@ -14,23 +14,24 @@
 
 tmuxのキーバインドは以下の通り.
 
-- `C-z c` で **ホームディレクトリで** 新しいwindowをつくる
-- `C-z C-c` で **現在のディレクトリで** 新しいwindowをつくる
-- `C-z k` で現在のwindowを消去
-- `C-z n(p)` でnext(right), previous(left)のwindowへ移動
-- `C-z {0-9}` で番号のwindowに移動
-- `C-z |` で **現在のディレクトリで** 縦にpaneを作る
-- `C-z -` で **現在のディレクトリで** 横にpaneを作る
+- `C-z c`で**ホームディレクトリで**新しいwindowをつくる
+- `C-z C-c`で **現在のディレクトリで**新しいwindowをつくる
+- `C-z k`で現在のwindowを消去
+- `C-z n(p)`でnext(right), previous(left)のwindowへ移動
+- `C-z {0-9}`で番号のwindowに移動
+- `C-z |`で**現在のディレクトリで**縦にpaneを作る
+- `C-z -`で**現在のディレクトリで**横にpaneを作る
+- `C-z o`, `C-z C-o`で隣のpaneに移る
 
 コピーアンドペーストは以下の手順.
 
-1. `C-z [` で画面上をカーソルで移動するモードに入る.
-2. `C-z @` で現在のカーソル位置からカーソルを動かしたところまでを選択するモードに入る.
-3. `C-z {p, n, f, b}` (Emacsと同じ)で範囲を選択.
-4. `Alt-w` でコピーできる.
-5. `C-z C-y` でペースト.
+1. `C-z [`で画面上をカーソルで移動するモードに入る.
+2. `C-z @`で現在のカーソル位置からカーソルを動かしたところまでを選択するモードに入る.
+3. `C-z {p, n, f, b}`(Emacsと同じ)で範囲を選択.
+4. `Alt-w`でコピーできる.
+5. `C-z C-y`でペースト.
 
-これをシステムのクリップボードに移すために `pbcopy` コマンドを作った．
+これをシステムのクリップボードに移すために`pbcopy`コマンドを作った．マウスで範囲を選択した場合も`pbcopy`コマンドが必要．
 
 ## languages
 
@@ -56,7 +57,7 @@ pip3 install argcomplete=2.0.0 (--user)
 
 ### gccemacsを使う
 
-http://emacs.secretsauce.net/に従ってppaを登録しemacs-nativecompをinstallする（まだofficialでsupportされていないのでinstall.shには入れない）
+`kelleyk:ppa`ですでに`emacs-nativecomp`が提供されている．
 
 ### elpaの扱い
 
