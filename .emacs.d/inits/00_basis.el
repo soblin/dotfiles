@@ -45,6 +45,9 @@
 ;; タブにスペースを表示する
 (setq-default tab-width 4 indent-tabs-mode nil)
 
+;; highlight-indent-guides
+(add-hook 'prog-mode-hook 'highlight-indent-guides-mode)
+
 ;; C-tでウィンドウを切り替える.
 (define-key global-map (kbd "C-t") 'other-window)
 

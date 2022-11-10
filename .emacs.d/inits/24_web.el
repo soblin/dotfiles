@@ -25,6 +25,7 @@
 (add-to-list 'auto-mode-alist '("\\.launch" . nxml-mode))
 (add-to-list 'auto-mode-alist '("\\.launch.py" . python-mode))
 (add-to-list 'auto-mode-alist '("\\.yaml" . yaml-mode))
+(add-to-list 'auto-mode-alist '("\\.yaml" . highlight-indent-guides-mode))
 
 (add-hook 'nxml-mode-hook
           (lambda()

@@ -31,12 +31,14 @@
  '(column-number-mode t)
  '(cua-mode t nil (cua-base))
  '(global-display-line-numbers-mode t)
+ '(highlight-indent-guides-method 'column)
  '(package-selected-packages
-   '(neotree nyan-mode all-the-icons doom-modeline doom-themes fish-mode dumb-jump exec-path-from-shell smart-jump company-quickhelp eglot ccls use-package clang-format+ clang-format magit undo-tree visual-regexp tabbar helm-migemo markdown-preview-mode zoom-frm go-mode helm sphinx-mode markdown-mode+ py-autopep8 jedi markdown-mode matlab-mode sudo-edit restart-emacs yatex js2-mode dracula-theme yaml-mode json-mode html5-schema web-mode js2-modeyasnippet cmake-mode company package-utils init-loader bind-key))
+   '(highlight-indent-guides neotree nyan-mode all-the-icons doom-modeline doom-themes fish-mode dumb-jump exec-path-from-shell smart-jump company-quickhelp eglot ccls use-package clang-format+ clang-format magit undo-tree visual-regexp tabbar helm-migemo markdown-preview-mode zoom-frm go-mode helm sphinx-mode markdown-mode+ py-autopep8 jedi markdown-mode matlab-mode sudo-edit restart-emacs yatex js2-mode dracula-theme yaml-mode json-mode html5-schema web-mode js2-modeyasnippet cmake-mode company package-utils init-loader bind-key))
  '(safe-local-variable-values '((cmake-tab-width . 4)))
  '(show-paren-mode t)
  '(tabbar-separator '(0.5))
- '(visible-bell nil))
+ '(visible-bell nil)
+ '(warning-suppress-types '((comp))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
