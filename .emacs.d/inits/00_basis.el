@@ -47,6 +47,7 @@
 
 ;; highlight-indent-guides
 (add-hook 'prog-mode-hook 'highlight-indent-guides-mode)
+(setq highlight-indent-guides-responsive 'top)
 
 ;; C-tでウィンドウを切り替える.
 (define-key global-map (kbd "C-t") 'other-window)
