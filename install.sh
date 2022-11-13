@@ -95,12 +95,12 @@ if $install_emacs; then
     case $ver in
         "27" )
             echo "Installing Emacs-27"
-            sudo apt-get ${APT_OPTION} install emacs27
+            sudo apt-get ${APT_OPTION} install emacs27-nativecomp
             echo "Done"
             sudo apt ${APT_OPTION} clean;;
         * )
             echo "Installing Emacs-28"
-            sudo apt-get install emacs28
+            sudo apt-get install emacs28-nativecomp
             echo "Done"
             sudo apt ${APT_OPTION} clean;;
     esac
