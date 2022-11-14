@@ -4,7 +4,7 @@ APT_OPTION="-qq"
 
 # install prerequisites
 
-echo "Installing tmux, tree, xclip, xsel, mlocate, htop, ccls"
+echo "Installing tmux, tree, xclip, xsel, mlocate, htop, ccls, ccache"
 
 if ! command -v tmux &>/dev/null; then
     sudo apt-get ${APT_OPTION} install tmux
@@ -32,6 +32,10 @@ fi
 
 if ! command -v ccls &>/dev/null; then
     sudo apt-get ${APT_OPTION} install ccls
+fi
+
+if ! command -v ccache &>/dev/null; then
+    sudo apt-get ${APT_OPTION} install ccache
 fi
 
 echo "Installing extra fonts"
@@ -225,14 +229,15 @@ function create_symlink_d() {
 create_symlink_f ".bashrc" ".bashrc"
 create_symlink_f ".bash_aliases" ".bash_aliases"
 create_symlink_f ".profile" ".profile"
-create_symlink_d ".dircolors" ".dircolors"
+create_symlink_f ".dircolors" ".dircolors"
 
 if [ ! -d "${home_dir}/.local/bin" ]; then
     echo "Creating ${home_dir}/.local/bin"
     mkdir -p "${home_dir}/.local/bin"
 fi
 
-create_symlink_d ".local/bin/custom" ".local/bin/custom"
+# .rc files
+create_symlink_d ".config/rcs" ".config/rcs"
 
 # fish
 create_symlink_d ".config/fish" ".config/fish"
@@ -276,8 +281,4 @@ if [ ! -d "${home_dir}/.config/tmux/plugin/tmux-continuum" ]; then
     echo "Installing tmux-continuum"
     git clone https://github.com/tmux-plugins/tmux-continuum.git "${home_dir}/.config/tmux/plugin/tmux-continuum"
     echo "Done"
-fi
-
-if [ -d "/opt/ros" ]; then
-    create_symlink_f ".ros2rc" ".ros2rc"
 fi

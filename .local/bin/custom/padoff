@@ -1,2 +1,0 @@
-ID=`xinput list | grep TouchPad | awk '{print $6}' | cut -c 4-`
-xinput --disable ${ID}

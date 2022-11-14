@@ -1,0 +1,48 @@
+#!/bin/bash
+
+function psgrep() {
+    ps aux | grep "$1"
+}
+
+function pbcopy() {
+    temp_file=`tempfile`
+    tmux save-buffer $temp_file
+    xsel -i -b < $temp_file
+    rm -rf $temp_file
+}
+
+function e() {
+    if ! emacsclient -nw $@; then
+        emacs --daemon
+        emacsclient -nw $@
+    fi
+}
+
+function kill-emacs() {
+    emacsclient -e "(kill-emacs)"
+}
+
+function del() {
+    mv $@ ~/.local/share/Trash/files
+}
+
+function update() {
+    sudo apt update
+    sudo apt upgrade
+    sudo apt dist-upgrade
+    sudo apt autoremove
+    sudo apt clean
+}
+
+function apt-unlock() {
+    sudo rm /var/lib/dpkg/lock
+    sudo rm /var/lib/dpkg/lock-frontend
+    sudo rm -rf /var/lib/apt/lists/lock
+}
+
+function git-time() {
+    current_time=$(LANG=C date)
+    arg=$*
+    commit="${arg} (${current_time})"
+    git commit -m "${commit}"
+}

@@ -116,15 +116,6 @@ if ! shopt -oq posix; then
   fi
 fi
 
-if [ -L ~/.ros2rc ]; then
-    source ~/.ros2rc
-fi
-
-if [ -f ~/.cargo/env ]; then
-    source "$HOME/.cargo/env"
-fi
-
-if [ -d /usr/local/cuda ]; then
-    export PATH="/usr/local/cuda/bin:$PATH"
-    export LD_LIBRARY_PATH="/usr/local/cuda/lib64:$LD_LIBRARY_PATH"
-fi
+for file in `find $HOME/.config/rcs/ -path "*.rc" -type f -mindepth 1 -maxdepth 1 2> /dev/null`; do
+    source $file
+done
