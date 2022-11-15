@@ -8,5 +8,5 @@ function colcon_all
 end
 
 function colcon_select
-    colcon build --packages-up-to $argv --cmake-clean-cache --symlink-install --continue-on-error --cmake-args -DCMAKE_BUILD_TYPE=RelWihtDebInfo -DCMAKE_EXPORT_COMPILE_COMMANDS=ON -DCMAKE_CXX_COMPILER=/usr/lib/ccache/g++ -DCMAKE_C_COMPILER=/usr/lib/ccache/gcc -DCMAKE_CXX_FLAGS="-Wno-deprecated-declarations"
+    colcon build --packages-up-to $argv --cmake-clean-cache --symlink-install --continue-on-error --cmake-args -DCMAKE_BUILD_TYPE=RelWithDebInfo -DCMAKE_EXPORT_COMPILE_COMMANDS=ON -DCMAKE_CXX_COMPILER=/usr/lib/ccache/g++ -DCMAKE_C_COMPILER=/usr/lib/ccache/gcc -DCMAKE_CXX_FLAGS="-Wno-deprecated-declarations"
 end
