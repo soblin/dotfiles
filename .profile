@@ -25,7 +25,3 @@ fi
 if [ -d "$HOME/.local/bin" ] ; then
     PATH="$HOME/.local/bin:$PATH"
 fi
-
-if [ -d "$HOME/.local/bin/custom" ] || [ -L "$HOME/.local/bin/custom" ]; then
-    PATH="$HOME/.local/bin/custom:$PATH"
-fi

@@ -26,7 +26,6 @@ unlink_symlink "${home_path}/.bashrc"
 unlink_symlink "${home_path}/.bash_aliases"
 unlink_symlink "${home_path}/.profile"
 unlink_symlink "${home_path}/.dircolors"
-unlink_symlink "${home_path}/.local/bin/custom"
 
 unlink_symlink "${home_path}/.config/fish"
 
@@ -38,5 +37,3 @@ unlink_symlink "${home_path}/.emacs.d"
 
 unlink_symlink "${home_path}/.tmux.conf"
 unlink_symlink "${home_path}/.config/tmux"
-
-unlink_symlink "${home_path}/.ros2rc"
