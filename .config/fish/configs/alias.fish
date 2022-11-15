@@ -16,6 +16,14 @@ function e
     end
 end
 
+function egui
+    set nump $(ps aux | grep "emacs --daemon" | wc -l)
+    if test $nump -lt 2
+        emacs --daemon
+    end
+    emacsclient --create-frame $argv &
+end
+
 function kill-emacs
     emacsclient -e "(kill-emacs)"
 end

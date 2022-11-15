@@ -18,6 +18,14 @@ function e() {
     fi
 }
 
+function egui() {
+    nump=`ps aux | grep "emacs --daemon" | wc -l`
+    if [ $nump -lt 2 ]; then
+        emacs --daemon
+    fi
+    emacsclient --create-frame $@ &
+}
+
 function kill-emacs() {
     emacsclient -e "(kill-emacs)"
 }
