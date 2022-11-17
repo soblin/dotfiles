@@ -91,6 +91,10 @@
 ;;; https://www.grugrut.net/posts/202104262248/
 (custom-set-variables '(warning-suppress-types '((comp))))
 
+;;; smooth-scroll
+(require 'smooth-scroll)
+(smooth-scroll-mode t)
+
 ;;; End:
 
 ;;; 00_basis ends here
