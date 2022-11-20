@@ -87,7 +87,7 @@ compdb -p build/ list > compile_commands.json
 #### python
 
 ```
-pip install --user python-language-server rope pyflakes yapf autopep8
+pip install --user python-language-server rope autopep8 black pyright
 ```
 
 #### rust
