@@ -15,16 +15,13 @@
 
 (add-hook 'python-mode-hook 'eglot-ensure)
 
-;; https://tam5917.hatenablog.com/entry/2021/03/28/051603
+(add-hook 'python-mode-hook 'blacken-mode)
+
+;; https://tam5917.hatenablog.com/entry/20
 (use-package blacken
   :delight
   :hook (python-mode . blacken-mode)
   :custom (blacken-line-length 79))
-
-(declare-function python-black-on-save-mode "python-black")
-(add-hook 'python-mode-hook
-          #'(lambda ()
-              (python-black-on-save-mode)))
 
 (use-package lsp-pyright
   :if (executable-find "pyright")
@@ -33,7 +30,7 @@
                          (lsp))))
 
 (add-hook 'python-mode-hook
-          '(lambda()
+          (lambda ()
              (add-hook 'before-save-hook 'py-isort-before-save)))
 
 (provide '21_python)
