@@ -48,7 +48,7 @@ tmuxのキーバインドは以下の通り.
 colconに付属する`argcomplete`はバージョンが古いため`fish`に対応していない．
 
 ```
-pip3 install argcomplete=2.0.0 (--user)
+pip3 install --user argcomplete==2.0.0
 ```
 
 すれば，aptで入ったargcompleteとconflictせずに済む．
@@ -80,14 +80,14 @@ elpaのパッケージは別のレポジトリで管理する．
 - `.hpp`のインデクシングが不十分な気がするので，`compdb`の[この機能](https://github.com/Sarcasm/compdb#generate-a-compilation-database-with-header-files)を使う必要がありそう
 
 ```
-pip install --user compdb
+pip3 install --user compdb
 compdb -p build/ list > compile_commands.json
 ```
 
 #### python
 
 ```
-pip install --user python-language-server rope autopep8 black pyright
+pip3 install --user python-language-server rope autopep8 black pyright
 ```
 
 #### rust

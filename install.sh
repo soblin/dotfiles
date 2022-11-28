@@ -4,7 +4,7 @@ APT_OPTION="-qq"
 
 # install prerequisites
 
-echo "Installing tmux, tree, xclip, xsel, mlocate, htop, ccls, ccache, etckeeper"
+echo "Installing tmux, tree, xclip, xsel, mlocate, htop, ccls, ccache, etckeeper, cmake, clang"
 
 if ! command -v tmux &>/dev/null; then
     sudo apt-get ${APT_OPTION} install tmux
@@ -40,6 +40,14 @@ fi
 
 if ! command -v etckeeper &>/dev/null; then
     sudo apt-get ${APT_OPTION} install etckeeper
+fi
+
+if ! command -v cmake &>/dev/null; then
+    sudo apt-get ${APT_OPTION} install cmake
+fi
+
+if ! command -v clang &>/dev/null; then
+    sudo apt-get ${APT_OPTION} install clang llvm
 fi
 
 echo "Installing extra fonts"
