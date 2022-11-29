@@ -53,6 +53,13 @@ pip3 install --user argcomplete==2.0.0
 
 すれば，aptで入ったargcompleteとconflictせずに済む．
 
+fishについては[こちらの記事を参照](https://zenn.dev/kenji_miyake/articles/c149cc1f17e168)．
+
+```bash
+sudo apt-get install fzf fd-find jq
+ln -s $(which fdfind) ~/.local/bin/fd
+```
+
 ## Emacs
 
 ### gccemacsを使う
@@ -99,3 +106,4 @@ rustup component add rls rust-analysis rust-src
 #### 参考
 
 - https://solist.work/blog/posts/language-server-protocol/
+  

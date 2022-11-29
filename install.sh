@@ -4,7 +4,7 @@ APT_OPTION="-qq"
 
 # install prerequisites
 
-echo "Installing tmux, tree, xclip, xsel, mlocate, htop, ccls, ccache, etckeeper, cmake, clang"
+echo "Installing tmux, tree, xclip, xsel, mlocate, htop, ccls, ccache, etckeeper, cmake, clang, fzf, fd-find, jq"
 
 if ! command -v tmux &>/dev/null; then
     sudo apt-get ${APT_OPTION} install tmux
@@ -48,6 +48,18 @@ fi
 
 if ! command -v clang &>/dev/null; then
     sudo apt-get ${APT_OPTION} install clang llvm
+fi
+
+if ! command -v fzf &>/dev/null; then
+    sudo apt-get ${APT_OPTION} install fzf
+fi
+
+if ! command -v fdfind &>/dev/null; then
+    sudo apt-get ${APT_OPTION} install fd-find
+fi
+
+if ! command -v jq &>/dev/null; then
+    sudo apt-get ${APT_OPTION} install jq
 fi
 
 echo "Installing extra fonts"
