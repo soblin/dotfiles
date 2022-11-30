@@ -6,6 +6,10 @@ APT_OPTION="-qq"
 
 echo "Installing tmux, tree, xclip, xsel, mlocate, htop, ccls, ccache, etckeeper, cmake, clang, fzf, fd-find, jq"
 
+if ! command -v etckeeper &>/dev/null; then
+    sudo apt-get ${APT_OPTION} install etckeeper
+fi
+
 if ! command -v tmux &>/dev/null; then
     sudo apt-get ${APT_OPTION} install tmux
 fi
@@ -38,10 +42,6 @@ if ! command -v ccache &>/dev/null; then
     sudo apt-get ${APT_OPTION} install ccache
 fi
 
-if ! command -v etckeeper &>/dev/null; then
-    sudo apt-get ${APT_OPTION} install etckeeper
-fi
-
 if ! command -v cmake &>/dev/null; then
     sudo apt-get ${APT_OPTION} install cmake
 fi
@@ -65,6 +65,10 @@ fi
 echo "Installing extra fonts"
 
 sudo apt-get ${APT_OPTION} install fonts-powerline fonts-takao-gothic fonts-takao-pgothic
+
+echo "Installing utilities"
+
+sudo apt-get ${APT_OPTION} install vlc simplescreenrecorder
 
 echo "Installed dependencies."
 
