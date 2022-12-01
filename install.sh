@@ -47,7 +47,7 @@ if ! command -v cmake &>/dev/null; then
 fi
 
 if ! command -v clang &>/dev/null; then
-    sudo apt-get ${APT_OPTION} install clang llvm
+    sudo apt-get ${APT_OPTION} install clang llvm clang-format
 fi
 
 if ! command -v fzf &>/dev/null; then
@@ -68,7 +68,7 @@ sudo apt-get ${APT_OPTION} install fonts-powerline fonts-takao-gothic fonts-taka
 
 echo "Installing utilities"
 
-sudo apt-get ${APT_OPTION} install vlc simplescreenrecorder
+sudo apt-get ${APT_OPTION} install vlc simplescreenrecorder gparted
 
 echo "Installed dependencies."
 
