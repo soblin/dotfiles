@@ -43,6 +43,9 @@
 
 ;; https://blog.medalotte.net/archives/473
 
+;; to run clang-format automatically
+;; write ((c++-mode . ((mode . clang-format+))))
+;; to .dir-locals.el
 ;; https://qiita.com/kari_tech/items/4754fac39504dccfd7be
 (add-hook 'c++-mode-hook 'company-mode) ; 補完用
 (add-hook 'c++-mode-hook 'flycheck-mode) ; チェック用
