@@ -95,6 +95,8 @@
 (require 'smooth-scroll)
 (smooth-scroll-mode t)
 
+(defalias 'yes-or-no-p 'y-or-n-p)
+
 ;;; End:
 
 ;;; 00_basis ends here
