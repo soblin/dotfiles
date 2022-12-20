@@ -47,6 +47,7 @@
 ;; https://qiita.com/jabberwocky0139/items/86df1d3108e147c69e2c
 (global-unset-key (kbd "C-x c"))
 
+(global-set-key (kbd "M-x") 'helm-M-x)
 (define-key helm-map (kbd "<tab>") 'helm-execute-persistent-action) ; rebind tab to run persistent action
 (define-key helm-map (kbd "C-i") 'helm-execute-persistent-action) ; make TAB work in terminal
 (global-set-key (kbd "M-y") 'helm-show-kill-ring)
