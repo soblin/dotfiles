@@ -50,7 +50,7 @@
 (global-set-key (kbd "M-x") 'helm-M-x)
 (define-key helm-map (kbd "<tab>") 'helm-execute-persistent-action) ; rebind tab to run persistent action
 (define-key helm-map (kbd "C-i") 'helm-execute-persistent-action) ; make TAB work in terminal
-(global-set-key (kbd "M-y") 'helm-show-kill-ring)
+(global-set-key (kbd "C-y") 'helm-show-kill-ring)
 (global-set-key (kbd "C-x b") 'helm-mini)
 (global-set-key (kbd "C-x C-f") 'helm-find-files)
 
