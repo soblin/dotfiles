@@ -5,7 +5,7 @@ function psgrep() {
 }
 
 function pbcopy() {
-    temp_file=`tempfile`
+    temp_file=`mktemp`
     tmux save-buffer $temp_file
     xsel -i -b < $temp_file
     rm -rf $temp_file
