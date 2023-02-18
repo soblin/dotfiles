@@ -46,6 +46,12 @@
 (setq lsp-headerline-breadcrumb-enable nil)
 (setq lsp-ui-sideline-enable nil)
 
+;; https://ymtdzzz.dev/post/emacs-lsp-mode-more-faster/
+(setq read-process-output-max (* 3 1024 1024)) ;; 3mb
+(setq gc-cons-threshold 6400000)
+(setq lsp-idle-delay 0.25)
+(setq lsp-log-io nil) ; if set to true can cause a performance hit
+
 ;;; End:
 
 ;;; 10_lsp ends here
