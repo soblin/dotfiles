@@ -1,0 +1,4 @@
+#!/bin/bash
+
+# https://emacs-lsp.github.io/lsp-mode/page/performance/#use-plists-for-deserialization
+export LSP_USE_PLISTS=true

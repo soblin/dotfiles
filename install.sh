@@ -4,10 +4,14 @@ APT_OPTION="-qq"
 
 # install prerequisites
 
-echo "Installing tmux, tree, xclip, xsel, mlocate, htop, ccls, ccache, etckeeper, cmake, clang, fzf, fd-find, jq"
+echo "Installing etckeeper, git, tmux, tree, xclip, xsel, mlocate, htop, ccls, ccache, cmake, clang, fzf, fd-find, jq"
 
 if ! command -v etckeeper &>/dev/null; then
     sudo apt-get ${APT_OPTION} install etckeeper
+fi
+
+if ! command -v git &>/dev/null; then
+    sudo apt-get ${APT_OPTION} install git git-lfs
 fi
 
 if ! command -v tmux &>/dev/null; then
@@ -76,67 +80,13 @@ function get_major_ver_num() {
     echo "$1" | cut -d "." -f1
 }
 
-function get_emacs_ver_string() {
-    # GNU Emacs 26.3 => 26
-    emacs --version | head -n1 | cut -d " " -f3
-}
-
 function get_fish_ver_string() {
     # fish, version 3.1.2 => 3.1.2
     fish --version | head -n1 | cut -d " " -f3
 }
 
-uninstall_old_emacs=false
-install_emacs=false
-
-if command -v emacs &> /dev/null; then
-    emacs_ver_string=$(get_emacs_ver_string)
-    emacs_major_ver=$(get_major_ver_num $emacs_ver_string)
-    if [ $emacs_major_ver -lt 27 ]; then
-        echo "Your Emacs version is ${emacs_ver_string}. I want to use Emacs >= 27 !"
-        uninstall_old_emacs=true
-        install_emacs=true
-    else
-        echo "Emacs ${emacs_ver_string} is already installed."
-    fi
-else
-    echo "Emacs was not found."
-    install_emacs=true
-fi
-
-if $uninstall_old_emacs; then
-    read -p "Are you OK to remove old emacs before upgrade? [Yn]: " yn
-    case $yn in
-        [Yy*] )
-            echo "Purging emacs."
-            sudo apt purge ${APT_OPTION} emacs
-            sudo apt ${APT_OPTION} autoremove
-            echo "Done.";;
-        * )
-            echo "Skip this process and exit."
-            exit;;
-    esac
-fi
-
-if $install_emacs; then
-    echo "Adding ppa:kelleyk/emacs."
-    sudo add-apt-repository ppa:kelleyk/emacs
-    sudo apt-get ${APT_OPTION} update
-    echo "Done."
-    read -p "Specify the version 27 or 28(default): " ver
-    case $ver in
-        "27" )
-            echo "Installing Emacs-27"
-            sudo apt-get ${APT_OPTION} install emacs27-nativecomp
-            echo "Done"
-            sudo apt ${APT_OPTION} clean;;
-        * )
-            echo "Installing Emacs-28"
-            sudo apt-get install emacs28-nativecomp
-            echo "Done"
-            sudo apt ${APT_OPTION} clean;;
-    esac
-fi
+# install emacs with snap(from Ubuntu22 this provides nativecomp version)
+sudo snap install emacs --classic
 
 uninstall_old_fish=false
 install_fish=false

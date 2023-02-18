@@ -64,7 +64,25 @@ ln -s $(which fdfind) ~/.local/bin/fd
 
 ### gccemacsを使う
 
-`kelleyk:ppa`ですでに`emacs-nativecomp`が提供されている．
+`kelleyk:ppa`ですでに`emacs-nativecomp`が提供されている．Ubuntu22では
+
+```
+sudo snap install emacs --classic
+```
+
+でnativecompが手に入るようになったので，こちらの方がすぐにDLできて良い．
+
+### plists
+
+lspを高速にするには[plists](https://emacs-lsp.github.io/lsp-mode/page/performance/#use-plists-for-deserialization)を使うようにコンパイルすべきであるらしい．`eln-cache`を削除してから
+
+```
+export LSP_USE_PLISTS=true
+OR
+set -x export LSP_USE_PLISTS true
+```
+
+した上で再度コンパイルするとバイトコードに埋め込まれるようだ(？)．
 
 ### elpaの扱い
 
