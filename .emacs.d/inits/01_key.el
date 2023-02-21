@@ -35,8 +35,8 @@
 (load-file "~/.emacs.d/elpa/frame-fns/frame-fns.el")
 (load-file "~/.emacs.d/elpa/frame-cmds/frame-cmds.el")
 (load-file "~/.emacs.d/elpa/zoom-frm/zoom-frm.el")
-(define-key global-map (kbd "C-x C-+") 'zoom-all-frames-in)
-(define-key global-map (kbd "C-x C--") 'zoom-all-frames-out)
+(define-key global-map (kbd "C-+") 'zoom-all-frames-in)
+(define-key global-map (kbd "C--") 'zoom-all-frames-out)
 
 ;; コピペ
 (define-key global-map (kbd "C-S-v") 'cua-paste)
