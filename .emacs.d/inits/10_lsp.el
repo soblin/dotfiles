@@ -49,7 +49,7 @@
 ;; https://ymtdzzz.dev/post/emacs-lsp-mode-more-faster/
 (setq read-process-output-max (* 10 1024 1024)) ;; 10mb
 (setq gc-cons-threshold 51200000)
-(setq lsp-idle-delay 0.5)
+(setq lsp-idle-delay 0.1)
 (setq lsp-log-io nil) ; if set to true can cause a performance hit
 
 ;;; End:
