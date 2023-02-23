@@ -60,6 +60,8 @@ fi
 
 if ! command -v fdfind &>/dev/null; then
     sudo apt-get ${APT_OPTION} install fd-find
+    # https://zenn.dev/kenji_miyake/articles/c149cc1f17e168
+    ln -s $(which fdfind) ~/.local/bin/fd
 fi
 
 if ! command -v jq &>/dev/null; then
