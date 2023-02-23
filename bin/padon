@@ -1,4 +1,5 @@
 #!/bin/bash
 
-ID=`xinput list | grep TouchPad | awk '{print $6}' | cut -c 4-`
-xinput --enable ${ID}
+# ID=`xinput list | grep TouchPad | awk '{print $6}' | cut -c 4-`
+# xinput --enable ${ID}
+gsettings set org.gnome.desktop.peripherals.touchpad send-events 'enabled'
