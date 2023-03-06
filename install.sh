@@ -4,7 +4,7 @@ APT_OPTION="-qq"
 
 # install prerequisites
 
-echo "Installing etckeeper, git, tmux, tree, xclip, xsel, mlocate, htop, ccls, ccache, cmake, clang, fzf, fd-find, jq"
+echo "Installing etckeeper, git, tmux, tree, xclip, xsel, mlocate, htop, ccls, ccache, cmake, clang, fzf, fd-find, jq, ninja"
 
 if ! command -v etckeeper &>/dev/null; then
     sudo apt-get ${APT_OPTION} install etckeeper
@@ -66,6 +66,10 @@ fi
 
 if ! command -v jq &>/dev/null; then
     sudo apt-get ${APT_OPTION} install jq
+fi
+
+if ! command -v ninaj &>/dev/null; then
+    sudo apt-get ${APT_OPTION} install ninja-build
 fi
 
 echo "Installing extra fonts"

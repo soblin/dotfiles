@@ -1,5 +1,5 @@
 function psgrep
-   ps aux | grep $argv[1]
+   ps aux | grep $argv[1] | grep -v grep
 end
 
 function pbcopy
