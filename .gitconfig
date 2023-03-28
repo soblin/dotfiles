@@ -6,6 +6,7 @@
     quotepath = false
 [merge]
     ff = false
+    conflicStyle = zdiff3
 [pull]
     ff = only
 [help]
