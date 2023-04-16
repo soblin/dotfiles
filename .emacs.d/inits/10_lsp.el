@@ -52,6 +52,10 @@
 (setq lsp-idle-delay 0.1)
 (setq lsp-log-io nil) ; if set to true can cause a performance hit
 
+;; https://emacs.stackexchange.com/questions/65123/company-completion-backend-company-capf-error-error
+;; これを設定しないと補間を選択するとシンボルが$0に置き換わってしまう
+(yas-global-mode)
+
 ;;; End:
 
 ;;; 10_lsp ends here
