@@ -88,9 +88,9 @@ set -x export LSP_USE_PLISTS true
 
 elpaのパッケージは別のレポジトリで管理する．
 
-### all-the-icons
+### doom-modelineのアイコン
 
-`M-x all-the-icons-install-fonts`をする必要がある．
+`M-x all-the-icons-install-fonts, nerd-icons-install-fonts`をする必要がある．
 
 ### LSP
 
@@ -130,4 +130,3 @@ rustup component add rls rust-analysis rust-src
 #### 参考
 
 - https://solist.work/blog/posts/language-server-protocol/
-  
