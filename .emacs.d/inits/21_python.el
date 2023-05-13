@@ -33,6 +33,13 @@
           (lambda ()
              (add-hook 'before-save-hook 'py-isort-before-save)))
 
+(use-package pyvenv
+  :diminish
+  :config
+  (setq pyvenv-mode-line-indicator
+        '(pyvenv-virtual-env-name ("[venv:" pyvenv-virtual-env-name "] ")))
+  (pyvenv-mode +1))
+
 (provide '21_python)
 
 ;;; End:

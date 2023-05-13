@@ -115,6 +115,12 @@ compdb -p build/ list > compile_commands.json
 pip3 install --user python-language-server rope autopep8 black pyright
 ```
 
+Pipfileなどで管理されたプロジェクトで補完を行うには`pyvenv`パッケージを利用する．
+
+- https://github.com/emacs-lsp/lsp-mode/issues/1290
+
+`M-x pyvenv-activate`でPipfileがあるフォルダーを選択し`lsp-workspace-restart`すると仮想環境にインストールされたパッケージが認識される．
+
 #### rust
 
 ```
