@@ -116,6 +116,18 @@
 
 (helm-mode 1)
 
+;;; https://github.com/ch11ng/exwm/issues/760
+;;; "Wrong type argument: frame-live-p, #dead frame"で落ちるのを防ぐ
+;; Add advice to stop hangs on EXWM
+;; The problem happens with floating windows that disappear - like open file dialog or a Zoom dialog when starting a meeting
+;; The solution is to assure all frames in winner-modified-list pass the frame-live-p test
+(defun gjg/winner-clean-up-modified-list ()
+  "Remove dead frames from `winner-modified-list`"
+  (dolist (frame winner-modified-list)
+    (unless (frame-live-p frame)
+      (delete frame winner-modified-list))))
+(advice-add 'winner-save-old-configurations :before #'gjg/winner-clean-up-modified-list)
+
 ;;; End:
 
 ;;; 00_basis ends here
