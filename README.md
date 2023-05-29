@@ -119,7 +119,7 @@ Pipfileなどで管理されたプロジェクトで補完を行うには`pyvenv
 
 - https://github.com/emacs-lsp/lsp-mode/issues/1290
 
-`M-x pyvenv-activate`でPipfileがあるフォルダーを選択し`lsp-workspace-restart`すると仮想環境にインストールされたパッケージが認識される．
+`M-x pyvenv-activate`でPipfileがあるフォルダーを選択し`lsp-workspace-restart`すると仮想環境にインストールされたパッケージが認識される． --> もしかするとpipenvに入った状態でemacsを立ち上げる必要もあるかも．
 
 #### rust
 
