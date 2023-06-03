@@ -257,17 +257,23 @@ fi
 if [ ! -d "${home_dir}/.config/tmux/plugin/tmux-sidebar/" ]; then
     echo "Installing tmux-sidebar."
     git clone https://github.com/tmux-plugins/tmux-sidebar.git "${home_dir}/.config/tmux/plugin/tmux-sidebar"
-    echo "Done"
+    echo "Cloned tmux-sidebar"
 fi
 
 if [ ! -d "${home_dir}/.config/tmux/plugin/tmux-resurrect" ]; then
     echo "Installing tmux-resurrect"
     git clone https://github.com/tmux-plugins/tmux-resurrect.git "${home_dir}/.config/tmux/plugin/tmux-resurrect"
-    echo "Done"
+    echo "Cloned tmux-resurrect"
 fi
 
 if [ ! -d "${home_dir}/.config/tmux/plugin/tmux-continuum" ]; then
     echo "Installing tmux-continuum"
     git clone https://github.com/tmux-plugins/tmux-continuum.git "${home_dir}/.config/tmux/plugin/tmux-continuum"
-    echo "Done"
+    echo "Cloned tmux-continuum"
+fi
+
+if [ ! -d "${home_dir}/.config/tmux/plugin/tmux-named-snapshot" ]; then
+    echo "Installing tmux-continuum"
+    git clone https://github.com/spywhere/tmux-named-snapshot "${home_dir}/.config/tmux/plugin/tmux-named-snapshot"
+    echo "Cloned tmux-named-snapshot"
 fi
