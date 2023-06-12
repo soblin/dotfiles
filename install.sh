@@ -4,7 +4,7 @@ APT_OPTION="-qq"
 
 # install prerequisites
 
-echo "Installing etckeeper, git, tmux, tree, xclip, xsel, mlocate, htop, ccls, ccache, cmake, clang, fzf, fd-find, jq, ninja, systemd-coredump"
+echo "Installing etckeeper, git, tmux, tree, xclip, xsel, mlocate, htop, ccls, ccache, cmake, clang, fzf, fd-find, jq, ninja, systemd-coredump, pandoc, markdown"
 
 if ! command -v etckeeper &>/dev/null; then
     sudo apt-get ${APT_OPTION} install etckeeper
@@ -75,6 +75,10 @@ fi
 if ! command -v coredumpctl &>/dev/null; then
     sudo apt-get ${APT_OPTION} install systemd-coredump
     ulimit -c unlimited
+fi
+
+if ! command -v pandoc &>/dev/null; then
+    sudo apt-get ${APT_OPTION} pandoc markdown
 fi
 
 echo "Installing extra fonts"

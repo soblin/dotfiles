@@ -40,6 +40,23 @@
         '(pyvenv-virtual-env-name ("[venv:" pyvenv-virtual-env-name "] ")))
   (pyvenv-mode +1))
 
+;; https://tam5917.hatenablog.com/entry/2021/03/28/204747
+(eval-when-compile
+  (require 'ein)
+  (require 'ein-notebook)
+  (require 'ein-notebooklist)
+  (require 'ein-markdown-mode)
+  (require 'smartrep))
+(setq ein:output-area-inlined-images t)
+(require 'ein-markdown-mode)
+(setq ein:markdown-command "pandoc --metadata pagetitle=\"markdown preview\" -f markdown -c ~/.pandoc/github-markdown.css -s --self-contained --mathjax=https://raw.githubusercontent.com/ustasb/dotfiles/b54b8f502eb94d6146c2a02bfc62ebda72b91035/pandoc/mathjax.js")
+(defun ein:markdown-preview ()
+  (interactive)
+  (ein:markdown-standalone)
+  (browse-url-of-buffer ein:markdown-output-buffer-name))
+
+;; emacsからeinを起動すると外部パッケージを認識してくれない
+;; generate-configでpassword/tokenを利用しない設定にした上で，ein:loginでhttp://localhost:8888に接続すると上手くいく
 (provide '21_python)
 
 ;;; End:
