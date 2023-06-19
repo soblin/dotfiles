@@ -78,7 +78,7 @@ if ! command -v coredumpctl &>/dev/null; then
 fi
 
 if ! command -v pandoc &>/dev/null; then
-    sudo apt-get ${APT_OPTION} pandoc markdown
+    sudo apt-get ${APT_OPTION} install pandoc markdown
 fi
 
 echo "Installing extra fonts"
