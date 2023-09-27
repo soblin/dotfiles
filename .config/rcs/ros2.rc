@@ -24,6 +24,11 @@ if [ "$ROS2_VER" != "None" ]; then
     export RMW_IMPLEMENTATION=rmw_cyclonedds_cpp
     export ROS_LOCALHOST_ONLY=1
     export RCUTILS_COLORIZED_OUTPUT=1
+    if command -v nvidia-smi &> /dev/null; then
+        # https://qiita.com/porizou1/items/f6f66f830759bce3a4db
+        export __NV_PRIME_RENDER_OFFLOAD=1
+        export __GLX_VENDOR_LIBRARY_NAME=nvidia
+    fi
 
     if [ ! -e /tmp/cycloneDDS_configured ]; then
 	    sudo sysctl -w net.core.rmem_max=2147483647
@@ -32,9 +37,6 @@ if [ "$ROS2_VER" != "None" ]; then
     fi
 
     if command -v ccache &> /dev/null; then
-        export CC=/usr/lib/ccache/gcc
-        export CXX=/usr/lib/ccache/g++
-        export USE_CCACHE=1
         export CCACHE_DIR=$HOME/.ccache
     fi
 
