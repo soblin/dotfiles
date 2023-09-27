@@ -28,8 +28,6 @@
 ;; we also need to set separator to avoid overlapping tabs by highlighted tabs
 (custom-set-variables
  '(tabbar-separator (quote (0.5))))
-(setq tab-bar-format '(tab-bar-format-tabs tab-bar-separator tab-bar-format-add-tab))
-
 ;; adding spaces
 (defun tabbar-buffer-tab-label (tab)
   "Return a label for TAB.
