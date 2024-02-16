@@ -18,10 +18,12 @@
 (add-hook 'python-mode-hook 'blacken-mode)
 
 ;; https://tam5917.hatenablog.com/entry/20
+;; https://github.com/pythonic-emacs/blacken?tab=readme-ov-file#usage pyproject.tomlがあるときだけblackenするようにする
 (use-package blacken
   :delight
   :hook (python-mode . blacken-mode)
-  :custom (blacken-line-length 79))
+  :config
+  (setq blacken-only-if-project-is-blackened t))
 
 (use-package lsp-pyright
   :if (executable-find "pyright")
