@@ -6,10 +6,6 @@
 ;;; Code:
 
 (require 'company)
-(require 'bind-key)
-(setq company-minimum-prefix-length 2)
-(setq company-selection-wrap-around t)
-;; (bind-key "C-M-i" 'company-complete)
 (bind-key "C-h" nil company-active-map)
 (bind-key "C-n" 'company-select-next company-active-map)
 (bind-key "C-p" 'company-select-previous company-active-map)
@@ -17,10 +13,27 @@
 (bind-key "C-p" 'company-select-previous company-search-map)
 ;; (bind-key "<tab>" 'company-complete-common-or-cycle company-active-map)
 ;; (bind-key "<backtab>" 'company-select-previous company-active-map)
-(bind-key "C-i" 'company-complete-selection company-active-map)
+;; (bind-key "C-i" 'company-complete-selection company-active-map)
 (bind-key "M-d" 'company-show-doc-buffer company-active-map)
 (add-hook 'after-init-hook 'global-company-mode)
-(setq company-tooltip-maximum-width 100)
+
+;; https://emacs.stackexchange.com/questions/20485/how-to-exclude-a-company-backend-from-autocompleting-without-globally-removing-i
+;; clang failed with error:と出て遅くなるので
+;; https://joppot.info/posts/2f73397f-e45e-4db5-9411-7563956f5375
+(use-package company
+  :ensure t
+  ;; https://emacs.stackexchange.com/questions/32467/how-can-i-configure-company-mode-to-only-display-candidates-after-an-explicit-ke
+  ;; いちいちidleが発生してノロいのでCtrl-iを押したときだけ候補一覧を出すようにした
+  :bind (("<tab>" . company-complete)
+         )
+  :config
+  (setq company-minimum-prefix-length 2)         ;; 補完できそうな文字が2文字以上入力されたら候補を表示
+  (setq company-idle-delay nil)
+  (setq company-tooltip-maximum-width 100)
+  (setq company-selection-wrap-around t)
+  (setq company-backends nil)
+)
+
 
 ;; company-quickhelp
 (setq company-quickhelp-color-foreground "white")
