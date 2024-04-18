@@ -6,8 +6,11 @@
 ;;; Code:
 
 ;; japanese settings
-(set-fontset-font t 'japanese-jisx0208 "TakaoPGothic")
-(add-to-list 'face-font-rescale-alist '(".*Takao P.*" . 0.9)) ; OK
+;; (set-fontset-font t 'japanese-jisx0208 "TakaoPGothic")
+;;(add-to-list 'face-font-rescale-alist '(".*Takao P.*" . 0.9)) ; OK
+
+;; firacodeをaptで入れた
+;; https://ybiquitous.me/blog/2022/try-fira-code-font
 
 ;; doom-themeの方で設定
 ;; (global-display-line-numbers-mode)

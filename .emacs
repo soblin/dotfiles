@@ -33,9 +33,9 @@
  '(global-display-line-numbers-mode t)
  '(highlight-indent-guides-method 'column)
  '(package-selected-packages
-   '(ein pyvenv yasnippet lsp-ui dap-mode py-isort python-isort blacken lsp-pyright smooth-scroll highlight-indent-guides neotree nyan-mode all-the-icons doom-modeline doom-themes fish-mode dumb-jump exec-path-from-shell smart-jump company-quickhelp eglot ccls use-package clang-format+ clang-format magit undo-tree visual-regexp tabbar helm-migemo markdown-preview-mode zoom-frm go-mode helm sphinx-mode markdown-mode+ py-autopep8 jedi markdown-mode matlab-mode sudo-edit restart-emacs yatex js2-mode dracula-theme yaml-mode json-mode html5-schema web-mode js2-modeyasnippet cmake-mode company package-utils init-loader bind-key))
+   '(ligature ein pyvenv yasnippet lsp-ui dap-mode py-isort python-isort blacken lsp-pyright smooth-scroll highlight-indent-guides neotree nyan-mode all-the-icons doom-modeline doom-themes fish-mode dumb-jump exec-path-from-shell smart-jump company-quickhelp eglot ccls use-package clang-format+ clang-format magit undo-tree visual-regexp tabbar helm-migemo markdown-preview-mode zoom-frm go-mode helm sphinx-mode markdown-mode+ py-autopep8 jedi markdown-mode matlab-mode sudo-edit restart-emacs yatex js2-mode dracula-theme yaml-mode json-mode html5-schema web-mode js2-modeyasnippet cmake-mode company package-utils init-loader bind-key))
  '(safe-local-variable-values '((cmake-tab-width . 4)))
- '(show-paren-mode t)
+ '(tab-bar-mode t)
  '(tabbar-separator '(0.5))
  '(visible-bell nil)
  '(warning-suppress-types '((comp))))
@@ -44,6 +44,7 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
+ '(default ((t (:family "Fira Code" :foundry "CTDB" :slant normal :weight regular :height 102 :width normal))))
  '(YaTeX-font-lock-crossref-face ((t (:foreground "dark orange"))))
  '(YaTeX-font-lock-declaration-face ((t (:foreground "hot pink"))))
  '(YaTeX-font-lock-delimiter-face ((t (:background "dark magenta" :foreground "lightyellow3" :weight bold))))

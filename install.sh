@@ -83,7 +83,7 @@ fi
 
 echo "Installing extra fonts"
 
-sudo apt-get ${APT_OPTION} install fonts-powerline fonts-takao-gothic fonts-takao-pgothic
+sudo apt-get ${APT_OPTION} install fonts-powerline fonts-takao-gothic fonts-takao-pgothic fonts-firacode
 
 echo "Installing utilities"
 
