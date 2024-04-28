@@ -1,4 +1,4 @@
-set -U theme_display_date no 
+set -U theme_display_date no
 set -U theme_display_cmd_duration no
 set -g theme_display_hostname no
 set -g theme_display_user no
