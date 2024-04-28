@@ -4,6 +4,11 @@ APT_OPTION="-qq"
 
 # install prerequisites
 
+if [ ! -d "${home_dir}/.local/bin" ]; then
+    echo "Creating ${home_dir}/.local/bin"
+    mkdir -p "${home_dir}/.local/bin"
+fi
+
 echo "Installing etckeeper, git, tmux, tree, xclip, xsel, mlocate, htop, ccls, ccache, cmake, clang, fzf, fd-find, jq, ninja, systemd-coredump, pandoc, markdown"
 
 if ! command -v etckeeper &>/dev/null; then
@@ -223,11 +228,6 @@ create_symlink_f ".bashrc" ".bashrc"
 create_symlink_f ".bash_aliases" ".bash_aliases"
 create_symlink_f ".profile" ".profile"
 create_symlink_f ".dircolors" ".dircolors"
-
-if [ ! -d "${home_dir}/.local/bin" ]; then
-    echo "Creating ${home_dir}/.local/bin"
-    mkdir -p "${home_dir}/.local/bin"
-fi
 
 # .rc files
 create_symlink_d ".config/rcs" ".config/rcs"
