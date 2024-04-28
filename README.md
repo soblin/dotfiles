@@ -10,6 +10,29 @@
 
 する．
 
+## 日本語入力
+
+mozcで入力を切り替えた際に始めから日本語入力になっていて欲しい（デフォルトでは直接入力）．[このオプションは入ったが](https://github.com/google/mozc/issues/381)，Ubuntu22.04で入るmozcではまだ利用できない．そのためこちらに従って上書き更新する．
+
+https://zenn.dev/ikuya/articles/aa69fd1009b773
+
+その後`~/.config/mozc/ibus_config.textproto`を以下のように更新する．
+
+```
+engines {
+  name : "mozc-jp"
+  longname : "Mozc"
+  layout : "default"
+  layout_variant : "" # 一応追加
+  layout_option : "" # 一応追加
+  symbol : "あ" # 一応追加
+  composition_mode: HIRAGANA # これが一番重要
+}
+active_on_launch: False
+```
+
+その後`ibus write-cache`してから再起動すると始めから日本語入力ができるようになる．
+
 ## tmux
 
 tmuxのキーバインドは以下の通り.
