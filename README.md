@@ -33,6 +33,10 @@ active_on_launch: False
 
 その後`ibus write-cache`してから再起動すると始めから日本語入力ができるようになる．
 
+## gnome-terminal
+
+gnome-terminal上での入力だけ遅れる現象が起きる場合は https://askubuntu.com/questions/1509058/input-delay-on-terminal-ubuntu-22-04-4 に従ってmutterを更新する．
+
 ## tmux
 
 tmuxのキーバインドは以下の通り.
@@ -145,6 +149,8 @@ Pipfileなどで管理されたプロジェクトで補完を行うには`pyvenv
 - https://github.com/emacs-lsp/lsp-mode/issues/1290
 
 `M-x pyvenv-activate`でPipfileがあるフォルダーを選択し`lsp-workspace-restart`すると仮想環境にインストールされたパッケージが認識される． --> もしかするとpipenvに入った状態でemacsを立ち上げる必要もあるかも．
+
+aptで入る`node`のversionがpyrightに対して古い場合があるので https://qiita.com/nouernet/items/d6ad4d5f4f08857644de に従って`node`のバージョン管理を行うと良い．
 
 #### rust
 
