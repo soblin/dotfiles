@@ -56,7 +56,7 @@
 ;; https://blog.medalotte.net/archives/473
 (use-package ccls
   :custom
-  (ccls-executable "/usr/bin/ccls")
+  (ccls-executable "ccls")
   (ccls-sem-highlight-method 'font-lock)
   (ccls-use-default-rainbow-sem-highlight)
   :hook ((c-mode c++-mode objc-mode) .

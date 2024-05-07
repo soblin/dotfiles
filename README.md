@@ -129,6 +129,7 @@ elpaのパッケージは別のレポジトリで管理する．
 
 #### ccls
 
+aptで入るcclsは古いので https://github.com/MaskRay/ccls/wiki/Build に従って最新のものを入れる．
 プロジェクトのrootに`.ccls`を置き，そこに`compile_commands.json`へのシンボリックリンクを貼る(`build/`など)．
 - ROSのようにrootの配下にC++のプロジェクト(vcsで管理されている)が複数配置されている場合は，それぞれのプロジェクトでrootの`compile_commands.json`へのリンクを貼らないといけない(TODO: 良い対処法)
 - `.hpp`のインデクシングが不十分な気がするので，`compdb`の[この機能](https://github.com/Sarcasm/compdb#generate-a-compilation-database-with-header-files)を使う必要がありそう

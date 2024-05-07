@@ -9,7 +9,7 @@ if [ ! -d "${home_dir}/.local/bin" ]; then
     mkdir -p "${home_dir}/.local/bin"
 fi
 
-echo "Installing etckeeper, git, tmux, tree, xclip, xsel, mlocate, htop, ccls, ccache, cmake, clang, fzf, fd-find, jq, ninja, systemd-coredump, pandoc, markdown"
+echo "Installing etckeeper, git, tmux, tree, xclip, xsel, mlocate, htop, ccache, cmake, clang, fzf, fd-find, jq, ninja, systemd-coredump, pandoc, markdown"
 
 if ! command -v etckeeper &>/dev/null; then
     sudo apt-get ${APT_OPTION} install etckeeper
