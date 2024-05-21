@@ -18,3 +18,4 @@ __pycache__
 .ccls-cache/
 .clangd/
 compile_commands.json
+.envrc
