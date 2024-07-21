@@ -17,8 +17,8 @@ function e
 end
 
 function egui
-    set nump $(ps aux | grep "emacs --daemon" | wc -l)
-    if test $nump -lt 2
+    set nump $(ps aux | grep "emacs" | grep "daemon" | wc -l)
+    if test $nump -lt 1
         emacs --daemon
     end
     emacsclient --create-frame $argv &
