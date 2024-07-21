@@ -19,3 +19,4 @@ __pycache__
 .clangd/
 compile_commands.json
 .envrc
+.config/fish/conf.d/rustup.fish
