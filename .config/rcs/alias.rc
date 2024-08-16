@@ -54,3 +54,7 @@ function git-time() {
     commit="${arg} (${current_time})"
     git commit -m "${commit}"
 }
+
+function video-change-rate() {
+    ffmpeg -i $1 -vf setpts=PTS/$3 -af atempo=$3 $2
+}
