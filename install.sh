@@ -9,7 +9,7 @@ if [ ! -d "${home_dir}/.local/bin" ]; then
     mkdir -p "${home_dir}/.local/bin"
 fi
 
-echo "Installing etckeeper, git, tmux, tree, xclip, xsel, mlocate, htop, ccache, cmake, clang, fzf, fd-find, jq, ninja, systemd-coredump, pandoc, markdown"
+echo "Installing etckeeper, git, tmux, tree, xclip, xsel, mlocate, htop, direnv, ccache, cmake, clang, fzf, fd-find, jq, ninja, systemd-coredump, pandoc, markdown"
 
 if ! command -v etckeeper &>/dev/null; then
     sudo apt-get ${APT_OPTION} install etckeeper
@@ -41,6 +41,10 @@ fi
 
 if ! command -v htop &>/dev/null; then
     sudo apt-get ${APT_OPTION} install htop
+fi
+
+if ! command -v direnv &>/dev/null; then
+    sudo apt-get ${APT_OPTION} install direnv
 fi
 
 if ! command -v ccls &>/dev/null; then
