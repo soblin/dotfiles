@@ -56,6 +56,7 @@
  '(YaTeX-sectioning-2 ((t (:foreground "#f3f300" :underline t :slant italic))))
  '(YaTeX-sectioning-3 ((t (:foreground "#ecec00" :underline t :slant italic))))
  '(YaTeX-sectioning-4 ((t (:foreground "#e6e600" :underline t :slant italic))))
+ '(font-lock-comment-face ((t (:foreground "dark gray"))))
  '(tab-bar-tab-group-current ((t (:inherit tab-bar-tab :box nil :weight bold :height 1.1))))
  '(tab-bar-tab-group-inactive ((t (:inherit (shadow tab-bar-tab-inactive) :height 1.1))))
  '(tab-bar-tab-ungrouped ((t (:inherit (shadow tab-bar-tab-inactive) :height 1.1)))))

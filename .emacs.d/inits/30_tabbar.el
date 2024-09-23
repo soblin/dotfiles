@@ -70,6 +70,16 @@ That is, a string used to represent it on the tab bar."
 
 (setq tabbar-buffer-list-function 'my-tabbar-buffer-list)
 
+(global-set-key (kbd "C-1") (lambda () (interactive) (tab-bar-select-tab 1)))
+(global-set-key (kbd "C-2") (lambda () (interactive) (tab-bar-select-tab 2)))
+(global-set-key (kbd "C-3") (lambda () (interactive) (tab-bar-select-tab 3)))
+(global-set-key (kbd "C-4") (lambda () (interactive) (tab-bar-select-tab 4)))
+(global-set-key (kbd "C-5") (lambda () (interactive) (tab-bar-select-tab 5)))
+(global-set-key (kbd "C-6") (lambda () (interactive) (tab-bar-select-tab 6)))
+(global-set-key (kbd "C-7") (lambda () (interactive) (tab-bar-select-tab 7)))
+(global-set-key (kbd "C-8") (lambda () (interactive) (tab-bar-select-tab 8)))
+(global-set-key (kbd "C-8") (lambda () (interactive) (tab-bar-select-tab 9)))
+
 (tabbar-mode 1)
 ;;; End:
 
