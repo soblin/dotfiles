@@ -53,14 +53,31 @@
 
 ;; https://granddaifuku.hatenablog.com/entry/emacs-eglot
 
+;; clangd/clang-tidyはどちらも同じバージョンに基づいている必要がある
+;; https://www.mortens.dev/blog/emacs-and-the-language-server-protocol/index.html
+(use-package lsp-mode
+  :config
+  ;; `-background-index' requires clangd v8+!
+  (setq lsp-clients-clangd-args '("-j=12" "-background-index" "-log=error" "--clang-tidy"))
+  ;; ..
+  )
+
+(use-package flycheck
+  :ensure t
+  :init (global-flycheck-mode)
+  :config
+  (setq flycheck-clang-tidy-executable "clang-tidy") ;; Ensure clang-tidy is available
+  (flycheck-add-next-checker 'c/c++-clang 'c/c++-clang-tidy)) ;; Chain clang-tidy after clang
+
+(use-package flycheck-clang-tidy
+  :after flycheck
+  :hook
+  (flycheck-mode . flycheck-clang-tidy-setup)
+  :config
+  (setq flycheck-clang-tidy-executable "clang-tidy")
+  )
+
 ;; https://blog.medalotte.net/archives/473
-(use-package ccls
-  :custom
-  (ccls-executable "ccls")
-  (ccls-sem-highlight-method 'font-lock)
-  (ccls-use-default-rainbow-sem-highlight)
-  :hook ((c-mode c++-mode objc-mode) .
-         (lambda () (require 'ccls) (lsp))))
 
 (provide '19_c++_minimal)
 
