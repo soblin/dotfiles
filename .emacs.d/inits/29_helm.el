@@ -1,5 +1,4 @@
 (require 'helm)
-(require 'helm-config)
 ;;(helm-migemo-mode 1)
 
 (define-key helm-map (kbd "<tab>") 'helm-execute-persistent-action)

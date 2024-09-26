@@ -67,14 +67,12 @@
   :init (global-flycheck-mode)
   :config
   (setq flycheck-clang-tidy-executable "clang-tidy") ;; Ensure clang-tidy is available
-  (flycheck-add-next-checker 'c/c++-clang 'c/c++-clang-tidy)) ;; Chain clang-tidy after clang
+  )
 
 (use-package flycheck-clang-tidy
   :after flycheck
   :hook
   (flycheck-mode . flycheck-clang-tidy-setup)
-  :config
-  (setq flycheck-clang-tidy-executable "clang-tidy")
   )
 
 ;; https://blog.medalotte.net/archives/473
