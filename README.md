@@ -12,7 +12,7 @@
 
 ## 日本語入力
 
-mozcで入力を切り替えた際に始めから日本語入力になっていて欲しい（デフォルトでは直接入力）．[このオプションは入ったが](https://github.com/google/mozc/issues/381)，Ubuntu22.04で入るmozcではまだ利用できない．そのためこちらに従って上書き更新する．
+>mozcで入力を切り替えた際に始めから日本語入力になっていて欲しい（デフォルトでは直接入力）．[このオプションは入ったが](https://github.com/google/mozc/issues/381)，Ubuntu22.04で入るmozcではまだ利用できない．そのためこちらに従って上書き更新する．
 
 https://zenn.dev/ikuya/articles/aa69fd1009b773
 
@@ -137,6 +137,18 @@ aptで入るcclsは古いので https://github.com/MaskRay/ccls/wiki/Build に�
 ```
 pip3 install --user compdb
 compdb -p build/ list > compile_commands.json
+```
+
+#### clang
+
+clang/clang++/clang-tidy/clangdなどは全てllvmのバージョンが同じになっていないと不整合が生じる．そのためシステムにあるllvm-xは一旦uninstallして(するとclang-x/clang++-xなどもuninstallされる)，その後こちらに従い最新stableのllvm-toolchainを入れるのが良い．
+
+```shell
+sudo bash -c "$(wget -O - https://apt.llvm.org/llvm.sh)"
+```
+
+```shell
+sudo apt-get install llvm-18 clang-tidy-<stable> clangd-<stable>
 ```
 
 #### python
