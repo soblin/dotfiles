@@ -18,7 +18,7 @@ if command -v ros2 &> /dev/null
     end
 
     function colcon_test
-        colcon_select $argv
+        colcon build --packages-select-upto $argv --symlink-install --continue-on-error --event-handlers console_cohesion+ --cmake-args " -GNinja" -DCMAKE_BUILD_TYPE=RelWithDebInfo -DCMAKE_EXPORT_COMPILE_COMMANDS=ON -DCMAKE_CXX_COMPILER=/usr/lib/ccache/g++ -DCMAKE_C_COMPILER=/usr/lib/ccache/gcc -DCMAKE_CXX_FLAGS="-Wno-deprecated-declarations -Wno-unknown-pragmas -fprofile-arcs -ftest-coverage"
         colcon test --event-handlers console_cohesion+ --packages-select $argv
     end
 end
