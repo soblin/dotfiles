@@ -71,7 +71,8 @@
 (yas-global-mode)
 
 ;; これを設定しないとC++-modeでコピペの後に?コンマを打つとバッファー全体がlspの補完情報の置き換えられることがあるため
-(set-buffer-modified-p nil)
+;; https://github.com/emacs-lsp/lsp-mode/issues/1223
+(setq lsp-signature-auto-activate nil)
 
 ;;; End:
 
