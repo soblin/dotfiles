@@ -58,6 +58,7 @@
 (setq lsp-ui-doc-show-with-mouse nil)
 (setq lsp-headerline-breadcrumb-enable nil)
 (setq lsp-ui-sideline-enable nil)
+(setq lsp-enable-on-type-formatting nil)
 
 ;; https://ymtdzzz.dev/post/emacs-lsp-mode-more-faster/
 (setq read-process-output-max (* 10 1024 1024)) ;; 10mb
@@ -68,6 +69,9 @@
 ;; https://emacs.stackexchange.com/questions/65123/company-completion-backend-company-capf-error-error
 ;; これを設定しないと補間を選択するとシンボルが$0に置き換わってしまう
 (yas-global-mode)
+
+;; これを設定しないとC++-modeでコピペの後に?コンマを打つとバッファー全体がlspの補完情報の置き換えられることがあるため
+(set-buffer-modified-p nil)
 
 ;;; End:
 

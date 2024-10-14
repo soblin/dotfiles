@@ -58,7 +58,7 @@
 (use-package lsp-mode
   :config
   ;; `-background-index' requires clangd v8+!
-  (setq lsp-clients-clangd-args '("-j=12" "-background-index" "-log=error" "--clang-tidy"))
+  (setq lsp-clients-clangd-args '("-j=12" "--background-index" "-log=error" "--clang-tidy" "--header-insertion=never"))
   ;; ..
   )
 
