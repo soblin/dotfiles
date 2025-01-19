@@ -4,7 +4,6 @@
 
 ;;; Code:
 ;;**********  settings for js **********
-(add-to-list 'auto-mode-alist '("\\.js\\'" . js2-mode))
 
 ;; web-mode setting
 (require 'web-mode)
@@ -37,6 +36,12 @@
             (setq nxml-bind-meta-tab-to-complete-flag t)
             (setq tab-width 4))
           )
+
+(add-to-list 'auto-mode-alist '("\\.ts[x]?\\'" . web-mode))
+(add-to-list 'auto-mode-alist '("\\.ts[x]?\\'" . typescript-mode))
+(add-to-list 'auto-mode-alist '("\\.js[x]?\\'" . web-mode))
+(add-to-list 'auto-mode-alist '("\\.js\\'" . js2-mode))
+(add-hook 'web-mode-hook 'lsp)
 
 (provide '24_web)
 ;;; End:
