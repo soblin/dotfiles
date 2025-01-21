@@ -43,6 +43,14 @@
 (add-to-list 'auto-mode-alist '("\\.js\\'" . js2-mode))
 (add-hook 'web-mode-hook 'lsp)
 
+(require 'typescript-mode)
+(add-hook 'typescript-mode-hook '(lambda () (setq typescript-indent-level 2)))
+
+(use-package lsp-mode
+  :ensure t
+  :commands (lsp lsp-deferred)
+  :hook (typescript-mode . lsp-deferred))
+
 (provide '24_web)
 ;;; End:
 
