@@ -89,6 +89,14 @@ sudo apt-get install fzf fd-find jq
 ln -s $(which fdfind) ~/.local/bin/fd
 ```
 
+勝手にsourceするのを防ぐには
+
+```bash
+auto_source_disable
+```
+
+すれば良い．
+
 ## Emacs
 
 ### gccemacsを使う
@@ -126,18 +134,6 @@ elpaのパッケージは別のレポジトリで管理する．
 キーバインドは以下の通り
 
 - `M+.`で定義へのジャンプ，`M+,`で戻る
-
-#### ccls
-
-aptで入るcclsは古いので https://github.com/MaskRay/ccls/wiki/Build に従って最新のものを入れる．
-プロジェクトのrootに`.ccls`を置き，そこに`compile_commands.json`へのシンボリックリンクを貼る(`build/`など)．
-- ROSのようにrootの配下にC++のプロジェクト(vcsで管理されている)が複数配置されている場合は，それぞれのプロジェクトでrootの`compile_commands.json`へのリンクを貼らないといけない(TODO: 良い対処法)
-- `.hpp`のインデクシングが不十分な気がするので，`compdb`の[この機能](https://github.com/Sarcasm/compdb#generate-a-compilation-database-with-header-files)を使う必要がありそう
-
-```
-pip3 install --user compdb
-compdb -p build/ list > compile_commands.json
-```
 
 #### clang
 
