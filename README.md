@@ -167,6 +167,22 @@ aptで入る`node`のversionがpyrightに対して古い場合があるので ht
 rustup component add rls rust-analysis rust-src
 ```
 
+#### node
+
+`n`をinstallしてそれ経由で`npm`をinstallした方が良い．`npm`をupdateするには
+
+```bash
+sudo n stable
+```
+
+で良い．ローカルのnodeプロジェクトでは
+
+```bash
+export PATH=$PATH:.local/.bin
+```
+
+を`.envrc`に記せば良い．
+
 #### 参考
 
 - https://solist.work/blog/posts/language-server-protocol/
