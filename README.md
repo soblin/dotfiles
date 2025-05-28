@@ -12,26 +12,42 @@
 
 ## 日本語入力
 
->mozcで入力を切り替えた際に始めから日本語入力になっていて欲しい（デフォルトでは直接入力）．[このオプションは入ったが](https://github.com/google/mozc/issues/381)，Ubuntu22.04で入るmozcではまだ利用できない．そのためこちらに従って上書き更新する．
+### mozc
 
-https://zenn.dev/ikuya/articles/aa69fd1009b773
+mozcで入力を切り替えた際に始めから日本語入力になっていて欲しい（デフォルトでは直接入力）．[このオプションは入ったが](https://github.com/google/mozc/issues/381)，Ubuntu22.04で入るmozcではまだ利用できない．そのため[こちら](https://zenn.dev/ikuya/articles/aa69fd1009b773)に従って上書き更新する．
 
-その後`~/.config/mozc/ibus_config.textproto`を以下のように更新する．
+Dockerfileとしては代わりに
+
+```bash
+curl -O https://raw.githubusercontent.com/google/mozc/b0a604f110e01d11107ebbaad09e674cecee34f5/docker/ubuntu22.04/Dockerfile
+```
+
+を用いること．その後`~/.config/mozc/ibus_config.textproto`の`mozc-jp`のフィールドを以下のように更新する．
 
 ```
 engines {
   name : "mozc-jp"
   longname : "Mozc"
   layout : "default"
-  layout_variant : "" # 一応追加
-  layout_option : "" # 一応追加
-  symbol : "あ" # 一応追加
+  layout_variant : ""
+  layout_option : ""
+  symbol : "あ"
   composition_mode: HIRAGANA # これが一番重要
 }
-active_on_launch: False
 ```
 
 その後`ibus write-cache`してから再起動すると始めから日本語入力ができるようになる．
+
+### Ctrl-Spaceで日英の切り替え
+
+英語の次にJapaneseで"Japanese (Mozc)"を選択する．
+
+![add-mozc](./images/add-mozc.png)
+
+"Ctrl-Space"でInput Sourceを切り替えるように変更する．
+
+| View And Customize Shortcuts           | Typing                                 | Switch                                 |
+| ![shortcut-1](./images/shortcut-1.png) | ![shortcut-2](./images/shortcut-2.png) | ![shortcut-3](./images/shortcut-3.png) |
 
 ## gnome-terminal
 

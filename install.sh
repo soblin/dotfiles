@@ -2,6 +2,9 @@
 
 APT_OPTION="-qq"
 
+# /home/<user>
+home_dir=`realpath ~`
+
 # install prerequisites
 
 if [ ! -d "${home_dir}/.local/bin" ]; then
@@ -161,8 +164,6 @@ if ! command -v tmux-mem-cpu-load &> /dev/null; then
     echo "You will need cmake and g++ and/or clang to build this."
 fi
 
-# /home/<user>
-home_dir=`realpath ~`
 cur_dir=`pwd`
 
 function create_symlink_f() {
