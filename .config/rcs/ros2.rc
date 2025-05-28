@@ -32,8 +32,6 @@ if [ "$ROS2_VER" != "None" ]; then
     fi
 
     if command -v ccache &> /dev/null; then
-        export CC=/usr/lib/ccache/gcc
-        export CXX=/usr/lib/ccache/g++
         export USE_CCACHE=1
         export CCACHE_DIR=$HOME/.ccache
     fi
