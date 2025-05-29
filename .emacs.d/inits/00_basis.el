@@ -130,6 +130,9 @@
       (delete frame winner-modified-list))))
 (advice-add 'winner-save-old-configurations :before #'gjg/winner-clean-up-modified-list)
 
+;; https://www.reddit.com/r/emacs/comments/l42oep/suppress_nativecomp_warnings_buffer/
+(setq warning-minimum-level :error)
+
 ;;; End:
 
 ;;; 00_basis ends here
