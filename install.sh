@@ -50,8 +50,12 @@ if ! command -v direnv &>/dev/null; then
     sudo apt-get ${APT_OPTION} install direnv
 fi
 
-if ! command -v ccls &>/dev/null; then
-    sudo apt-get ${APT_OPTION} install ccls
+if ! command -v clangd &>/dev/null; then
+    sudo apt-get ${APT_OPTION} install clangd
+fi
+
+if ! command -v clang-tidy &>/dev/null; then
+    sudo apt-get ${APT_OPTION} install clang-tidy
 fi
 
 if ! command -v ccache &>/dev/null; then
