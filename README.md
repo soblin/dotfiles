@@ -153,15 +153,33 @@ elpaのパッケージは別のレポジトリで管理する．
 
 #### clang
 
-clang/clang++/clang-tidy/clangdなどは全てllvmのバージョンが同じになっていないと不整合が生じる．そのためシステムにあるllvm-xは一旦uninstallして(するとclang-x/clang++-xなどもuninstallされる)，その後こちらに従い最新stableのllvm-toolchainを入れるのが良い．
+clang/clang++/clang-tidy/clangdなどは全てllvmのバージョンが同じになっていないと不整合が生じる．
 
 ```shell
 sudo bash -c "$(wget -O - https://apt.llvm.org/llvm.sh)"
 ```
 
 ```shell
-sudo apt-get install llvm-18 clang-tidy-<stable> clangd-<stable>
+sudo apt-get install clang-18 clang++-18 clang-tidy-18 clangd-18 clang-format-18
 ```
+
+一つづつupdate-alternativeを適用する．
+
+```shell
+sudo update-alternatives --install /usr/bin/clang clang /usr/bin/clang-18 18
+sudo update-alternatives --install /usr/bin/clang++ clang++ /usr/bin/clang++-18 18
+sudo update-alternatives --install /usr/bin/clang-tidy clang-tidy /usr/bin/clang-tidy-18 18
+sudo update-alternatives --install /usr/bin/clangd clangd /usr/bin/clangd-18 18
+sudo update-alternatives --install /usr/bin/clang-format clang-format /usr/bin/clang-format-18 18
+```
+
+またコンパイルするために，Ubuntu22では
+
+```shell
+sudo apt-get install libstdc++-12-dev
+```
+
+が必要(https://stackoverflow.com/questions/74543715/usr-bin-ld-cannot-find-lstdc-no-such-file-or-directory-on-running-flutte)．
 
 #### python
 
