@@ -160,7 +160,7 @@ sudo bash -c "$(wget -O - https://apt.llvm.org/llvm.sh)"
 ```
 
 ```shell
-sudo apt-get install clang-18 clang++-18 clang-tidy-18 clangd-18 clang-format-18
+sudo apt-get install clang-18 clang++-18 clang-tidy-18 clangd-18 clang-format-18 libomp-19-dev
 ```
 
 一つづつupdate-alternativeを適用する．
