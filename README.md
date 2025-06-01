@@ -160,7 +160,7 @@ sudo bash -c "$(wget -O - https://apt.llvm.org/llvm.sh)"
 ```
 
 ```shell
-sudo apt-get install clang-18 clang++-18 clang-tidy-18 clangd-18 clang-format-18 libomp-19-dev
+sudo apt-get install clang-18 clang++-18 clang-tidy-18 clangd-18 clang-format-18 libomp-18-dev
 ```
 
 一つづつupdate-alternativeを適用する．
@@ -180,6 +180,14 @@ sudo apt-get install libstdc++-12-dev
 ```
 
 が必要(https://stackoverflow.com/questions/74543715/usr-bin-ld-cannot-find-lstdc-no-such-file-or-directory-on-running-flutte)．
+
+コンパイラとしてclangを使わないとしてもLSPで`clangd`を利用するにはclangの設定が必要になる．そのため
+
+```shell
+sudo apt-get install libstdc++-12-dev libomp-18-dev
+```
+
+がないと標準ライブラリーや`omp.h`が見つからずLSPとして機能してくれない．
 
 #### python
 
