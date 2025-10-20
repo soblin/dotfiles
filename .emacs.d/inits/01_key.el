@@ -8,6 +8,7 @@
 ;; "C-h"でbackspaceするため
 (define-key key-translation-map [?\C-h] [?\C-?])
 (global-set-key "\C-h" 'delete-backward-char)
+
 ;; "C-x u"するとundo-treeを出す．"C-x C-u"すると単純に前に戻る
 (define-key global-map (kbd "C-x C-u") 'undo)
 
@@ -26,6 +27,7 @@
 ;; バッファを閉じる
 (define-key global-map (kbd "C-x C-k") 'kill-buffer)
 
+;; 選択範囲で置換
 (global-set-key (kbd "M-%") 'vr/query-replace)
 
 (global-unset-key (kbd "C-x m"))

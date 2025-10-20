@@ -1,19 +1,6 @@
 (require 'helm)
 ;;(helm-migemo-mode 1)
 
-(define-key helm-map (kbd "<tab>") 'helm-execute-persistent-action)
-(define-key helm-map (kbd "C-i") 'helm-execute-persistent-action)
-
-
-(define-key helm-map (kbd "C-h") 'delete-backward-char)
-;;(define-key helm-find-files-map (kbd "C-h") 'delete-backward-char)
-
-(define-key global-map (kbd "C-x b") 'helm-for-files)
-(define-key global-map (kbd "C-x C-f") 'helm-find-files)
-(define-key global-map (kbd "M-x") 'helm-M-x)
-
-(define-key global-map (kbd "C-y") 'helm-show-kill-ring)
-
 (setq helm-split-window-in-side-p           t ; open helm buffer inside current window, not occupy whole other window
       helm-move-to-line-cycle-in-source     t ; move to end or beginning of source when reaching top or bottom of source.
       helm-ff-search-library-in-sexp        t ; search for library in `require' and `declare-function' sexp.

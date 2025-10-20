@@ -33,7 +33,21 @@
  '(global-display-line-numbers-mode t)
  '(highlight-indent-guides-method 'column)
  '(package-selected-packages
-   '(typescript-mode smartrep flycheck-clang-tidy flycheck ligature ein pyvenv yasnippet lsp-ui dap-mode py-isort python-isort blacken lsp-pyright smooth-scroll highlight-indent-guides neotree nyan-mode all-the-icons doom-modeline doom-themes fish-mode dumb-jump exec-path-from-shell smart-jump company-quickhelp eglot ccls use-package clang-format+ clang-format magit undo-tree visual-regexp tabbar helm-migemo markdown-preview-mode zoom-frm go-mode helm sphinx-mode markdown-mode+ py-autopep8 jedi markdown-mode matlab-mode sudo-edit restart-emacs yatex js2-mode dracula-theme yaml-mode json-mode html5-schema web-mode js2-modeyasnippet cmake-mode company package-utils init-loader bind-key))
+   '(all-the-icons bind-key blacken ccls clang-format clang-format+
+                   cmake-mode company company-quickhelp dap-mode
+                   doom-modeline doom-themes dracula-theme dumb-jump
+                   ein exec-path-from-shell fish-mode flycheck
+                   flycheck-clang-tidy go-mode helm helm-migemo
+                   highlight-indent-guides html5-schema init-loader
+                   jedi js2-mode js2-modeyasnippet json-mode ligature
+                   lsp-pyright lsp-ui magit markdown-mode
+                   markdown-mode+ markdown-preview-mode matlab-mode
+                   neotree nyan-mode package-utils py-autopep8
+                   py-isort python-isort pyvenv restart-emacs
+                   smart-jump smartrep smooth-scroll sphinx-mode
+                   sudo-edit tabbar typescript-mode undo-tree
+                   use-package visual-regexp web-mode yaml-mode
+                   yasnippet yatex zoom-frm))
  '(safe-local-variable-values '((cmake-tab-width . 4)))
  '(tab-bar-mode t)
  '(tabbar-separator '(0.5))
