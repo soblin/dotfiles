@@ -135,7 +135,7 @@
 
 ;; ROSのinstall/shareみたいなGit管理化のsymlinkに飛ぶ際にyes/noを訊かない
 ;; https://stackoverflow.com/questions/15390178/emacs-and-symbolic-links
-(setq vc-follow-symlinks nil)
+(setq vc-follow-symlinks t)
 
 ;;; End:
 
