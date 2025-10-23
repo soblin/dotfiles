@@ -77,6 +77,11 @@
 ;; https://github.com/emacs-lsp/lsp-mode/issues/1223
 (setq lsp-signature-auto-activate nil)
 
+;; lspのdocumentをその場で表示(他のキーを押すとすぐに消える)
+(define-key dumb-jump-mode-map (kbd "C-M-p") nil)
+(global-unset-key (kbd "C-M-p"))
+(global-set-key (kbd "C-M-p") #'lsp-ui-doc-glance)
+
 ;;; End:
 
 ;;; 10_lsp ends here
