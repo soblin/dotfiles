@@ -12,7 +12,7 @@ if [ ! -d "${home_dir}/.local/bin" ]; then
     mkdir -p "${home_dir}/.local/bin"
 fi
 
-echo "Installing etckeeper, git, tmux, tree, xclip, xsel, mlocate, htop, direnv, ccache, cmake, clang, fzf, fd-find, jq, ninja, systemd-coredump, pandoc, markdown"
+echo "Installing etckeeper, git, tmux, tree, xclip, xsel, mlocate, htop, direnv, ccache, cmake, fzf, fd-find, jq, ninja, systemd-coredump, pandoc, markdown, bat, lsd, difftastic"
 
 if ! command -v etckeeper &>/dev/null; then
     sudo apt-get ${APT_OPTION} install etckeeper
@@ -50,24 +50,12 @@ if ! command -v direnv &>/dev/null; then
     sudo apt-get ${APT_OPTION} install direnv
 fi
 
-if ! command -v clangd &>/dev/null; then
-    sudo apt-get ${APT_OPTION} install clangd
-fi
-
-if ! command -v clang-tidy &>/dev/null; then
-    sudo apt-get ${APT_OPTION} install clang-tidy
-fi
-
 if ! command -v ccache &>/dev/null; then
     sudo apt-get ${APT_OPTION} install ccache
 fi
 
 if ! command -v cmake &>/dev/null; then
     sudo apt-get ${APT_OPTION} install cmake
-fi
-
-if ! command -v clang &>/dev/null; then
-    sudo apt-get ${APT_OPTION} install clang llvm clang-format
 fi
 
 if ! command -v fzf &>/dev/null; then
@@ -95,6 +83,21 @@ fi
 
 if ! command -v pandoc &>/dev/null; then
     sudo apt-get ${APT_OPTION} install pandoc markdown
+fi
+
+if ! command -v bat &>/dev/null; then
+    sudo apt-get ${APT_OPTION} install bat
+    mkdir -p ~/.local/bin
+    ln -s /usr/bin/batcat "${home_dir}/.local/bin/bat"
+fi
+
+if ! command -v lsd &>/dev/null; then
+    # --class is required: https://github.com/lsd-rs/lsd/issues/79
+    sudo snap install lsd --classic
+fi
+
+if ! command -v difft &>/dev/null; then
+    curl -L https://github.com/Wilfred/difftastic/releases/download/0.67.0/difft-x86_64-unknown-linux-gnu.tar.gz | tar -xz -C "${home_dir}/.local/bin"
 fi
 
 echo "Installing extra fonts"
