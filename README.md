@@ -20,9 +20,17 @@ Dockerfileとしては代わりに
 
 ```bash
 curl -O https://raw.githubusercontent.com/google/mozc/b0a604f110e01d11107ebbaad09e674cecee34f5/docker/ubuntu22.04/Dockerfile
+
+
+- RUN apt-get install -y bazel
++ RUN apt-get install -y bazel-7.7.1
++ RUN ln -s /usr/bin/bazel-7.7.1 /usr/bin/bazel
 ```
 
-を用いること．その後`~/.config/mozc/ibus_config.textproto`の`mozc-jp`のフィールドを以下のように更新する．
+を用いること．
+
+
+その後`~/.config/mozc/ibus_config.textproto`の`mozc-jp`のフィールドを以下のように更新する．
 
 ```
 engines {

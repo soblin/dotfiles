@@ -93,7 +93,12 @@ fi
 
 if ! command -v lsd &>/dev/null; then
     # --class is required: https://github.com/lsd-rs/lsd/issues/79
-    sudo snap install lsd --classic
+    # but --classic option is not supported
+    # curl -L https://github.com/lsd-rs/lsd/releases/download/v1.2.0/lsd-v1.2.0-x86_64-unknown-linux-gnu.tar.gz
+    # copy completions to:
+    # ~/.local/share/bash-completion/completions/lsd.bash-completion
+    # ~/.config/fish/completions/lsd.fish
+    echo "install of lsd is todo"
 fi
 
 if ! command -v difft &>/dev/null; then
