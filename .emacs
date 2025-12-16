@@ -34,20 +34,20 @@
  '(highlight-indent-guides-method 'column)
  '(package-selected-packages
    '(all-the-icons bind-key blacken ccls clang-format clang-format+
-                   cmake-mode company company-quickhelp dap-mode
-                   doom-modeline doom-themes dracula-theme dumb-jump
-                   ein exec-path-from-shell fish-mode flycheck
-                   flycheck-clang-tidy go-mode helm helm-migemo
-                   highlight-indent-guides html5-schema init-loader
-                   jedi js2-mode js2-modeyasnippet json-mode ligature
-                   lsp-pyright lsp-ui magit markdown-mode
-                   markdown-mode+ markdown-preview-mode matlab-mode
-                   neotree nyan-mode package-utils py-autopep8
-                   py-isort python-isort pyvenv restart-emacs
-                   smart-jump smartrep smooth-scroll sphinx-mode
-                   sudo-edit tabbar typescript-mode undo-tree
-                   use-package visual-regexp web-mode yaml-mode
-                   yasnippet yatex zoom-frm))
+                   cmake-mode company company-quickhelp consult-gh
+                   dap-mode doom-modeline doom-themes dracula-theme
+                   dumb-jump ein exec-path-from-shell fish-mode
+                   flycheck flycheck-clang-tidy forge go-mode helm
+                   helm-migemo highlight-indent-guides html5-schema
+                   init-loader jedi js2-mode js2-modeyasnippet
+                   json-mode ligature lsp-pyright lsp-ui magit
+                   markdown-mode markdown-mode+ markdown-preview-mode
+                   matlab-mode neotree nyan-mode package-utils
+                   py-autopep8 py-isort python-isort pyvenv
+                   restart-emacs smart-jump smartrep smooth-scroll
+                   sphinx-mode sudo-edit tabbar typescript-mode
+                   undo-tree use-package visual-regexp web-mode
+                   yaml-mode yasnippet yatex zoom-frm))
  '(safe-local-variable-values '((cmake-tab-width . 4)))
  '(tab-bar-mode t)
  '(tabbar-separator '(0.5))

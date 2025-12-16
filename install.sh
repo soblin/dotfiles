@@ -98,12 +98,13 @@ if ! command -v lsd &>/dev/null; then
     # copy completions to:
     # ~/.local/share/bash-completion/completions/lsd.bash-completion
     # ~/.config/fish/completions/lsd.fish
-    echo "install of lsd is todo"
 fi
 
 if ! command -v difft &>/dev/null; then
     curl -L https://github.com/Wilfred/difftastic/releases/download/0.67.0/difft-x86_64-unknown-linux-gnu.tar.gz | tar -xz -C "${home_dir}/.local/bin"
 fi
+
+# TODO: gh, lsd
 
 echo "Installing extra fonts"
 
