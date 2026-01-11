@@ -17,7 +17,7 @@ jobs:
         uses: astral-sh/setup-uv@v7
 
       - name: install python
-        run: uv install python # NOTE: from .python-version
+        run: uv python install # NOTE: from .python-version
 
       - name: install packages
         run: uv sync
