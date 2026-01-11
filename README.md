@@ -29,7 +29,6 @@ curl -O https://raw.githubusercontent.com/google/mozc/b0a604f110e01d11107ebbaad0
 
 を用いること．
 
-
 その後`~/.config/mozc/ibus_config.textproto`の`mozc-jp`のフィールドを以下のように更新する．
 
 ```
@@ -55,6 +54,7 @@ engines {
 "Ctrl-Space"でInput Sourceを切り替えるように変更する．
 
 | View And Customize Shortcuts           | Typing                                 | Switch                                 |
+|----------------------------------------|----------------------------------------|----------------------------------------|
 | ![shortcut-1](./images/shortcut-1.png) | ![shortcut-2](./images/shortcut-2.png) | ![shortcut-3](./images/shortcut-3.png) |
 
 ## gnome-terminal
