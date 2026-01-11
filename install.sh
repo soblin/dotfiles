@@ -10,9 +10,10 @@ home_dir=`realpath ~`
 if [ ! -d "${home_dir}/.local/bin" ]; then
     echo "Creating ${home_dir}/.local/bin"
     mkdir -p "${home_dir}/.local/bin"
+    PATH="$HOME/.local/bin:$PATH"
 fi
 
-echo "Installing etckeeper, git, tmux, tree, xclip, xsel, mlocate, htop, direnv, ccache, cmake, fzf, fd-find, jq, ninja, systemd-coredump, pandoc, markdown, bat, lsd, difftastic"
+echo "Installing system commands"
 
 if ! command -v etckeeper &>/dev/null; then
     sudo apt-get ${APT_OPTION} install etckeeper
@@ -20,6 +21,10 @@ fi
 
 if ! command -v git &>/dev/null; then
     sudo apt-get ${APT_OPTION} install git git-lfs
+fi
+
+if ! command -v curl &>/dev/null; then
+    sudo apt-get ${APT_OPTION} install curl
 fi
 
 if ! command -v tmux &>/dev/null; then
@@ -50,14 +55,6 @@ if ! command -v direnv &>/dev/null; then
     sudo apt-get ${APT_OPTION} install direnv
 fi
 
-if ! command -v ccache &>/dev/null; then
-    sudo apt-get ${APT_OPTION} install ccache
-fi
-
-if ! command -v cmake &>/dev/null; then
-    sudo apt-get ${APT_OPTION} install cmake
-fi
-
 if ! command -v fzf &>/dev/null; then
     sudo apt-get ${APT_OPTION} install fzf
 fi
@@ -65,14 +62,24 @@ fi
 if ! command -v fdfind &>/dev/null; then
     sudo apt-get ${APT_OPTION} install fd-find
     # https://zenn.dev/kenji_miyake/articles/c149cc1f17e168
-    ln -s $(which fdfind) ~/.local/bin/fd
+    if [ ! -f ${home_dir}/.local/bin/fd ]; then
+        ln -s $(which fdfind) ~/.local/bin/fd
+    fi
 fi
 
 if ! command -v jq &>/dev/null; then
     sudo apt-get ${APT_OPTION} install jq
 fi
 
-if ! command -v ninaj &>/dev/null; then
+if ! command -v cmake &>/dev/null; then
+    sudo apt-get ${APT_OPTION} install cmake
+fi
+
+if ! command -v ccache &>/dev/null; then
+    sudo apt-get ${APT_OPTION} install ccache
+fi
+
+if ! command -v ninja &>/dev/null; then
     sudo apt-get ${APT_OPTION} install ninja-build
 fi
 
@@ -81,14 +88,11 @@ if ! command -v coredumpctl &>/dev/null; then
     ulimit -c unlimited
 fi
 
-if ! command -v pandoc &>/dev/null; then
-    sudo apt-get ${APT_OPTION} install pandoc markdown
-fi
-
 if ! command -v bat &>/dev/null; then
     sudo apt-get ${APT_OPTION} install bat
-    mkdir -p ~/.local/bin
-    ln -s /usr/bin/batcat "${home_dir}/.local/bin/bat"
+    if [ ! -f ${home_dir}/.local/bin/bat ]; then
+        ln -s /usr/bin/batcat "${home_dir}/.local/bin/bat"
+    fi
 fi
 
 if ! command -v lsd &>/dev/null; then
@@ -98,13 +102,45 @@ if ! command -v lsd &>/dev/null; then
     # copy completions to:
     # ~/.local/share/bash-completion/completions/lsd.bash-completion
     # ~/.config/fish/completions/lsd.fish
+    echo "skip lsd"
 fi
 
 if ! command -v difft &>/dev/null; then
     curl -L https://github.com/Wilfred/difftastic/releases/download/0.67.0/difft-x86_64-unknown-linux-gnu.tar.gz | tar -xz -C "${home_dir}/.local/bin"
 fi
 
-# TODO: gh, lsd
+if ! command -v gh &>/dev/null; then
+    out=$(mktemp) && wget -nv -O$out https://cli.github.com/packages/githubcli-archive-keyring.gpg
+    cat $out | sudo tee /etc/apt/keyrings/githubcli-archive-keyring.gpg > /dev/null
+    sudo chmod go+r /etc/apt/keyrings/githubcli-archive-keyring.gpg
+    sudo mkdir -p -m 755 /etc/apt/sources.list.d
+    echo "deb [arch=$(dpkg --print-architecture) signed-by=/etc/apt/keyrings/githubcli-archive-keyring.gpg] https://cli.github.com/packages stable main" | sudo tee /etc/apt/sources.list.d/github-cli.list > /dev/null
+    sudo apt update
+    sudo apt ${APT_OPTION} install gh
+fi
+
+echo "Installing Docker"
+
+if ! command -v docker &>/dev/null; then
+    # Add Docker's official GPG key:
+    sudo apt update
+    sudo apt install ca-certificates curl
+    sudo install -m 0755 -d /etc/apt/keyrings
+    sudo curl -fsSL https://download.docker.com/linux/ubuntu/gpg -o /etc/apt/keyrings/docker.asc
+    sudo chmod a+r /etc/apt/keyrings/docker.asc
+
+    # Add the repository to Apt sources:
+    sudo tee /etc/apt/sources.list.d/docker.sources <<EOF
+Types: deb
+URIs: https://download.docker.com/linux/ubuntu
+Suites: $(. /etc/os-release && echo "${UBUNTU_CODENAME:-$VERSION_CODENAME}")
+Components: stable
+Signed-By: /etc/apt/keyrings/docker.asc
+EOF
+
+    sudo apt update
+    sudo apt ${APT_OPTION} install docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin
+fi
 
 echo "Installing extra fonts"
 
@@ -113,8 +149,6 @@ sudo apt-get ${APT_OPTION} install fonts-powerline fonts-takao-gothic fonts-taka
 echo "Installing utilities"
 
 sudo apt-get ${APT_OPTION} install vlc simplescreenrecorder gparted
-
-echo "Installed dependencies."
 
 function get_major_ver_num() {
     echo "$1" | cut -d "." -f1
