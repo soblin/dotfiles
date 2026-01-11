@@ -1,0 +1,28 @@
+name: ansible-ci
+
+on:
+  push:
+  pull_request:
+    types: [opened]
+
+jobs:
+  ansible-test:
+    # TODO: support ubuntu-24 with matrix
+    runs-on: ubuntu-22.04
+
+    steps:
+      - name: checkout
+        uses: actions/checkout@v6
+
+      - name: setup uv
+        uses: astral-sh/setup-uv@v7
+
+      - name: install python
+        run: uv python install # NOTE: from .python-version
+
+      - name: install packages
+        run: uv sync
+
+      - name: run playbook
+        run: |
+          uv run ansible-playbook playbook.yaml
