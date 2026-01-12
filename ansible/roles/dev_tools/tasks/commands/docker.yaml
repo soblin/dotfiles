@@ -2,7 +2,7 @@
   become: true
   block:
     # apt
-    block:
+    - block:
       - name: get gpg key
         ansible.builtin.get_url:
           url: https://download.docker.com/linux/ubuntu/gpg
@@ -45,7 +45,7 @@
         check_mode: true
 
     # setup docker group
-    block:
+    - block:
       - name: get username
         ansible.builtin.command: whoami
         register: username
