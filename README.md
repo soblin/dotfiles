@@ -2,13 +2,14 @@
 
 個人用の `dotfiles` のレポジトリ.
 
-## 依存コマンドのインストール・シンボリックリンクの設定
+## セットアップ
 
 ```bash
-./install.sh
+curl -LsSf https://astral.sh/uv/install.sh | sh
+uv python install
+uv sync
+uv run ansible-playbook ansible/playbook.yaml (WIP)
 ```
-
-する．
 
 ## 日本語入力
 
