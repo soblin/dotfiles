@@ -1,4 +1,11 @@
 # lsd
+- name: check lsd command
+  ansible.builtin.command: which lsd
+  register: which_lsd
+  failed_when: false
+  changed_when: false
+
 - name: install lsd command
   apt:
     deb: https://github.com/lsd-rs/lsd/releases/download/v1.2.0/lsd-musl_1.2.0_amd64.deb
+  when: which_lsd.rc != 0
