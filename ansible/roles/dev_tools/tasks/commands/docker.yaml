@@ -1,0 +1,40 @@
+- name: setup docker
+  become: true
+  block:
+    - name: get gpg key
+      ansible.builtin.get_url:
+        url: https://download.docker.com/linux/ubuntu/gpg
+        dest: /etc/apt/keyrings/docker.asc
+        mode: '0644'
+
+    - name: add repo
+      copy:
+        dest: /etc/apt/sources.list.d/docker.sources
+        content: |
+          Types: deb
+          URIs: https://download.docker.com/linux/ubuntu
+          Suites: $(. /etc/os-release && echo "${UBUNTU_CODENAME:-$VERSION_CODENAME}")
+          Components: stable
+          Signed-By: /etc/apt/keyrings/docker.asc
+
+    - name: install
+      apt:
+        name:
+          - docker-ce
+          - docker-ce-cli
+          - containerd.io
+          - docker-buildx-plugin
+          - docker-compose-plugin
+      state: present
+      update_cache: true
+      when: is_baremetal
+
+    - name: get username
+      ansible.builtin.command: whoami
+      register: username
+      failed_when: username.rc != 0
+
+    - name: add docker group
+      become: true
+      ansible.builtin.shell: groupadd docker && usermod -aG docker "{{ username.stdout }}"
+      when: is_baremetal
