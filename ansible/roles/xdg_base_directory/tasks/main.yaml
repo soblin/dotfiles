@@ -1,4 +1,4 @@
-- name: create <home>/.local/bin
+- name: create \$HOME/.local/bin
   file:
     path: "{{ ansible_user_dir }}/.local/bin"
     state: directory
