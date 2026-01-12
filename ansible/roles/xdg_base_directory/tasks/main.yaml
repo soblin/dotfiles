@@ -4,3 +4,5 @@
     path: "{{ lookup('env','HOME') }}/.local/bin"
     state: directory
     mode: '0755'
+  debug:
+    msg: echo `ls -a {{ lookup('env','HOME') }}`
