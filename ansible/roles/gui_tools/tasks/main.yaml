@@ -5,4 +5,4 @@
       - simplescreenrecorder
       - gparted
     state: present
-  when: install_gui
+  when: is_baremetal
