@@ -27,7 +27,7 @@
           - docker-compose-plugin
         state: present
         update_cache: true
-      when: is_baremetal
+      check_mode: not is_baremetal
 
     - name: get username
       ansible.builtin.command: whoami

@@ -5,4 +5,4 @@
       - simplescreenrecorder
       - gparted
     state: present
-  when: is_baremetal
+  check_mode: not is_baremetal
