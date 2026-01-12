@@ -16,4 +16,4 @@
   
 - import_tasks: commands/bat.yaml
 
-- import_task: commands/difft.yaml
+- import_tasks: commands/difft.yaml
