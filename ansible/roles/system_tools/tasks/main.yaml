@@ -13,4 +13,4 @@
       - htop
       - direnv
     state: present # NOTE: if not installed, install
-    # update_cache: false # apt-update is not necessary
+    update_cache: false # apt-update is not necessary
