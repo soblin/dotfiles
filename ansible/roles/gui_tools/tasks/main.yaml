@@ -1,18 +1,24 @@
 - name: install gui tools on baremetal
-  apt:
-    name:
-      - vlc
-      - simplescreenrecorder
-      - gparted
-    state: present
-  when: is_baremetal
+  block:
+    - name: apt install
+      apt:
+        name:
+          - vlc
+          - simplescreenrecorder
+          - gparted
+          - flameshot
+        state: present
+      when: is_baremetal
 
 - name: check gui tools installability on ci
-  apt:
-    name:
-      - vlc
-      - simplescreenrecorder
-      - gparted
-    state: present
-  when: not is_baremetal
-  check_mode: true
+  block:
+    - name: apt installability check
+      apt:
+        name:
+          - vlc
+          - simplescreenrecorder
+          - gparted
+          - flameshot
+        state: present
+      when: not is_baremetal
+      check_mode: true

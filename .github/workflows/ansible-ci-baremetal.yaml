@@ -26,4 +26,4 @@ jobs:
 
       - name: run playbook
         run: |
-          uv run ansible-playbook ansible/playbook.yaml
+          uv run ansible-playbook ansible/playbook.yaml -v
