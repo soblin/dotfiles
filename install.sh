@@ -33,14 +33,6 @@ EOF
     sudo apt ${APT_OPTION} install docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin
 fi
 
-echo "Installing extra fonts"
-
-sudo apt-get ${APT_OPTION} install fonts-powerline fonts-takao-gothic fonts-takao-pgothic fonts-firacode
-
-echo "Installing utilities"
-
-sudo apt-get ${APT_OPTION} install vlc simplescreenrecorder gparted
-
 function get_major_ver_num() {
     echo "$1" | cut -d "." -f1
 }
