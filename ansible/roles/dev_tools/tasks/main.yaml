@@ -26,9 +26,10 @@
 # bat
 - name: symlink batcat to bat
   become: false
-  src: $(which batcat)
-  dest: "{{ lookup('env','HOME') }}/.local/bin/bat"
-  state: link
+  file:
+    src: $(which batcat)
+    dest: "{{ lookup('env','HOME') }}/.local/bin/bat"
+    state: link
 
 - name: check bat command
   ansible.builtin.command: which bat
