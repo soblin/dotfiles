@@ -33,11 +33,6 @@ EOF
     sudo apt ${APT_OPTION} install docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin
 fi
 
-echo "Installing uv"
-if ! command -v uv &>/dev/null; then
-    curl -LsSf https://astral.sh/uv/install.sh | sh
-fi
-
 echo "Installing extra fonts"
 
 sudo apt-get ${APT_OPTION} install fonts-powerline fonts-takao-gothic fonts-takao-pgothic fonts-firacode
