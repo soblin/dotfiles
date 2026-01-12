@@ -1,6 +1,5 @@
 # bat
 - name: setup bat command
-  become: false
   block:
     - name: apt install bat
       apt:

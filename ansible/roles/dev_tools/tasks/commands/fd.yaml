@@ -1,6 +1,5 @@
 # fd
 - name: setup fd command
-  become: false
   block:
     - name: apt install fd-find
       apt:
