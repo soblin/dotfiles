@@ -2,3 +2,4 @@
   become: true
   roles:
     - xdg_base_directory
+    - system_tools
