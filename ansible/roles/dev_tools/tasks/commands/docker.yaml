@@ -1,58 +1,78 @@
 - name: setup docker
   become: true
   block:
-    - name: get gpg key
-      ansible.builtin.get_url:
-        url: https://download.docker.com/linux/ubuntu/gpg
-        dest: /etc/apt/keyrings/docker.asc
-        mode: '0644'
+    # apt
+    block:
+      - name: get gpg key
+        ansible.builtin.get_url:
+          url: https://download.docker.com/linux/ubuntu/gpg
+          dest: /etc/apt/keyrings/docker.asc
+          mode: '0644'
 
-    - name: add repo
-      copy:
-        dest: /etc/apt/sources.list.d/docker.sources
-        content: |
-          Types: deb
-          URIs: https://download.docker.com/linux/ubuntu
-          Suites: {{ ansible_distribution_release }}
-          Components: stable
-          Signed-By: /etc/apt/keyrings/docker.asc
+        - name: add repo
+          copy:
+            dest: /etc/apt/sources.list.d/docker.sources
+            content: |
+              Types: deb
+              URIs: https://download.docker.com/linux/ubuntu
+              Suites: {{ ansible_distribution_release }}
+              Components: stable
+              Signed-By: /etc/apt/keyrings/docker.asc
 
-    - name: install docker on baremetal
-      apt:
-        name:
-          - docker-ce
-          - docker-ce-cli
-          - containerd.io
-          - docker-buildx-plugin
-          - docker-compose-plugin
-        state: present
-        update_cache: true
-      when: is_baremetal
+        - name: install docker on baremetal
+          apt:
+            name:
+              - docker-ce
+              - docker-ce-cli
+              - containerd.io
+              - docker-buildx-plugin
+              - docker-compose-plugin
+            state: present
+            update_cache: true
+          when: is_baremetal
 
-    - name: check docker installability on ci
-      apt:
-        name:
-          - docker-ce
-          - docker-ce-cli
-          - containerd.io
-          - docker-buildx-plugin
-          - docker-compose-plugin
-        state: present
-        update_cache: true
-      when: not is_baremetal
-      check_mode: true
+        - name: check docker installability on ci
+          apt:
+            name:
+              - docker-ce
+              - docker-ce-cli
+              - containerd.io
+              - docker-buildx-plugin
+              - docker-compose-plugin
+            state: present
+            update_cache: true
+          when: not is_baremetal
+          check_mode: true
 
-    - name: get username
-      ansible.builtin.command: whoami
-      register: username
-      failed_when: username.rc != 0
+    # setup docker group
+    block:
+      - name: get username
+        ansible.builtin.command: whoami
+        register: username
+        failed_when: username.rc != 0
+        changed_when: false
+  
+      - name: add docker group
+        become: true
+        ansible.builtin.group:
+          name: docker
+          state: present
 
-    # TODO: do this when group does not exist
-    #- name: add docker group
-    #  become: true
-    #  ansible.builtin.shell: groupadd docker && usermod -aG docker "{{ username.stdout }}"
-    #  when: is_baremetal
+      - name: check and save if user belongs to docker group
+        ansible.builtin.shell: id -nG {{ username.stdout }}
+        register: user_groups
+        changed_when: false
 
-    #- name: prompt logout
-    #  debug:
-    #    msg: "Please logout once to use docker"
+      - name: add user to docker group
+        become: true
+        user:
+          name: "{{ username.stdout }}"
+          groups: docker
+          appned: true # "-aG"
+          state: present
+
+      - name: prompt logout
+        debug:
+          msg: "Please logout once to use docker"
+        when:
+          - 'docker' not in user_groups.stdout.split()
