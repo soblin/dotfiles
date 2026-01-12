@@ -1,0 +1,7 @@
+- name: create <home>/.local/bin
+  file:
+    path: "{{ ansible_user_dir }}/.local/bin"
+    state: directory
+    mode: '0755'
+  debug:
+    msg: echo `ls -a {{ ansible_user_dir }}`

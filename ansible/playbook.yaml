@@ -1,7 +1,4 @@
 - hosts: localhost
-  connection: local
-  gather_facts: false
-  tasks:
-    - name: Hello World
-      debug:
-        msg: "Hello World from github action"
+  become: true
+  roles:
+    - xdg_base_directory
