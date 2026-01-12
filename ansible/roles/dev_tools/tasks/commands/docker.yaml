@@ -68,7 +68,7 @@
         user:
           name: "{{ username.stdout }}"
           groups: docker
-          appned: true # "-aG"
+          append: true # "-aG"
           state: present
 
       - name: prompt logout
