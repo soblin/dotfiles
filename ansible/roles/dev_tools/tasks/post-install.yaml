@@ -1,0 +1,7 @@
+# ccache
+- name: set ccache size
+  ansible.builtin.command: ccache -M 8G
+
+# coredumpctl
+- name: save coredump
+  ulimit -c unlimited

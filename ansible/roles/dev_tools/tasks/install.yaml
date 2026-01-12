@@ -1,0 +1,19 @@
+- name: install development commands
+  apt:
+    name:
+      - cmake
+      - ccache
+      - ninja-build
+      - coredumpctl
+      - fzf
+      - fd-find
+      - jq
+      - bat
+    state: present # NOTE: if not installed, install
+    update_cache: false # apt-update is not necessary
+
+- import_tasks: commands/fd.yaml
+  
+- import_tasks: commands/bat.yaml
+
+- import_task: commands/difft.yaml

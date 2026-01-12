@@ -1,0 +1,10 @@
+# fd
+- name: symlink fdfind to fd
+  become: false
+  file:
+    src: $(which fdfind)
+    dest: "{{ lookup('env','HOME') }}/.local/bin/fd"
+    state: link
+
+- name: check fd command
+  ansible.builtin.command: which fd
