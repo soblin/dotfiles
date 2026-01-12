@@ -1,6 +1,6 @@
 # fd
 - name: locate fdfind
-  command: command -v fdfind
+  ansible.builtin.command: command -v fdfind
   register: which_fdfind
   failed_when: which_fdfind.rc != 0
 

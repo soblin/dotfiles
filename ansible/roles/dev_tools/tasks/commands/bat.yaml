@@ -1,6 +1,6 @@
 # bat
 - name: locate batcat
-  command: command -v batcat
+  ansible.builtin.command: command -v batcat
   register: which_batcat
   failed_when: which_batcat.rc != 0
 
