@@ -17,6 +17,8 @@
 
 - import_tasks: commands/difft.yaml
 
+- import_tasks: commands/lsd.yaml
+
 - import_tasks: commands/gh.yaml
 
 - import_tasks: commands/docker.yaml

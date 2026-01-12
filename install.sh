@@ -1,15 +1,5 @@
 #!/bin/bash -e
 
-if ! command -v lsd &>/dev/null; then
-    # --class is required: https://github.com/lsd-rs/lsd/issues/79
-    # but --classic option is not supported
-    # curl -L https://github.com/lsd-rs/lsd/releases/download/v1.2.0/lsd-v1.2.0-x86_64-unknown-linux-gnu.tar.gz
-    # copy completions to:
-    # ~/.local/share/bash-completion/completions/lsd.bash-completion
-    # ~/.config/fish/completions/lsd.fish
-    echo "skip lsd"
-fi
-
 function get_major_ver_num() {
     echo "$1" | cut -d "." -f1
 }
