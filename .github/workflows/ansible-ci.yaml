@@ -1,9 +1,12 @@
 name: ansible-ci
 
 on:
-  push:
   pull_request:
-    types: [opened]
+    types: [opened, synchronize, reopened]
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
 
 jobs:
   ansible-test:
@@ -25,4 +28,4 @@ jobs:
 
       - name: run playbook
         run: |
-          uv run ansible-playbook playbook.yaml
+          uv run ansible-playbook ansible/playbook.yaml
