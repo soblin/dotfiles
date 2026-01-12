@@ -14,8 +14,7 @@
 
 - name: add PATH for local environment
   # NOTE: this is effective only on local machine
-  run: |
-    export PATH="$PATH:{{ lookup('env','HOME') }}/.local/bin"
+  ansible.builtin.shell: export PATH="$PATH:{{ lookup('env','HOME') }}/.local/bin"
 
 #- name: check ls
 #  ansible.builtin.shell: ls -a {{ lookup('env','HOME') }}
