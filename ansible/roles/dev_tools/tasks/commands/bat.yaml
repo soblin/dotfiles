@@ -6,6 +6,7 @@
       ansible.builtin.command: which batcat
       register: which_batcat
       failed_when: which_batcat.rc != 0
+      changed_when: false
 
     - name: symlink batcat to bat
       file:
@@ -15,3 +16,4 @@
 
     - name: check bat command
       ansible.builtin.command: which bat
+      changed_when: false

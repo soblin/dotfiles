@@ -16,3 +16,4 @@
 
     - name: check difft
       ansible.builtin.command: which difft
+      changed_when: false
