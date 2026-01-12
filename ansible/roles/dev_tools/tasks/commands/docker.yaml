@@ -74,5 +74,4 @@
       - name: prompt logout
         debug:
           msg: "Please logout once to use docker"
-        when:
-          - 'docker' not in user_groups.stdout.split()
+        when: 'docker' not in user_groups.stdout.split()
