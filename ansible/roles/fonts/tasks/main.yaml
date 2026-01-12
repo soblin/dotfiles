@@ -1,4 +1,4 @@
-- name: install fonts
+- name: install fonts on baremetal
   apt:
     name:
       - fonts-powerline
@@ -6,3 +6,15 @@
       - fonts-takao-pgothic
       - fonts-firacode
     state: present
+  when: is_baremetal
+
+- name: check fonts installability on ci
+  apt:
+    name:
+      - fonts-powerline
+      - fonts-takao-gothic
+      - fonts-takao-pgothic
+      - fonts-firacode
+    state: present
+  when: not is_baremetal
+  check_mode: true

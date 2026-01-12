@@ -1,4 +1,4 @@
-- name: install gui tools
+- name: install gui tools on baremetal
   apt:
     name:
       - vlc
@@ -6,3 +6,13 @@
       - gparted
     state: present
   when: is_baremetal
+
+- name: check gui tools installability on ci
+  apt:
+    name:
+      - vlc
+      - simplescreenrecorder
+      - gparted
+    state: present
+  when: not is_baremetal
+  check_mode: true
