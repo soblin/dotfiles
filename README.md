@@ -8,7 +8,7 @@
 curl -LsSf https://astral.sh/uv/install.sh | sh
 uv python install
 uv sync
-uv run ansible-playbook ansible/playbook.yaml (WIP)
+uv run ansible-playbook ansible/playbook.yaml --ask-become-pass
 ```
 
 ## 日本語入力

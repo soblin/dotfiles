@@ -6,15 +6,8 @@
           - vlc
           - simplescreenrecorder
           - gparted
-        state: present
-      when: is_baremetal
-
-    - name: snap install
-      community.general.snap:
-        name:
           - flameshot
         state: present
-        classic: true
       when: is_baremetal
 
 - name: check gui tools installability on ci
@@ -25,15 +18,7 @@
           - vlc
           - simplescreenrecorder
           - gparted
-        state: present
-      when: not is_baremetal
-      check_mode: true
-
-    - name: snap installability check
-      community.general.snap:
-        name:
           - flameshot
         state: present
-        classic: true
       when: not is_baremetal
       check_mode: true
