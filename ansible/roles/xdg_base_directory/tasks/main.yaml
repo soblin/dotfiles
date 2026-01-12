@@ -12,8 +12,12 @@
     state: directory
     mode: '0755'
 
-- name: check ls
-  ansible.builtin.shell: ls -a {{ lookup('env','HOME') }}
-  register: out
+- name: add PATH for local environment
+  # NOTE: this is effective only on local machine
+  run: |
+    export PATH="$PATH:{{ lookup('env','HOME') }}/.local/bin"
 
-- debug: var=out.stdout_lines
+#- name: check ls
+#  ansible.builtin.shell: ls -a {{ lookup('env','HOME') }}
+#  register: out
+#- debug: var=out.stdout_lines

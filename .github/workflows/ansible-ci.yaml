@@ -17,6 +17,9 @@ jobs:
       - name: checkout
         uses: actions/checkout@v6
 
+      - name: add PATH for github action runner
+        run: echo "$HOME/.local/bin" >> $GITHUB_PATH
+
       - name: setup uv
         uses: astral-sh/setup-uv@v7
 
