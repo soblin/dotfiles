@@ -9,7 +9,7 @@
   ansible.builtin.unarchive:
     src: /tmp/difftastic.tar.gz
     # NOTE: only contains "difft" file
-    dest: "{{ lookup('env','HOME') }}/.local/bin"
+    dest: "{{ lookup('env','HOME') }}/.local/bin/"
 
 - name: check difft
   ansible.builtin.command: which difft

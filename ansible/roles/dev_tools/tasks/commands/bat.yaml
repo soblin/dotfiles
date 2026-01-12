@@ -1,8 +1,13 @@
 # bat
+- name: locate batcat
+  command: command -v batcat
+  register: which_batcat
+  failed_when: which_batcat.rc != 0
+
 - name: symlink batcat to bat
   become: false
   file:
-    src: $(which batcat)
+    src: "{{ which_batcat.stdout }}"
     dest: "{{ lookup('env','HOME') }}/.local/bin/bat"
     state: link
 
