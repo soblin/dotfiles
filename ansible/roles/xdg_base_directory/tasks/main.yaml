@@ -1,12 +1,12 @@
 - name: create local bin dir
   become: false
   file:
-    path: "{{ lookup('env','HOME') }}/.local/bin"
+    path: "{{ ansible_env.HOME }}/.local/bin"
     state: directory
     mode: '0755'
 
 - name: check ls
-  ansible.builtin.shell: ls -a {{ lookup('env','HOME') }}
+  ansible.builtin.shell: ls -a {{ ansible_env.HOME }}
   register: out
 
 - debug: var=out.stdout_lines
