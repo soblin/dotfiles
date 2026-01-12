@@ -1,0 +1,7 @@
+- name: install gui tools
+  apt:
+    - vlc
+    - simplescreenrecorder
+    - gparted
+  state: present
+  when: install_gui

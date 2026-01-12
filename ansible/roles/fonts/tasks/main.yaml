@@ -1,0 +1,8 @@
+- name: install fonts
+  apt:
+    name:
+      - fonts-powerline
+      - fonts-takao-gothic
+      - fonts-takao-pgothic
+      - fonts-firacode
+    state: present

@@ -6,3 +6,5 @@
     - xdg_base_directory
     - system_tools
     - dev_tools
+    - fonts
+    - gui_tools
