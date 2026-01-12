@@ -1,0 +1,15 @@
+# fd
+- name: locate fdfind
+  ansible.builtin.command: which fdfind
+  register: which_fdfind
+  failed_when: which_fdfind.rc != 0
+
+- name: symlink fdfind to fd
+  become: false
+  file:
+    src: "{{ which_fdfind.stdout }}"
+    dest: "{{ lookup('env','HOME') }}/.local/bin/fd"
+    state: link
+
+- name: check fd command
+  ansible.builtin.command: which fd

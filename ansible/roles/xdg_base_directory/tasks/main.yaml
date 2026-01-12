@@ -5,6 +5,17 @@
     state: directory
     mode: '0755'
 
+- name: create local share dir
+  become: false
+  file:
+    path: "{{ lookup('env','HOME') }}/.local/share"
+    state: directory
+    mode: '0755'
+
+- name: check PATH
+  ansible.builtin.shell: echo $PATH
+  register: out
+
 - name: check ls
   ansible.builtin.shell: ls -a {{ lookup('env','HOME') }}
   register: out

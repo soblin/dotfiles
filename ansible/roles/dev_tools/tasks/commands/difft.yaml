@@ -1,0 +1,15 @@
+# difft
+- name: download difftastic
+  ansible.builtin.get_url:
+    url: https://github.com/Wilfred/difftastic/releases/download/0.67.0/difft-x86_64-unknown-linux-gnu.tar.gz
+    dest: /tmp/difftastic.tar.gz
+
+- name: install difftastic
+  become: false
+  ansible.builtin.unarchive:
+    src: /tmp/difftastic.tar.gz
+    # NOTE: only contains "difft" file
+    dest: "{{ lookup('env','HOME') }}/.local/bin/"
+
+- name: check difft
+  ansible.builtin.command: which difft

@@ -1,100 +1,5 @@
 #!/bin/bash -e
 
-APT_OPTION="-qq"
-
-# /home/<user>
-home_dir=`realpath ~`
-
-# install prerequisites
-
-if [ ! -d "${home_dir}/.local/bin" ]; then
-    echo "Creating ${home_dir}/.local/bin"
-    mkdir -p "${home_dir}/.local/bin"
-    PATH="$HOME/.local/bin:$PATH"
-fi
-
-echo "Installing system commands"
-
-if ! command -v etckeeper &>/dev/null; then
-    sudo apt-get ${APT_OPTION} install etckeeper
-fi
-
-if ! command -v git &>/dev/null; then
-    sudo apt-get ${APT_OPTION} install git git-lfs
-fi
-
-if ! command -v curl &>/dev/null; then
-    sudo apt-get ${APT_OPTION} install curl
-fi
-
-if ! command -v tmux &>/dev/null; then
-    sudo apt-get ${APT_OPTION} install tmux
-fi
-
-if ! command -v tree &>/dev/null; then
-    sudo apt-get ${APT_OPTION} install tree
-fi
-
-if ! command -v xclip &>/dev/null; then
-    sudo apt-get ${APT_OPTION} install xclip
-fi
-
-if ! command -v xsel &>/dev/null; then
-    sudo apt-get ${APT_OPTION} install xsel
-fi
-
-if ! command -v mlocate &>/dev/null; then
-    sudo apt-get ${APT_OPTION} install mlocate
-fi
-
-if ! command -v htop &>/dev/null; then
-    sudo apt-get ${APT_OPTION} install htop
-fi
-
-if ! command -v direnv &>/dev/null; then
-    sudo apt-get ${APT_OPTION} install direnv
-fi
-
-if ! command -v fzf &>/dev/null; then
-    sudo apt-get ${APT_OPTION} install fzf
-fi
-
-if ! command -v fdfind &>/dev/null; then
-    sudo apt-get ${APT_OPTION} install fd-find
-    # https://zenn.dev/kenji_miyake/articles/c149cc1f17e168
-    if [ ! -f ${home_dir}/.local/bin/fd ]; then
-        ln -s $(which fdfind) ~/.local/bin/fd
-    fi
-fi
-
-if ! command -v jq &>/dev/null; then
-    sudo apt-get ${APT_OPTION} install jq
-fi
-
-if ! command -v cmake &>/dev/null; then
-    sudo apt-get ${APT_OPTION} install cmake
-fi
-
-if ! command -v ccache &>/dev/null; then
-    sudo apt-get ${APT_OPTION} install ccache
-fi
-
-if ! command -v ninja &>/dev/null; then
-    sudo apt-get ${APT_OPTION} install ninja-build
-fi
-
-if ! command -v coredumpctl &>/dev/null; then
-    sudo apt-get ${APT_OPTION} install systemd-coredump
-    ulimit -c unlimited
-fi
-
-if ! command -v bat &>/dev/null; then
-    sudo apt-get ${APT_OPTION} install bat
-    if [ ! -f ${home_dir}/.local/bin/bat ]; then
-        ln -s /usr/bin/batcat "${home_dir}/.local/bin/bat"
-    fi
-fi
-
 if ! command -v lsd &>/dev/null; then
     # --class is required: https://github.com/lsd-rs/lsd/issues/79
     # but --classic option is not supported
@@ -103,10 +8,6 @@ if ! command -v lsd &>/dev/null; then
     # ~/.local/share/bash-completion/completions/lsd.bash-completion
     # ~/.config/fish/completions/lsd.fish
     echo "skip lsd"
-fi
-
-if ! command -v difft &>/dev/null; then
-    curl -L https://github.com/Wilfred/difftastic/releases/download/0.67.0/difft-x86_64-unknown-linux-gnu.tar.gz | tar -xz -C "${home_dir}/.local/bin"
 fi
 
 if ! command -v gh &>/dev/null; then
