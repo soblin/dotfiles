@@ -35,11 +35,11 @@
       failed_when: username.rc != 0
 
     # TODO: do this when group does not exist
-    - name: add docker group
-      become: true
-      ansible.builtin.shell: groupadd docker && usermod -aG docker "{{ username.stdout }}"
-      when: is_baremetal
+    #- name: add docker group
+    #  become: true
+    #  ansible.builtin.shell: groupadd docker && usermod -aG docker "{{ username.stdout }}"
+    #  when: is_baremetal
 
-    - name: prompt logout
-      debug:
-        msg: "Please logout once to use docker"
+    #- name: prompt logout
+    #  debug:
+    #    msg: "Please logout once to use docker"
