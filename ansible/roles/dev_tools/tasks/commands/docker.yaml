@@ -41,4 +41,5 @@
       when: is_baremetal
 
     - name: prompt logout
-      debug: "Please logout once to use docker"
+      debug:
+        msg: "Please logout once to use docker"
