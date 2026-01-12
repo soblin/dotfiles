@@ -1,6 +1,7 @@
 - name: install gui tools on baremetal
   block:
-    - apt:
+    - name: apt install
+      apt:
         name:
           - vlc
           - simplescreenrecorder
@@ -8,7 +9,8 @@
         state: present
       when: is_baremetal
 
-    - community.general.snap:
+    - name: snap install
+      community.general.snap:
         name:
           - flameshot
         state: present
@@ -17,7 +19,8 @@
 
 - name: check gui tools installability on ci
   block:
-    - apt:
+    - name: apt installability check
+      apt:
         name:
           - vlc
           - simplescreenrecorder
@@ -26,7 +29,8 @@
       when: not is_baremetal
       check_mode: true
 
-    - community.general.snap:
+    - name: snap installability check
+      community.general.snap:
         name:
           - flameshot
         state: present
