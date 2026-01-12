@@ -28,4 +28,4 @@ jobs:
 
       - name: run playbook
         run: |
-          uv run ansible-playbook ansible/playbook.yaml -e is_baremetal=false
+          uv run ansible-playbook ansible/playbook.yaml -e is_baremetal=false -v
