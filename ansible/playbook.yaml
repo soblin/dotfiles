@@ -4,4 +4,5 @@
     PATH: "{{ ansible_env.PATH }}:{{ lookup('env','HOME') }}/.local/bin"
   roles:
     - xdg_base_directory
+    - system_tools
     - dev_tools
