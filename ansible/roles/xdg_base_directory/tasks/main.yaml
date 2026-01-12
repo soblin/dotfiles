@@ -1,6 +1,6 @@
 - name: create local bin dir
   become: false
   file:
-    path: "{{ ansible_user_dir }}/.local/bin"
+    path: "{{ lookup('env','HOME') }}/.local/bin"
     state: directory
     mode: '0755'
