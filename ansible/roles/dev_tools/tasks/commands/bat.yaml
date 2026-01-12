@@ -1,15 +1,17 @@
 # bat
-- name: locate batcat
-  ansible.builtin.command: which batcat
-  register: which_batcat
-  failed_when: which_batcat.rc != 0
-
-- name: symlink batcat to bat
+- name: setup bat command
   become: false
-  file:
-    src: "{{ which_batcat.stdout }}"
-    dest: "{{ lookup('env','HOME') }}/.local/bin/bat"
-    state: link
+  block:
+    - name: locate batcat
+      ansible.builtin.command: which batcat
+      register: which_batcat
+      failed_when: which_batcat.rc != 0
 
-- name: check bat command
-  ansible.builtin.command: which bat
+    - name: symlink batcat to bat
+      file:
+        src: "{{ which_batcat.stdout }}"
+        dest: "{{ lookup('env','HOME') }}/.local/bin/bat"
+        state: link
+
+    - name: check bat command
+      ansible.builtin.command: which bat

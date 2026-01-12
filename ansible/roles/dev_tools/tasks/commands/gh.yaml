@@ -1,0 +1,20 @@
+- name: setup gh command
+  become: true
+  block:
+    - name: get gpg key
+      ansible.builtin.get_url:
+        url: https://cli.github.com/packages/githubcli-archive-keyring.gpg
+        dest: /etc/apt/keyrings/githubcli-archive-keyring.gpg
+      mode: '0644'
+    
+    - name: add gh repo
+      ansible.builtin.apt_repository:
+        repo: deb [arch={{ ansible_architecture }} signed-by=/etc/apt/keyrings/githubcli-archive-keyring.gpg] https://cli.github.com/packages stable main
+        filename: github-cli
+        state: present
+
+    - name: install
+      apt:
+        name: gh
+        state: present
+        update_cache: true
