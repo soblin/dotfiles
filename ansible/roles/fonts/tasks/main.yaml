@@ -6,4 +6,4 @@
       - fonts-takao-pgothic
       - fonts-firacode
     state: present
-    check_mode: not is_baremetal
+  check_mode: not is_baremetal

@@ -18,4 +18,4 @@
         name: gh
         state: present
         update_cache: true
-        check_mode: not is_baremetal
+      check_mode: not is_baremetal
