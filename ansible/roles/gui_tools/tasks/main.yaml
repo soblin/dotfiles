@@ -10,8 +10,10 @@
 
   - block:
       community.general.snap:
-        name: flameshot
-        classic yes
+        name:
+          - flameshot
+        state: present
+        classic: yes
       when: is_baremetal
 
 - name: check gui tools installability on ci
@@ -27,7 +29,9 @@
 
   - block:
       community.general.snap:
-        name: flameshot
-        classic yes
+        name:
+          - flameshot
+        state: present
+        classic: yes
       when: not is_baremetal
       check_mode: true
