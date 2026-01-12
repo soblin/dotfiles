@@ -2,14 +2,14 @@
   apt:
     name:
       - cmake
-      - ccache
       - ninja-build
-      - systemd-coredump
       - fzf
-      - fd-find
       - jq
-      - bat
-    state: present # NOTE: if not installed, install
+    state: present
+
+- import_tasks: commands/ccache.yaml
+
+- import_tasks: commands/coredumpctl.yaml
 
 - import_tasks: commands/fd.yaml
   

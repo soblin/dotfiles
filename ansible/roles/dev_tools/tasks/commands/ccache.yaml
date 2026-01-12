@@ -1,0 +1,11 @@
+# ccache
+- name: setup ccache
+  block:
+    - name: apt install ccache
+      apt:
+        name:
+          - ccache
+        state: present
+
+    - name: set ccache size
+      ansible.builtin.command: ccache -M 8G
