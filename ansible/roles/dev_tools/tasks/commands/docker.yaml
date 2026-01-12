@@ -13,7 +13,7 @@
         content: |
           Types: deb
           URIs: https://download.docker.com/linux/ubuntu
-          Suites: $(. /etc/os-release && echo "${UBUNTU_CODENAME:-$VERSION_CODENAME}")
+          Suites: {{ ansible_distribution_release }}
           Components: stable
           Signed-By: /etc/apt/keyrings/docker.asc
 
