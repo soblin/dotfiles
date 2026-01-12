@@ -1,7 +1,12 @@
 # bat
 - name: setup bat command
-  become: false
   block:
+    - name: apt install bat
+      apt:
+        name:
+          - bat
+        state: present
+
     - name: locate batcat
       ansible.builtin.command: which batcat
       register: which_batcat

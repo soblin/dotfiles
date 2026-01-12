@@ -1,0 +1,11 @@
+# coredumpctl
+- name: setup coredumpctl
+  block:
+    - name: apt install systemd-coredump
+      apt:
+        name:
+          - systemd-coredump
+        state: present
+
+    - name: coredump save setting
+      ansible.builtin.shell: ulimit -c unlimited

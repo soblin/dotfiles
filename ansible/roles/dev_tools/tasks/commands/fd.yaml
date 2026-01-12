@@ -1,7 +1,12 @@
 # fd
 - name: setup fd command
-  become: false
   block:
+    - name: apt install fd-find
+      apt:
+        name:
+          - fd-find
+        state: present
+
     - name: locate fdfind
       ansible.builtin.command: which fdfind
       register: which_fdfind
