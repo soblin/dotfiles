@@ -17,7 +17,7 @@
           Components: stable
           Signed-By: /etc/apt/keyrings/docker.asc
 
-    - name: install
+    - name: install docker on baremetal
       apt:
         name:
           - docker-ce
@@ -27,7 +27,20 @@
           - docker-compose-plugin
         state: present
         update_cache: true
-      check_mode: not is_baremetal
+      when: is_baremetal
+
+    - name: check docker installability on ci
+      apt:
+        name:
+          - docker-ce
+          - docker-ce-cli
+          - containerd.io
+          - docker-buildx-plugin
+          - docker-compose-plugin
+        state: present
+        update_cache: true
+      when: not is_baremetal
+      check_mode: true
 
     - name: get username
       ansible.builtin.command: whoami
