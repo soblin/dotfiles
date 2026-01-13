@@ -48,7 +48,7 @@
     - name: select elpa repo
       set_fact:
         elpa_repo_url: >-
-          {{ "git@github.com:soblin/elpa.git" if is_baremetal else "https://github.com/soblin/elpa.git" }}
+          {{ "https://github.com/soblin/elpa.git" if is_ci else "git@github.com:soblin/elpa.git" }}
 
     - name: check .emacs.d/elpa exists
       stat:
