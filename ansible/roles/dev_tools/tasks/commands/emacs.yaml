@@ -21,7 +21,7 @@
 
     - name: create symlink to .emacs
       file:
-        src: "{{ playbook_dir }}/.emacs"
+        src: "{{ playbook_dir }}/../.emacs"
         dest: "{{ lookup('env', 'HOME') }}/.emacs"
         state: link
 
@@ -38,16 +38,25 @@
 
     - name: create symlink to .emacs.d
       file:
-        src: "{{ playbook_dir }}/.emacs.d"
+        src: "{{ playbook_dir }}/../.emacs.d"
         dest: "{{ lookup('env', 'HOME') }}/.emacs.d"
         state: link
 
     - name: select elpa repo
       set_fact:
         elpa_repo_url: >-
-          {{ git@github.com:soblin/elpa.git if is_baremetal else https://github.com/soblin/elpa.git }}
+          {{ "git@github.com:soblin/elpa.git" if is_baremetal else "https://github.com/soblin/elpa.git" }}
 
-    - name: clone elpa
+    - name: check .emacs.d/elpa exists
+      stat:
+        path: "{{ lookup('env', 'HOME') }}/.emacs.d/elpa"
+      register: elpa_exists
+      changed_when: false
+
+    - name: clone elpa if not exists
+      become: false
       git:
         repo: "{{ elpa_repo_url }}"
-        dest: "{{ lookup('env', 'HOME) }}/.emacs.d/elpa"
+        dest: "{{ lookup('env', 'HOME') }}/.emacs.d/elpa"
+        version: main
+      when: not elpa_exists.stat.exists
