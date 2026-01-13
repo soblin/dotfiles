@@ -1,0 +1,14 @@
+# fish
+- name: setup fish
+  become: true
+  block:
+    - name: add fish ppa
+      apt_repository:
+        repo: ppa:fish-shell/release-3
+        state: present
+
+    - name: apt install fish
+      apt:
+        name: fish
+        state: present
+        update_cache: true

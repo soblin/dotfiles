@@ -1,57 +1,5 @@
 #!/bin/bash -e
 
-function get_major_ver_num() {
-    echo "$1" | cut -d "." -f1
-}
-
-function get_fish_ver_string() {
-    # fish, version 3.1.2 => 3.1.2
-    fish --version | head -n1 | cut -d " " -f3
-}
-
-uninstall_old_fish=false
-install_fish=false
-
-if command -v fish &> /dev/null; then
-   fish_ver_string=$(get_fish_ver_string)
-   fish_major_ver=$(get_major_ver_num $fish_ver_string)
-   if [ $fish_major_ver -lt 3 ]; then
-       echo "Your fish version is ${fish_ver_string}. I want to use fish >= 3 !"
-       uninstall_old_fish=true
-       install_fish=true
-   else
-       echo "fish ${fish_ver_string} is already installed."
-   fi
-else
-    echo "fish was not found."
-    install_fish=true
-fi
-
-if $uninstall_old_fish; then
-    read -p "Are you OK to remove old fish before upgrade? [Yn]: " yn
-    case $yn in
-        [Yy*] )
-            echo "Purging fish."
-            sudo apt purge ${APT_OPTION} fish
-            sudo apt ${APT_OPTION} autoremove
-            echo "Done.";;
-        * )
-            echo "Skip this process and exit."
-            exit;;
-    esac
-fi
-
-if $install_fish; then
-    echo "Adding ppa:fish-shell/release-3"
-    sudo apt-add-repository ppa:fish-shell/release-3
-    sudo apt-get ${APT_OPTION} update
-    echo "Done."
-    echo "Installing fish-3"
-    sudo apt-get ${APT_OPTION} install fish
-    echo "Done"
-    sudo apt ${APT_OPTION} clean
-fi
-
 if ! command -v tmux-mem-cpu-load &> /dev/null; then
     echo "Please install or set path to tmux-mem-cpu-load to display resource load in tmux status bar."
     echo "You can install it from https://github.com/thewtex/tmux-mem-cpu-load."
