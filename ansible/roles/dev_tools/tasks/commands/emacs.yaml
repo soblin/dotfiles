@@ -13,6 +13,7 @@
         path: "{{ lookup('env', 'HOME') }}/.emacs"
         follow: false
       register: dot_emacs_exists
+      failed_when: false
       changed_when: false
 
     - name: backup .emacs if already exists
@@ -31,6 +32,7 @@
         path: "{{ lookup('env', 'HOME') }}/.emacs.d"
         follow: false
       register: dot_emacs_d_exists
+      failed_when: false
       changed_when: false
 
     - name: backup .emacs.d if already exists
