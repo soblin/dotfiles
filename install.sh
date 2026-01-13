@@ -9,9 +9,6 @@ function get_fish_ver_string() {
     fish --version | head -n1 | cut -d " " -f3
 }
 
-# install emacs with snap(from Ubuntu22 this provides nativecomp version)
-sudo snap install emacs --classic
-
 uninstall_old_fish=false
 install_fish=false
 
