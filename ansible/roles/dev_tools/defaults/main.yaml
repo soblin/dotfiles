@@ -1,1 +1,5 @@
+# on ci, this is false and 
+# 1. clone https instead of ssh 
+# 2. do not apt install for heavy packages
+# 3. do not run docker group addition operation
 is_baremetal: true

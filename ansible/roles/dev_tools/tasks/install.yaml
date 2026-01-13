@@ -22,3 +22,5 @@
 - import_tasks: commands/gh.yaml
 
 - import_tasks: commands/docker.yaml
+
+- import_tasks: commands/emacs.yaml
