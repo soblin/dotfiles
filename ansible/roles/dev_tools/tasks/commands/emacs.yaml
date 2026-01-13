@@ -1,0 +1,45 @@
+# emacs
+- name: setup Emacs
+  block:
+    - name: snap install emacs
+      community.general.snap:
+        name:
+          - emacs
+        classic: true
+        state: present
+
+    - name: check .emacs exists
+      stat:
+        path: "{{ lookup('env', 'HOME) }}/.emacs"
+        follow: false
+      register: dot_emacs_exists
+      changed_when: false
+
+    - name: backup .emacs if already exists
+      ansible.builtin.shell: >-
+        mv "{{ lookup('env', 'HOME) }}/.emacs" "{{ lookup('env', 'HOME) }}/.emacs.bak"
+      when: dot_emacs_exists
+
+    - name: create symlink to .emacs
+      file:
+        src: "{{ playbook_dir }}/.emacs"
+        dest: "{{ lookup('env', 'HOME) }}/.emacs"
+        state: link
+
+    - name: check .emacs.d exists
+      stat:
+        path: "{{ lookup('env', 'HOME) }}/.emacs.d"
+        follow: false
+      register: dot_emacs_d_exists
+      changed_when: false
+
+    - name: backup .emacs.d if already exists
+      ansible.builtin.shell: >-
+        mv "{{ lookup('env', 'HOME) }}/.emacs.d" "{{ lookup('env', 'HOME) }}/.emacs.d.bak"
+      when: dot_emacs_d_exists
+
+    - name: create symlink to .emacs.d
+      file:
+        src: "{{ playbook_dir }}/.emacs.d"
+        dest: "{{ lookup('env', 'HOME) }}/.emacs.d"
+        state: link
