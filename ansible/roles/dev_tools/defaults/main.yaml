@@ -1,1 +1,6 @@
+# 1. do not apt install for heavy packages
+# 2. do not run docker group addition operation
 is_baremetal: true
+
+# 1. if false, clone https instead of ssh for testing
+is_ci: false

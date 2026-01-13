@@ -138,16 +138,6 @@ create_symlink_d ".config/fish" ".config/fish"
 create_symlink_f ".gitignore" ".gitignore"
 create_symlink_f ".gitconfig" ".gitconfig"
 
-# emacs
-create_symlink_f ".emacs" ".emacs"
-create_symlink_d ".emacs.d" ".emacs.d"
-
-if [ ! -d "${home_dir}/.emacs.d/elpa" ]; then
-    echo "Cloning Emacs elpa"
-    git clone https://github.com/soblin/elpa.git "${home_dir}/.emacs.d/elpa"
-    echo "Done"
-fi
-
 # tmux
 create_symlink_f ".tmux.conf" ".tmux.conf"
 create_symlink_d ".config/tmux" ".config/tmux"

@@ -11,35 +11,55 @@
     - name: check .emacs exists
       stat:
         path: "{{ lookup('env', 'HOME') }}/.emacs"
-        follow: false
       register: dot_emacs_exists
       changed_when: false
 
+    # file is backed-up, but existing symlink is kept
     - name: backup .emacs if already exists
       ansible.builtin.shell: >-
         mv "{{ lookup('env', 'HOME') }}/.emacs" "{{ lookup('env', 'HOME') }}/.emacs.bak"
-      when: dot_emacs_exists
+      when: dot_emacs_exists.stat.exists and not dot_emacs_exists.stat.islnk
 
-    - name: create symlink to .emacs
+    - name: create symlink to .emacs(unless symlink does not already exist)
       file:
-        src: "{{ playbook_dir }}/.emacs"
+        src: "{{ (playbook_dir + '/../.emacs') | realpath }}"
         dest: "{{ lookup('env', 'HOME') }}/.emacs"
         state: link
+      when: not dot_emacs_exists.stat.exists
 
     - name: check .emacs.d exists
       stat:
         path: "{{ lookup('env', 'HOME') }}/.emacs.d"
-        follow: false
       register: dot_emacs_d_exists
       changed_when: false
 
     - name: backup .emacs.d if already exists
       ansible.builtin.shell: >-
         mv "{{ lookup('env', 'HOME') }}/.emacs.d" "{{ lookup('env', 'HOME') }}/.emacs.d.bak"
-      when: dot_emacs_d_exists
+      when: dot_emacs_d_exists.stat.exists and not dot_emacs_d_exists.stat.islnk
 
-    - name: create symlink to .emacs.d
+    - name: create symlink to .emacs.d(unless symlink does not already exist)
       file:
-        src: "{{ playbook_dir }}/.emacs.d"
+        src: "{{ (playbook_dir + '/../.emacs.d') | realpath }}"
         dest: "{{ lookup('env', 'HOME') }}/.emacs.d"
         state: link
+      when: not dot_emacs_d_exists.stat.exists
+
+    - name: select elpa repo
+      set_fact:
+        elpa_repo_url: >-
+          {{ "https://github.com/soblin/elpa.git" if is_ci else "git@github.com:soblin/elpa.git" }}
+
+    - name: check .emacs.d/elpa exists
+      stat:
+        path: "{{ lookup('env', 'HOME') }}/.emacs.d/elpa"
+      register: elpa_exists
+      changed_when: false
+
+    - name: clone elpa if not exists
+      become: false
+      git:
+        repo: "{{ elpa_repo_url }}"
+        dest: "{{ lookup('env', 'HOME') }}/.emacs.d/elpa"
+        version: main
+      when: not elpa_exists.stat.exists
