@@ -12,3 +12,9 @@
         name: fish
         state: present
         update_cache: true
+
+    - name: install plugins from fish_plugins file
+      ansible.builtin.command: >-
+        curl -sL https://raw.githubusercontent.com/jorgebucaran/fisher/main/functions/fisher.fish | source && fisher update
+      args:
+        executable: fish
