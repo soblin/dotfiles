@@ -1,6 +1,5 @@
 # fish
 - name: setup fish
-  become: true
   block:
     - name: add fish ppa
       apt_repository:
@@ -14,7 +13,8 @@
         update_cache: true
 
     - name: install plugins from fish_plugins file
-      ansible.builtin.command: >-
+      become: false
+      ansible.builtin.shell: >-
         curl -sL https://raw.githubusercontent.com/jorgebucaran/fisher/main/functions/fisher.fish | source && fisher update
       args:
         executable: fish
