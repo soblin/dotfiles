@@ -47,13 +47,13 @@
     # setup docker group
     - block:
       - name: get username
+        become: false # if true, `whoami` returns root
         ansible.builtin.command: whoami
         register: username
         failed_when: username.rc != 0
         changed_when: false
   
       - name: add docker group
-        become: true
         ansible.builtin.group:
           name: docker
           state: present
@@ -64,12 +64,10 @@
         changed_when: false
 
       - name: add user to docker group
-        become: true
         user:
           name: "{{ username.stdout }}"
           groups: docker
           append: true # "-aG"
-          state: present
 
       - name: prompt logout
         debug:
