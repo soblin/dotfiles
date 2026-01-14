@@ -1,11 +1,5 @@
 #!/bin/bash -e
 
-if ! command -v tmux-mem-cpu-load &> /dev/null; then
-    echo "Please install or set path to tmux-mem-cpu-load to display resource load in tmux status bar."
-    echo "You can install it from https://github.com/thewtex/tmux-mem-cpu-load."
-    echo "You will need cmake and g++ and/or clang to build this."
-fi
-
 cur_dir=`pwd`
 
 function create_symlink_f() {
@@ -82,36 +76,3 @@ create_symlink_d ".config/rcs" ".config/rcs"
 # git
 create_symlink_f ".gitignore" ".gitignore"
 create_symlink_f ".gitconfig" ".gitconfig"
-
-# tmux
-create_symlink_f ".tmux.conf" ".tmux.conf"
-create_symlink_d ".config/tmux" ".config/tmux"
-
-if [ ! -d "${home_dir}/.config/tmux/plugin" ]; then
-    mkdir -p "${home_dir}/.config/tmux/plugin"
-    echo "Created ${home_dir}/.config/tmux/plugin."
-fi
-
-if [ ! -d "${home_dir}/.config/tmux/plugin/tmux-sidebar/" ]; then
-    echo "Installing tmux-sidebar."
-    git clone https://github.com/tmux-plugins/tmux-sidebar.git "${home_dir}/.config/tmux/plugin/tmux-sidebar"
-    echo "Cloned tmux-sidebar"
-fi
-
-if [ ! -d "${home_dir}/.config/tmux/plugin/tmux-resurrect" ]; then
-    echo "Installing tmux-resurrect"
-    git clone https://github.com/tmux-plugins/tmux-resurrect.git "${home_dir}/.config/tmux/plugin/tmux-resurrect"
-    echo "Cloned tmux-resurrect"
-fi
-
-if [ ! -d "${home_dir}/.config/tmux/plugin/tmux-continuum" ]; then
-    echo "Installing tmux-continuum"
-    git clone https://github.com/tmux-plugins/tmux-continuum.git "${home_dir}/.config/tmux/plugin/tmux-continuum"
-    echo "Cloned tmux-continuum"
-fi
-
-if [ ! -d "${home_dir}/.config/tmux/plugin/tmux-named-snapshot" ]; then
-    echo "Installing tmux-continuum"
-    git clone https://github.com/spywhere/tmux-named-snapshot "${home_dir}/.config/tmux/plugin/tmux-named-snapshot"
-    echo "Cloned tmux-named-snapshot"
-fi
