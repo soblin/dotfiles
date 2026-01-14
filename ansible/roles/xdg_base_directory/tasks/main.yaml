@@ -16,6 +16,8 @@
   ansible.builtin.shell: echo $PATH
   register: out
 
+- debug: var=out.stdout_lines
+
 - name: check ls
   ansible.builtin.shell: ls -a {{ lookup('env','HOME') }}
   register: out

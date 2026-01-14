@@ -1,5 +1,4 @@
 - name: setup docker
-  become: true
   block:
     # apt
     - block:

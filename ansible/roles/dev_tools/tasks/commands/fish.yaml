@@ -19,11 +19,13 @@
       changed_when: false
 
     - name: backup .config/fish if already exists
+      become: false
       ansible.builtin.shell: >-
         mv "{{ lookup('env', 'HOME') }}/.config/fish" "{{ lookup('env', 'HOME') }}/.config/fish.bak"
       when: fish_config_exists.stat.exists and not fish_config_exists.stat.islnk
 
     - name: create symlink to .config/fish(unless symlink does not already exist)
+      become: false
       file:
         src: "{{ (playbook_dir + '/../.config/fish') | realpath }}"
         dest: "{{ lookup('env', 'HOME') }}/.config/fish"

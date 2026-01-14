@@ -8,7 +8,6 @@
         dest: /tmp/difftastic.tar.gz
 
     - name: install difftastic
-      become: false
       ansible.builtin.unarchive:
         src: /tmp/difftastic.tar.gz
         # NOTE: only contains "difft" file
@@ -16,4 +15,3 @@
 
     - name: check difft
       ansible.builtin.command: which difft
-      changed_when: false
