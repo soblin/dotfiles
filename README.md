@@ -5,7 +5,18 @@
 ## セットアップ
 
 ```bash
+// change XKBOPTIONS to "ctrl:nocaps" in /etc/default/keyboard, and reboot
+
+sudo apt install etckeeper git
+ssh-keygen
+// register to GitHub
+git clone <this> .dotfiles
+
+cd .dotfiles
+sudo apt install curl
 curl -LsSf https://astral.sh/uv/install.sh | sh
+export PATH=$PATH;$HOME/.local/bin
+
 uv python install
 uv sync
 uv run ansible-playbook ansible/playbook.yaml --ask-become-pass
