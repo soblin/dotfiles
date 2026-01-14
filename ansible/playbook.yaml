@@ -3,6 +3,7 @@
   environment:
     PATH: "{{ ansible_env.PATH }}:{{ lookup('env','HOME') }}/.local/bin"
   roles:
+    - init_snap
     - xdg_base_directory
     - system_tools
     - dev_tools

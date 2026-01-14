@@ -1,0 +1,5 @@
+- name: refresh snap
+  become: true
+  command: snap refresh
+  when: not is_ci
+  changed_when: false
