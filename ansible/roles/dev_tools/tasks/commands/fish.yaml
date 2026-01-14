@@ -30,6 +30,7 @@
         state: link
       when: not fish_config_exists.stat.exists
 
+    # TODO: tmux-mem-cpu-load
     - name: install plugins from fish_plugins file
       become: false
       ansible.builtin.shell: >-

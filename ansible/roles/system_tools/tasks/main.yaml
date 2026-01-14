@@ -5,7 +5,6 @@
       - git
       - git-lfs
       - curl
-      - tmux
       - tree
       - xclip
       - xsel
@@ -13,3 +12,5 @@
       - htop
       - direnv
     state: present # NOTE: if not installed, install
+
+- import_tasks: commands/tmux.yaml
