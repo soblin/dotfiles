@@ -28,7 +28,7 @@
         src: "{{ (playbook_dir + '/../.config/fish') | realpath }}"
         dest: "{{ lookup('env', 'HOME') }}/.config/fish"
         state: link
-      when: not fish_config_exists.stat.exists
+      when: not fish_config_exists.stat.islnk
 
     # TODO: tmux-mem-cpu-load
     - name: install plugins from fish_plugins file
