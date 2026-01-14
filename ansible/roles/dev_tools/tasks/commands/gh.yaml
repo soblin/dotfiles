@@ -1,5 +1,4 @@
 - name: setup gh command
-  become: true
   block:
     - name: get gpg key
       ansible.builtin.get_url:

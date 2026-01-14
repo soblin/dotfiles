@@ -16,11 +16,13 @@
 
     # file is backed-up, but existing symlink is kept
     - name: backup .emacs if already exists
+      become: false
       ansible.builtin.shell: >-
         mv "{{ lookup('env', 'HOME') }}/.emacs" "{{ lookup('env', 'HOME') }}/.emacs.bak"
       when: dot_emacs_exists.stat.exists and not dot_emacs_exists.stat.islnk
 
     - name: create symlink to .emacs(unless symlink does not already exist)
+      become: false
       file:
         src: "{{ (playbook_dir + '/../.emacs') | realpath }}"
         dest: "{{ lookup('env', 'HOME') }}/.emacs"
@@ -34,11 +36,13 @@
       changed_when: false
 
     - name: backup .emacs.d if already exists
+      become: false
       ansible.builtin.shell: >-
         mv "{{ lookup('env', 'HOME') }}/.emacs.d" "{{ lookup('env', 'HOME') }}/.emacs.d.bak"
       when: dot_emacs_d_exists.stat.exists and not dot_emacs_d_exists.stat.islnk
 
     - name: create symlink to .emacs.d(unless symlink does not already exist)
+      become: false
       file:
         src: "{{ (playbook_dir + '/../.emacs.d') | realpath }}"
         dest: "{{ lookup('env', 'HOME') }}/.emacs.d"

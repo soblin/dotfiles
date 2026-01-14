@@ -13,11 +13,13 @@
       changed_when: false
 
     - name: backup .tmux.conf if already exists
+      become: false
       ansible.builtin.shell: >-
         mv "{{ lookup('env', 'HOME') }}/.tmux.conf" "{{ lookup('env', 'HOME') }}/.tmux.conf.bak"
       when: tmux_conf_exists.stat.exists and not tmux_conf_exists.stat.islnk
 
     - name: create symlink to .tmux.conf(unless symlink does not already exist)
+      become: false
       file:
         src: "{{ (playbook_dir + '/../.tmux.conf') | realpath }}"
         dest: "{{ lookup('env', 'HOME') }}/.tmux.conf"
@@ -31,11 +33,13 @@
       changed_when: false
 
     - name: backup .config/tmux if already exists
+      become: false
       ansible.builtin.shell: >-
         mv "{{ lookup('env', 'HOME') }}/.config/tmux" "{{ lookup('env', 'HOME') }}/.config/tmux.bak"
       when: config_tmux_d_exists.stat.exists and not config_tmux_d_exists.stat.islnk
 
     - name: create symlink to .config/tmux(unless symlink does not already exist)
+      become: false
       file:
         src: "{{ (playbook_dir + '/../.config/tmux') | realpath }}"
         dest: "{{ lookup('env', 'HOME') }}/.config/tmux"
