@@ -1,0 +1,2 @@
+# on ci, snapd does not exist, so `snap refresh` may fail
+is_ci: false
