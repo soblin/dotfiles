@@ -79,9 +79,6 @@ create_symlink_f ".dircolors" ".dircolors"
 # .rc files
 create_symlink_d ".config/rcs" ".config/rcs"
 
-# fish
-create_symlink_d ".config/fish" ".config/fish"
-
 # git
 create_symlink_f ".gitignore" ".gitignore"
 create_symlink_f ".gitconfig" ".gitconfig"

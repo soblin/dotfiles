@@ -1,6 +1,5 @@
 # fish
 - name: setup fish
-  become: true
   block:
     - name: add fish ppa
       apt_repository:
@@ -12,3 +11,28 @@
         name: fish
         state: present
         update_cache: true
+
+    - name: check .config/fish exists
+      stat:
+        path: "{{ lookup('env', 'HOME') }}/.config/fish"
+      register: fish_config_exists
+      changed_when: false
+
+    - name: backup .config/fish if already exists
+      ansible.builtin.shell: >-
+        mv "{{ lookup('env', 'HOME') }}/.config/fish" "{{ lookup('env', 'HOME') }}/.config/fish.bak"
+      when: fish_config_exists.stat.exists and not fish_config_exists.stat.islnk
+
+    - name: create symlink to .config/fish(unless symlink does not already exist)
+      file:
+        src: "{{ (playbook_dir + '/../.config/fish') | realpath }}"
+        dest: "{{ lookup('env', 'HOME') }}/.config/fish"
+        state: link
+      when: not fish_config_exists.stat.exists
+
+    - name: install plugins from fish_plugins file
+      become: false
+      ansible.builtin.shell: >-
+        curl -sL https://raw.githubusercontent.com/jorgebucaran/fisher/main/functions/fisher.fish | source && fisher update
+      args:
+        executable: fish
