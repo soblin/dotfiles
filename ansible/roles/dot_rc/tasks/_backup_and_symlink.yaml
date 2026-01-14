@@ -1,0 +1,20 @@
+- name: backup_and_symlink
+  become: false
+  block:
+    - name: check item exists
+      stat:
+        path: "{{ lookup('env', 'HOME') }}/{{ item }}"
+      register: item_exists
+      changed_when: false
+
+    - name: backup if item exists
+      ansible.builtin.shell: >-
+        mv "{{ lookup('env', 'HOME') }}/{{ item }}" "{{ lookup('env', 'HOME') }}/{{ item }}.bak"
+      when: item_exists.stat.exists and not item_exists.stat.islnk
+
+    - name: create symlink
+      file:
+        src: "{{ (playbook_dir + '/../' + item) | realpath }}"
+        dest: "{{ lookup('env', 'HOME') }}/{{ item }}"
+        state: link
+      when: not item_exists.stat.exists

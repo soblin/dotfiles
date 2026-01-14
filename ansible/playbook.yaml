@@ -5,6 +5,7 @@
   roles:
     - init_snap
     - xdg_base_directory
+    - dot_rc
     - system_tools
     - dev_tools
     - fonts
