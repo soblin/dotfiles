@@ -1,5 +1,8 @@
 #!/bin/bash -e
 
+# /home/<user>
+home_dir=`realpath ~`
+
 cur_dir=`pwd`
 
 function create_symlink_f() {
