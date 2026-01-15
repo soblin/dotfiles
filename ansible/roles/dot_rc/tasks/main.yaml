@@ -1,0 +1,10 @@
+- name: backup and symlink rc files and others
+  include_tasks: _backup_and_symlink.yaml
+  with_items:
+    - .bashrc
+    - .bash_aliases
+    - .profile
+    - .dircolors
+    - .config/rcs
+    - .gitignore
+    - .gitconfig
