@@ -38,3 +38,5 @@
     cmd = difft "$LOCAL" "$REMOTE"
 [pager]
     difftool = true
+[ghq]
+    root = ~/.ghq/src
