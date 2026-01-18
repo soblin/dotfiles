@@ -1,0 +1,30 @@
+# ghq
+- name: setup ghq command
+  become: false
+  block:    
+    - name: download binary
+      ansible.builtin.get_url:
+        url: https://github.com/x-motemen/ghq/releases/download/v1.8.0/ghq_linux_amd64.zip
+        dest: /tmp/ghq_linux_amd64.zip
+
+    - name: unarchive ghq
+      ansible.builtin.unarchive:
+        src: /tmp/ghq_linux_amd64.zip
+        dest: /tmp/
+
+    - name: install binary
+      copy:
+        src: /tmp/ghq_linux_amd64/ghq
+        dest: "{{ lookup('env','HOME') }}/.local/bin/ghq"
+        mode: "0755"
+
+    - name: install bash completion
+      copy:
+        src: /tmp/ghq_linux_amd64/misc/bash/_ghq
+        dest: "{{ lookup('env','HOME') }}/.local/share/bash-completion/completions/ghq"
+        mode: "0644"
+
+    - name: install fish completion
+      ansible.builtin.shell: fisher install decors/fish-ghq
+      args:
+        executable: fish
