@@ -20,3 +20,4 @@ __pycache__
 compile_commands.json
 .envrc
 .config/fish/conf.d/rustup.fish
+.config/alacritty/themes
