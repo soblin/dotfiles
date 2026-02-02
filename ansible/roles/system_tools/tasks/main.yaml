@@ -14,3 +14,4 @@
     state: present # NOTE: if not installed, install
 
 - import_tasks: commands/tmux.yaml
+- import_tasks: commands/alacritty.yaml

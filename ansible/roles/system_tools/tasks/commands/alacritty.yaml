@@ -1,0 +1,15 @@
+# alacritty
+- name: snap install alacritty
+  block:
+    - name: snap install alacritty
+      community.general.snap:
+        name:
+          - alacritty
+        classic: true
+        state: present
+
+    - name: clone alacritty theme
+      become: false
+      git:
+        repo: https://github.com/alacritty/alacritty-theme.git
+        dest: "{{ lookup('env', 'HOME') }}/.config/alacritty/themes"
