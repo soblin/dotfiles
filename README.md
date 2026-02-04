@@ -24,38 +24,7 @@ uv run ansible-playbook ansible/playbook.yaml --ask-become-pass
 
 ## 日本語入力
 
-### mozc
-
-mozcで入力を切り替えた際に始めから日本語入力になっていて欲しい（デフォルトでは直接入力）．[このオプションは入ったが](https://github.com/google/mozc/issues/381)，Ubuntu22.04で入るmozcではまだ利用できない．そのため[こちら](https://zenn.dev/ikuya/articles/aa69fd1009b773)に従って上書き更新する．
-
-Dockerfileとしては代わりに
-
-```bash
-curl -O https://raw.githubusercontent.com/google/mozc/b0a604f110e01d11107ebbaad09e674cecee34f5/docker/ubuntu22.04/Dockerfile
-
-
-- RUN apt-get install -y bazel
-+ RUN apt-get install -y bazel-7.7.1
-+ RUN ln -s /usr/bin/bazel-7.7.1 /usr/bin/bazel
-```
-
-を用いること．
-
-その後`~/.config/mozc/ibus_config.textproto`の`mozc-jp`のフィールドを以下のように更新する．
-
-```
-engines {
-  name : "mozc-jp"
-  longname : "Mozc"
-  layout : "default"
-  layout_variant : ""
-  layout_option : ""
-  symbol : "あ"
-  composition_mode: HIRAGANA # これが一番重要
-}
-```
-
-その後`ibus write-cache`してから再起動すると始めから日本語入力ができるようになる．
+![mozc](./docs/mozc.md)
 
 ### Ctrl-Spaceで日英の切り替え
 
@@ -100,14 +69,6 @@ tmuxのキーバインドは以下の通り.
 
 ## languages
 
-### Julia
-
-`~/.local/opt/`に`julia-x.x.x`のディレクトリをインストールし，`~/.local/bin/julia`へのsymlinkを張る．
-
-### Rust
-
-`~/.local/bin/`にツールチェーンをインストール．
-
 ### ROS2
 
 colconに付属する`argcomplete`はバージョンが古いため`fish`に対応していない．
@@ -120,50 +81,7 @@ pip3 install --user argcomplete==2.0.0
 
 fishについては[こちらの記事を参照](https://zenn.dev/kenji_miyake/articles/c149cc1f17e168)．
 
-```bash
-sudo apt-get install fzf fd-find jq
-ln -s $(which fdfind) ~/.local/bin/fd
-```
-
-勝手にsourceするのを防ぐには
-
-```bash
-auto_source_disable
-```
-
-すれば良い．
-
 ## Emacs
-
-### gccemacsを使う
-
-`kelleyk:ppa`ですでに`emacs-nativecomp`が提供されている．Ubuntu22では
-
-```
-sudo snap install emacs --classic
-```
-
-でnativecompが手に入るようになったので，こちらの方がすぐにDLできて良い．
-
-### plists
-
-lspを高速にするには[plists](https://emacs-lsp.github.io/lsp-mode/page/performance/#use-plists-for-deserialization)を使うようにコンパイルすべきであるらしい．`eln-cache`を削除してから
-
-```
-export LSP_USE_PLISTS=true
-OR
-set -x export LSP_USE_PLISTS true
-```
-
-した上で再度コンパイルするとバイトコードに埋め込まれるようだ(？)．
-
-### elpaの扱い
-
-elpaのパッケージは別のレポジトリで管理する．
-
-### doom-modelineのアイコン
-
-`M-x all-the-icons-install-fonts, nerd-icons-install-fonts`をする必要がある．
 
 ### 自分用キーバインド備忘録
 
@@ -206,6 +124,38 @@ elpaのパッケージは別のレポジトリで管理する．
   - 候補一覧の各アイテムにおいて`Ctrl-d`すると詳細を読める(GUI/CUI両方で可能)
 - `C-M-p`: シンボルのドキュメントを出す
 
+### gccemacsを使う
+
+`kelleyk:ppa`ですでに`emacs-nativecomp`が提供されている．Ubuntu22では
+
+```
+sudo snap install emacs --classic
+```
+
+でnativecompが手に入るようになったので，こちらの方がすぐにDLできて良い．
+
+### plists
+
+lspを高速にするには[plists](https://emacs-lsp.github.io/lsp-mode/page/performance/#use-plists-for-deserialization)を使うようにコンパイルすべきであるらしい．`eln-cache`を削除してから
+
+```
+export LSP_USE_PLISTS=true
+OR
+set -x export LSP_USE_PLISTS true
+```
+
+した上で再度コンパイルするとバイトコードに埋め込まれるようだ(？)．
+
+### elpaの扱い
+
+elpaのパッケージは別のレポジトリで管理する．
+
+### doom-modelineのアイコン
+
+`M-x all-the-icons-install-fonts, nerd-icons-install-fonts`をする必要がある．
+
+### LSP
+
 #### clang
 
 clang/clang++/clang-tidy/clangdなどは全てllvmのバージョンが同じになっていないと不整合が生じる．
@@ -246,10 +196,6 @@ sudo apt-get install libstdc++-12-dev libomp-18-dev
 
 #### python
 
-```
-pip3 install --user python-language-server rope autopep8 black pyright
-```
-
 Pipfileなどで管理されたプロジェクトで補完を行うには`pyvenv`パッケージを利用する．
 
 - https://github.com/emacs-lsp/lsp-mode/issues/1290
@@ -257,28 +203,6 @@ Pipfileなどで管理されたプロジェクトで補完を行うには`pyvenv
 `M-x pyvenv-activate`でPipfileがあるフォルダーを選択し`lsp-workspace-restart`すると仮想環境にインストールされたパッケージが認識される． --> もしかするとpipenvに入った状態でemacsを立ち上げる必要もあるかも．
 
 aptで入る`node`のversionがpyrightに対して古い場合があるので https://qiita.com/nouernet/items/d6ad4d5f4f08857644de に従って`node`のバージョン管理を行うと良い．
-
-#### rust
-
-```
-rustup component add rls rust-analysis rust-src
-```
-
-#### node
-
-`n`をinstallしてそれ経由で`npm`をinstallした方が良い．`npm`をupdateするには
-
-```bash
-sudo n stable
-```
-
-で良い．ローカルのnodeプロジェクトでは
-
-```bash
-export PATH=$PATH:.local/.bin
-```
-
-を`.envrc`に記せば良い．
 
 #### 参考
 
