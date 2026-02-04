@@ -11,6 +11,8 @@
       - mlocate
       - htop
       - direnv
+      - cmake
+      - g++
     state: present # NOTE: if not installed, install
 
 - import_tasks: commands/tmux.yaml

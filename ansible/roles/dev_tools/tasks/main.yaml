@@ -1,1 +1,29 @@
-- import_tasks: install.yaml
+- name: install development commands
+  apt:
+    name:
+      - ninja-build
+      - fzf
+      - jq
+    state: present
+
+- import_tasks: commands/ccache.yaml
+
+- import_tasks: commands/coredumpctl.yaml
+
+- import_tasks: commands/fd.yaml
+  
+- import_tasks: commands/bat.yaml
+
+- import_tasks: commands/difft.yaml
+
+- import_tasks: commands/lsd.yaml
+
+- import_tasks: commands/gh.yaml
+
+- import_tasks: commands/docker.yaml
+
+- import_tasks: commands/emacs.yaml
+
+- import_tasks: commands/fish.yaml
+
+- import_tasks: commands/ghq.yaml
