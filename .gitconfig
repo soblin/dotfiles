@@ -4,31 +4,39 @@
     autocrlf = false
     ignorecase = false
     quotepath = false
+
 [merge]
     ff = false
     conflicStyle = zdiff3
+
 [pull]
     ff = only
+
 [help]
     autocorrect = 10
+
 [color]
     ui = true
+
 [alias]
     graph = log --graph --color --pretty=format:\"%C(yellow)%H%C(green)%d%C(reset)%n%x20%cd%n%x20%cn%x20(%ce)%n%x20%s%n\"
-    st = status -uall
-    ck = checkout
-    cm = commit --signoff
+    showd = -c diff.external=difft diff
+
 [credential]
     helper = cache --timeout=86400
+
 [pager]
     log = less
+
 [init]
     defaultBranch = main
+
 [filter "lfs"]
     clean = git-lfs clean -- %f
     smudge = git-lfs smudge -- %f
     process = git-lfs filter-process
     required = true
+
 [diff]
     tool = difftastic
     external = difft
@@ -36,7 +44,9 @@
     prompt = false
 [difftool "difftastic"]
     cmd = difft "$LOCAL" "$REMOTE"
+
 [pager]
     difftool = true
+
 [ghq]
     root = ~/.ghq/src
