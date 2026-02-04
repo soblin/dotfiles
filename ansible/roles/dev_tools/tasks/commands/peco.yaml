@@ -1,0 +1,5 @@
+# peco
+- name: apt install peco
+  apt:
+    name:
+      - peco
