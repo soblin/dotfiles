@@ -11,7 +11,7 @@
 - import_tasks: commands/coredumpctl.yaml
 
 - import_tasks: commands/fd.yaml
-  
+
 - import_tasks: commands/bat.yaml
 
 - import_tasks: commands/difft.yaml

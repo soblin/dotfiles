@@ -51,7 +51,7 @@
         register: username
         failed_when: username.rc != 0
         changed_when: false
-  
+
       - name: add docker group
         ansible.builtin.group:
           name: docker

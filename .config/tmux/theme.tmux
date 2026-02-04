@@ -39,7 +39,7 @@ case "$theme" in
         GR3=colour239
         GR4=colour240
         ;;
-    
+
     *)
         echo "Unknown theme: $theme" >&2
         exit 1
