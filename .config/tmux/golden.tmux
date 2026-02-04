@@ -19,12 +19,13 @@ tmux_set() {
 }
 
 # Options
-upload_speed_icon=$(tmux_get '@tmux_power_upload_speed_icon' '🔺')
-download_speed_icon=$(tmux_get '@tmux_power_download_speed_icon' '🔻')
+# copy thd glyphs from https://www.nerdfonts.com/cheat-sheet
+upload_speed_icon=$(tmux_get '@tmux_power_upload_speed_icon' '󰕒')
+download_speed_icon=$(tmux_get '@tmux_power_download_speed_icon' '󰇚')
 session_icon="$(tmux_get '@tmux_power_session_icon' '')"
-user_icon="$(tmux_get '@tmux_power_user_icon' '')"
-time_icon="$(tmux_get '@tmux_power_time_icon' '🕘')"
-date_icon="$(tmux_get '@tmux_power_date_icon' '📅')"
+user_icon="$(tmux_get '@tmux_power_user_icon' '')"
+time_icon="$(tmux_get '@tmux_power_time_icon' '')"
+date_icon="$(tmux_get '@tmux_power_date_icon' '')"
 show_upload_speed="$(tmux_get @tmux_power_show_upload_speed false)"
 show_download_speed="$(tmux_get @tmux_power_show_download_speed false)"
 prefix_highlight_pos=$(tmux_get @tmux_power_prefix_highlight_pos)
@@ -108,7 +109,7 @@ RS="#[fg=$TC,bg=$GR2] $time_icon %T #[fg=$TC,bg=$GR2]#[fg=$GR0,bg=$TC] $date_
 if "$show_download_speed"; then
     RS="#[fg=$GR1,bg=$BG]#[fg=$TC,bg=$GR1] $download_speed_icon#{download_speed} #[fg=$GR2,bg=$GR1]$RS"
 else
-    RS="#[fg=$TC,bg=$GR1]#[fg=$GR1,bg=$TC] 💉 #(tmux-mem-cpu-load -g 5 --interval 1) #[fg=$GR2,bg=$TC]$RS"
+    RS="#[fg=$TC,bg=$GR1]#[fg=$GR1,bg=$TC]  #(tmux-mem-cpu-load -g 5 --interval 1) #[fg=$GR2,bg=$TC]$RS"
 fi
 if [[ $prefix_highlight_pos == 'R' || $prefix_highlight_pos == 'LR' ]]; then
     RS="#{prefix_highlight}$RS"
