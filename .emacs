@@ -35,19 +35,20 @@
  '(package-selected-packages
    '(all-the-icons bind-key blacken ccls clang-format clang-format+
                    cmake-mode company company-quickhelp consult-gh
-                   dap-mode doom-modeline doom-themes dracula-theme
-                   dumb-jump ein exec-path-from-shell fish-mode
-                   flycheck flycheck-clang-tidy forge go-mode helm
-                   helm-migemo highlight-indent-guides html5-schema
-                   init-loader jedi js2-mode js2-modeyasnippet
-                   json-mode ligature lsp-pyright lsp-ui magit
-                   markdown-mode markdown-mode+ markdown-preview-mode
-                   matlab-mode neotree nyan-mode package-utils
-                   py-autopep8 py-isort python-isort pyvenv
-                   restart-emacs smart-jump smartrep smooth-scroll
-                   sphinx-mode sudo-edit tabbar typescript-mode
-                   undo-tree use-package visual-regexp web-mode
-                   yaml-mode yasnippet yatex zoom-frm))
+                   dap-mode dockerfile-mode doom-modeline doom-themes
+                   dracula-theme dumb-jump ein exec-path-from-shell
+                   fish-mode flycheck flycheck-clang-tidy forge
+                   go-mode helm helm-migemo highlight-indent-guides
+                   html5-schema init-loader jedi js2-mode
+                   js2-modeyasnippet json-mode ligature lsp-pyright
+                   lsp-ui magit markdown-mode markdown-mode+
+                   markdown-preview-mode matlab-mode neotree nyan-mode
+                   package-utils py-autopep8 py-isort python-isort
+                   pyvenv restart-emacs smart-jump smartrep
+                   smooth-scroll sphinx-mode sudo-edit tabbar
+                   toml-mode typescript-mode undo-tree use-package
+                   visual-regexp web-mode yaml-mode yasnippet yatex
+                   zoom-frm))
  '(safe-local-variable-values '((cmake-tab-width . 4)))
  '(tab-bar-mode t)
  '(tabbar-separator '(0.5))
@@ -58,7 +59,6 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(default ((t (:family "Fira Code" :foundry "CTDB" :slant normal :weight regular :height 102 :width normal))))
  '(YaTeX-font-lock-crossref-face ((t (:foreground "dark orange"))))
  '(YaTeX-font-lock-declaration-face ((t (:foreground "hot pink"))))
  '(YaTeX-font-lock-delimiter-face ((t (:background "dark magenta" :foreground "lightyellow3" :weight bold))))
@@ -70,7 +70,6 @@
  '(YaTeX-sectioning-2 ((t (:foreground "#f3f300" :underline t :slant italic))))
  '(YaTeX-sectioning-3 ((t (:foreground "#ecec00" :underline t :slant italic))))
  '(YaTeX-sectioning-4 ((t (:foreground "#e6e600" :underline t :slant italic))))
- '(font-lock-comment-face ((t (:foreground "dark gray"))))
  '(tab-bar-tab-group-current ((t (:inherit tab-bar-tab :box nil :weight bold :height 1.1))))
  '(tab-bar-tab-group-inactive ((t (:inherit (shadow tab-bar-tab-inactive) :height 1.1))))
  '(tab-bar-tab-ungrouped ((t (:inherit (shadow tab-bar-tab-inactive) :height 1.1)))))
