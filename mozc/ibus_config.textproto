@@ -1,0 +1,9 @@
+engines {
+  name : "mozc-jp"
+  longname : "Mozc"
+  layout : "default"
+  layout_variant : ""
+  layout_option : ""
+  symbol : "あ"
+  composition_mode: HIRAGANA # これが一番重要
+}
