@@ -68,3 +68,30 @@
           repo: https://github.com/tmux-plugins/tmux-continuum.git
         - name: tmux-named-snapshot
           repo: https://github.com/spywhere/tmux-named-snapshot.git
+
+    - name: install tmux-mem-cpu-load
+      block:
+        - name: clone project
+          git:
+            repo: https://github.com/thewtex/tmux-mem-cpu-load.git
+            dest: /tmp/tmux-mem-cpu-load
+
+        - name: create build dir
+          ansible.builtin.file:
+            path: /tmp/tmux-mem-cpu-load/build
+            state: directory
+
+        - name: cmake
+          ansible.builtin.command:
+            cmd: "cmake .. -DCMAKE_INSTALL_PREFIX={{ lookup('env','HOME') }}/.local"
+            chdir: /tmp/tmux-mem-cpu-load/build
+
+        - name: build
+          ansible.builtin.command:
+            cmd: make -j
+            chdir: /tmp/tmux-mem-cpu-load/build
+
+        - name: install
+          ansible.builtin.command:
+            cmd: make install
+            chdir: /tmp/tmux-mem-cpu-load/build
