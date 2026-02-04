@@ -1,6 +1,6 @@
 [general]
 import = [
-    "~/.config/alacritty/themes/themes/ubuntu.toml"
+    "~/.config/alacritty/themes/themes/dracula.toml"
 ]
 
 [terminal]
