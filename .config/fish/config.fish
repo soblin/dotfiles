@@ -13,5 +13,5 @@ set -g -x PATH ~/.local/bin $PATH
 
 # https://gist.github.com/dfrommi/453f4e2c6635d2965802ac84b88519f5
 for file in (find $HOME/.config/fish/configs/ -path "*.fish" -type f -mindepth 1 -maxdepth 1 2> /dev/null)
-    builtin source $file 2> /dev/null
+    builtin source $file 2>/dev/null
 end

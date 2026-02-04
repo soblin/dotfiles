@@ -15,7 +15,7 @@ repos:
           [
             "--fix",
             "--config",
-            ".markdownlint.jsonc",
+            ".markdownlint-cli2.jsonc",
             "README.md",
             "docs/**/*.md",
           ]
