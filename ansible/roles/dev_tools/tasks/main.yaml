@@ -29,5 +29,3 @@
 - import_tasks: commands/ghq.yaml
 
 - import_tasks: commands/peco.yaml
-
-- import_tasks: commands/z.yaml
