@@ -1,7 +1,7 @@
 # ghq
 - name: setup ghq command
   become: false
-  block:    
+  block:
     - name: download binary
       ansible.builtin.get_url:
         url: https://github.com/x-motemen/ghq/releases/download/v1.8.0/ghq_linux_amd64.zip
