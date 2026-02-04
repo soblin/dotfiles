@@ -20,52 +20,31 @@ tmux_set() {
 
 # Options
 # copy thd glyphs from https://www.nerdfonts.com/cheat-sheet
-upload_speed_icon=$(tmux_get '@tmux_power_upload_speed_icon' '󰕒')
-download_speed_icon=$(tmux_get '@tmux_power_download_speed_icon' '󰇚')
-session_icon="$(tmux_get '@tmux_power_session_icon' '')"
-user_icon="$(tmux_get '@tmux_power_user_icon' '')"
-time_icon="$(tmux_get '@tmux_power_time_icon' '')"
-date_icon="$(tmux_get '@tmux_power_date_icon' '')"
-show_upload_speed="$(tmux_get @tmux_power_show_upload_speed false)"
-show_download_speed="$(tmux_get @tmux_power_show_download_speed false)"
+user_icon=''
+time_icon=''
+date_icon=''
 prefix_highlight_pos=$(tmux_get @tmux_power_prefix_highlight_pos)
+
 # short for Theme-Colour
-TC=$(tmux_get '@tmux_power_theme' 'gold')
-case $TC in
-    'gold' )
-        TC='#ffb86c'
+theme="dracula" # gold | dracula
+
+case "$theme" in
+    "dracula")
+        TC=colour141
+        BG=colour235
+        EM=colour212
+
+        GR1=colour236
+        GR2=colour237
+        GR3=colour239
+        GR4=colour240
         ;;
-    'redwine' )
-        TC='#b34a47'
-        ;;
-    'moon' )
-        TC='#00abab'
-        ;;
-    'forest' )
-        TC='#228b22'
-        ;;
-    'violet' )
-        TC='#9370db'
-        ;;
-    'snow' )
-        TC='#fffafa'
-        ;;
-    'coral' )
-        TC='#ff7f50'
-        ;;
-    'sky' )
-        TC='#87ceeb'
+    
+    *)
+        echo "Unknown theme: $theme" >&2
+        exit 1
         ;;
 esac
-GR0=colour235
-GR1=colour236
-GR2=colour237
-GR3=colour238
-GR4=colour239
-GR5=colour240
-GR6=colour241
-BG="$GR0"
-FG="$GR6"
 
 # Status options
 tmux_set status-interval 1
@@ -84,41 +63,30 @@ tmux_set @prefix_highlight_copy_mode_attr "fg=$TC,bg=$BG,bold"
 tmux_set @prefix_highlight_output_prefix "#[fg=$TC]#[bg=$BG]#[bg=$TC]#[fg=$BG]"
 tmux_set @prefix_highlight_output_suffix "#[fg=$TC]#[bg=$BG]"
 
-#     
 # Left side of status bar
-tmux_set status-left-bg "$GR0"
-tmux_set status-left-fg colour243
+tmux_set status-left-bg "$BG"
 tmux_set status-left-length 150
 user=$(whoami)
-LS="#[fg=$GR0,bg=$TC,bold] $user@#h #[fg=$TC,bg=$GR2,nobold]#[fg=$TC,bg=$GR2] #S "
-if "$show_upload_speed"; then
-    LS="$LS#[fg=$GR2,bg=$GR1]#[fg=$TC,bg=$GR1] $upload_speed_icon#{upload_speed} #[fg=$GR1,bg=$BG]"
-else
-    LS="$LS#[fg=$GR2,bg=$BG]"
-fi
+LS="#[fg=$BG,bg=$EM,bold] $user@#h #[fg=$EM,bg=$GR2,nobold]#[fg=$TC,bg=$GR2] #S "
+LS="$LS#[fg=$GR2,bg=$BG]"
 if [[ $prefix_highlight_pos == 'L' || $prefix_highlight_pos == 'LR' ]]; then
     LS="$LS#{prefix_highlight}"
 fi
 tmux_set status-left "$LS"
 
 # Right side of status bar
-tmux_set status-right-bg $GR0
-tmux_set status-right-fg colour243
+tmux_set status-right-bg $BG
 tmux_set status-right-length 150
-RS="#[fg=$TC,bg=$GR2] $time_icon  %T #[fg=$TC,bg=$GR2]#[fg=$GR0,bg=$TC] $date_icon  %F "
-if "$show_download_speed"; then
-    RS="#[fg=$GR1,bg=$BG]#[fg=$TC,bg=$GR1] $download_speed_icon#{download_speed} #[fg=$GR2,bg=$GR1]$RS"
-else
-    RS="#[fg=$TC,bg=$GR1]#[fg=$GR1,bg=$TC]   #(tmux-mem-cpu-load -g 5 --interval 1) #[fg=$GR2,bg=$TC]$RS"
-fi
+RS="#[fg=$EM,bg=$GR2] $time_icon  %T #[fg=$EM,bg=$GR2]#[fg=$BG,bg=$EM] $date_icon  %F "
+RS="#[fg=$EM,bg=$GR1]#[fg=$GR1,bg=$EM] |  |  | 󰊚 | #(tmux-mem-cpu-load -g 5 -a 1 --interval 1) #[fg=$GR2,bg=$EM]$RS"
 if [[ $prefix_highlight_pos == 'R' || $prefix_highlight_pos == 'LR' ]]; then
     RS="#{prefix_highlight}$RS"
 fi
 tmux_set status-right "$RS"
 
 # Window status
-tmux_set window-status-format " #I:#W#F "
-tmux_set window-status-current-format "#[fg=$BG,bg=$GR2]#[fg=$TC,bold] #I:#W#F #[fg=$GR2,bg=$BG,nobold]"
+tmux_set window-status-format "#[fg=$TC] #I:#W#F "
+tmux_set window-status-current-format "#[fg=$BG,bg=$GR2]#[fg=$EM,bold] #I:#W#F #[fg=$GR2,bg=$BG,nobold]"
 
 # Window separator
 tmux_set window-status-separator ""
