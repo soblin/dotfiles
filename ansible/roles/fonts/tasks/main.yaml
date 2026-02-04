@@ -18,3 +18,18 @@
     state: present
   when: not is_baremetal
   check_mode: true
+
+- name: install HackGen font
+  block:
+    - name: download zip file
+      ansible.builtin.get_url:
+        url: https://github.com/yuru7/HackGen/releases/download/v2.10.0/HackGen_NF_v2.10.0.zip
+        dest: /tmp/HackGen_NF.zip
+
+    - name: unarchive zip file
+      ansible.builtin.unarchive:
+        src: /tmp/HackGen_NF.zip
+        dest: /usr/local/share/fonts/
+
+    - name: update cache
+      ansible.builtin.shell: fc-cache -vf

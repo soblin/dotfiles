@@ -2,3 +2,11 @@
 import = [
     "~/.config/alacritty/themes/themes/ubuntu.toml"
 ]
+
+[window]
+opacity = 0.84
+
+[font]
+normal = { family = "HackGen Console NF", style = "regular"}
+size = 12
+builtin_box_drawing = true
