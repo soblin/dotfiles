@@ -4,6 +4,24 @@ repos:
     hooks:
       - id: end-of-file-fixer
       - id: trailing-whitespace
+      - id: check-yaml
+      - id: check-toml
 
-ci:
-  autofix_prs: true
+  - repo: https://github.com/DavidAnson/markdownlint-cli2
+    rev: v0.20.0
+    hooks:
+      - id: markdownlint-cli2
+        args:
+          [
+            "--fix",
+            "--config",
+            ".markdownlint.jsonc",
+            "README.md",
+            "docs/**/*.md",
+          ]
+
+  - repo: https://github.com/hugoh/pre-commit-fish.git
+    rev: v1.2
+    hooks:
+      - id: fish_syntax
+      - id: fish_indent
