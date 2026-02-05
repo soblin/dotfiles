@@ -18,7 +18,11 @@ jobs:
       - name: setup python
         uses: actions/setup-python@v3
 
+      - name: install fish
+        uses: fish-shop/install-fish-shell@v1
+
       - name: run pre-commit
+        shell: fish
         uses: pre-commit/action@v3.0.1
 
       - name: push pre-commit fix
