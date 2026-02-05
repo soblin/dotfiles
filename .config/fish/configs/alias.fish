@@ -1,11 +1,11 @@
 function psgrep
-   ps aux | grep $argv[1] | grep -v grep
+    ps aux | grep $argv[1] | grep -v grep
 end
 
 function pbcopy
     set temp_file $(mktemp)
     tmux save-buffer $temp_file
-    xsel -i -b < $temp_file
+    xsel -i -b <$temp_file
     rm -rf $temp_file
 end
 

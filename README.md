@@ -1,6 +1,6 @@
 # dotfiles
 
-個人用の `dotfiles` のレポジトリ.
+個人用の `dotfiles` のレポジトリ．
 
 ## セットアップ
 
@@ -20,6 +20,15 @@ export PATH=$PATH;$HOME/.local/bin
 uv python install
 uv sync
 uv run ansible-playbook ansible/playbook.yaml --ask-become-pass
+```
+
+## pre-commit
+
+`pre-commit`はuvでinstallする．
+
+```bash
+uv run pre-commit install
+(uv run pre-commit run --all-files)
 ```
 
 ## 日本語入力
