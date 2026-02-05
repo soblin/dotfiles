@@ -25,9 +25,8 @@ jobs:
         uses: fish-shop/install-fish-shell@v1
 
       - name: run pre-commit
-        shell: fish
+        shell: fish {0}
         run: pre-commit run
-
 
       - name: push pre-commit fix
         if: always()
