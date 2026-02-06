@@ -4,7 +4,8 @@ import = [
 ]
 
 [terminal]
-shell = { program = "fish", args = ["--login"]}
+# this is not good on some environment, because ".bashrc" is not sourced as bash
+# shell = { program = "fish", args = ["--login"]}
 
 [window]
 opacity = 0.84
