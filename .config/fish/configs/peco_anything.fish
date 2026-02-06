@@ -28,7 +28,6 @@ function peco_git_unstaged_file_dir
         | peco --prompt $prompt
     )
     test -z "$target"; and return
-
     commandline --insert -- "$target"
 end
 
@@ -54,6 +53,16 @@ function peco_git_branch_or_tag
     commandline --insert -- "$ref"
 end
 
+function peco_git_remote
+    set -l prompt (string join "" "$peco_anything_prompt" " git remotes 󰖟 >")
+    set -l remote (
+    git remote show \
+        | peco --prompt $prompt
+    )
+    test -z "$remote"; and return
+    commandline --insert -- "$remote"
+end
+
 function peco_git_dispatch
     set -l len (count $argv)
 
@@ -66,8 +75,13 @@ function peco_git_dispatch
             peco_git_unstaged_file_dir
         case branch merge
             peco_git_branch
-        case checkout switch diff log push
+        case push
+            # TODO: if argc == 2, complete remote, and if 3, complete branch/tag
             peco_git_branch_or_tag
+        case checkout switch diff log
+            peco_git_branch_or_tag
+        case remote
+            peco_git_remote
         case '*'
             return
     end
