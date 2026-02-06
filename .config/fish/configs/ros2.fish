@@ -1,7 +1,5 @@
 if command -v ros2 &>/dev/null
     # https://zenn.dev/kenji_miyake/articles/c149cc1f17e168
-    alias colcon='__colcon_find_workspace_dir > /dev/null && cd (__colcon_find_workspace_dir); command colcon'
-    alias roscd="ccd -o"
     register-python-argcomplete --shell fish ros2 | source
 
     # --cmake-clean-cache slows down compilation
