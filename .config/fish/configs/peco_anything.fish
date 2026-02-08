@@ -1,4 +1,45 @@
-set -l peco_anything_prompt "  peco completion "
+function set_bold
+    set -l text $argv[1]
+    printf "%b%s%b" (tput bold) "$text" (tput sgr0)
+end
+
+function set_fg
+    printf "\e[38;5;%sm" $argv[1]
+end
+
+function set_bg
+    printf "\e[48;5;%sm" $argv[1]
+end
+
+function set_reset
+    printf "\e[0m"
+end
+
+function create_color_string
+    set -l fg $argv[1] # 256 color
+    set -l bg $argv[2] # 256 color
+    set -l text $argv[3..-1]
+
+    printf "%b%b%s%b" (set_fg $fg)(set_bg $bg) "$text" (set_reset)
+end
+
+set -g peco_anything_prompt "  peco completion "
+
+function create_dracula_prompt
+    set -l prompt (set_bold (string join "" $argv[1] " "))
+    set -l gray_blue 60
+    set -l dark_gray_blue 238
+    set -l pink_violet 141
+    set -l pink 212
+    set -l black 237
+    set -l peco_anything_prompt_bold (set_bold $peco_anything_prompt)
+    set -l separator " "
+
+    printf "%b%b%b%b%s%b" (create_color_string $dark_gray_blue $gray_blue $peco_anything_prompt_bold ) \
+        (create_color_string $gray_blue $pink_violet $separator ) \
+        (create_color_string $black $pink_violet $prompt) \
+        (set_fg $pink_violet) "$separator" (set_reset)
+end
 
 function peco_complete_cmd_anything
     set -l tokens (commandline --tokenize)
@@ -12,6 +53,7 @@ function peco_complete_cmd_anything
         switch "$token"
             case git
                 peco_git_dispatch $tokens[$i..$len]
+                # docker, etc.
             case '*'
                 return
         end
