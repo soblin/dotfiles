@@ -73,7 +73,7 @@ function peco_git_dispatch
     switch "$subcmd"
         case add
             peco_git_unstaged_file_dir
-        case branch merge
+        case branch merge rebase
             peco_git_branch
         case push
             # TODO: if argc == 2, complete remote, and if 3, complete branch/tag
