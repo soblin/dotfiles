@@ -1,4 +1,10 @@
-set -l peco_anything_prompt "  peco completion "
+set -g peco_anything_prompt " peco completion"
+
+set -l gray_blue 60
+set -l dark_gray_blue 238
+set -l pink_violet 141
+set -l pink 212
+set -l black 237
 
 function peco_complete_cmd_anything
     set -l tokens (commandline --tokenize)
@@ -20,45 +26,80 @@ end
 
 bind \cg peco_complete_cmd_anything
 
+function create_dracula_theme_prompt
+    set -l sub_prompt $argv
+    set -l gray_blue color60
+    set -l dark_gray_blue color238
+    set -l pink_violet color141
+    set -l pink color212
+    set -l black color237
+    set -l separator ""
+    printf " #[fg=%s, bg=%s, bold] %s #[fg=%s, bg=%s]%s#[fg=%s, bg=%s, bold] %s #[fg=%s, bg=default]%s " $black $pink_violet $peco_anything_prompt $pink_violet $pink $separator $gray_blue $pink $sub_prompt $pink $separator
+end
+
+function call_cmd_peco_tmux_popup
+    set -l list_cmds $argv[1]
+    set -l select_cmd $argv[2]
+    set -l popup_status $argv[3]
+
+    set -l tmp (mktemp)
+
+    set -l cmd (string join "\n" $list_cmds)
+    # if $select_cmd == "", | | is invalid
+    set -l filter_pipe ""
+    test -n "$select_cmd"; and set filter_pipe " | $select_cmd"
+
+    set -l popup_cmd "
+    begin
+        $cmd
+    end $filter_pipe |
+    peco --prompt '(i-search)`\'' > $tmp
+    "
+    tmux display-popup -E -T "$popup_status" -d (pwd) "$popup_cmd"
+    if test -s $tmp
+        printf (cat $tmp)
+    end
+end
+
 function peco_git_unstaged_file_dir
-    set -l prompt (string join "" "$peco_anything_prompt" " git unstaged files  >")
-    set -l target (
-    git status -uall --porcelain \
-        | awk '{print $NF}' \
-        | peco --prompt $prompt
-    )
+    set -l sub_prompt " git unstaged files "
+    set -l popup_status (create_dracula_theme_prompt $sub_prompt)
+    set -l list_cmds "git status -uall --porcelain"
+    set -l select_cmd "awk '{print \$NF}'"
+
+    set -l target (call_cmd_peco_tmux_popup $list_cmds $select_cmd $popup_status)
     test -z "$target"; and return
     commandline --insert -- "$target"
 end
 
 function peco_git_branch
-    set -l prompt (string join "" "$peco_anything_prompt" " git branches  >")
-    set -l target (
-    git branch --format='%(refname:short)' \
-        | peco --prompt $prompt
-    )
+    set -l sub_prompt " git branches "
+    set -l popup_status (create_dracula_theme_prompt $sub_prompt)
+    set -l list_cmds "git branch --format='%(refname:short)'"
+    set -l select_cmd ""
+
+    set -l target (call_cmd_peco_tmux_popup $list_cmds $select_cmd $popup_status)
     test -z "$target"; and return
     commandline --insert -- "$target"
 end
 
 function peco_git_branch_or_tag
-    set -l prompt (string join "" "$peco_anything_prompt" " git branches  / tags  >")
-    set -l ref (
-        begin
-            git branch --format='%(refname:short)'
-            git tag
-        end | sort -u | peco --prompt $prompt
-    )
+    set -l sub_prompt " git branches  / tags "
+    set -l popup_status (create_dracula_theme_prompt $sub_prompt)
+    set -l list_cmds "git branch --format='%(refname:short)'" "git tag"
+    set -l select_cmd "sort -u"
+
+    set -l remote (call_cmd_peco_tmux_popup $list_cmds $select_cmd $popup_status)
     test -z "$ref"; and return
     commandline --insert -- "$ref"
 end
 
 function peco_git_remote
     set -l prompt (string join "" "$peco_anything_prompt" " git remotes 󰖟 >")
-    set -l remote (
-    git remote show \
-        | peco --prompt $prompt
-    )
+    set -l list_cmds "git remote show"
+    set -l select_cmd ""
+
+    set -l remote (call_cmd_peco_tmux_popup $list_cmds $select_cmd $popup_status)
     test -z "$remote"; and return
     commandline --insert -- "$remote"
 end
