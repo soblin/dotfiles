@@ -95,7 +95,8 @@ function peco_git_branch_or_tag
 end
 
 function peco_git_remote
-    set -l prompt (string join "" "$peco_anything_prompt" " git remotes 󰖟 >")
+    set -l sub_prompt " git remotes 󰖟"
+    set -l popup_status (create_dracula_theme_prompt $sub_prompt)
     set -l list_cmds "git remote show"
     set -l select_cmd ""
 
