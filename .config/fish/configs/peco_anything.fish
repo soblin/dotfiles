@@ -38,15 +38,22 @@ function create_dracula_theme_prompt
 end
 
 function call_cmd_peco_tmux_popup
-    set -l cmd $argv[1]
-    set -l popup_status $argv[2]
+    set -l list_cmds $argv[1]
+    set -l select_cmd $argv[2]
+    set -l popup_status $argv[3]
 
     set -l tmp (mktemp)
-    tmux display-popup -E -T "$popup_status" -d (pwd) "
-    $cmd |
-    awk '{print \$NF}' |
+
+    set -l cmd (string join "\n" $list_cmds)
+    # $cmdの前のtabが重要かも.lintに注意
+    # end |の後に $select_cmd |を入れたいが，$select_cmd == ""の場合のハンドリングが必要
+    set -l popup_cmd "
+    begin
+        $cmd
+    end |
     peco --prompt '(i-search)`\'' > $tmp
     "
+    tmux display-popup -E -T "$popup_status" -d (pwd) "$popup_cmd"
     if test -s $tmp
         printf (cat $tmp)
     end
@@ -55,9 +62,10 @@ end
 function peco_git_unstaged_file_dir
     set -l sub_prompt " git unstaged files "
     set -l popup_status (create_dracula_theme_prompt $sub_prompt)
-    set -l cmd "git status -uall --porcelain"
+    set -l list_cmds "git status -uall --porcelain"
+    set -l select_cmd "awk '{print \$NF}'"
 
-    set -l target (call_cmd_peco_tmux_popup $cmd $popup_status)
+    set -l target (call_cmd_peco_tmux_popup $list_cmds $select_cmd $popup_status)
     test -z "$target"; and return
     commandline --insert -- "$target"
 end
@@ -65,9 +73,10 @@ end
 function peco_git_branch
     set -l sub_prompt " git branches "
     set -l popup_status (create_dracula_theme_prompt $sub_prompt)
-    set -l cmd "git branch --format='%(refname:short)'"
+    set -l list_cmds "git branch --format='%(refname:short)'"
+    set -l select_cmd "xargs echo" # ""だとおかしくなる
 
-    set -l target (call_cmd_peco_tmux_popup $cmd $popup_status)
+    set -l target (call_cmd_peco_tmux_popup $list_cmds $select_cmd $popup_status)
     test -z "$target"; and return
     commandline --insert -- "$target"
 end
