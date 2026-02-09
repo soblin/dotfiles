@@ -45,12 +45,14 @@ function call_cmd_peco_tmux_popup
     set -l tmp (mktemp)
 
     set -l cmd (string join "\n" $list_cmds)
-    # $cmdの前のtabが重要かも.lintに注意
-    # end |の後に $select_cmd |を入れたいが，$select_cmd == ""の場合のハンドリングが必要
+    # if $select_cmd == "", | | is invalid
+    set -l filter_pipe ""
+    test -n "$select_cmd"; and set filter_pipe " | $select_cmd"
+
     set -l popup_cmd "
     begin
         $cmd
-    end |
+    end $filter_pipe |
     peco --prompt '(i-search)`\'' > $tmp
     "
     tmux display-popup -E -T "$popup_status" -d (pwd) "$popup_cmd"
@@ -74,7 +76,7 @@ function peco_git_branch
     set -l sub_prompt " git branches "
     set -l popup_status (create_dracula_theme_prompt $sub_prompt)
     set -l list_cmds "git branch --format='%(refname:short)'"
-    set -l select_cmd "xargs echo" # ""だとおかしくなる
+    set -l select_cmd ""
 
     set -l target (call_cmd_peco_tmux_popup $list_cmds $select_cmd $popup_status)
     test -z "$target"; and return
@@ -84,23 +86,20 @@ end
 function peco_git_branch_or_tag
     set -l sub_prompt " git branches  / tags "
     set -l popup_status (create_dracula_theme_prompt $sub_prompt)
+    set -l list_cmds "git branch --format='%(refname:short)'" "git tag"
+    set -l select_cmd "sort -u"
 
-    set -l ref (
-        begin
-            git branch --format='%(refname:short)'
-            git tag
-        end | sort -u | peco --prompt $prompt
-    )
+    set -l remote (call_cmd_peco_tmux_popup $list_cmds $select_cmd $popup_status)
     test -z "$ref"; and return
     commandline --insert -- "$ref"
 end
 
 function peco_git_remote
     set -l prompt (string join "" "$peco_anything_prompt" " git remotes 󰖟 >")
-    set -l remote (
-    git remote show \
-        | peco --prompt $prompt
-    )
+    set -l list_cmds "git remote show"
+    set -l select_cmd ""
+
+    set -l remote (call_cmd_peco_tmux_popup $list_cmds $select_cmd $popup_status)
     test -z "$remote"; and return
     commandline --insert -- "$remote"
 end
