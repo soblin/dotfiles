@@ -1,7 +1,8 @@
 # tmux
 - name: setup tmux
   block:
-    - name: apt install tmux
+    - name: snap install tmux
+      # NOTE: apt version is old(3.2a)
       apt:
         name: tmux
         state: present
