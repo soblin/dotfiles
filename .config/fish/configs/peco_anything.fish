@@ -44,8 +44,8 @@ function call_cmd_peco_tmux_popup
     set -l tmp (mktemp)
     tmux display-popup -E -T "$popup_status" -d (pwd) "
     $cmd |
-    awk '{print $NF}' |
-    peco --prompt ' ' > $tmp
+    awk '{print \$NF}' |
+    peco --prompt '(i-search)`\'' > $tmp
     "
     if test -s $tmp
         printf (cat $tmp)
