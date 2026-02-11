@@ -90,8 +90,8 @@ function peco_git_branch_or_tag
     set -l select_cmd "sort -u"
 
     set -l remote (call_cmd_peco_tmux_popup $list_cmds $select_cmd $popup_status)
-    test -z "$ref"; and return
-    commandline --insert -- "$ref"
+    test -z "$remote"; and return
+    commandline --insert -- "$remote"
 end
 
 function peco_git_remote
