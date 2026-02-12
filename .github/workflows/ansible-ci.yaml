@@ -28,5 +28,5 @@ jobs:
 
       - name: run playbook
         run: |
-          git config -local .gitconfig --unset-all url.git@github.com:.insteadOf || true
+          git config -f .gitconfig --unset-all url.git@github.com:.insteadOf || true
           uv run ansible-playbook ansible/playbook.yaml -e is_ci=true -v
