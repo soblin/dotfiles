@@ -18,6 +18,8 @@ function peco_complete_cmd_anything
         switch "$token"
             case git
                 peco_git_dispatch $tokens[$i..$len]
+            case cd
+                peco_cd_dispatch
             case '*'
                 return
         end
@@ -39,8 +41,13 @@ end
 
 function call_cmd_peco_tmux_popup
     set -l list_cmds $argv[1]
-    set -l select_cmd $argv[2]
-    set -l popup_status $argv[3]
+    set -l len (count $argv)
+    if test $len -gt 3
+        set list_cmds $argv[1..(math $len - 2)]
+        return
+    end
+    set -l select_cmd $argv[-2]
+    set -l popup_status $argv[-1]
 
     set -l tmp (mktemp)
 
@@ -89,9 +96,9 @@ function peco_git_branch_or_tag
     set -l list_cmds "git branch --format='%(refname:short)'" "git tag"
     set -l select_cmd "sort -u"
 
-    set -l remote (call_cmd_peco_tmux_popup $list_cmds $select_cmd $popup_status)
-    test -z "$remote"; and return
-    commandline --insert -- "$remote"
+    set -l target (call_cmd_peco_tmux_popup $list_cmds $select_cmd $popup_status)
+    test -z "$target"; and return
+    commandline --insert -- "$target"
 end
 
 function peco_git_remote
@@ -100,9 +107,9 @@ function peco_git_remote
     set -l list_cmds "git remote show"
     set -l select_cmd ""
 
-    set -l remote (call_cmd_peco_tmux_popup $list_cmds $select_cmd $popup_status)
-    test -z "$remote"; and return
-    commandline --insert -- "$remote"
+    set -l target (call_cmd_peco_tmux_popup $list_cmds $select_cmd $popup_status)
+    test -z "$target"; and return
+    commandline --insert -- "$target"
 end
 
 function peco_git_dispatch
@@ -127,4 +134,15 @@ function peco_git_dispatch
         case '*'
             return
     end
+end
+
+function peco_cd_dispatch
+    set -l sub_prompt " ls/bd/z candidates "
+    set -l popup_status (create_dracula_theme_prompt $sub_prompt)
+    set -l list_cmds "complete -C 'cd '" "complete -C 'bd '" "complete -C 'z '"
+    set -l select_cmd ""
+
+    set -l target (call_cmd_peco_tmux_popup $list_cmds $select_cmd $popup_status)
+    test -z "$target"; and return
+    commandline --insert -- "$target"
 end
