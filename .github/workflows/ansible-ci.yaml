@@ -28,4 +28,5 @@ jobs:
 
       - name: run playbook
         run: |
-          uv run ansible-playbook ansible/playbook.yaml -e "is_baremetal=false is_ci=true" -v
+          git config -f .gitconfig --unset-all url.git@github.com:.insteadOf || true
+          uv run ansible-playbook ansible/playbook.yaml -e is_ci=true -v
