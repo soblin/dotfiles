@@ -53,22 +53,40 @@ function call_cmd_peco_tmux_popup
     set -l filter_pipe ""
     test -n "$select_cmd"; and set filter_pipe " | $select_cmd"
 
+    # argc == 1
     set -l popup_cmd "
     begin
         $argv[1]
     end $filter_pipe |
     peco --prompt '(i-search)`\'' > $tmp
     "
-    if test $cmd_len -gt 1
+
+    # argc == 2
+    if test $cmd_len -eq 2
         set -l cmds (string join "\n    " $list_cmds)
         set popup_cmd "
         begin
+            # NOTE: $cmds does not work. Why?
             $list_cmds[1]
             $list_cmds[2]
         end $filter_pipe |
         peco --prompt '(i-search)`\'' > $tmp
         "
     end
+
+    # argc == 3
+    if test $cmd_len -eq 3
+        set popup_cmd "
+        begin
+            # NOTE: $cmds does not work
+            $list_cmds[1]
+            $list_cmds[2]
+            $list_cmds[3]
+        end $filter_pipe |
+        peco --prompt '(i-search)`\'' > $tmp
+        "
+    end
+
     tmux display-popup -E -T "$popup_status" -d (pwd) "$popup_cmd"
     if test -s $tmp
         printf (cat $tmp)
@@ -144,10 +162,10 @@ function peco_git_dispatch
 end
 
 function peco_cd_dispatch
-    set -l sub_prompt " ls/bd/z candidates "
+    set -l sub_prompt " ls/bd/z candidates 󰔰"
     set -l popup_status (create_dracula_theme_prompt $sub_prompt)
     set -l list_cmds "complete -C 'cd '" "complete -C 'bd '" "complete -C 'z '"
-    set -l select_cmd ""
+    set -l select_cmd "xargs realpath"
 
     set -l target (call_cmd_peco_tmux_popup $list_cmds $select_cmd $popup_status)
     test -z "$target"; and return
