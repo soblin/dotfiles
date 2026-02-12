@@ -24,10 +24,7 @@ jobs:
       - name: install packages
         run: uv sync
 
-      - name: unset gitconfig url
-        run: |
-          git config --global --unset-all url.git@github.com:.insteadOf || true
-
       - name: run playbook
-        run: |
+        run: >-
+          git config --global --unset-all url.git@github.com:.insteadOf
           uv run ansible-playbook ansible/playbook.yaml -e is_ci=true -v
