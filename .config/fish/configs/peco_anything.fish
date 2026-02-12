@@ -115,6 +115,17 @@ function peco_git_branch
     commandline --insert -- "$target"
 end
 
+function peco_git_branch
+    set -l sub_prompt " git tag "
+    set -l popup_status (create_dracula_theme_prompt $sub_prompt)
+    set -l list_cmds "git tag"
+    set -l select_cmd ""
+
+    set -l target (call_cmd_peco_tmux_popup $list_cmds $select_cmd $popup_status)
+    test -z "$target"; and return
+    commandline --insert -- "$target"
+end
+
 function peco_git_branch_or_tag
     set -l sub_prompt " git branches  / tags "
     set -l popup_status (create_dracula_theme_prompt $sub_prompt)
@@ -149,6 +160,8 @@ function peco_git_dispatch
             peco_git_unstaged_file_dir
         case branch merge rebase
             peco_git_branch
+        case tag
+            peco_git_tag
         case push
             # TODO: if argc == 2, complete remote, and if 3, complete branch/tag
             peco_git_branch_or_tag
