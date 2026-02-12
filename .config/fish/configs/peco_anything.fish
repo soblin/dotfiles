@@ -44,7 +44,6 @@ function call_cmd_peco_tmux_popup
     set -l len (count $argv)
     if test $len -gt 3
         set list_cmds $argv[1..(math $len - 2)]
-        return
     end
     set -l select_cmd $argv[-2]
     set -l popup_status $argv[-1]
@@ -58,7 +57,8 @@ function call_cmd_peco_tmux_popup
 
     set -l popup_cmd "
     begin
-        $cmd
+        git branch --format='%(refname:short)'
+        git tag
     end $filter_pipe |
     peco --prompt '(i-search)`\'' > $tmp
     "
