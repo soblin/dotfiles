@@ -8,14 +8,14 @@
 # $1: option
 # $2: default value
 tmux_get() {
-    local value="$(tmux show -gqv "$1")"
-    [ -n "$value" ] && echo "$value" || echo "$2"
+	local value="$(tmux show -gqv "$1")"
+	[ -n "$value" ] && echo "$value" || echo "$2"
 }
 
 # $1: option
 # $2: value
 tmux_set() {
-    tmux set-option -gq "$1" "$2"
+	tmux set-option -gq "$1" "$2"
 }
 
 # Options
@@ -29,22 +29,24 @@ prefix_highlight_pos=$(tmux_get @tmux_power_prefix_highlight_pos)
 theme="dracula" # gold | dracula
 
 case "$theme" in
-    "dracula")
-        TC=colour141
-        BG=colour235
-        EM=colour212
+"dracula")
+	TC=colour141
+	BG=colour235
+	EM=colour212
 
-        GR1=colour236
-        GR2=colour237
-        GR3=colour239
-        GR4=colour240
-        ;;
+	GR1=colour236
+	GR2=colour237
+	GR3=colour239
+	GR4=colour240
+	;;
 
-    *)
-        echo "Unknown theme: $theme" >&2
-        exit 1
-        ;;
+*)
+	echo "Unknown theme: $theme" >&2
+	exit 1
+	;;
 esac
+
+GPU_COLOR=colour76
 
 # Status options
 tmux_set status-interval 1
@@ -70,7 +72,7 @@ user=$(whoami)
 LS="#[fg=$BG,bg=$EM,bold] $user@#h #[fg=$EM,bg=$GR2,nobold]#[fg=$TC,bg=$GR2] #S "
 LS="$LS#[fg=$GR2,bg=$BG]"
 if [[ $prefix_highlight_pos == 'L' || $prefix_highlight_pos == 'LR' ]]; then
-    LS="$LS#{prefix_highlight}"
+	LS="$LS#{prefix_highlight}"
 fi
 tmux_set status-left "$LS"
 
@@ -78,9 +80,10 @@ tmux_set status-left "$LS"
 tmux_set status-right-bg $BG
 tmux_set status-right-length 150
 RS="#[fg=$EM,bg=$GR2] $time_icon  %T #[fg=$EM,bg=$GR2]#[fg=$BG,bg=$EM] $date_icon  %F "
-RS="#[fg=$EM,bg=$GR1]#[fg=$GR1,bg=$EM] |  |  | 󰊚 | #(tmux-mem-cpu-load -g 5 -a 1 --interval 1) #[fg=$GR2,bg=$EM]$RS"
+RS="#[fg=$TC,bg=$GPU_COLOR]#[fg=$GR1,bg=$TC]   PC |  |  | 󰊚 | #(tmux-mem-cpu-load -g 5 -a 1 --interval 1) #[fg=$GR2,bg=$TC]$RS"
+RS="#[fg=$GPU_COLOR]#[fg=$BG,bg=$GPU_COLOR] #(gpu_monitor.sh -r 0.1) $RS"
 if [[ $prefix_highlight_pos == 'R' || $prefix_highlight_pos == 'LR' ]]; then
-    RS="#{prefix_highlight}$RS"
+	RS="#{prefix_highlight}$RS"
 fi
 tmux_set status-right "$RS"
 
