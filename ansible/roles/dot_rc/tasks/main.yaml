@@ -9,3 +9,4 @@
     - .gitignore
     - .gitconfig
     - .config/alacritty
+    - .config/peco
