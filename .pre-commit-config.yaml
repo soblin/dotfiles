@@ -25,3 +25,11 @@ repos:
     hooks:
       - id: fish_syntax
       - id: fish_indent
+
+  - repo: https://github.com/scop/pre-commit-shfmt
+    rev: v3.12.0-2
+    hooks:
+      # Choose one of:
+      - id: shfmt         # prebuilt upstream executable
+      - id: shfmt-src     # build from source (requires/installs Go to build)
+      - id: shfmt-docker  # Docker image (requires Docker to run)
