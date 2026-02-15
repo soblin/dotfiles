@@ -1,0 +1,7 @@
+{
+    "C-g,C-c": "peco.Cancel",
+    "Use256Color": true,
+    "Style": {
+        "Query": ["237", "141"]
+    }
+}
