@@ -1,9 +1,10 @@
 # tmux
 - name: setup tmux
   block:
-    - name: apt install tmux
-      apt:
+    - name: snap install tmux
+      community.general.snap:
         name: tmux
+        classic: true
         state: present
 
     - name: check .tmux.conf exists
