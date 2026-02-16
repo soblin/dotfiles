@@ -76,6 +76,7 @@
 - name: check nvidia-smi
   shell: command -v nvidia-smi >/dev/null 2>&1
   register: nvidia_smi_exists
+  failed_when: false
 
 - name: setup nvidia-container
   when: nvidia_smi_exists.rc == 0
