@@ -98,6 +98,7 @@
             chdir: /tmp/tmux-mem-cpu-load/build
 
     - name: install gpu_monitor.sh
+      become: false
       copy:
         src: "{{ (playbook_dir + '/../.config/tmux/scripts/gpu_monitor.sh') | realpath }}"
         dest: "{{ lookup('env', 'HOME') }}/.local/bin/gpu_monitor.sh"

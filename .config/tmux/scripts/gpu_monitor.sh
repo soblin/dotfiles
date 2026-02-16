@@ -1,6 +1,6 @@
 #!/bin/bash
 
-gpu=$(lspci -v | grep VGA | head -n 1 | awk '{print $5}')
+nvidia_gpu=$(lspci -v | grep VGA | grep NVIDIA | head -n 1 | awk '{print $5}')
 
 monitor_nvidia() {
 	power=$(nvidia-smi --query-gpu=power.draw,power.limit --format=csv,noheader,nounits | awk -F ', *' '{ printf("%.2f%%", $0 / $2 * 100) }')
@@ -10,7 +10,7 @@ monitor_nvidia() {
 }
 
 monitor() {
-	if [[ "$gpu" == "NVIDIA" ]]; then
+	if [[ "$nvidia_gpu" == "NVIDIA" ]]; then
 		monitor_nvidia "NVIDIA"
 	else
 		echo "No GPU"
