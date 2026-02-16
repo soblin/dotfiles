@@ -23,8 +23,3 @@
         src: /tmp/ghq_linux_amd64/misc/bash/_ghq
         dest: "{{ lookup('env','HOME') }}/.local/share/bash-completion/completions/ghq"
         mode: "0644"
-
-    - name: install fish completion
-      ansible.builtin.shell: fisher install decors/fish-ghq
-      args:
-        executable: fish
