@@ -1,0 +1,19 @@
+# act
+- name: setup act command
+  become: false
+  block:
+    - name: download act
+      ansible.builtin.get_url:
+        url: https://github.com/nektos/act/releases/download/v0.2.84/act_Linux_x86_64.tar.gz
+        dest: /tmp/act.tar.gz
+
+    - name: unarchive act
+      ansible.builtin.unarchive:
+        src: /tmp/act.tar.gz
+        dest: /tmp
+
+    - name: install act
+      copy:
+        src: /tmp/act
+        dest: "{{ lookup('env','HOME') }}/.local/bin/act"
+        mode: "0755"
