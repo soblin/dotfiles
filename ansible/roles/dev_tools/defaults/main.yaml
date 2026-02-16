@@ -4,3 +4,5 @@ is_baremetal: true
 
 # 1. if false, clone https instead of ssh for testing
 is_ci: false
+
+NVIDIA_CONTAINER_TOOLKIT_VERSION: 1.18.2-1
