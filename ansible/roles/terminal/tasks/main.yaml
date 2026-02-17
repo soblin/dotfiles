@@ -1,0 +1,2 @@
+- import_tasks: commands/tmux.yaml
+- import_tasks: commands/alacritty.yaml
