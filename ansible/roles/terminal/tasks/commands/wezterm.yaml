@@ -4,4 +4,4 @@
     - name: dpkg install wezterm
       apt:
         deb: https://github.com/wezterm/wezterm/releases/download/20240203-110809-5046fc22/wezterm-20240203-110809-5046fc22.Ubuntu22.04.deb
-        present: true
+        state: present
