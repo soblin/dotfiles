@@ -7,6 +7,7 @@
     - xdg_base_directory
     - dot_rc
     - system_tools
+    - terminal
     - dev_tools
     - fonts
     - gui_tools
