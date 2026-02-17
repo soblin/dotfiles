@@ -3,10 +3,12 @@
 nvidia_gpu=$(lspci -v | grep VGA | grep NVIDIA | head -n 1 | awk '{print $5}')
 
 monitor_nvidia() {
+	# // cSpell:disable
 	power=$(nvidia-smi --query-gpu=power.draw,power.limit --format=csv,noheader,nounits | awk -F ', *' '{ printf("%.2f%%", $0 / $2 * 100) }')
 	vram=$(nvidia-smi --query-gpu=memory.used,memory.total --format=csv,noheader,nounits | awk -F ', *' '{ printf("%.2f%%", $0 / $2 * 100) }')
 	usage=$(nvidia-smi --query-gpu=utilization.gpu --format=csv,noheader,nounits | awk -F ', *' '{ printf("%.2f%%", $1) }')
 	echo "󰢮 $1 | ⏻  ${power} |   ${vram} | 󰊚  ${usage}"
+	# // cSpell: enable
 }
 
 monitor() {

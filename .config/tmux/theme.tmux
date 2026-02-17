@@ -1,4 +1,5 @@
 #!/usr/bin/env bash
+# // cSpell:disable
 #===============================================================================
 #   Author: Wenxuan
 #    Email: wenxuangm@gmail.com
@@ -7,6 +8,8 @@
 # https://github.com/wfxr/tmux-power
 # $1: option
 # $2: default value
+# // cSpell:enable
+
 tmux_get() {
 	local value="$(tmux show -gqv "$1")"
 	[ -n "$value" ] && echo "$value" || echo "$2"
@@ -98,7 +101,7 @@ tmux_set window-status-separator ""
 tmux_set status-justify left
 
 # Current window status
-tmux_set window-status-current-statys fg=$TC bg=$BG
+tmux_set window-status-current-status fg=$TC bg=$BG
 
 # Pane border
 tmux_set pane-border-style fg=$GR3 bg=default

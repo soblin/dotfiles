@@ -16,7 +16,7 @@ function e
     end
 end
 
-function egui
+function egui # // cspell:disable-line
     set nump $(ps aux | grep "emacs" | grep "daemon" | wc -l)
     if test $nump -lt 1
         emacs --daemon

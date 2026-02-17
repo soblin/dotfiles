@@ -18,7 +18,7 @@ function e() {
     fi
 }
 
-function egui() {
+function egui() { # // cspell:disable-line
     nump=`ps aux | grep "emacs --daemon" | wc -l`
     if [ $nump -lt 2 ]; then
         emacs --daemon
@@ -56,5 +56,5 @@ function git-time() {
 }
 
 function video-change-rate() {
-    ffmpeg -i $1 -vf setpts=PTS/$3 -af atempo=$3 $2
+    ffmpeg -i $1 -vf setpts=PTS/$3 -af atempo=$3 $2 # // cspell:disable-line
 }
