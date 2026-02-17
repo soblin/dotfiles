@@ -7,7 +7,7 @@
 
 [merge]
     ff = false
-    conflicStyle = zdiff3
+    conflictStyle = diff3
 
 [pull]
     ff = only

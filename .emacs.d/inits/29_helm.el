@@ -25,17 +25,6 @@
 (setq helm-autoresize-max-height 0)
 (setq helm-autoresize-min-height 20)
 
-(when (require 'helm-c-moccur nil t)
-  (setq
-   helm-idle-delay 0.1
-   helm-c-moccur-helm-idle-delay 0.1
-   helm-c-moccur-higligt-info-line-flag t
-   helm-c-moccur-enable-auto-look-flag t
-   helm-c-moccur-enable-initial-pattern t
-   )
-  (global-set-key (kbd "C-M-o") 'helm-c-moccur-occur-by-moccur)
-  )
-
 (helm-autoresize-mode 1)
 
 (defadvice helm-ff-kill-or-find-buffer-fname (around execute-only-if-exist activate)

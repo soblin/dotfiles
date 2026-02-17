@@ -71,7 +71,7 @@
 (setq read-file-name-completion-ignore-case t)
 
 ;; shebangで始まるファイルを、実行可能にして保存する
-(add-hook 'after-save-hool
+(add-hook 'after-save-hook
           'executable-make-buffer-file-executable-if-script-p)
 
 (add-to-list 'exec-path "/usr/bin")
@@ -118,9 +118,9 @@
 
 (helm-mode 1)
 
-;;; https://github.com/ch11ng/exwm/issues/760
+;;; https://github.com/ch11ng/exwm/issues/760 // cspell:disable-line
 ;;; "Wrong type argument: frame-live-p, #dead frame"で落ちるのを防ぐ
-;; Add advice to stop hangs on EXWM
+;; Add advice to stop hangs on EXWM // cspell:disable-line
 ;; The problem happens with floating windows that disappear - like open file dialog or a Zoom dialog when starting a meeting
 ;; The solution is to assure all frames in winner-modified-list pass the frame-live-p test
 (defun gjg/winner-clean-up-modified-list ()
