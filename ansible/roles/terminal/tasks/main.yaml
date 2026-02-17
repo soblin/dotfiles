@@ -1,2 +1,3 @@
 - import_tasks: commands/tmux.yaml
 - import_tasks: commands/alacritty.yaml
+- import_tasks: commands/wezterm.yaml
