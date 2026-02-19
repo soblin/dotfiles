@@ -33,7 +33,7 @@ uv run pre-commit install
 
 ## 日本語入力
 
-![mozc](./docs/mozc.md)
+[mozc](./docs/mozc/README.md)
 
 ### Ctrl-Spaceで日英の切り替え
 
@@ -165,43 +165,9 @@ elpaのパッケージは別のレポジトリで管理する．
 
 ### LSP
 
-#### clang
+#### C++
 
-clang/clang++/clang-tidy/clangdなどは全てllvmのバージョンが同じになっていないと不整合が生じる．
-
-```shell
-sudo bash -c "$(wget -O - https://apt.llvm.org/llvm.sh)"
-```
-
-```shell
-sudo apt-get install clang-18 clang++-18 clang-tidy-18 clangd-18 clang-format-18 libomp-18-dev
-```
-
-一つづつupdate-alternativeを適用する．
-
-```shell
-sudo update-alternatives --install /usr/bin/clang clang /usr/bin/clang-18 18
-sudo update-alternatives --install /usr/bin/clang++ clang++ /usr/bin/clang++-18 18
-sudo update-alternatives --install /usr/bin/clang-tidy clang-tidy /usr/bin/clang-tidy-18 18
-sudo update-alternatives --install /usr/bin/clangd clangd /usr/bin/clangd-18 18
-sudo update-alternatives --install /usr/bin/clang-format clang-format /usr/bin/clang-format-18 18
-```
-
-またコンパイルするために，Ubuntu22では
-
-```shell
-sudo apt-get install libstdc++-12-dev
-```
-
-が必要(https://stackoverflow.com/questions/74543715/usr-bin-ld-cannot-find-lstdc-no-such-file-or-directory-on-running-flutte)．
-
-コンパイラとしてclangを使わないとしてもLSPで`clangd`を利用するにはclangの設定が必要になる．そのため
-
-```shell
-sudo apt-get install libstdc++-12-dev libomp-18-dev
-```
-
-がないと標準ライブラリーや`omp.h`が見つからずLSPとして機能してくれない．
+[cpp](./docs/cpp/README.md)
 
 #### python
 
