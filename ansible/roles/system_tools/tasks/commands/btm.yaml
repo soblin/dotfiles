@@ -1,0 +1,4 @@
+- name: setup btm command
+  apt:
+    deb: https://github.com/ClementTsang/bottom/releases/download/0.12.3/bottom-musl_0.12.3-1_amd64.deb
+    state: present
