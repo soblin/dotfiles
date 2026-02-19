@@ -125,6 +125,7 @@
 
         "peco",
 
-        "wezterm"
+        "wezterm",
+        "titlebar"
     ]
 }

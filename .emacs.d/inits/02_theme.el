@@ -43,6 +43,18 @@
 
 (tab-bar-mode 1)
 
+;; -nwオプションで動作していたら背景をterminalに合わせる
+(defun on-after-init ()
+  (unless (display-graphic-p (selected-frame))
+    (set-face-background 'default "unspecified-bg" (selected-frame))))
+(add-hook 'window-setup-hook #'on-after-init)
+
+(defun on-frame-open (&optional frame)
+  "If the FRAME created in terminal don't load background color."
+  (unless (display-graphic-p frame)
+    (set-face-background 'default "unspecified-bg" frame)))
+(add-hook 'after-make-frame-functions #'on-frame-open)
+
 ;;; End:
 
 ;;; 02_doom ends here
