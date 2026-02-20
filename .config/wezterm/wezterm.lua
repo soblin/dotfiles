@@ -5,7 +5,7 @@ config.automatically_reload_config = true
 config.scrollback_lines = 10000
 
 config.window_background_opacity = 0.85
--- config.kde_window_background_blur = true
+-- config.kde_window_background_blur = true // デフォルトのubuntuでは使えない
 
 -- theme
 config.color_scheme = 'Dracula (Official)'
@@ -28,8 +28,6 @@ config.font = wezterm.font {
 config.font_size = 12
 
 -- title bar
-config.window_decorations = "RESIZE"
--- config.hide_tab_bar_if_only_one_tab = true
 config.window_frame = {
    inactive_titlebar_bg = "none",
    active_titlebar_bg = "none",
