@@ -4,6 +4,7 @@
       - ninja-build
       - fzf
       - jq
+      - ripgrep
     state: present
 
 - import_tasks: commands/ccache.yaml
