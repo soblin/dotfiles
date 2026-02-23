@@ -11,3 +11,4 @@
     - .config/alacritty
     - .config/peco
     - .config/wezterm
+    - .Xmodmap
