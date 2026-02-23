@@ -1,0 +1,3 @@
+remove Control = Control_R
+keycode 105 = Alt_R
+add Mod1 = Alt_R
