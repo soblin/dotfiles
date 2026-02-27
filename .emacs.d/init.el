@@ -1,76 +1,30 @@
-;;; package --- Summary
+;;; init.el --- <Summary> -*- lexical-binding: t; -*-
+
 ;;; Commentary:
-;; Added by Package.el.  This must come before configurations of
-;; installed packages.  Don't delete this line.  If you don't want it,
-;; just comment it out by adding a semicolon to the start of the line.
-;; You may delete these explanatory comments.
+
 ;;; Code:
-(package-initialize)
 
-;; init-loader settings
+;;; straight.el
+(straight-use-package 'use-package)
+(setq straight-use-package-by-default t)
 
-(require 'package)
-;; add MELPA
-(add-to-list 'package-archives '("melpa" . "https://melpa.org/packages/") t)
 
-(require 'init-loader)
+;;; setting for path
+;;; - https://github.com/bbatsov/prelude/blob/62f7af5e5ba56583bf4950845a71df996b3269d2/init.el#L92-L95
+;;; - https://github.com/purcell/emacs.d/blob/c0a2ac6755f6e9a7fd00a3f18e9e63ca75c62485/init.el#L18
+(add-to-list 'load-path (expand-file-name "lisp" user-emacs-directory))
+(add-to-list 'load-path (expand-file-name "site-lisp" user-emacs-directory))
 
-;; not display log of init-loader
-(setq init-loader-show-log-after-init nil)
 
-(init-loader-load "~/.emacs.d/inits")
+(require '00_gc)
+(require '00_etc)
+(require '01_global_keybindings)
+(require '01_which_key)
+(require '02_look_feel)
+(require '02_theme)
+(require '03_tab_setting)
+(require '04_vertico)
+(require '05_magit)
 
-;; System settings
-
-(custom-set-variables
- ;; custom-set-variables was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- '(blink-cursor-mode nil)
- '(column-number-mode t)
- '(cua-mode t nil (cua-base))
- '(global-display-line-numbers-mode t)
- '(highlight-indent-guides-method 'column)
- '(package-selected-packages
-   '(all-the-icons bind-key blacken ccls clang-format clang-format+
-                   cmake-mode company company-quickhelp consult-gh
-                   dap-mode dockerfile-mode doom-modeline doom-themes
-                   dracula-theme dumb-jump ein exec-path-from-shell
-                   fish-mode flycheck flycheck-clang-tidy forge
-                   go-mode helm helm-migemo highlight-indent-guides
-                   html5-schema init-loader jedi js2-mode
-                   js2-modeyasnippet json-mode ligature lsp-pyright
-                   lsp-ui magit markdown-mode markdown-mode+
-                   markdown-preview-mode matlab-mode neotree nyan-mode
-                   package-utils py-autopep8 py-isort python-isort
-                   pyvenv restart-emacs smart-jump smartrep
-                   smooth-scroll sphinx-mode sudo-edit tabbar
-                   toml-mode typescript-mode undo-tree use-package
-                   visual-regexp web-mode yaml-mode yasnippet yatex
-                   zoom-frm))
- '(safe-local-variable-values '((cmake-tab-width . 4)))
- '(tab-bar-mode t)
- '(tabbar-separator '(0.5))
- '(visible-bell nil)
- '(warning-suppress-types '((comp))))
-(custom-set-faces
- ;; custom-set-faces was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- '(YaTeX-font-lock-crossref-face ((t (:foreground "dark orange"))))
- '(YaTeX-font-lock-declaration-face ((t (:foreground "hot pink"))))
- '(YaTeX-font-lock-delimiter-face ((t (:background "dark magenta" :foreground "lightyellow3" :weight bold))))
- '(YaTeX-font-lock-formula-face ((t (:foreground "deep sky blue" :weight bold))))
- '(YaTeX-font-lock-label-face ((t (:foreground "gold"))))
- '(YaTeX-font-lock-math-sub-face ((t (:foreground "white" :underline t :weight bold))))
- '(YaTeX-font-lock-math-sup-face ((t (:foreground "ivory" :underline t :weight normal))))
- '(YaTeX-sectioning-1 ((t (:foreground "#f9f900" :underline t :slant italic))))
- '(YaTeX-sectioning-2 ((t (:foreground "#f3f300" :underline t :slant italic))))
- '(YaTeX-sectioning-3 ((t (:foreground "#ecec00" :underline t :slant italic))))
- '(YaTeX-sectioning-4 ((t (:foreground "#e6e600" :underline t :slant italic))))
- '(tab-bar-tab-group-current ((t (:inherit tab-bar-tab :box nil :weight bold :height 1.1))))
- '(tab-bar-tab-group-inactive ((t (:inherit (shadow tab-bar-tab-inactive) :height 1.1))))
- '(tab-bar-tab-ungrouped ((t (:inherit (shadow tab-bar-tab-inactive) :height 1.1)))))
-;;; .emacs ends here
+(provide 'init)
+;;; init.el ends here

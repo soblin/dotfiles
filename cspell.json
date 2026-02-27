@@ -3,8 +3,7 @@
     "ignorePaths": [
         ".git",
         ".gitignore",
-        ".config/fish/fish_plugins",
-        ".config/dircolors/dir_colours_dracula"
+        ".emacs.d/site-lisp"
     ],
     "words": [
         "baremetal",
@@ -66,6 +65,7 @@
         "difftastic",
         "difftool",
 
+        "elisp",
         "emacsclient",
         "setq",
         "alist",
@@ -85,6 +85,16 @@
         "PLISTS",
         "backtab",
         "fontset",
+        "defvar",
+        "fixnum",
+        "boundp",
+        "assq",
+        "nomessage",
+        "mapc",
+        "mapcar",
+        "defface",
+        "propertize",
+        "keymap",
 
         "pagetitle",
         "notebooklist",
@@ -127,6 +137,13 @@
         "yasnippet",
         "crossref",
         "lightyellow",
+        "gcmh",
+        "elec",
+        "vertico",
+        "autorevert",
+        "keybind",
+        "nondirectory",
+        "dired",
 
         "direnv",
 
