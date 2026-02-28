@@ -1,14 +1,7 @@
 ;;; early-init.el --- Emacs27+ pre-instantiation config -*- lexical-binding: t; -*-
 
 ;;; Commentary:
-;;; References:
-;;;
-;;; ## overall
-;;; 1. https://zenn.dev/hironori_ueno/articles/bff12deec6cec9
-;;;
-;;; ## straight.el:
-;;; 1. https://github.com/radian-software/straight.el/blob/644ba036611d5952ec49f1a8abfb6851c19ac86a/README.md?plain=1#L194-L220
-;;;
+;;; - https://zenn.dev/hironori_ueno/articles/bff12deec6cec9
 
 ;;; Code:
 
@@ -34,6 +27,7 @@
 
 
 ;;; straight.el
+;;; - https://github.com/radian-software/straight.el/blob/644ba036611d5952ec49f1a8abfb6851c19ac86a/README.md?plain=1#L194-L220
 ;;; disable auto package loading for straight.el
 (setq package-enable-at-startup nil)
 

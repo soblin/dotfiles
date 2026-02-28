@@ -21,9 +21,9 @@
 ;;; gcmh-mode
 ;;; - https://www.grugrut.net/posts/202101032247/
 ;;; - https://github.com/purcell/emacs.d/blob/c0a2ac6755f6e9a7fd00a3f18e9e63ca75c62485/init.el#L42-L49
+
 ;;; gcmh create garbage ?
 ;;; - https://qiita.com/nobuyuki86/items/122e85b470b361ded0b4#%E3%82%AC%E3%83%99%E3%83%BC%E3%82%B8%E3%82%B3%E3%83%AC%E3%82%AF%E3%82%B7%E3%83%A7%E3%83%B3
-
 ;;(use-package gcmh
 ;;  :ensure t
 ;;  :custom

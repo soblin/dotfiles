@@ -15,8 +15,8 @@
   (global-auto-revert-mode +1))
 
 
-;; do not as yes/not for git-controlled symlink ?
-;; https://stackoverflow.com/questions/15390178/emacs-and-symbolic-links
+;;; do not as yes/not for git-controlled symlink ?
+;;; - https://stackoverflow.com/questions/15390178/emacs-and-symbolic-links
 (setq vc-follow-symlinks t)
 
 
@@ -30,10 +30,10 @@
 
 
 ;;; disable native-comp warnings
+;;; - https://www.grugrut.net/posts/202104262248/
+;;; - https://www.reddit.com/r/emacs/comments/l42oep/suppress_nativecomp_warnings_buffer/
 (setq native-comp-async-report-warnings-errors 'silent)
-;;; https://www.grugrut.net/posts/202104262248/
 (custom-set-variables '(warning-suppress-types '((comp))))
-;;; https://www.reddit.com/r/emacs/comments/l42oep/suppress_nativecomp_warnings_buffer/
 (setq warning-minimum-level :error)
 
 

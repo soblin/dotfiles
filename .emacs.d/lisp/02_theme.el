@@ -7,7 +7,7 @@
 ;;; theme
 
 ;;; NOTE: below doom-themes setting does not work in docker with `.emacs.d/` mounted and initialized on host, because if `.emacs.d/straight/build` is initialized, `.emacs.d/straight/build/doom-theme` is added to `custom-theme-load-path`, but the files are symlink on host, which are dead link in docker
-;;; relevant: https://github.com/doomemacs/doomemacs/issues/6213
+;;; - https://github.com/doomemacs/doomemacs/issues/6213
 (use-package doom-themes
   :ensure t
   :config

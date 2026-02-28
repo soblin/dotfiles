@@ -3,6 +3,8 @@
     "ignorePaths": [
         ".git",
         ".gitignore",
+        ".config/fish/fish_plugins",
+        ".config/dircolors/dir_colours_dracula",
         ".emacs.d/site-lisp"
     ],
     "words": [

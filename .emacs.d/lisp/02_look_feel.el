@@ -5,7 +5,7 @@
 ;;; Code:
 
 ;;; show menu-bar/tool-bar/scroll-bar
-;;; https://stackoverflow.com/questions/37490362/emacs-no-menubar-and-toolbar
+;;; - https://stackoverflow.com/questions/37490362/emacs-no-menubar-and-toolbar
 (defun restore-menu-bar()
   (interactive)
   (if (fboundp 'scroll-bar-mode) (scroll-bar-mode 1))

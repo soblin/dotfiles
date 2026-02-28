@@ -44,7 +44,7 @@
 
 
 ;;; tab-bar movement
-;;; https://tam5917.hatenablog.com/entry/2024/01/10/151334
+;;; - https://tam5917.hatenablog.com/entry/2024/01/10/151334
 (defvar tab-bar-top-tab "1")
 (defvar tab-bar-bottom-tab "9")
 (defun tab-bar-set-keybind ()
@@ -70,7 +70,7 @@
   (tab-bar-tab-name-format-function #'my/tab-bar-tab-name-format)
 
   :init
-  ;; https://www.reddit.com/r/emacs/comments/t4j5lu/tabbarmode_how_to_change_tab_bar_appearence/
+  ;;; - https://www.reddit.com/r/emacs/comments/t4j5lu/tabbarmode_how_to_change_tab_bar_appearence/
   (set-face-attribute 'tab-bar nil
                       :height 1.1
                       :weight 'regular
