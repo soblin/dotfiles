@@ -51,10 +51,14 @@
 ;;; - https://qiita.com/nobuyuki86/items/e392b642189d755dd113
 (use-package highlight-indent-guides
   :ensure t
-  :hook (prog-mode . highlight-indent-guides-mode)
+  :hook
+  (prog-mode . highlight-indent-guides-mode)
+  (docker-compose-mode . highlight-indent-guides-mode)
   :custom
   (highlight-indent-guides-responsive 'top)
   (highlight-indent-guides-method 'column)
+  (highlight-indent-guides-auto-add-odd-face-perc 10)
+  (highlight-indent-guides-auto-add-odd-even-perc 10)
   :config
   (set-face-background 'highlight-indent-guides-odd-face "dimgray")
   (set-face-background 'highlight-indent-guides-even-face "dimgray")

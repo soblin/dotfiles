@@ -28,6 +28,7 @@
 
 (add-to-list 'load-path (expand-file-name "modules" user-emacs-directory))
 (require '99_yaml)
+(require '99_docker)
 
 (provide 'init)
 ;;; init.el ends here
