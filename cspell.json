@@ -39,6 +39,7 @@
         "DCMAKE",
         "fprofile",
         "ftest",
+        "ccls",
 
         "pyproject",
         "pyvenv",
@@ -79,6 +80,8 @@
         "minibuffer",
         "spacemacs",
         "elpa",
+        "melpa",
+        "MELPA",
         "PLISTS",
         "backtab",
         "fontset",
@@ -120,6 +123,10 @@
         "pbibtex",
         "pdfview",
         "hilit",
+        "modeyasnippet",
+        "yasnippet",
+        "crossref",
+        "lightyellow",
 
         "direnv",
 
