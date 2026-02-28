@@ -21,6 +21,7 @@
         "psgrep",
         "powerline",
         "mktemp",
+        "tzdata",
 
         "jisx",
         "firacode",
@@ -93,6 +94,7 @@
         "mapc",
         "mapcar",
         "defface",
+        "defcustom",
         "propertize",
         "keymap",
 
