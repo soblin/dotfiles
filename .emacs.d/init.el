@@ -15,7 +15,6 @@
 (add-to-list 'load-path (expand-file-name "lisp" user-emacs-directory))
 (add-to-list 'load-path (expand-file-name "site-lisp" user-emacs-directory))
 
-
 (require '00_gc)
 (require '00_etc)
 (require '01_global_keybindings)
@@ -25,6 +24,10 @@
 (require '03_tab_setting)
 (require '04_vertico)
 (require '05_magit)
+
+
+(add-to-list 'load-path (expand-file-name "modules" user-emacs-directory))
+(require '99_yaml)
 
 (provide 'init)
 ;;; init.el ends here

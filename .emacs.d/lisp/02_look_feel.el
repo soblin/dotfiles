@@ -36,9 +36,9 @@
   (setq show-paren-style 'expression)
   )
 
-(use-package hl-line
-  :init
-  (global-hl-line-mode 1))
+;;(use-package hl-line
+;;  :init
+;;  (global-hl-line-mode 1))
 
 
 ;;; parenthesis
@@ -48,11 +48,17 @@
 
 
 ;;; indent visualization
+;;; - https://qiita.com/nobuyuki86/items/e392b642189d755dd113
 (use-package highlight-indent-guides
   :ensure t
   :hook (prog-mode . highlight-indent-guides-mode)
   :custom
-  (highlight-indent-guides-responsive 'top))
+  (highlight-indent-guides-responsive 'top)
+  (highlight-indent-guides-method 'column)
+  :config
+  (set-face-background 'highlight-indent-guides-odd-face "dimgray")
+  (set-face-background 'highlight-indent-guides-even-face "dimgray")
+  )
 
 
 ;;; show trailing whitespace
