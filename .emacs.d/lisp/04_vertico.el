@@ -41,5 +41,24 @@
   :init
   (marginalia-mode))
 
+
+;;; show indicator for selecting one
+;;; - https://qiita.com/nobuyuki86/items/122e85b470b361ded0b4#prefix-current-candidate-with-arrow
+(defvar +vertico-current-arrow t)
+
+(cl-defmethod vertico--format-candidate :around
+  (candidate prefix suffix index start &context ((and +vertico-current-arrow
+                                                 (not (bound-and-true-p vertico-flat-mode)))
+                                            (eql t)))
+  (setq candidate (cl-call-next-method candidate prefix suffix index start))
+  (let ((arrow (nerd-icons-faicon "nf-fa-hand_o_right")))
+    (if (bound-and-true-p vertico-grid-mode)
+        (if (= vertico--index index)
+            (concat arrow " " candidate)
+          (concat #("_" 0 1 (display " ")) candidate))
+      (if (= vertico--index index)
+          (concat " " arrow " " candidate)
+        (concat "    " candidate)))))
+
 (provide '04_vertico)
 ;;; 04_vertico.el ends here

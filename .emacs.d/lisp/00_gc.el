@@ -35,5 +35,9 @@
 
 (setq vc-handled-backends '(Git))
 
+
+;;; - https://qiita.com/nobuyuki86/items/122e85b470b361ded0b4#%E7%94%BB%E9%9D%A2%E6%9C%80%E5%A4%A7%E5%8C%96
+(push '(fullscreen . maximized) default-frame-alist)
+
 (provide '00_gc)
 ;;; 00_gc.el ends here
