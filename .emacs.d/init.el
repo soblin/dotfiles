@@ -24,6 +24,7 @@
 (require '03_tab_setting)
 (require '04_vertico)
 (require '05_magit)
+(require '06_lsp)
 
 
 (add-to-list 'load-path (expand-file-name "modes" user-emacs-directory))
