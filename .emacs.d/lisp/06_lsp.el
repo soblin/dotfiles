@@ -1,9 +1,12 @@
 ;;; 06_lsp.el --- <Summary> -*- lexical-binding: t; -*-
 
 ;;; Commentary:
+;;; - https://qiita.com/nobuyuki86/items/122e85b470b361ded0b4#jsonrpc
 
 ;;; Code:
 
+;;; lsp
+;;; - https://github.com/emacs-lsp/lsp-mode/issues/1223
 (use-package lsp-mode
   :hook ((c-mode c++-mode) . lsp)
   :init
@@ -12,14 +15,22 @@
   :config
   ;; `-background-index` requires clangd v8+
   (setq lsp-clients-clangd-args '("--background-index" "-log=error" "--clang-tidy" "--header-insertion=never"))
-  (setq-default lsp-enable-on-type-formatting nil)
+  (setq lsp-enable-on-type-formatting nil)
+  (setq lsp-lens-enable nil)
+  (setq lsp-log-io nil)
+  (setq lsp-idle-delay 0.1)
+  (setq lsp-signature-auto-activate nil)
+
+  ;; not tested
+  (setq lsp-prefer-flymake nil)
+  (setq lsp-eldoc-hook nil)
   )
 
 
-(use-package consult-lsp
-  :after lsp-mode
+(use-package jsonrpc
   :config
-  (define-key lsp-mode-map [remap xref-find-apropos] #'consult-lsp-symbols))
+  (setq jsonrpc-default-request-timeout 3000)
+  (fset #'jsonrpc--log-event #'ignore))
 
 (provide '06_lsp)
 ;;; 06_lsp.ends here

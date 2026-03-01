@@ -102,6 +102,7 @@
         "nondirectory",
         "modeline",
         "keybind",
+        "fset",
 
         "dired",
         "recentf",
@@ -110,9 +111,11 @@
         "elec",
         "tabset",
         "backtab",
+        "eldoc",
 
         "eglot",
         "flycheck",
+        "flymake",
         "magit",
         "neotree",
         "yasnippet",
