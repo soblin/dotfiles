@@ -48,6 +48,15 @@ RUN update-alternatives --install /usr/bin/clang-format clang-format /usr/bin/cl
 
 RUN apt-get update && apt-get install -y libreadline-dev libgtest-dev libboost-all-dev
 
+# NOTE: apt-get install cmake causes following error
+# The following packages have unmet dependencies:
+#  emacs-pgtk : Breaks: dh-elpa-helper (< 2.1.7) but 2.0.9ubuntu1 is to be installed
+# E: Error, pkgProblemResolver::Resolve generated breaks, this may be caused by held packages.
+# so install latest cmake
+RUN wget -O - https://apt.kitware.com/keys/kitware-archive-latest.asc 2>/dev/null | gpg --dearmor - > /usr/share/keyrings/kitware-archive-keyring.gpg
+RUN echo 'deb [signed-by=/usr/share/keyrings/kitware-archive-keyring.gpg] https://apt.kitware.com/ubuntu/ jammy main' > /etc/apt/sources.list.d/kitware.list
+RUN apt-get update && apt-get install -y cmake
+
 # rust
 # cspell:disable-next-line
 RUN curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y
