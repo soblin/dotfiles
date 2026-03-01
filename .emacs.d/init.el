@@ -30,6 +30,7 @@
 (add-to-list 'load-path (expand-file-name "modes" user-emacs-directory))
 (require '99_yaml)
 (require '99_docker)
+(require '99_c_cpp)
 
 (provide 'init)
 ;;; init.el ends here
