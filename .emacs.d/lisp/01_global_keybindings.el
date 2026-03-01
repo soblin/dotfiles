@@ -29,7 +29,10 @@
 
 ;;; consult
 ;;; find-grep-dired
-(global-set-key (kbd "C-c C-g") 'consult-ripgrep)
+(defun consult-ripgrep-current-directory ()
+  (interactive)
+  (consult-ripgrep default-directory))
+(global-set-key (kbd "C-c C-g") 'consult-ripgrep-current-directory)
 
 (global-set-key (kbd "C-c C-s") 'consult-line)
 (defun my/remap-c-show-syntactic-information ()
