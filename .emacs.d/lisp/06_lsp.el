@@ -32,5 +32,18 @@
   (setq jsonrpc-default-request-timeout 3000)
   (fset #'jsonrpc--log-event #'ignore))
 
+
+(use-package corfu
+  :ensure t
+  :init
+  (global-corfu-mode 1)
+  :config
+  ;;; it seems this is not required and I could insert with C-M-i without this,
+  ;;; but many site do this
+  ;;; - https://qiita.com/nobuyuki86/items/7c65456ad07b555dd67d
+  (with-eval-after-load 'lsp-mode
+    (setq lsp-completion-provider :none)))
+)
+
 (provide '06_lsp)
 ;;; 06_lsp.ends here
