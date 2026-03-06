@@ -1,6 +1,6 @@
 FROM ubuntu:22.04
 
-ARG CLANG_VERSION=18
+ARG CLANG_VERSION=19
 
 # /* cspell:disable-next-line */
 ENV DEBIAN_FRONTEND=noninteractive
@@ -40,11 +40,11 @@ RUN apt-get update && apt-get install -y \
     libstdc++-12-dev
 # cSpell:eable
 
-RUN update-alternatives --install /usr/bin/clang clang /usr/bin/clang-18 18
-RUN update-alternatives --install /usr/bin/clang++ clang++ /usr/bin/clang++-18 18
-RUN update-alternatives --install /usr/bin/clang-tidy clang-tidy /usr/bin/clang-tidy-18 18
-RUN update-alternatives --install /usr/bin/clangd clangd /usr/bin/clangd-18 18
-RUN update-alternatives --install /usr/bin/clang-format clang-format /usr/bin/clang-format-18 18
+RUN update-alternatives --install /usr/bin/clang clang /usr/bin/clang-${CLANG_VERSION} ${CLANG_VERSION}
+RUN update-alternatives --install /usr/bin/clang++ clang++ /usr/bin/clang++-${CLANG_VERSION} ${CLANG_VERSION}
+RUN update-alternatives --install /usr/bin/clang-tidy clang-tidy /usr/bin/clang-tidy-${CLANG_VERSION} ${CLANG_VERSION}
+RUN update-alternatives --install /usr/bin/clangd clangd /usr/bin/clangd-${CLANG_VERSION} ${CLANG_VERSION}
+RUN update-alternatives --install /usr/bin/clang-format clang-format /usr/bin/clang-format-${CLANG_VERSION} ${CLANG_VERSION}
 
 RUN apt-get update && apt-get install -y libreadline-dev libgtest-dev libboost-all-dev
 

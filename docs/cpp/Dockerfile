@@ -1,6 +1,7 @@
 FROM ubuntu:22.04
 
-ARG CLANG_VERSION=18
+# 18だとlspで関数の引数リストのsnippetが上手く出ないかも
+ARG CLANG_VERSION=19
 
 RUN apt-get update && apt-get install -y git curl wget lsb-release software-properties-common
 

@@ -19,13 +19,25 @@
   (setq lsp-lens-enable nil)
   (setq lsp-log-io nil)
   (setq lsp-idle-delay 0.1)
-  (setq lsp-signature-auto-activate nil)
+  (setq lsp-signature-auto-activate t)
+  (setq lsp-completion-provider :capf)
+  (setq lsp-enable-snippet t)
 
   ;; not tested
   (setq lsp-prefer-flymake nil)
   (setq lsp-eldoc-hook nil)
   )
 
+(use-package yasnippet)
+(yas-global-mode 1)
+
+(use-package yasnippet-capf
+  :ensure t
+  :after yasnippet
+  :config
+  ;; Add the yasnippet-capf function to the list of completion functions
+  (add-to-list 'completion-at-point-functions #'yasnippet-capf)
+  )
 
 (use-package jsonrpc
   :config
@@ -41,8 +53,6 @@
   ;;; it seems this is not required and I could insert with C-M-i without this,
   ;;; but many site do this
   ;;; - https://qiita.com/nobuyuki86/items/7c65456ad07b555dd67d
-  (with-eval-after-load 'lsp-mode
-    (setq lsp-completion-provider :none)))
 )
 
 (provide '06_lsp)

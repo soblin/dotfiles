@@ -113,6 +113,7 @@
         "tabset",
         "backtab",
         "eldoc",
+        "capf",
 
         "eglot",
         "flycheck",
