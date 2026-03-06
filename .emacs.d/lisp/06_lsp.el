@@ -42,18 +42,33 @@
 (use-package jsonrpc
   :config
   (setq jsonrpc-default-request-timeout 3000)
-  (fset #'jsonrpc--log-event #'ignore))
+  (fset #'jsonrpc--log-event #'ignore)
+  )
 
 
+;;; corfu
+;;; - https://qiita.com/nobuyuki86/items/7c65456ad07b555dd67d#corfu-doc-corfu-popupinfo
 (use-package corfu
   :ensure t
+  :straight
+  (corfu :files (:defaults "extensions/*"))
   :init
   (global-corfu-mode 1)
+  (corfu-popupinfo-mode 1)
   :config
-  ;;; it seems this is not required and I could insert with C-M-i without this,
-  ;;; but many site do this
-  ;;; - https://qiita.com/nobuyuki86/items/7c65456ad07b555dd67d
-)
+  (setq corfu-cycle t)
+  (setq corfu-on-exact-match 'show)
+  (setq corfu-quit-no-match t)
+  (setq corfu-popupinfo-delay '(0.5 . 1.0))
+  )
+
+(use-package kind-icon
+  :after corfu
+  :custom (kind-icon-default-face 'corfu-default)
+  :config
+  (add-to-list 'corfu-margin-formatters #'kind-icon-margin-formatter)
+  )
+
 
 (provide '06_lsp)
 ;;; 06_lsp.ends here
