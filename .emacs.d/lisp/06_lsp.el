@@ -31,14 +31,6 @@
 (use-package yasnippet)
 (yas-global-mode 1)
 
-(use-package yasnippet-capf
-  :ensure t
-  :after yasnippet
-  :config
-  ;; Add the yasnippet-capf function to the list of completion functions
-  (add-to-list 'completion-at-point-functions #'yasnippet-capf)
-  )
-
 (use-package jsonrpc
   :config
   (setq jsonrpc-default-request-timeout 3000)
