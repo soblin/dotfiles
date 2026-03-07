@@ -1,7 +1,6 @@
 ;;; 06_lsp.el --- <Summary> -*- lexical-binding: t; -*-
 
 ;;; Commentary:
-;;; - https://qiita.com/nobuyuki86/items/122e85b470b361ded0b4#jsonrpc
 
 ;;; Code:
 
@@ -19,27 +18,13 @@
   (setq lsp-lens-enable nil)
   (setq lsp-log-io nil)
   (setq lsp-idle-delay 0.1)
-  (setq lsp-signature-auto-activate t)
-  (setq lsp-completion-provider :capf)
-  (setq lsp-enable-snippet t)
-
-  ;; not tested
-  (setq lsp-prefer-flymake nil)
-  (setq lsp-eldoc-hook nil)
-  )
-
-(use-package yasnippet)
-(yas-global-mode 1)
-
-(use-package jsonrpc
-  :config
-  (setq jsonrpc-default-request-timeout 3000)
-  (fset #'jsonrpc--log-event #'ignore)
+  (setq lsp-completion-provider :none)
   )
 
 
 ;;; corfu
-;;; - https://qiita.com/nobuyuki86/items/7c65456ad07b555dd67d#corfu-doc-corfu-popupinfo
+;;; - https://qiita.com/nobuyuki86/items/7c65456ad07b555dd67d
+;;; - https://qiita.com/nobuyuki86/items/122e85b470b361ded0b4#jsonrpc
 (use-package corfu
   :ensure t
   :straight
@@ -49,10 +34,80 @@
   (corfu-popupinfo-mode 1)
   :config
   (setq corfu-cycle t)
-  (setq corfu-on-exact-match 'show)
   (setq corfu-quit-no-match t)
+  (setq corfu-auto nil)
+  (setq corfu-on-exact-match nil)
+  (setq tab-always-indent 'complete)
   (setq corfu-popupinfo-delay '(0.5 . 1.0))
+
+  :bind (nil
+         :map corfu-map
+         ("RET" . corfu-insert)
+         ("<return>" . corfu-insert))
   )
+
+(global-set-key (kbd "C-M-i") #'completion-at-point)
+
+(use-package jsonrpc
+  :config
+  (setq jsonrpc-default-request-timeout 3000)
+  (fset #'jsonrpc--log-event #'ignore))
+
+(use-package tabnine
+  :hook ((prog-mode . tabnine-mode)
+         (text-mode . tabnine-mode)
+         (kill-emacs . tabnine-kill-process))
+  :bind (:map  tabnine-completion-map
+	     ("TAB" . nil)
+         ("<tab>" . nil))
+  :init
+  (tabnine-start-process)
+  (global-tabnine-mode +1))
+
+(use-package cape
+  :hook (((prog-mode
+           text-mode
+           conf-mode
+           eglot-managed-mode
+           lsp-completion-mode) . my/set-super-capf))
+  :config
+  (defun my/set-super-capf (&optional arg)
+    (setq-local completion-at-point-functions
+                (list (cape-capf-noninterruptible
+                       (cape-capf-buster
+                        (cape-capf-properties
+                         (cape-capf-super
+                          (if arg
+                              arg
+                            (car completion-at-point-functions))
+                          #'tabnine-completion-at-point)
+                         :sort t
+                         :exclusive 'no))))))
+
+  (add-to-list 'completion-at-point-functions #'tabnine-completion-at-point)
+  )
+
+(use-package orderless
+  :init
+  (setq completion-styles '(orderless basic)
+        completion-category-defaults nil
+        completion-category-overrides nil)
+
+  :config
+  (with-eval-after-load 'corfu
+    (add-hook 'corfu-mode-hook
+              (lambda ()
+                (setq-local orderless-matching-styles '(orderless-flex)))))
+  )
+
+(use-package yasnippet
+  :bind (nil
+         :map yas-keymap
+         ("<tab>" . yas-next-field-or-maybe-expand)
+         ("TAB" . yas-next-field-or-maybe-expand)
+         )
+  :init
+  (yas-global-mode +1))
 
 (use-package kind-icon
   :after corfu

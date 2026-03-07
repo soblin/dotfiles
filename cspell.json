@@ -133,6 +133,8 @@
         "gcmh",
         "quickhelp",
         "popupinfo",
+        "tabnine",
+        "noninterruptible",
 
         "nowrap",
         "nomessage",
