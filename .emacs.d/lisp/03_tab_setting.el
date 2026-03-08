@@ -1,4 +1,4 @@
- ;;; 03_tab_setting.el --- setting for tabs -*- lexical-binding: t; -*-
+;;; 03_tab_setting.el --- setting for tabs -*- lexical-binding: t; -*-
 
 ;;; Commentary:
 
@@ -145,10 +145,15 @@
              tabs)))
       (my/ensure-default-tab)
       (if existing
-          (tab-bar-select-tab
-           (1+ (seq-position tabs existing)))
+          (progn (tab-bar-select-tab
+                  (1+ (seq-position tabs existing)))
+                 (switch-to-buffer buf)
+                 )
         (tab-bar-switch-to-tab target)
-        (switch-to-buffer buf))))
+        (switch-to-buffer buf)
+        )
+      )
+    )
 
   (add-hook 'find-file-hook #'my/switch-tab-by-project)
   (add-hook 'dired-mode-hook #'my/switch-tab-by-project)
