@@ -12,13 +12,21 @@
   (setopt lsp-headerline-breadcrumb-enable nil)
 
   :config
-  ;; `-background-index` requires clangd v8+
-  (setq lsp-clients-clangd-args '("--background-index" "-log=error" "--clang-tidy" "--header-insertion=never"))
+  ;;; languages
+  ;;; C++
+  ;;; `-background-index` requires clangd v8+
+  (setopt lsp-clients-clangd-args '("--background-index" "-log=error" "--clang-tidy" "--header-insertion=never"))
+
   (setq lsp-enable-on-type-formatting nil)
   (setq lsp-lens-enable nil)
   (setq lsp-log-io nil)
   (setq lsp-idle-delay 0.1)
   (setq lsp-completion-provider :none)
+  )
+
+(use-package flycheck
+  :ensure t
+  :init (global-flycheck-mode)
   )
 
 
