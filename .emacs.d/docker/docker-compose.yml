@@ -1,0 +1,23 @@
+name: emacs-dev
+
+services:
+  ubuntu:
+    build: .
+    container_name: emacs-dev
+    volumes:
+      - type: bind
+        source: "../../../dotfiles"
+        target: "/workspace/dotfiles"
+      - type: bind
+        source: "../../.emacs.d"
+        target: "/home/ubuntu/.emacs.d"
+      - type: bind
+        source: /tmp/.X11-unix
+        target: /tmp/.X11-unix
+      - type: bind
+        source: "../../../cpplox" # cSpell:disable-line
+        target: "/workspace/cpplox" # cSpell:disable-line
+    environment:
+      DISPLAY: $DISPLAY
+    tty: true
+    working_dir: /workspace
