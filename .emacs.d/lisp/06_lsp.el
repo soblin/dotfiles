@@ -24,6 +24,12 @@
   (setq lsp-completion-provider :none)
   )
 
+(lsp-register-client
+  (make-lsp-client :new-connection (lsp-tramp-connection "clangd")
+                   :major-modes '(c++-mode)
+                   :remote? t
+                   :server-id 'clangd-remote))
+
 (use-package flycheck
   :ensure t
   :init (global-flycheck-mode)
