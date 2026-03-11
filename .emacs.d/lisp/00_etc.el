@@ -18,7 +18,12 @@
 ;;; do not as yes/not for git-controlled symlink ?
 ;;; - https://stackoverflow.com/questions/15390178/emacs-and-symbolic-links
 (setq vc-follow-symlinks t)
+(setq find-file-visit-truename t)
 
+(defun my/xref-follow-truename (orig-fun &rest args)
+  (let ((find-file-visit-truename t))
+    (apply orig-fun args)))
+(advice-add 'xref--show-location :around #'my/xref-follow-truename)
 
 ;;; do not care capital/small letter for regex
 (setq read-buffer-completion-ignore-case t)
