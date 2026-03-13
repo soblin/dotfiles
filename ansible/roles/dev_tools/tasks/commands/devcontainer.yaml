@@ -1,6 +1,7 @@
 # devcontainer
 - name: setup devcontainer
+  become: false
   block:
     - name: install
-      become: false
-      comand: curl -fsSL https://raw.githubusercontent.com/devcontainers/cli/main/scripts/install.sh | sh
+      ansible.builtin.shell: >-
+        curl -fsSL https://raw.githubusercontent.com/devcontainers/cli/main/scripts/install.sh | sh
