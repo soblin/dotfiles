@@ -32,5 +32,8 @@
 (require '99_docker)
 (require '99_c_cpp)
 
+(setq custom-file (expand-file-name "emacs-custom.el" user-emacs-directory))
+(load-file (expand-file-name "emacs-custom.el" user-emacs-directory))
+
 (provide 'init)
 ;;; init.el ends here

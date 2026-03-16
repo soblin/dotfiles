@@ -101,6 +101,14 @@
 (global-set-key (kbd "C-x C-p") 'centaur-tabs-forward)
 
 
+;; zoom
+(global-unset-key (kbd "C--"))
+(global-set-key (kbd "C--") 'zoom-frm-out)
+
+(global-unset-key (kbd "C-+"))
+(global-set-key (kbd "C-+") 'zoom-frm-in)
+
+
 ;; unset
 (global-unset-key (kbd "C-x m"))
 (global-unset-key (kbd "C-j"))
