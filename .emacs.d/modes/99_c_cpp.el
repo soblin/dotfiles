@@ -9,5 +9,9 @@
   (add-hook 'c-mode-common-hook #'clang-format+-mode)
   )
 
+(use-package cmake-mode
+  :init
+  )
+
 (provide '99_c_cpp)
 ;;; 99_c_cpp.el ends here
