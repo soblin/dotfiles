@@ -19,10 +19,9 @@
   (let* ((file (buffer-file-name))
          (line (line-number-at-pos))
          (rel (file-relative-name file (vc-root-dir)))
-         (url (string trim
-                      (shell-command-to-string
+         (url (shell-command-to-string
                        (format "gh browse /%s:%d --no-browser" rel line)
-                       ))
+                       )
               )
          )
     (browse-url url)
