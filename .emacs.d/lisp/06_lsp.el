@@ -75,8 +75,8 @@
          (text-mode . tabnine-mode)
          (kill-emacs . tabnine-kill-process))
   :bind (:map  tabnine-completion-map
-	     ("TAB" . nil)
-         ("<tab>" . nil))
+               ("TAB" . nil)
+               ("<tab>" . nil))
   :init
   (tabnine-start-process)
   (global-tabnine-mode +1))

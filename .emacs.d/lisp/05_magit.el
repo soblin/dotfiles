@@ -20,8 +20,8 @@
          (line (line-number-at-pos))
          (rel (file-relative-name file (vc-root-dir)))
          (url (shell-command-to-string
-                       (format "gh browse /%s:%d --no-browser" rel line)
-                       )
+               (format "gh browse /%s:%d --no-browser" rel line)
+               )
               )
          )
     (browse-url url)
