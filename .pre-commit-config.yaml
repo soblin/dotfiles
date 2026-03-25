@@ -48,3 +48,10 @@ repos:
           - .git/COMMIT_EDITMSG
         stages: [commit-msg]
         always_run: true # This might not be necessary.
+
+  - repo: https://github.com/jamescherti/pre-commit-elisp
+    rev: v1.0.9
+    hooks:
+      # Validate that all parentheses in .el files are correctly balanced
+      - id: elisp-indent
+      - id: elisp-check-parens

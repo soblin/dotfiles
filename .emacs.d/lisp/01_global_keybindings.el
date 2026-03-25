@@ -36,7 +36,7 @@
 
 (global-set-key (kbd "C-c C-s") 'consult-line)
 (defun my/remap-c-show-syntactic-information ()
-    (global-set-key [remap c-show-syntactic-information] 'consult-line))
+  (global-set-key [remap c-show-syntactic-information] 'consult-line))
 (add-hook 'c-mode-common-hook #'my/remap-c-show-syntactic-information)
 
 (define-minor-mode my-override-mode

@@ -48,8 +48,8 @@
 
 (cl-defmethod vertico--format-candidate :around
   (candidate prefix suffix index start &context ((and +vertico-current-arrow
-                                                 (not (bound-and-true-p vertico-flat-mode)))
-                                            (eql t)))
+                                                      (not (bound-and-true-p vertico-flat-mode)))
+                                                 (eql t)))
   (setq candidate (cl-call-next-method candidate prefix suffix index start))
   (let ((arrow (nerd-icons-faicon "nf-fa-hand_o_right")))
     (if (bound-and-true-p vertico-grid-mode)
