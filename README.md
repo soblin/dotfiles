@@ -8,7 +8,7 @@
 // change XKBOPTIONS to "ctrl:nocaps" in /etc/default/keyboard, and reboot
 
 sudo apt install etckeeper git
-ssh-keygen
+ssh-keygen -t ed25519
 // register to GitHub
 git clone <this> .dotfiles
 
