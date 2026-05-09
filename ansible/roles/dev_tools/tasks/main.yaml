@@ -1,15 +1,15 @@
 - name: install development commands
   apt:
     name:
-      - ninja-build
+#      - ninja-build
       - fzf
       - jq
       - ripgrep
     state: present
 
-- import_tasks: commands/ccache.yaml
+#- import_tasks: commands/ccache.yaml
 
-- import_tasks: commands/coredumpctl.yaml
+#- import_tasks: commands/coredumpctl.yaml
 
 - import_tasks: commands/fd.yaml
 
@@ -22,8 +22,6 @@
 - import_tasks: commands/gh.yaml
 
 - import_tasks: commands/docker.yaml
-
-- import_tasks: commands/emacs.yaml
 
 - import_tasks: commands/fish.yaml
 
