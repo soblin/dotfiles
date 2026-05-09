@@ -16,18 +16,8 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        os:
-          - ubuntu-22.04
-
-        include:
-          - name: default
-            playbook_opts: ""
-
-          - name: for_devcontainer
-            playbook_opts: "--tags for_devcontainer"
-
-          - name: skip_not_for_wsl
-            playbook_opts: "--skip-tags not_for_wsl"
+        os: [ubuntu-22.04]
+        playbook_opts: ["", "--tags for_devcontainer", "--skip-tags not_for_wsl"]
 
     steps:
       - name: checkout
