@@ -33,4 +33,10 @@ config.window_frame = {
    active_titlebar_bg = "none",
 }
 
+-- for WSL
+--[[
+config.default_domain = 'WSL:Ubuntu-22.04'
+config.audible_bell = "Disabled"
+--]]
+
 return config
