@@ -3,12 +3,16 @@
   environment:
     PATH: "{{ ansible_env.PATH }}:{{ lookup('env','HOME') }}/.local/bin"
   roles:
-    - init_snap
-    - xdg_base_directory
-    - dot_rc
-    - system_tools
-    - terminal
-    - editor
-    - dev_tools
-    - fonts
-    - gui_tools
+    - role: init_snap
+    - role: xdg_base_directory
+      tags: [for_devcontainer]
+    - role: dot_rc
+      tags: [for_devcontainer]
+    - role: system_tools
+    - role: terminal
+      tags: [not_for_wsl]
+    - role: editor
+    - role: dev_tools
+    - role: fonts
+    - role: gui_tools
+      tags: [not_for_wsl]
