@@ -2,3 +2,7 @@
   command: snap refresh
   when: not is_ci
   changed_when: false
+
+- name: refresh apt
+  command: apt-get update
+  become: true

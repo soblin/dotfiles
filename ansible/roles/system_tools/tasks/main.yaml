@@ -6,12 +6,14 @@
       - git-lfs
       - curl
       - tree
+      - direnv
       - xclip
       - xsel
       - mlocate
       - htop
       - cmake
       - g++
+      - unzip
     state: present # NOTE: if not installed, install
 
 - import_tasks: commands/tmux.yaml
