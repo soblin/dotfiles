@@ -10,8 +10,24 @@ concurrency:
 
 jobs:
   ansible-test:
-    # TODO: support ubuntu-24 with matrix
-    runs-on: ubuntu-22.04
+    name: "${{ matrix.os }} / ${{ matrix.name }}"
+    runs-on: ${{ matrix.os }}
+
+    strategy:
+      fail-fast: false
+      matrix:
+        os:
+          - ubuntu-22.04
+
+        include:
+          - name: default
+            playbook_opts: ""
+
+          - name: for_devcontainer
+            playbook_opts: "--tags for_devcontainer"
+
+          - name: skip_not_for_wsl
+            playbook_opts: "--skip-tags not_for_wsl"
 
     steps:
       - name: checkout
@@ -28,5 +44,4 @@ jobs:
 
       - name: run playbook
         run: |
-          git config -f .gitconfig --unset-all url.git@github.com:.insteadOf || true
-          uv run ansible-playbook ansible/playbook.yaml -e is_ci=true -v
+          uv run ansible-playbook ansible/playbook.yaml -e is_ci=true -v ${{ matrix.playbook_opts }}
