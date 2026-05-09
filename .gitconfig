@@ -51,5 +51,6 @@
 [ghq]
     root = ~/.ghq/src
 
-[url "git@github.com:"]
-    insteadOf = https://github.com/
+# do this locally
+# [url "git@github.com:"]
+#     insteadOf = https://github.com/
