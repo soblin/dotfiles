@@ -9,7 +9,7 @@ concurrency:
   cancel-in-progress: true
 
 jobs:
-  ansible-test:
+  ansible-test-matrix:
     name: "${{ matrix.os }} (with '${{ matrix.playbook_opts }}' option)"
     runs-on: ${{ matrix.os }}
 
@@ -35,3 +35,9 @@ jobs:
       - name: run playbook
         run: |
           uv run ansible-playbook ansible/playbook.yaml -e is_ci=true -v ${{ matrix.playbook_opts }}
+
+  ansible-test:
+    needs: ansible-test-matrix
+    runs-on: ubuntu-latest
+    steps:
+      - run: echo "ok"
