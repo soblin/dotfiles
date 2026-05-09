@@ -10,7 +10,7 @@ concurrency:
 
 jobs:
   ansible-test:
-    name: "${{ matrix.os }} / ${{ matrix.name }}"
+    name: "${{ matrix.os }} (with '${{ matrix.playbook_opts }}' option)"
     runs-on: ${{ matrix.os }}
 
     strategy:
