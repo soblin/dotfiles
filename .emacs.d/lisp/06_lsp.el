@@ -7,29 +7,16 @@
 ;;; lsp
 ;;; - https://github.com/emacs-lsp/lsp-mode/issues/1223
 (use-package lsp-mode
-  :hook ((c-mode c++-mode) . lsp)
+  :commands lsp
   :init
   (setopt lsp-headerline-breadcrumb-enable nil)
 
   :config
-  ;;; languages
-  ;;; C++
-  ;;; `-background-index` requires clangd v8+
-  (setopt lsp-clients-clangd-args '("--background-index" "-log=error" "--clang-tidy" "--header-insertion=never"))
-
   (setq lsp-enable-on-type-formatting nil)
   (setq lsp-lens-enable nil)
   (setq lsp-log-io nil)
   (setq lsp-idle-delay 0.1)
   (setq lsp-completion-provider :none)
-
-;;; for connecting to lsp-server inside docker
-;;; - https://coder.com/docs/user-guides/workspace-access/emacs-tramp#language-servers-code-completion
-  (lsp-register-client
-   (make-lsp-client :new-connection (lsp-tramp-connection "clangd")
-                    :major-modes '(c++-mode)
-                    :remote? t
-                    :server-id 'clangd-remote))
   )
 
 
