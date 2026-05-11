@@ -31,6 +31,7 @@
 (require '99_yaml)
 (require '99_docker)
 (require '99_c_cpp)
+(require '99_python)
 
 (setq custom-file (expand-file-name "emacs-custom.el" user-emacs-directory))
 (load-file (expand-file-name "emacs-custom.el" user-emacs-directory))
