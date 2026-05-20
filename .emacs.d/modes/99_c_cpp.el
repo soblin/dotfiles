@@ -40,6 +40,7 @@
   (add-hook 'c-mode-common-hook #'my-clang-format-setup)
   )
 (require 'clang-format-remote)
+(setq clang-format-remote-executable "clang-format")
 
 (use-package cmake-mode
   :init

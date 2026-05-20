@@ -156,5 +156,4 @@ Otherwise, just use `clang-format-executable' defined in `clang-format.el'."
     (message "clang-format (%s): %s" where exe)))
 
 (provide 'clang-format-remote)
-
 ;;; clang-format-remote.el ends here
