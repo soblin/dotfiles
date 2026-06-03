@@ -32,15 +32,14 @@
          (let ((default-directory default-directory))
            (executable-find "clang-format")))
     (executable-find "clang-format")
-    "clang-format")))
+    "clang-format"))
+  (add-hook 'before-save-hook #'clang-format-buffer nil t))
 
-(use-package clang-format+
+(use-package clang-format
   :init
-  (add-hook 'c-mode-common-hook #'clang-format+-mode)
   (add-hook 'c-mode-common-hook #'my-clang-format-setup)
   )
 (require 'clang-format-remote)
-(setq clang-format-remote-executable "clang-format")
 
 (use-package cmake-mode
   :init

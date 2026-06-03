@@ -40,7 +40,7 @@ corresponding executable registered in `clang-format-remote-executable-alist'.
 Otherwise, just use `clang-format-executable' defined in `clang-format.el'."
   (let* ((fname (or filename (buffer-file-name (buffer-base-buffer))))
          (remote-p (clang-format-remote--file-remote-p fname)))
-    (if (remote-p)
+    (if remote-p
         (let* ((host (clang-format-remote--host fname))
                (entry (and host
                            (assoc host clang-format-remote-executable-alist))))
