@@ -25,6 +25,7 @@
 (require '04_vertico)
 (require '05_magit)
 (require '06_lsp)
+(require '07_tramp)
 
 
 (add-to-list 'load-path (expand-file-name "modes" user-emacs-directory))
@@ -32,6 +33,7 @@
 (require '99_docker)
 (require '99_c_cpp)
 (require '99_python)
+(require '99_rust)
 
 (setq custom-file (expand-file-name "emacs-custom.el" user-emacs-directory))
 (load-file (expand-file-name "emacs-custom.el" user-emacs-directory))

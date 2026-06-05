@@ -105,6 +105,8 @@
         "keybind",
         "fset",
         "defmethod",
+        "mapconcat",
+        "funcall",
 
         "dired",
         "recentf",
@@ -150,6 +152,7 @@
         "crossref",
         "perc",
         "faicon",
+        "controlmaster",
 
         "direnv",
 

@@ -46,5 +46,8 @@
 (setq-default tab-width 4 indent-tabs-mode nil)
 
 
+;;;
+(setq enable-remote-dir-locals t)
+
 (provide '00_etc)
 ;;; 00_etc.el ends here
