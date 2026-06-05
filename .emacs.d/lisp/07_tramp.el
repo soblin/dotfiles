@@ -25,6 +25,9 @@
         tramp-verbose 1)
   (setq tramp-use-ssh-controlmaster-options nil)
 
+  ;; when creating new file, set it to "777"
+  (setq tramp-default-file-modes #o777)
+
   ;; https://achiwa912.github.io/tramp.html#orgc8ba9ef
   (with-eval-after-load 'tramp
     (add-to-list 'tramp-remote-path 'tramp-own-remote-path)

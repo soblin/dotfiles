@@ -92,6 +92,12 @@ fishについては[こちらの記事を参照](https://zenn.dev/kenji_miyake/a
 
 ## Emacs
 
+### Docker over TRAMP
+
+`/docker:<user>@<container_name>:/workspace/foo.txt`を開く．
+
+LSPは基本的に動くが，`Server foo exited (check corresponding stderr buffer for details). Do you want to restart it? (y or n)`が出た後にすぐに`y`を押すと`Forbidden reentrant call of tramp`が出ることが多い．
+
 ### 自分用キーバインド備忘録
 
 #### 超基本
@@ -130,28 +136,6 @@ fishについては[こちらの記事を参照](https://zenn.dev/kenji_miyake/a
 - `M-+-.`: シンボル参照
 - `M-+-,`: シンボル参照を一つ戻る
 - `C-M-i`: 続きの補完候補を出す(GUI/CUI両方で可能)
-
-### gccemacsを使う
-
-`kelleyk:ppa`ですでに`emacs-nativecomp`が提供されている．Ubuntu22では
-
-```
-sudo snap install emacs --classic
-```
-
-でnativecompが手に入るようになったので，こちらの方がすぐにDLできて良い．
-
-### plists
-
-lspを高速にするには[plists](https://emacs-lsp.github.io/lsp-mode/page/performance/#use-plists-for-deserialization)を使うようにコンパイルすべきであるらしい．`eln-cache`を削除してから
-
-```
-export LSP_USE_PLISTS=true
-OR
-set -x export LSP_USE_PLISTS true
-```
-
-した上で再度コンパイルするとバイトコードに埋め込まれるようだ(？)．
 
 ### doom-modelineのアイコン
 
