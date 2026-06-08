@@ -24,20 +24,10 @@
   )
 
 
-(defun my-clang-format-setup ()
-  (setq-local
-   clang-format-executable
-   (or
-    (and (file-remote-p default-directory)
-         (let ((default-directory default-directory))
-           (executable-find "clang-format")))
-    (executable-find "clang-format")
-    "clang-format"))
-  (add-hook 'before-save-hook #'clang-format-buffer nil t))
-
 (use-package clang-format
   :init
-  (add-hook 'c-mode-common-hook #'my-clang-format-setup)
+  (add-hook 'c-mode-common-hook
+            #'(lambda ()(add-hook 'before-save-hook #'clang-format-buffer nil t)))
   )
 (require 'clang-format-remote)
 
