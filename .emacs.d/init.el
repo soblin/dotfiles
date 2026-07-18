@@ -34,6 +34,7 @@
 (require '99_c_cpp)
 (require '99_python)
 (require '99_rust)
+(require '99_lua)
 
 (setq custom-file (expand-file-name "emacs-custom.el" user-emacs-directory))
 (load-file (expand-file-name "emacs-custom.el" user-emacs-directory))
