@@ -20,6 +20,11 @@
   )
 
 
+(use-package lsp-ui
+  :config
+  (setq lsp-ui-peek-enable t)
+  )
+
 (use-package flycheck
   :ensure t
   :init (global-flycheck-mode)

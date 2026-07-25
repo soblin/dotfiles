@@ -12,7 +12,7 @@
   ;;; languages
   ;;; C++
   ;;; `-background-index` requires clangd v8+
-  (setopt lsp-clients-clangd-args '("--background-index" "-log=error" "--clang-tidy" "--header-insertion=never"))
+  (setopt lsp-clients-clangd-args '("--background-index" "--completion-style=detailed" "-log=error" "--clang-tidy" "--header-insertion=never"))
 
 ;;; for connecting to lsp-server inside docker
 ;;; - https://coder.com/docs/user-guides/workspace-access/emacs-tramp#language-servers-code-completion
