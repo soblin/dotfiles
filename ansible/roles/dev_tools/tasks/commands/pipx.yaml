@@ -1,0 +1,29 @@
+# pipx
+# from https://pipx.pypa.io/stable/how-to/install-pipx.html
+- name: setup pipx command
+  become: false
+  block:
+    - name: create pipx venv
+      ansible.builtin.command: python3 -m venv {{ lookup('env','HOME') }}/.local/share/pipx-venv
+      args:
+        creates: "{{ lookup('env','HOME') }}/.local/share/pipx-venv"
+
+    - name: install pipx into venv
+      ansible.builtin.command: "{{ lookup('env','HOME') }}/.local/share/pipx-venv/bin/pip install pipx"
+      args:
+        creates: "{{ lookup('env','HOME') }}/.local/share/pipx-venv/bin/pipx"
+
+    - name: symlink pipx to ~/.local/bin
+      file:
+        src: "{{ lookup('env','HOME') }}/.local/share/pipx-venv/bin/pipx"
+        dest: "{{ lookup('env','HOME') }}/.local/bin/pipx"
+        state: link
+
+    - name: pipx ensurepath
+      ansible.builtin.command: "{{ lookup('env','HOME') }}/.local/bin/pipx ensurepath"
+      register: pipx_ensurepath
+      changed_when: "'Success' in pipx_ensurepath.stdout"
+
+    - name: check pipx command
+      ansible.builtin.command: which pipx
+      changed_when: false
