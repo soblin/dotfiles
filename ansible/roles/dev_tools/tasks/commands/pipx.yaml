@@ -21,8 +21,6 @@
 
     - name: pipx ensurepath
       ansible.builtin.command: "{{ lookup('env','HOME') }}/.local/bin/pipx ensurepath"
-      register: pipx_ensurepath
-      changed_when: "'Success' in pipx_ensurepath.stdout"
 
     - name: check pipx command
       ansible.builtin.command: which pipx
