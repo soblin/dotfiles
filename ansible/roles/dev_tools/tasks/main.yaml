@@ -31,4 +31,6 @@
 
 - import_tasks: commands/act.yaml
 
+- import_tasks: commands/pipx.yaml
+
 - import_tasks: commands/devcontainer.yaml
