@@ -23,6 +23,8 @@
 (use-package lsp-ui
   :config
   (setq lsp-ui-peek-enable t)
+  (setq lsp-ui-doc-show-with-mouse nil)
+  (setq lsp-ui-doc-show-with-cursor t)
   )
 
 (use-package flycheck
@@ -125,6 +127,12 @@
   (add-to-list 'corfu-margin-formatters #'kind-icon-margin-formatter)
   )
 
+
+(use-package corfu-terminal
+  :init
+  :config
+  (unless (display-graphic-p) (corfu-terminal-mode t))
+  )
 
 (provide '06_lsp)
 ;;; 06_lsp.el ends here
