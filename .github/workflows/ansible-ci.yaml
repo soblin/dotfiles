@@ -39,5 +39,11 @@ jobs:
   ansible-test:
     needs: ansible-test-matrix
     runs-on: ubuntu-latest
+    if: always()
     steps:
-      - run: echo "ok"
+      - run: |
+          if [ "${{ needs.ansible-test-matrix.result }}" != "success"]; then
+            echo "matrix job failed"
+            exit 1
+          fi
+          echo "ok"
