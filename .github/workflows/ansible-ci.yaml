@@ -42,7 +42,7 @@ jobs:
     if: always()
     steps:
       - run: |
-          if [ "${{ needs.ansible-test-matrix.result }}" != "success"]; then
+          if [ "${{ needs.ansible-test-matrix.result }}" != "success" ]; then
             echo "matrix job failed"
             exit 1
           fi
