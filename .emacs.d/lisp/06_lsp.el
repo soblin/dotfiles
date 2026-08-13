@@ -25,6 +25,11 @@
   (setq lsp-ui-peek-enable t)
   (setq lsp-ui-doc-show-with-mouse nil)
   (setq lsp-ui-doc-show-with-cursor t)
+
+  ;; sideline diagnostic is visible in minibuffer, so not needed
+  ;; https://emacs-lsp.github.io/lsp-mode/tutorials/how-to-turn-off/
+  (setq lsp-ui-sideline-enable nil)
+  (setq lsp-ui-sideline-show-diagnostics nil)
   )
 
 (use-package flycheck
@@ -57,7 +62,6 @@
          ("<return>" . corfu-insert))
   )
 
-(global-set-key (kbd "C-M-i") #'completion-at-point)
 
 (use-package jsonrpc
   :config
@@ -131,6 +135,7 @@
 (use-package corfu-terminal
   :init
   :config
+  ;; NOTE: popupinfo still uses child frame, so doc for each candidate does not appear
   (unless (display-graphic-p) (corfu-terminal-mode t))
   )
 

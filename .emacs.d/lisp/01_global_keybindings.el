@@ -109,6 +109,10 @@
 (global-set-key (kbd "C-+") 'zoom-frm-in)
 
 
+;; LSP
+(global-set-key (kbd "C-M-i") #'completion-at-point)
+
+
 ;; unset
 (global-unset-key (kbd "C-x m"))
 (global-unset-key (kbd "C-j"))
