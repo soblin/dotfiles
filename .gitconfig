@@ -21,6 +21,14 @@
 [alias]
     graph = log --graph --color --pretty=format:\"%C(yellow)%H%C(green)%d%C(reset)%n%x20%cd%n%x20%cn%x20(%ce)%n%x20%s%n\"
     showd = -c diff.external=difft show --ext-diff
+    cleanup = "!f() { \
+        branch=$(git symbolic-ref --short HEAD); \
+        if [ \"$branch\" = \"main\" ]; then echo 'Already on main'; exit 1; fi; \
+        git checkout main && \
+        git branch -D \"$branch\"; \
+        git fetch --prune && \
+        git pull origin main; \
+    }; f"
 
 [credential]
     helper = cache --timeout=86400
