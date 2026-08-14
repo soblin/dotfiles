@@ -35,6 +35,10 @@
 (use-package flycheck
   :ensure t
   :init (global-flycheck-mode)
+
+  :config
+  ;; (setq flycheck-check-syntax-automatically '(save new-line mode-enabled))
+  (setq flycheck-idle-change-delay 2.25)
   )
 
 
