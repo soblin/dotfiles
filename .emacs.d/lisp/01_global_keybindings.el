@@ -110,8 +110,9 @@
 
 
 ;; LSP
+;;; C-iを押したらtabとindentのみ，C-M-iを押したら補完
+(setq tab-always-indent t)
 (global-set-key (kbd "C-M-i") #'completion-at-point)
-
 
 ;; unset
 (global-unset-key (kbd "C-x m"))

@@ -25,6 +25,8 @@
   (setq lsp-ui-peek-enable t)
   (setq lsp-ui-doc-show-with-mouse nil)
   (setq lsp-ui-doc-show-with-cursor t)
+  ;; idle time for showing lsp-peek
+  (setq lsp-ui-doc-delay 2.25)
 
   ;; sideline diagnostic is visible in minibuffer, so not needed
   ;; https://emacs-lsp.github.io/lsp-mode/tutorials/how-to-turn-off/
@@ -57,7 +59,6 @@
   (setq corfu-quit-no-match t)
   (setq corfu-auto nil)
   (setq corfu-on-exact-match nil)
-  (setq tab-always-indent 'complete)
   (setq corfu-popupinfo-delay '(0.5 . 1.0))
 
   :bind (nil
@@ -87,7 +88,6 @@
   :hook (((prog-mode
            text-mode
            conf-mode
-           eglot-managed-mode
            lsp-completion-mode) . my/set-super-capf))
   :config
   (defun my/set-super-capf (&optional arg)
