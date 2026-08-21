@@ -33,3 +33,24 @@
 
     - name: update cache
       ansible.builtin.shell: fc-cache -vf
+
+- name: install Moralerspace font
+  block:
+    - name: download Moralerspace zip file
+      ansible.builtin.get_url:
+        url: https://github.com/yuru7/moralerspace/releases/download/v2.0.0/MoralerspaceHW_v2.0.0.zip
+        dest: /tmp/MoralerspaceHW.zip
+
+    # HW(半角:全角 = 1:2)のNeonのみ展開する。他のファミリはinclude行を足せば使える
+    - name: unarchive Moralerspace zip file
+      ansible.builtin.unarchive:
+        src: /tmp/MoralerspaceHW.zip
+        dest: /usr/local/share/fonts/
+        include:
+          - MoralerspaceHW_v2.0.0/MoralerspaceNeonHW-Regular.ttf
+          - MoralerspaceHW_v2.0.0/MoralerspaceNeonHW-Bold.ttf
+          - MoralerspaceHW_v2.0.0/MoralerspaceNeonHW-Italic.ttf
+          - MoralerspaceHW_v2.0.0/MoralerspaceNeonHW-BoldItalic.ttf
+
+    - name: update cache after Moralerspace
+      ansible.builtin.shell: fc-cache -vf

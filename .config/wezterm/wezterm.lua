@@ -35,8 +35,11 @@ config.background = {
 --]]
 
 -- font
-config.font = wezterm.font {
-   family = 'HackGen Console NF',
+-- Moralerspace Neon HW = Monaspace Neon + IBM Plex Sans JP。半角:全角 = 1:2 でNerd Font内蔵
+-- HackGenに無いU+23F4-23F7 (⏴⏵⏶⏷) を持つため乗り換えた。HackGenは取りこぼし用のfallback
+config.font = wezterm.font_with_fallback {
+   'Moralerspace Neon HW',
+   'HackGen Console NF',
 }
 config.font_size = 12
 
