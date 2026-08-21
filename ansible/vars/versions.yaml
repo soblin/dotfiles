@@ -13,7 +13,7 @@ versions:
     version: "v1.8.0"
   act:
     repo: nektos/act
-    version: "v0.2.84"
+    version: "v0.2.89"
   wezterm:
     repo: wezterm/wezterm
     version: "20240203-110809-5046fc22"
