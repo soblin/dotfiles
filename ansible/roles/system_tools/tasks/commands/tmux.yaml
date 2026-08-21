@@ -76,12 +76,11 @@
       failed_when: false
       changed_when: false
 
-    # NOTE: build as the login user so that the artifacts under ~/.local are not owned by root
     - name: install tmux-mem-cpu-load
       become: false
       when: which_tmux_mem_cpu_load.rc != 0
       vars:
-        tmux_mem_cpu_load_src: "{{ lookup('env','HOME') }}/.cache/tmux-mem-cpu-load"
+        tmux_mem_cpu_load_src: "{{ lookup('env','HOME') }}/.local/build/tmux-mem-cpu-load"
       block:
         - name: clone project
           git:
