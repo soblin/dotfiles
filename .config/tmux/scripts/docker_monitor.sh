@@ -2,7 +2,7 @@
 
 docker_icon='󰡨'
 project_icon=''
-container_icon='󰋷'
+container_icon=''
 
 monitor_docker() {
 	if ! docker info >/dev/null 2>&1; then
