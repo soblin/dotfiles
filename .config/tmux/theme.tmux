@@ -53,6 +53,7 @@ case "$theme" in
 esac
 
 GPU_COLOR=colour76
+DOCKER_COLOR=colour39
 
 # Status options
 tmux_set status-interval 1
@@ -73,7 +74,7 @@ tmux_set @prefix_highlight_output_suffix "#[fg=$TC]#[bg=$BG]"
 
 # Left side of status bar
 tmux_set status-left-bg "$BG"
-tmux_set status-left-length 150
+tmux_set status-left-length 200
 user=$(whoami)
 LS="#[fg=$BG,bg=$EM,bold] $user@#h #[fg=$EM,bg=$GR2,nobold]#[fg=$TC,bg=$GR2] #S "
 LS="$LS#[fg=$GR2,bg=$BG]"
@@ -84,10 +85,11 @@ tmux_set status-left "$LS"
 
 # Right side of status bar
 tmux_set status-right-bg $BG
-tmux_set status-right-length 150
+tmux_set status-right-length 200
 RS="#[fg=$EM,bg=$GR2] $time_icon  %T #[fg=$EM,bg=$GR2]#[fg=$BG,bg=$EM] $date_icon  %F "
-RS="#[fg=$TC,bg=$GPU_COLOR]#[fg=$GR1,bg=$TC]   PC |  |  | 󰊚 | #(tmux-mem-cpu-load -g 5 -a 1 --interval 1) #[fg=$GR2,bg=$TC]$RS"
-RS="#[fg=$GPU_COLOR]#[fg=$BG,bg=$GPU_COLOR] #($SCRIPTS/gpu_monitor.sh -r 0.1) $RS"
+RS="#[fg=$TC,bg=$GPU_COLOR,bold]#[fg=$GR1,bg=$TC,bold]   /  /  / 󰊚 / #(tmux-mem-cpu-load -g 5 -a 1 --interval 1) #[fg=$GR2,bg=$TC]$RS"
+RS="#[fg=$GPU_COLOR,bg=$DOCKER_COLOR,bold]#[fg=$BG,bg=$GPU_COLOR,bold] #($SCRIPTS/gpu_monitor.sh -r 0.1) $RS"
+RS="#[fg=$DOCKER_COLOR,bold]#[fg=$BG,bg=$DOCKER_COLOR,bold] #($SCRIPTS/docker_monitor.sh -r 5) $RS"
 if [[ $prefix_highlight_pos == 'R' || $prefix_highlight_pos == 'LR' ]]; then
 	RS="#{prefix_highlight}$RS"
 fi

@@ -7,7 +7,7 @@ monitor_nvidia() {
 	power=$(nvidia-smi --query-gpu=power.draw,power.limit --format=csv,noheader,nounits | awk -F ', *' '{ printf("%.2f%%", $0 / $2 * 100) }')
 	vram=$(nvidia-smi --query-gpu=memory.used,memory.total --format=csv,noheader,nounits | awk -F ', *' '{ printf("%.2f%%", $0 / $2 * 100) }')
 	usage=$(nvidia-smi --query-gpu=utilization.gpu --format=csv,noheader,nounits | awk -F ', *' '{ printf("%.2f%%", $1) }')
-	echo "󰢮 $1 | ⏻  ${power} |   ${vram} | 󰊚  ${usage}"
+	echo "󰢮 $1 / ⏻ ${power} /  ${vram} / 󰊚 ${usage}"
 	# // cSpell: enable
 }
 
