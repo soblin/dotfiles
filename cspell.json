@@ -159,6 +159,9 @@
         "peco",
 
         "wezterm",
-        "titlebar"
+        "titlebar",
+
+        "norange",
+        "nolist"
     ]
 }
