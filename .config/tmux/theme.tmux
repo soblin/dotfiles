@@ -54,6 +54,7 @@ esac
 
 GPU_COLOR=colour76
 DOCKER_COLOR=colour39
+CCUSAGE_COLOR=colour208
 
 # Status options
 tmux_set status-interval 1
@@ -87,9 +88,10 @@ tmux_set status-left "$LS"
 tmux_set status-right-bg $BG
 tmux_set status-right-length 200
 RS="#[fg=$EM,bg=$GR2] $time_icon  %T #[fg=$EM,bg=$GR2]#[fg=$BG,bg=$EM] $date_icon  %F "
-RS="#[fg=$TC,bg=$GPU_COLOR,bold]#[fg=$GR1,bg=$TC,bold]   /  /  / 󰊚 / #(tmux-mem-cpu-load -g 5 -a 1 --interval 1) #[fg=$GR2,bg=$TC]$RS"
+RS="#[fg=$TC,bg=$GPU_COLOR,bold]#[fg=$GR1,bg=$TC,bold]   #(tmux-mem-cpu-load -g 5 -a 0 --interval 1) #[fg=$GR2,bg=$TC]$RS"
 RS="#[fg=$GPU_COLOR,bg=$DOCKER_COLOR,bold]#[fg=$BG,bg=$GPU_COLOR,bold] #($SCRIPTS/gpu_monitor.sh -r 0.1) $RS"
-RS="#[fg=$DOCKER_COLOR,bold]#[fg=$BG,bg=$DOCKER_COLOR,bold] #($SCRIPTS/docker_monitor.sh -r 5) $RS"
+RS="#[fg=$DOCKER_COLOR,bg=$CCUSAGE_COLOR,bold]#[fg=$BG,bg=$DOCKER_COLOR,bold] #($SCRIPTS/docker_monitor.sh -r 5) $RS"
+RS="#[fg=$CCUSAGE_COLOR,bold]#[fg=$BG,bg=$CCUSAGE_COLOR,bold] #($SCRIPTS/ccusage_monitor.sh -r 60) $RS"
 if [[ $prefix_highlight_pos == 'R' || $prefix_highlight_pos == 'LR' ]]; then
 	RS="#{prefix_highlight}$RS"
 fi

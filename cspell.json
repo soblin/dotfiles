@@ -164,6 +164,9 @@
         "titlebar",
 
         "norange",
-        "nolist"
+        "nolist",
+
+        "ccusage",
+        "bunx"
     ]
 }
