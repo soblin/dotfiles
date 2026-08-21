@@ -22,11 +22,13 @@
     - name: download difftastic
       ansible.builtin.get_url:
         url: https://github.com/Wilfred/difftastic/releases/download/{{ difft_version }}/difft-x86_64-unknown-linux-gnu.tar.gz
-        dest: /tmp/difftastic.tar.gz
+        # NOTE: the version is in the file name because get_url does not
+        # re-download when dest already exists
+        dest: /tmp/difftastic-{{ difft_version }}.tar.gz
 
     - name: install difftastic
       ansible.builtin.unarchive:
-        src: /tmp/difftastic.tar.gz
+        src: /tmp/difftastic-{{ difft_version }}.tar.gz
         # NOTE: only contains "difft" file
         dest: "{{ lookup('env','HOME') }}/.local/bin/"
 

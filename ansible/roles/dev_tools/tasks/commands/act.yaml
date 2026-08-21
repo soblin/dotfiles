@@ -22,11 +22,13 @@
     - name: download act
       ansible.builtin.get_url:
         url: https://github.com/nektos/act/releases/download/{{ act_version }}/act_Linux_x86_64.tar.gz
-        dest: /tmp/act.tar.gz
+        # NOTE: the version is in the file name because get_url does not
+        # re-download when dest already exists
+        dest: /tmp/act-{{ act_version }}.tar.gz
 
     - name: unarchive act
       ansible.builtin.unarchive:
-        src: /tmp/act.tar.gz
+        src: /tmp/act-{{ act_version }}.tar.gz
         dest: /tmp
 
     - name: install act

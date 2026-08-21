@@ -37,11 +37,13 @@
         - name: download Moralerspace zip file
           ansible.builtin.get_url:
             url: https://github.com/yuru7/moralerspace/releases/download/{{ moralerspace_version }}/MoralerspaceHW_{{ moralerspace_version }}.zip
-            dest: /tmp/MoralerspaceHW.zip
+            # NOTE: the version is in the file name because get_url does
+            # not re-download when dest already exists
+            dest: /tmp/MoralerspaceHW_{{ moralerspace_version }}.zip
 
         - name: unarchive Moralerspace zip file
           ansible.builtin.unarchive:
-            src: /tmp/MoralerspaceHW.zip
+            src: /tmp/MoralerspaceHW_{{ moralerspace_version }}.zip
             dest: /usr/local/share/fonts/
             include:
               - MoralerspaceHW_{{ moralerspace_version }}/MoralerspaceNeonHW-Regular.ttf
