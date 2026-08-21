@@ -21,21 +21,37 @@
 
 - name: install Moralerspace font
   when: not is_ci # this font file is large
+  vars:
+    moralerspace_version: v2.0.0
+    moralerspace_dir: "/usr/local/share/fonts/MoralerspaceHW_{{ moralerspace_version }}"
   block:
-    - name: download Moralerspace zip file
-      ansible.builtin.get_url:
-        url: https://github.com/yuru7/moralerspace/releases/download/v2.0.0/MoralerspaceHW_v2.0.0.zip
-        dest: /tmp/MoralerspaceHW.zip
+    - name: check Moralerspace font is installed
+      ansible.builtin.stat:
+        path: "{{ moralerspace_dir }}/MoralerspaceNeonHW-Regular.ttf"
+      register: moralerspace_installed
+      changed_when: false
 
-    - name: unarchive Moralerspace zip file
-      ansible.builtin.unarchive:
-        src: /tmp/MoralerspaceHW.zip
-        dest: /usr/local/share/fonts/
-        include:
-          - MoralerspaceHW_v2.0.0/MoralerspaceNeonHW-Regular.ttf
-          - MoralerspaceHW_v2.0.0/MoralerspaceNeonHW-Bold.ttf
-          - MoralerspaceHW_v2.0.0/MoralerspaceNeonHW-Italic.ttf
-          - MoralerspaceHW_v2.0.0/MoralerspaceNeonHW-BoldItalic.ttf
+    - name: install Moralerspace font
+      when: not moralerspace_installed.stat.exists
+      block:
+        - name: download Moralerspace zip file
+          ansible.builtin.get_url:
+            url: https://github.com/yuru7/moralerspace/releases/download/{{ moralerspace_version }}/MoralerspaceHW_{{ moralerspace_version }}.zip
+            dest: /tmp/MoralerspaceHW.zip
 
-    - name: update cache after Moralerspace
-      ansible.builtin.shell: fc-cache -vf
+        - name: unarchive Moralerspace zip file
+          ansible.builtin.unarchive:
+            src: /tmp/MoralerspaceHW.zip
+            dest: /usr/local/share/fonts/
+            include:
+              - MoralerspaceHW_{{ moralerspace_version }}/MoralerspaceNeonHW-Regular.ttf
+              - MoralerspaceHW_{{ moralerspace_version }}/MoralerspaceNeonHW-Bold.ttf
+              - MoralerspaceHW_{{ moralerspace_version }}/MoralerspaceNeonHW-Italic.ttf
+              - MoralerspaceHW_{{ moralerspace_version }}/MoralerspaceNeonHW-BoldItalic.ttf
+
+        - name: update cache after Moralerspace
+          ansible.builtin.shell: fc-cache -vf
+
+    - name: verify Moralerspace font is available
+      ansible.builtin.shell: fc-list | grep -q "Moralerspace Neon HW"
+      changed_when: false

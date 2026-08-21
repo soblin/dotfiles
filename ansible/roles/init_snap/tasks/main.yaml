@@ -6,3 +6,4 @@
 - name: refresh apt
   command: apt-get update
   become: true
+  changed_when: false

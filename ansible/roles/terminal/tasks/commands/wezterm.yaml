@@ -1,7 +1,18 @@
 # wezterm
+- name: check wezterm command
+  ansible.builtin.command: which wezterm
+  register: which_wezterm
+  failed_when: false
+  changed_when: false
+
 - name: setup wezterm
+  when: which_wezterm.rc != 0
   block:
     - name: dpkg install wezterm
       apt:
         deb: https://github.com/wezterm/wezterm/releases/download/20240203-110809-5046fc22/wezterm-20240203-110809-5046fc22.Ubuntu22.04.deb
         state: present
+
+- name: verify wezterm command
+  ansible.builtin.command: which wezterm
+  changed_when: false

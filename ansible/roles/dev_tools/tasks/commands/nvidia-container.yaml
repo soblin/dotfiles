@@ -1,13 +1,21 @@
+# nvidia-container
 - name: setup nvidia-container
   when: not is_ci
   block:
-    - name: check nvidia-smi
-      shell: command -v nvidia-smi >/dev/null 2>&1
-      register: nvidia_smi_exists
+    - name: check nvidia-smi command
+      ansible.builtin.command: which nvidia-smi
+      register: which_nvidia_smi
       failed_when: false
+      changed_when: false
+
+    - name: check nvidia-ctk command
+      ansible.builtin.command: which nvidia-ctk
+      register: which_nvidia_ctk
+      failed_when: false
+      changed_when: false
 
     - name: install nvidia-container
-      when: nvidia_smi_exists.rc == 0
+      when: which_nvidia_smi.rc == 0 and which_nvidia_ctk.rc != 0
       block:
         - name: add gpg key
           shell:
@@ -28,3 +36,8 @@
 
         - name: configure
           shell: nvidia-ctk runtime configure --runtime=docker && systemctl restart docker
+
+    - name: verify nvidia-ctk command
+      when: which_nvidia_smi.rc == 0
+      ansible.builtin.command: which nvidia-ctk
+      changed_when: false

@@ -20,6 +20,6 @@
         dest: "{{ lookup('env','HOME') }}/.local/bin/fd"
         state: link
 
-    - name: check fd command
+    - name: verify fd command
       ansible.builtin.command: which fd
       changed_when: false

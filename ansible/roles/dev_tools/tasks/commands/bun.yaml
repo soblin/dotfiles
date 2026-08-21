@@ -1,9 +1,20 @@
 # bun (provides bunx)
+- name: check bun command
+  ansible.builtin.command: which bun
+  register: which_bun
+  failed_when: false
+  changed_when: false
+
 - name: setup bun
   become: false
+  when: which_bun.rc != 0
   block:
     - name: install bun
       ansible.builtin.shell: >-
         curl -fsSL https://bun.com/install | bash
       args:
         creates: "{{ lookup('env','HOME') }}/.bun/bin/bun"
+
+- name: verify bunx command
+  ansible.builtin.command: which bunx
+  changed_when: false

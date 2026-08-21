@@ -1,6 +1,13 @@
 # act
+- name: check act command
+  ansible.builtin.command: which act
+  register: which_act
+  failed_when: false
+  changed_when: false
+
 - name: setup act command
   become: false
+  when: which_act.rc != 0
   block:
     - name: download act
       ansible.builtin.get_url:
@@ -17,3 +24,7 @@
         src: /tmp/act
         dest: "{{ lookup('env','HOME') }}/.local/bin/act"
         mode: "0755"
+
+- name: verify act command
+  ansible.builtin.command: which act
+  changed_when: false

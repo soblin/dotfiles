@@ -1,6 +1,13 @@
 # ghq
+- name: check ghq command
+  ansible.builtin.command: which ghq
+  register: which_ghq
+  failed_when: false
+  changed_when: false
+
 - name: setup ghq command
   become: false
+  when: which_ghq.rc != 0
   block:
     - name: download binary
       ansible.builtin.get_url:
@@ -23,3 +30,7 @@
         src: /tmp/ghq_linux_amd64/misc/bash/_ghq
         dest: "{{ lookup('env','HOME') }}/.local/share/bash-completion/completions/ghq"
         mode: "0644"
+
+- name: verify ghq command
+  ansible.builtin.command: which ghq
+  changed_when: false

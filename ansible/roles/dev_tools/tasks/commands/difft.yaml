@@ -1,6 +1,13 @@
 # difft
+- name: check difft command
+  ansible.builtin.command: which difft
+  register: which_difft
+  failed_when: false
+  changed_when: false
+
 - name: setup difft command
   become: false
+  when: which_difft.rc != 0
   block:
     - name: download difftastic
       ansible.builtin.get_url:
@@ -13,5 +20,6 @@
         # NOTE: only contains "difft" file
         dest: "{{ lookup('env','HOME') }}/.local/bin/"
 
-    - name: check difft
-      ansible.builtin.command: which difft
+- name: verify difft command
+  ansible.builtin.command: which difft
+  changed_when: false
