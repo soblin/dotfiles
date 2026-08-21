@@ -30,6 +30,15 @@
           state: present
           update_cache: true
 
+      - name: update apt cache for the docker repo
+        when: is_ci
+        apt:
+          # NOTE: the apt module does not update the cache in check mode, so the
+          # freshly added docker repository has to be fetched beforehand
+          update_cache: true
+        check_mode: false
+        changed_when: false
+
       - name: check docker installability on ci
         when: is_ci
         apt:

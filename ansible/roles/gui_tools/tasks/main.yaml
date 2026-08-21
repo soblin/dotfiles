@@ -17,4 +17,4 @@
       - gparted
       - flameshot
     state: present
-    check_mode: true
+  check_mode: true
