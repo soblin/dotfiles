@@ -7,7 +7,7 @@ versions:
     version: "v1.2.0"
   bottom:
     repo: ClementTsang/bottom
-    version: "0.12.3"
+    version: "0.14.8"
   ghq:
     repo: x-motemen/ghq
     version: "v1.8.0"
