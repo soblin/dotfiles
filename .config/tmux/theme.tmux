@@ -56,13 +56,13 @@ tmux_set status-interval 1
 tmux_set status on
 
 # Basic status bar colors
-tmux_set status-fg "$FG"
+# tmux_set status-fg "$FG"
 tmux_set status-bg "$BG"
 tmux_set status-attr none
 
 # tmux-prefix-highlight
 tmux_set @prefix_highlight_fg "$BG"
-tmux_set @prefix_highlight_bg "$FG"
+# tmux_set @prefix_highlight_bg "$FG"
 tmux_set @prefix_highlight_show_copy_mode 'on'
 tmux_set @prefix_highlight_copy_mode_attr "fg=$TC,bg=$BG,bold"
 tmux_set @prefix_highlight_output_prefix "#[fg=$TC]#[bg=$BG]#[bg=$TC]#[fg=$BG]"
@@ -125,3 +125,9 @@ tmux_set message-command-style fg=$TC bg=$BG
 
 # Copy mode highlight
 tmux_set mode-style bg=$TC fg=$BG
+
+tmux_set status 2
+
+tmux_set 'status-format[0]' "#[align=right range=right #{E:status-right-style}]#[push-default]#{T;=/#{status-right-length}:status-right}#[pop-default]#[norange default]"
+
+tmux_set 'status-format[1]' "#[align=left range=left #{E:status-left-style}]#[push-default]#{T;=/#{status-left-length}:status-left}#[pop-default]#[norange default]#[align=#{status-justify}]#[list=on]#{W:#[range=window|#{window_index} #{E:window-status-style}]#[push-default]#{T:window-status-format}#[pop-default]#[norange default]#{?window_end_flag,,#{window-status-separator}},#[range=window|#{window_index} list=focus #{E:window-status-current-style}]#[push-default]#{T:window-status-current-format}#[pop-default]#[norange list=on default]}#[nolist default]"
