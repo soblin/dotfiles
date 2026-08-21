@@ -1,7 +1,7 @@
 versions:
   difftastic:
     repo: Wilfred/difftastic
-    version: "0.67.0"
+    version: "0.70.0"
   lsd:
     repo: lsd-rs/lsd
     version: "v1.2.0"
