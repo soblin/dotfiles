@@ -1,34 +1,24 @@
 # lsd
-- name: check lsd command
-  ansible.builtin.command: which lsd
-  register: which_lsd
-  failed_when: false
-  changed_when: false
-
-- name: read lsd version stamp
-  ansible.builtin.slurp:
-    path: "{{ version_stamp_dir }}/lsd"
-  register: lsd_stamp
+- name: check lsd version
+  # NOTE: the output is like "lsd 1.2.0"
+  ansible.builtin.command: lsd --version
+  register: lsd_current
   failed_when: false
   changed_when: false
 
 - name: setup lsd command
   vars:
     lsd_version: "{{ versions.lsd.version }}"
-    lsd_installed: "{{ (lsd_stamp.content | b64decode | trim) if lsd_stamp.content is defined else '' }}"
-  when: which_lsd.rc != 0 or lsd_installed != lsd_version
+    lsd_installed: "{{ lsd_current.stdout | default('') | regex_search('[0-9]+\\.[0-9]+\\.[0-9]+') }}"
+  # install if missing, or if the installed version is not the pinned one
+  when: lsd_installed != (lsd_version | regex_replace('^v', ''))
   block:
     - name: dpkg install lsd
       apt:
         deb: https://github.com/lsd-rs/lsd/releases/download/{{ lsd_version }}/lsd-musl_{{ lsd_version | regex_replace('^v', '') }}_amd64.deb
 
-    - name: stamp lsd version
-      become: false
-      copy:
-        content: "{{ lsd_version }}"
-        dest: "{{ version_stamp_dir }}/lsd"
-        mode: "0644"
-
-- name: verify lsd command
-  ansible.builtin.command: which lsd
+- name: verify lsd version
+  ansible.builtin.command: lsd --version
+  register: lsd_verified
   changed_when: false
+  failed_when: (lsd_verified.stdout | regex_search('[0-9]+\\.[0-9]+\\.[0-9]+')) != (versions.lsd.version | regex_replace('^v', ''))

@@ -3,9 +3,6 @@
   vars_files:
     - vars/versions.yaml
   vars:
-    # records the version of each tool installed from a GitHub release, so that
-    # the playbook can detect an outdated installation and re-install it
-    version_stamp_dir: "{{ lookup('env','HOME') }}/.local/share/dotfiles/versions"
     # directories where the commands installed by this playbook are placed
     extra_paths:
       - "{{ lookup('env','HOME') }}/.local/bin"

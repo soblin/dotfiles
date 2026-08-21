@@ -1,22 +1,17 @@
 # btm
-- name: check btm command
-  ansible.builtin.command: which btm
-  register: which_btm
-  failed_when: false
-  changed_when: false
-
-- name: read btm version stamp
-  ansible.builtin.slurp:
-    path: "{{ version_stamp_dir }}/btm"
-  register: btm_stamp
+- name: check btm version
+  # NOTE: the output is like "bottom 0.14.8"
+  ansible.builtin.command: btm --version
+  register: btm_current
   failed_when: false
   changed_when: false
 
 - name: setup btm command
   vars:
     btm_version: "{{ versions.bottom.version }}"
-    btm_installed: "{{ (btm_stamp.content | b64decode | trim) if btm_stamp.content is defined else '' }}"
-  when: which_btm.rc != 0 or btm_installed != btm_version
+    btm_installed: "{{ btm_current.stdout | default('') | regex_search('[0-9]+\\.[0-9]+\\.[0-9]+') }}"
+  # install if missing, or if the installed version is not the pinned one
+  when: btm_installed != btm_version
   block:
     - name: dpkg install btm
       apt:
@@ -24,13 +19,8 @@
         deb: https://github.com/ClementTsang/bottom/releases/download/{{ btm_version }}/bottom-musl_{{ btm_version }}-1_amd64.deb
         state: present
 
-    - name: stamp btm version
-      become: false
-      copy:
-        content: "{{ btm_version }}"
-        dest: "{{ version_stamp_dir }}/btm"
-        mode: "0644"
-
-- name: verify btm command
-  ansible.builtin.command: which btm
+- name: verify btm version
+  ansible.builtin.command: btm --version
+  register: btm_verified
   changed_when: false
+  failed_when: (btm_verified.stdout | regex_search('[0-9]+\\.[0-9]+\\.[0-9]+')) != versions.bottom.version
