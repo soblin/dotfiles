@@ -19,29 +19,14 @@
   when: not is_baremetal
   check_mode: true
 
-- name: install HackGen font
-  block:
-    - name: download zip file
-      ansible.builtin.get_url:
-        url: https://github.com/yuru7/HackGen/releases/download/v2.10.0/HackGen_NF_v2.10.0.zip
-        dest: /tmp/HackGen_NF.zip
-
-    - name: unarchive zip file
-      ansible.builtin.unarchive:
-        src: /tmp/HackGen_NF.zip
-        dest: /usr/local/share/fonts/
-
-    - name: update cache
-      ansible.builtin.shell: fc-cache -vf
-
 - name: install Moralerspace font
+  when: not is_ci # this font file is large
   block:
     - name: download Moralerspace zip file
       ansible.builtin.get_url:
         url: https://github.com/yuru7/moralerspace/releases/download/v2.0.0/MoralerspaceHW_v2.0.0.zip
         dest: /tmp/MoralerspaceHW.zip
 
-    # HW(半角:全角 = 1:2)のNeonのみ展開する。他のファミリはinclude行を足せば使える
     - name: unarchive Moralerspace zip file
       ansible.builtin.unarchive:
         src: /tmp/MoralerspaceHW.zip
