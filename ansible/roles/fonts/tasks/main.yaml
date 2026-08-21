@@ -1,4 +1,5 @@
-- name: install fonts on baremetal
+- name: install fonts if not ci
+  when: not is_ci
   apt:
     name:
       - fonts-powerline
@@ -6,9 +7,9 @@
       - fonts-takao-pgothic
       - fonts-firacode
     state: present
-  when: is_baremetal
 
 - name: check fonts installability on ci
+  when: is_ci
   apt:
     name:
       - fonts-powerline
@@ -16,7 +17,6 @@
       - fonts-takao-pgothic
       - fonts-firacode
     state: present
-  when: not is_baremetal
   check_mode: true
 
 - name: install Moralerspace font
