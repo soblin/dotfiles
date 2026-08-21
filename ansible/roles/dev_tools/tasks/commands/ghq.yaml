@@ -23,11 +23,13 @@
     - name: download binary
       ansible.builtin.get_url:
         url: https://github.com/x-motemen/ghq/releases/download/{{ ghq_version }}/ghq_linux_amd64.zip
-        dest: /tmp/ghq_linux_amd64.zip
+        # NOTE: the version is in the file name because get_url does not
+        # re-download when dest already exists
+        dest: /tmp/ghq-{{ ghq_version }}.zip
 
     - name: unarchive ghq
       ansible.builtin.unarchive:
-        src: /tmp/ghq_linux_amd64.zip
+        src: /tmp/ghq-{{ ghq_version }}.zip
         dest: /tmp/
 
     - name: install binary
