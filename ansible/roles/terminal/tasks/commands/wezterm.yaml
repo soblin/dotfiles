@@ -1,35 +1,26 @@
 # wezterm
-- name: check wezterm command
-  ansible.builtin.command: which wezterm
-  register: which_wezterm
-  failed_when: false
-  changed_when: false
-
-- name: read wezterm version stamp
-  ansible.builtin.slurp:
-    path: "{{ version_stamp_dir }}/wezterm"
-  register: wezterm_stamp
+- name: check wezterm version
+  # NOTE: the output is like "wezterm 20240203-110809-5046fc22"
+  ansible.builtin.command: wezterm --version
+  register: wezterm_current
   failed_when: false
   changed_when: false
 
 - name: setup wezterm
   vars:
     wezterm_version: "{{ versions.wezterm.version }}"
-    wezterm_installed: "{{ (wezterm_stamp.content | b64decode | trim) if wezterm_stamp.content is defined else '' }}"
-  when: which_wezterm.rc != 0 or wezterm_installed != wezterm_version
+    # NOTE: the version is not a semver, so take the last field instead
+    wezterm_installed: "{{ (wezterm_current.stdout_lines[0] | default('')).split() | last | default('') }}"
+  # install if missing, or if the installed version is not the pinned one
+  when: wezterm_installed != wezterm_version
   block:
     - name: dpkg install wezterm
       apt:
         deb: https://github.com/wezterm/wezterm/releases/download/{{ wezterm_version }}/wezterm-{{ wezterm_version }}.Ubuntu22.04.deb
         state: present
 
-    - name: stamp wezterm version
-      become: false
-      copy:
-        content: "{{ wezterm_version }}"
-        dest: "{{ version_stamp_dir }}/wezterm"
-        mode: "0644"
-
-- name: verify wezterm command
-  ansible.builtin.command: which wezterm
+- name: verify wezterm version
+  ansible.builtin.command: wezterm --version
+  register: wezterm_verified
   changed_when: false
+  failed_when: (wezterm_verified.stdout_lines[0].split() | last) != versions.wezterm.version

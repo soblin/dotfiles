@@ -1,14 +1,8 @@
 # difft
-- name: check difft command
-  ansible.builtin.command: which difft
-  register: which_difft
-  failed_when: false
-  changed_when: false
-
-- name: read difft version stamp
-  ansible.builtin.slurp:
-    path: "{{ version_stamp_dir }}/difft"
-  register: difft_stamp
+- name: check difft version
+  # NOTE: the 1st line is like "Difftastic 0.70.0"
+  ansible.builtin.command: difft --version
+  register: difft_current
   failed_when: false
   changed_when: false
 
@@ -16,8 +10,9 @@
   become: false
   vars:
     difft_version: "{{ versions.difftastic.version }}"
-    difft_installed: "{{ (difft_stamp.content | b64decode | trim) if difft_stamp.content is defined else '' }}"
-  when: which_difft.rc != 0 or difft_installed != difft_version
+    difft_installed: "{{ difft_current.stdout_lines[0] | default('') | regex_search('[0-9]+\\.[0-9]+\\.[0-9]+') }}"
+  # install if missing, or if the installed version is not the pinned one
+  when: difft_installed != (difft_version | regex_replace('^v', ''))
   block:
     - name: download difftastic
       ansible.builtin.get_url:
@@ -32,12 +27,8 @@
         # NOTE: only contains "difft" file
         dest: "{{ lookup('env','HOME') }}/.local/bin/"
 
-    - name: stamp difft version
-      copy:
-        content: "{{ difft_version }}"
-        dest: "{{ version_stamp_dir }}/difft"
-        mode: "0644"
-
-- name: verify difft command
-  ansible.builtin.command: which difft
+- name: verify difft version
+  ansible.builtin.command: difft --version
+  register: difft_verified
   changed_when: false
+  failed_when: (difft_verified.stdout_lines[0] | regex_search('[0-9]+\\.[0-9]+\\.[0-9]+')) != (versions.difftastic.version | regex_replace('^v', ''))

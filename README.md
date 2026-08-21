@@ -28,7 +28,7 @@ uv run ansible-playbook ansible/playbook.yaml --ask-become-pass
 
 `RENOVATE_TOKEN` secretにPAT(`repo`と`workflow` scope)が必要．
 
-ansibleはinstall済みのversionをローカルの`~/.local/share/dotfiles/versions/`に記録しており，`ansible/vars/versions.yaml`と一致しない場合は再installする．
+ansibleは各commandの`--version`の出力と`ansible/vars/versions.yaml`を比較し，一致しない場合に再installする．
 
 ## 日本語入力
 
