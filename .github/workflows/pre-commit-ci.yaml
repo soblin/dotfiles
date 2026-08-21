@@ -22,7 +22,7 @@ jobs:
         run: pip install pre-commit
 
       - name: install fish
-        uses: fish-shop/install-fish-shell@v1
+        uses: fish-shop/install-fish-shell@v2
 
       - name: run pre-commit
         shell: fish {0}
