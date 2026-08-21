@@ -1,14 +1,8 @@
 # ghq
-- name: check ghq command
-  ansible.builtin.command: which ghq
-  register: which_ghq
-  failed_when: false
-  changed_when: false
-
-- name: read ghq version stamp
-  ansible.builtin.slurp:
-    path: "{{ version_stamp_dir }}/ghq"
-  register: ghq_stamp
+- name: check ghq version
+  # NOTE: the output is like "ghq version 1.10.1 (rev:f600896)"
+  ansible.builtin.command: ghq --version
+  register: ghq_current
   failed_when: false
   changed_when: false
 
@@ -16,9 +10,9 @@
   become: false
   vars:
     ghq_version: "{{ versions.ghq.version }}"
-    ghq_installed: "{{ (ghq_stamp.content | b64decode | trim) if ghq_stamp.content is defined else '' }}"
+    ghq_installed: "{{ ghq_current.stdout | default('') | regex_search('[0-9]+\\.[0-9]+\\.[0-9]+') }}"
   # install if missing, or if the installed version is not the pinned one
-  when: which_ghq.rc != 0 or ghq_installed != ghq_version
+  when: ghq_installed != (ghq_version | regex_replace('^v', ''))
   block:
     - name: download binary
       ansible.builtin.get_url:
@@ -44,12 +38,8 @@
         dest: "{{ lookup('env','HOME') }}/.local/share/bash-completion/completions/ghq"
         mode: "0644"
 
-    - name: stamp ghq version
-      copy:
-        content: "{{ ghq_version }}"
-        dest: "{{ version_stamp_dir }}/ghq"
-        mode: "0644"
-
-- name: verify ghq command
-  ansible.builtin.command: which ghq
+- name: verify ghq version
+  ansible.builtin.command: ghq --version
+  register: ghq_verified
   changed_when: false
+  failed_when: (ghq_verified.stdout | regex_search('[0-9]+\\.[0-9]+\\.[0-9]+')) != (versions.ghq.version | regex_replace('^v', ''))
