@@ -17,7 +17,7 @@
       - fonts-takao-pgothic
       - fonts-firacode
     state: present
-    check_mode: true
+  check_mode: true
 
 - name: install Moralerspace font
   when: not is_ci # this font file is large
