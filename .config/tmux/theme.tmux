@@ -21,6 +21,9 @@ tmux_set() {
 	tmux set-option -gq "$1" "$2"
 }
 
+TMUX_DIR="$(cd "$(dirname "${BASH_SOURCE[0]:-$0}")" && pwd)"
+SCRIPTS="$TMUX_DIR/scripts"
+
 # Options
 # copy thd glyphs from https://www.nerdfonts.com/cheat-sheet
 user_icon=''
@@ -84,7 +87,7 @@ tmux_set status-right-bg $BG
 tmux_set status-right-length 150
 RS="#[fg=$EM,bg=$GR2] $time_icon  %T #[fg=$EM,bg=$GR2]#[fg=$BG,bg=$EM] $date_icon  %F "
 RS="#[fg=$TC,bg=$GPU_COLOR]#[fg=$GR1,bg=$TC]   PC |  |  | 󰊚 | #(tmux-mem-cpu-load -g 5 -a 1 --interval 1) #[fg=$GR2,bg=$TC]$RS"
-RS="#[fg=$GPU_COLOR]#[fg=$BG,bg=$GPU_COLOR] #(gpu_monitor.sh -r 0.1) $RS"
+RS="#[fg=$GPU_COLOR]#[fg=$BG,bg=$GPU_COLOR] #($SCRIPTS/gpu_monitor.sh -r 0.1) $RS"
 if [[ $prefix_highlight_pos == 'R' || $prefix_highlight_pos == 'LR' ]]; then
 	RS="#{prefix_highlight}$RS"
 fi
