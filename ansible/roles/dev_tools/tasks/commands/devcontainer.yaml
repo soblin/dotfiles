@@ -1,7 +1,18 @@
 # devcontainer
+- name: check devcontainer command
+  ansible.builtin.command: which devcontainer
+  register: which_devcontainer
+  failed_when: false
+  changed_when: false
+
 - name: setup devcontainer
   become: false
+  when: which_devcontainer.rc != 0
   block:
     - name: install
       ansible.builtin.shell: >-
         curl -fsSL https://raw.githubusercontent.com/devcontainers/cli/main/scripts/install.sh | sh
+
+- name: verify devcontainer command
+  ansible.builtin.command: which devcontainer
+  changed_when: false

@@ -1,7 +1,14 @@
 - hosts: localhost
   become: true
+  vars:
+    # directories where the commands installed by this playbook are placed
+    extra_paths:
+      - "{{ lookup('env','HOME') }}/.local/bin"
+      - "{{ lookup('env','HOME') }}/.cargo/bin"
+      - "{{ lookup('env','HOME') }}/.bun/bin"
+      - "{{ lookup('env','HOME') }}/.devcontainers/bin"
   environment:
-    PATH: "{{ ansible_env.PATH }}:{{ lookup('env','HOME') }}/.local/bin"
+    PATH: "{{ ansible_env.PATH }}:{{ extra_paths | join(':') }}"
   roles:
     - role: init_snap
     - role: xdg_base_directory

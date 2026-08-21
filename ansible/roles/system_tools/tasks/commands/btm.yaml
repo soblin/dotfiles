@@ -1,4 +1,16 @@
+# btm
+- name: check btm command
+  ansible.builtin.command: which btm
+  register: which_btm
+  failed_when: false
+  changed_when: false
+
 - name: setup btm command
+  when: which_btm.rc != 0
   apt:
     deb: https://github.com/ClementTsang/bottom/releases/download/0.12.3/bottom-musl_0.12.3-1_amd64.deb
     state: present
+
+- name: verify btm command
+  ansible.builtin.command: which btm
+  changed_when: false
