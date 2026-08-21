@@ -12,17 +12,8 @@
         filename: github-cli
         state: present
 
-    - name: install gh on baremetal
+    - name: install gh
       apt:
         name: gh
         state: present
         update_cache: true
-      when: is_baremetal
-
-    - name: check installability on ci
-      apt:
-        name: gh
-        state: present
-        update_cache: true
-      when: not is_baremetal
-      check_mode: true

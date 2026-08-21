@@ -23,6 +23,8 @@
 
 - import_tasks: commands/docker.yaml
 
+- import_tasks: commands/nvidia-container.yaml
+
 - import_tasks: commands/fish.yaml
 
 - import_tasks: commands/ghq.yaml

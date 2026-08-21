@@ -1,8 +1,1 @@
-# 1. do not apt install for heavy packages
-# 2. do not run docker group addition operation
-is_baremetal: true
-
-# 1. if false, clone https instead of ssh for testing
 is_ci: false
-
-# NVIDIA_CONTAINER_TOOLKIT_VERSION: 1.19.0-1

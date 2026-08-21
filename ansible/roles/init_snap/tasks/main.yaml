@@ -1,6 +1,6 @@
 - name: refresh snap
-  command: snap refresh
   when: not is_ci
+  command: snap refresh
   changed_when: false
 
 - name: refresh apt
