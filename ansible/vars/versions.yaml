@@ -1,0 +1,22 @@
+versions:
+  difftastic:
+    repo: Wilfred/difftastic
+    version: "0.67.0"
+  lsd:
+    repo: lsd-rs/lsd
+    version: "v1.2.0"
+  bottom:
+    repo: ClementTsang/bottom
+    version: "0.12.3"
+  ghq:
+    repo: x-motemen/ghq
+    version: "v1.8.0"
+  act:
+    repo: nektos/act
+    version: "v0.2.84"
+  wezterm:
+    repo: wezterm/wezterm
+    version: "20240203-110809-5046fc22"
+  moralerspace:
+    repo: yuru7/moralerspace
+    version: "v2.0.0"

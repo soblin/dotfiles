@@ -22,7 +22,7 @@
 - name: install Moralerspace font
   when: not is_ci # this font file is large
   vars:
-    moralerspace_version: v2.0.0
+    moralerspace_version: "{{ versions.moralerspace.version }}"
     moralerspace_dir: "/usr/local/share/fonts/MoralerspaceHW_{{ moralerspace_version }}"
   block:
     - name: check Moralerspace font is installed

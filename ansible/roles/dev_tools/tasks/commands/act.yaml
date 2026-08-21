@@ -5,13 +5,23 @@
   failed_when: false
   changed_when: false
 
+- name: read act version stamp
+  ansible.builtin.slurp:
+    path: "{{ version_stamp_dir }}/act"
+  register: act_stamp
+  failed_when: false
+  changed_when: false
+
 - name: setup act command
   become: false
-  when: which_act.rc != 0
+  vars:
+    act_version: "{{ versions.act.version }}"
+    act_installed: "{{ (act_stamp.content | b64decode | trim) if act_stamp.content is defined else '' }}"
+  when: which_act.rc != 0 or act_installed != act_version
   block:
     - name: download act
       ansible.builtin.get_url:
-        url: https://github.com/nektos/act/releases/download/v0.2.84/act_Linux_x86_64.tar.gz
+        url: https://github.com/nektos/act/releases/download/{{ act_version }}/act_Linux_x86_64.tar.gz
         dest: /tmp/act.tar.gz
 
     - name: unarchive act
@@ -24,6 +34,12 @@
         src: /tmp/act
         dest: "{{ lookup('env','HOME') }}/.local/bin/act"
         mode: "0755"
+
+    - name: stamp act version
+      copy:
+        content: "{{ act_version }}"
+        dest: "{{ version_stamp_dir }}/act"
+        mode: "0644"
 
 - name: verify act command
   ansible.builtin.command: which act

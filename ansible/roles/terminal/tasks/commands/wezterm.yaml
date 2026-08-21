@@ -5,13 +5,30 @@
   failed_when: false
   changed_when: false
 
+- name: read wezterm version stamp
+  ansible.builtin.slurp:
+    path: "{{ version_stamp_dir }}/wezterm"
+  register: wezterm_stamp
+  failed_when: false
+  changed_when: false
+
 - name: setup wezterm
-  when: which_wezterm.rc != 0
+  vars:
+    wezterm_version: "{{ versions.wezterm.version }}"
+    wezterm_installed: "{{ (wezterm_stamp.content | b64decode | trim) if wezterm_stamp.content is defined else '' }}"
+  when: which_wezterm.rc != 0 or wezterm_installed != wezterm_version
   block:
     - name: dpkg install wezterm
       apt:
-        deb: https://github.com/wezterm/wezterm/releases/download/20240203-110809-5046fc22/wezterm-20240203-110809-5046fc22.Ubuntu22.04.deb
+        deb: https://github.com/wezterm/wezterm/releases/download/{{ wezterm_version }}/wezterm-{{ wezterm_version }}.Ubuntu22.04.deb
         state: present
+
+    - name: stamp wezterm version
+      become: false
+      copy:
+        content: "{{ wezterm_version }}"
+        dest: "{{ version_stamp_dir }}/wezterm"
+        mode: "0644"
 
 - name: verify wezterm command
   ansible.builtin.command: which wezterm

@@ -12,6 +12,13 @@
     state: directory
     mode: '0755'
 
+- name: create version stamp dir
+  become: false
+  file:
+    path: "{{ version_stamp_dir }}"
+    state: directory
+    mode: '0755'
+
 - name: check PATH
   ansible.builtin.shell: echo $PATH
   register: out

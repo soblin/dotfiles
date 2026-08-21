@@ -5,13 +5,24 @@
   failed_when: false
   changed_when: false
 
+- name: read ghq version stamp
+  ansible.builtin.slurp:
+    path: "{{ version_stamp_dir }}/ghq"
+  register: ghq_stamp
+  failed_when: false
+  changed_when: false
+
 - name: setup ghq command
   become: false
-  when: which_ghq.rc != 0
+  vars:
+    ghq_version: "{{ versions.ghq.version }}"
+    ghq_installed: "{{ (ghq_stamp.content | b64decode | trim) if ghq_stamp.content is defined else '' }}"
+  # install if missing, or if the installed version is not the pinned one
+  when: which_ghq.rc != 0 or ghq_installed != ghq_version
   block:
     - name: download binary
       ansible.builtin.get_url:
-        url: https://github.com/x-motemen/ghq/releases/download/v1.8.0/ghq_linux_amd64.zip
+        url: https://github.com/x-motemen/ghq/releases/download/{{ ghq_version }}/ghq_linux_amd64.zip
         dest: /tmp/ghq_linux_amd64.zip
 
     - name: unarchive ghq
@@ -29,6 +40,12 @@
       copy:
         src: /tmp/ghq_linux_amd64/misc/bash/_ghq
         dest: "{{ lookup('env','HOME') }}/.local/share/bash-completion/completions/ghq"
+        mode: "0644"
+
+    - name: stamp ghq version
+      copy:
+        content: "{{ ghq_version }}"
+        dest: "{{ version_stamp_dir }}/ghq"
         mode: "0644"
 
 - name: verify ghq command

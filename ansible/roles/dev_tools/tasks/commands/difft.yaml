@@ -5,13 +5,23 @@
   failed_when: false
   changed_when: false
 
+- name: read difft version stamp
+  ansible.builtin.slurp:
+    path: "{{ version_stamp_dir }}/difft"
+  register: difft_stamp
+  failed_when: false
+  changed_when: false
+
 - name: setup difft command
   become: false
-  when: which_difft.rc != 0
+  vars:
+    difft_version: "{{ versions.difftastic.version }}"
+    difft_installed: "{{ (difft_stamp.content | b64decode | trim) if difft_stamp.content is defined else '' }}"
+  when: which_difft.rc != 0 or difft_installed != difft_version
   block:
     - name: download difftastic
       ansible.builtin.get_url:
-        url: https://github.com/Wilfred/difftastic/releases/download/0.67.0/difft-x86_64-unknown-linux-gnu.tar.gz
+        url: https://github.com/Wilfred/difftastic/releases/download/{{ difft_version }}/difft-x86_64-unknown-linux-gnu.tar.gz
         dest: /tmp/difftastic.tar.gz
 
     - name: install difftastic
@@ -19,6 +29,12 @@
         src: /tmp/difftastic.tar.gz
         # NOTE: only contains "difft" file
         dest: "{{ lookup('env','HOME') }}/.local/bin/"
+
+    - name: stamp difft version
+      copy:
+        content: "{{ difft_version }}"
+        dest: "{{ version_stamp_dir }}/difft"
+        mode: "0644"
 
 - name: verify difft command
   ansible.builtin.command: which difft
