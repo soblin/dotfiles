@@ -35,8 +35,8 @@ config.background = {
 --]]
 
 -- font
-config.font = wezterm.font {
-   family = 'HackGen Console NF',
+config.font = wezterm.font_with_fallback {
+   'Moralerspace Neon HW',
 }
 config.font_size = 12
 

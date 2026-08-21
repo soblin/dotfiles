@@ -19,17 +19,23 @@
   when: not is_baremetal
   check_mode: true
 
-- name: install HackGen font
+- name: install Moralerspace font
+  when: not is_ci # this font file is large
   block:
-    - name: download zip file
+    - name: download Moralerspace zip file
       ansible.builtin.get_url:
-        url: https://github.com/yuru7/HackGen/releases/download/v2.10.0/HackGen_NF_v2.10.0.zip
-        dest: /tmp/HackGen_NF.zip
+        url: https://github.com/yuru7/moralerspace/releases/download/v2.0.0/MoralerspaceHW_v2.0.0.zip
+        dest: /tmp/MoralerspaceHW.zip
 
-    - name: unarchive zip file
+    - name: unarchive Moralerspace zip file
       ansible.builtin.unarchive:
-        src: /tmp/HackGen_NF.zip
+        src: /tmp/MoralerspaceHW.zip
         dest: /usr/local/share/fonts/
+        include:
+          - MoralerspaceHW_v2.0.0/MoralerspaceNeonHW-Regular.ttf
+          - MoralerspaceHW_v2.0.0/MoralerspaceNeonHW-Bold.ttf
+          - MoralerspaceHW_v2.0.0/MoralerspaceNeonHW-Italic.ttf
+          - MoralerspaceHW_v2.0.0/MoralerspaceNeonHW-BoldItalic.ttf
 
-    - name: update cache
+    - name: update cache after Moralerspace
       ansible.builtin.shell: fc-cache -vf

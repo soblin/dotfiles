@@ -8,7 +8,6 @@
     - .config/rcs
     - .gitignore
     - .gitconfig
-    - .config/alacritty
     - .config/peco
     - .config/wezterm
     - .config/autostart
