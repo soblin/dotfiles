@@ -1,0 +1,30 @@
+{
+  $schema: "https://docs.renovatebot.com/renovate-schema.json",
+  extends: [
+    "config:recommended",
+    ":semanticCommits",
+  ],
+  timezone: "Asia/Tokyo",
+  // ignore pyproject.toml, .python-version, Dockerfile
+  enabledManagers: ["github-actions", "custom.regex"],
+  semanticCommitType: "chore",
+  semanticCommitScope: "deps",
+  customManagers: [
+    {
+      customType: "regex",
+      managerFilePatterns: ["/^ansible/vars/versions\\.yaml$/"],
+      matchStrings: [
+        "repo: (?<depName>\\S+)\\s+version: \"(?<currentValue>[^\"]+)\"",
+      ],
+      datasourceTemplate: "github-releases",
+      versioningTemplate: "loose",
+    },
+  ],
+  packageRules: [
+    {
+      matchManagers: ["custom.regex"],
+      semanticCommitScope: "ansible",
+      commitMessageTopic: "{{depName}}",
+    },
+  ],
+}

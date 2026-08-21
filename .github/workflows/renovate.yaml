@@ -1,0 +1,48 @@
+name: renovate
+
+on:
+  schedule:
+    # every Monday 00:00 UTC (09:00 JST)
+    - cron: "0 0 * * 1"
+  workflow_dispatch:
+    inputs:
+      dry_run:
+        description: "run without creating branches/PRs"
+        type: boolean
+        default: false
+      log_level:
+        description: "renovate log level"
+        type: choice
+        options: [info, debug]
+        default: info
+  # re-run right after the config itself changed
+  push:
+    branches: [main]
+    paths:
+      - renovate.json5
+      - .github/workflows/renovate.yaml
+
+concurrency:
+  group: ${{ github.workflow }}
+  cancel-in-progress: false
+
+jobs:
+  renovate:
+    runs-on: ubuntu-latest
+    steps:
+      - name: checkout
+        uses: actions/checkout@v6
+
+      - name: run renovate
+        uses: renovatebot/github-action@v46.2.2
+        env:
+          # NOTE: a PAT is used instead of the default GITHUB_TOKEN, because
+          # PRs created with GITHUB_TOKEN do not trigger the ansible-ci workflow
+          RENOVATE_TOKEN: ${{ secrets.RENOVATE_TOKEN }}
+          RENOVATE_REPOSITORIES: ${{ github.repository }}
+          # this repository is configured by renovate.json5, so onboarding PRs
+          # are not needed
+          RENOVATE_ONBOARDING: "false"
+          RENOVATE_REQUIRE_CONFIG: "required"
+          RENOVATE_DRY_RUN: ${{ inputs.dry_run && 'full' || 'null' }}
+          LOG_LEVEL: ${{ inputs.log_level || 'info' }}

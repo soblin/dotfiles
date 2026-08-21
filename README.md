@@ -22,14 +22,13 @@ uv sync
 uv run ansible-playbook ansible/playbook.yaml --ask-become-pass
 ```
 
-## pre-commit
+## dependency更新
 
-`pre-commit`はuvでinstallする．
+`.deb`やarchiveからinstallするtoolのversionは`ansible/vars/versions.yaml`に集約している．`renovate` workflow(定期実行 + 手動dispatch)が`renovate.json5`のcustom regex managerを起動してそれを読み込み,GitHub releaseを監視してリリースがあればPRを作成する．
 
-```bash
-uv run pre-commit install
-(uv run pre-commit run --all-files)
-```
+`RENOVATE_TOKEN` secretにPAT(`repo`と`workflow` scope)が必要．
+
+ansibleはinstall済みのversionをローカルの`~/.local/share/dotfiles/versions/`に記録しており，`ansible/vars/versions.yaml`と一致しない場合は再installする．
 
 ## 日本語入力
 
