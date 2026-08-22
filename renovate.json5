@@ -30,7 +30,14 @@
     {
       matchManagers: ["custom.regex"],
       semanticCommitScope: "ansible",
+      // open a single PR for all the tools installed by ansible
+      groupName: "ansible tools",
       commitMessageTopic: "{{depName}}",
+    },
+    {
+      matchManagers: ["github-actions"],
+      // open a single PR for all the actions used in the workflows
+      groupName: "github actions",
     },
   ],
 }
