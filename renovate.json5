@@ -22,12 +22,6 @@
   ],
   packageRules: [
     {
-      // patch updates are not worth a PR for these tools. minor and major are
-      // still opened
-      matchUpdateTypes: ["patch"],
-      enabled: false,
-    },
-    {
       matchManagers: ["custom.regex"],
       semanticCommitScope: "ansible",
       // open a single PR for all the tools installed by ansible
