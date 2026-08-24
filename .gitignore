@@ -21,3 +21,4 @@ compile_commands.json
 .envrc
 .config/fish/conf.d/rustup.fish
 devcontainer-lock.json
+.emacs.d/emacs-custom.el
