@@ -20,7 +20,7 @@
     - role: system_tools
     - role: terminal
       tags: [not_for_wsl]
-    - role: editor
+    - role: emacs
     - role: dev_tools
     - role: fonts
     - role: gui_tools
