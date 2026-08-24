@@ -1,15 +1,13 @@
-FROM ubuntu:22.04
+# syntax=docker/dockerfile:1
+FROM ubuntu:24.04
 
-# 18だとlspで関数の引数リストのsnippetが上手く出ないかも
-ARG CLANG_VERSION=19
+ENV CC=clang
+ENV CXX=clang++
+
+ARG CLANG_VERSION=18
+ARG LIB_STDCPP_VERSION=13
 
 RUN apt-get update && apt-get install -y git curl wget lsb-release software-properties-common
-
-WORKDIR /tmp
-
-ADD --chown=root:root --chmod=777 https://apt.llvm.org/llvm.sh llvm.sh
-
-RUN ./llvm.sh ${CLANG_VERSION}
 
 RUN apt-get update && apt-get install -y \
     clang-${CLANG_VERSION} \
@@ -18,12 +16,10 @@ RUN apt-get update && apt-get install -y \
     clangd-${CLANG_VERSION} \
     clang-format-${CLANG_VERSION} \
     libomp-${CLANG_VERSION}-dev \
-    libstdc++-12-dev
+    libstdc++-${LIB_STDCPP_VERSION}-dev
 
-RUN update-alternatives --install /usr/bin/clang clang /usr/bin/clang-18 18
-RUN update-alternatives --install /usr/bin/clang++ clang++ /usr/bin/clang++-18 18
-RUN update-alternatives --install /usr/bin/clang-tidy clang-tidy /usr/bin/clang-tidy-18 18
-RUN update-alternatives --install /usr/bin/clangd clangd /usr/bin/clangd-18 18
-RUN update-alternatives --install /usr/bin/clang-format clang-format /usr/bin/clang-format-18 18
-
-WORKDIR /workspaces/
+RUN update-alternatives --install /usr/bin/clang clang /usr/bin/clang-${CLANG_VERSION} ${CLANG_VERSION}
+RUN update-alternatives --install /usr/bin/clang++ clang++ /usr/bin/clang++-${CLANG_VERSION} ${CLANG_VERSION}
+RUN update-alternatives --install /usr/bin/clang-tidy clang-tidy /usr/bin/clang-tidy-${CLANG_VERSION} ${CLANG_VERSION}
+RUN update-alternatives --install /usr/bin/clangd clangd /usr/bin/clangd-${CLANG_VERSION} ${CLANG_VERSION}
+RUN update-alternatives --install /usr/bin/clang-format clang-format /usr/bin/clang-format-${CLANG_VERSION} ${CLANG_VERSION}

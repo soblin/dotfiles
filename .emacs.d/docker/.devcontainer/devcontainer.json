@@ -1,0 +1,30 @@
+{
+    "dockerComposeFile": [
+        "../docker-compose.yml"
+    ],
+    "service": "devcontainer",
+
+    "remoteUser": "ubuntu",
+
+    "workspaceMount": "source=${localWorkspaceFolder},target=/workspace,type=bind",
+    "workspaceFolder": "/workspace",
+
+    "mounts": [
+        {
+            "type":"bind",
+            "source":"${localEnv:HOME}/.ssh",
+            "target":"/home/ubuntu/.ssh"
+        },
+        {
+            "type": "bind",
+            "source": "${localEnv:SSH_AUTH_SOCK}",
+            "target": "/ssh-agent"
+        }
+    ],
+
+    "features": {
+        "ghcr.io/devcontainers/features/common-utils:2": {},
+        "ghcr.io/devcontainers/features/git:1": {},
+        "ghcr.io/devcontainers/features/github-cli:1": {}
+    }
+}
