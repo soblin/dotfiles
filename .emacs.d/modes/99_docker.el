@@ -6,6 +6,7 @@
 
 (use-package dockerfile-mode
   :init
+  (add-to-list 'auto-mode-alist '("\\.[Dd]ockerfile\\'" . dockerfile-mode))
   )
 
 (use-package docker-compose-mode
