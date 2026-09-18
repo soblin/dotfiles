@@ -60,3 +60,9 @@
     root = ~/.ghq/src
 
 # do `git config --local url.git@github.com:.insteadOf https://github.com/`
+[gpg]
+    format = ssh
+[user]
+    signingkey = ~/.ssh/id_ed25519.pub
+[commit]
+    gpgsign = true
