@@ -16,7 +16,7 @@
   block:
     - name: download difftastic
       ansible.builtin.get_url:
-        url: https://github.com/Wilfred/difftastic/releases/download/{{ difft_version }}/difft-x86_64-unknown-linux-gnu.tar.gz
+        url: https://github.com/Wilfred/difftastic/releases/download/{{ difft_version }}/difft-{{ difft_version }}-x86_64-unknown-linux-gnu.tar.gz
         # NOTE: the version is in the file name because get_url does not
         # re-download when dest already exists
         dest: /tmp/difftastic-{{ difft_version }}.tar.gz
