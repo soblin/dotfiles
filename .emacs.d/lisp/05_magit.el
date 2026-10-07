@@ -19,8 +19,10 @@
   (let* ((file (buffer-file-name))
          (line (line-number-at-pos))
          (rel (file-relative-name file (vc-root-dir)))
+         (branch (or (magit-get-current-branch) "main"))
          (url (shell-command-to-string
-               (format "gh browse /%s:%d --no-browser" rel line)
+               (format "gh browse /%s:%d --branch %s --no-browser"
+                       rel line (shell-quote-argument branch))
                )
               )
          )
