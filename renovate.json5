@@ -33,5 +33,10 @@
       // open a single PR for all the actions used in the workflows
       groupName: "github actions",
     },
+    {
+      // do not open PRs for patch updates
+      matchUpdateTypes: ["patch"],
+      enabled: false,
+    },
   ],
 }
