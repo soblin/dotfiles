@@ -12,3 +12,6 @@
     - .config/wezterm
     - .config/autostart
     - .Xmodmap
+
+- name: symlink claude user settings
+  include_tasks: _claude_settings.yaml
