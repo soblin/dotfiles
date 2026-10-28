@@ -1,0 +1,30 @@
+# NOTE: .claude/settings.json in this repository is the project settings of this repository,
+# so the user settings are placed at .config/claude/settings.json
+- name: symlink claude user settings
+  become: false
+  vars:
+    claude_settings_src: "{{ (playbook_dir + '/../.config/claude/settings.json') | realpath }}"
+    claude_settings_dest: "{{ lookup('env', 'HOME') }}/.claude/settings.json"
+  block:
+    - name: create ~/.claude
+      file:
+        path: "{{ lookup('env', 'HOME') }}/.claude"
+        state: directory
+        mode: "0755"
+
+    - name: check claude settings exists
+      stat:
+        path: "{{ claude_settings_dest }}"
+      register: claude_settings_exists
+      changed_when: false
+
+    - name: backup claude settings if it exists
+      ansible.builtin.shell: >-
+        mv "{{ claude_settings_dest }}" "{{ claude_settings_dest }}.bak"
+      when: claude_settings_exists.stat.exists and not claude_settings_exists.stat.islnk
+
+    - name: create symlink of claude settings
+      file:
+        src: "{{ claude_settings_src }}"
+        dest: "{{ claude_settings_dest }}"
+        state: link

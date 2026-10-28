@@ -1,0 +1,25 @@
+{
+  "model": "opus",
+  "enabledPlugins": {
+    "typescript-lsp@claude-plugins-official": true,
+    "soblin-skills@soblin-skills": true
+  },
+  "extraKnownMarketplaces": {
+    "planning-with-files": {
+      "source": {
+        "source": "github",
+        "repo": "OthmanAdi/planning-with-files"
+      }
+    },
+    "soblin-skills": {
+      "source": {
+        "source": "github",
+        "repo": "soblin/skills"
+      }
+    }
+  },
+  "effortLevel": "low",
+  "tui": "fullscreen",
+  "skipDangerousModePermissionPrompt": true,
+  "theme": "dark"
+}
