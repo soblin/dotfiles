@@ -1,20 +1,38 @@
 {
   "model": "opus",
   "enabledPlugins": {
-    "soblin-skills@soblin-skills": true
+    "soblin-skills@soblin-skills": true,
+    "imozuru@imozuru": true,
+    "pstack@pstack-claude": true
   },
   "extraKnownMarketplaces": {
     "planning-with-files": {
       "source": {
         "source": "github",
         "repo": "OthmanAdi/planning-with-files"
-      }
+      },
+      "autoUpdate": true
     },
     "soblin-skills": {
       "source": {
         "source": "github",
         "repo": "soblin/skills"
-      }
+      },
+      "autoUpdate": true
+    },
+    "imozuru": {
+      "source": {
+        "source": "github",
+        "repo": "MaryCache/imozuru"
+      },
+      "autoUpdate": true
+    },
+    "pstack-claude": {
+      "source": {
+        "source": "github",
+        "repo": "michael-denyer/pstack-claude"
+      },
+      "autoUpdate": true
     }
   },
   "effortLevel": "low",
