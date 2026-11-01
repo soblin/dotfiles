@@ -11,6 +11,8 @@
         "baremetal",
         "renovatebot",
         "soblin",
+        "statusline",
+        "worktree",
 
         "dircolors",
         "colour",
