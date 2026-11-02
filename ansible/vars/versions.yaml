@@ -1,13 +1,13 @@
 versions:
   difftastic:
     repo: Wilfred/difftastic
-    version: "0.71.0"
+    version: "0.72.0"
   lsd:
     repo: lsd-rs/lsd
     version: "v1.2.0"
   bottom:
     repo: ClementTsang/bottom
-    version: "0.14.9"
+    version: "0.15.0"
   ghq:
     repo: x-motemen/ghq
     version: "v1.11.2"
