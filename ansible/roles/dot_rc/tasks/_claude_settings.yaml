@@ -28,3 +28,9 @@
         src: "{{ claude_settings_src }}"
         dest: "{{ claude_settings_dest }}"
         state: link
+
+    - name: create symlink of claude statusline
+      file:
+        src: "{{ (playbook_dir + '/../.config/claude/statusline.sh') | realpath }}"
+        dest: "{{ lookup('env', 'HOME') }}/.claude/statusline.sh"
+        state: link
