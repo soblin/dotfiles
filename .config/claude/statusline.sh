@@ -9,7 +9,9 @@ readonly GREEN=$'\033[32m'
 readonly YELLOW=$'\033[33m'
 readonly RED=$'\033[31m'
 readonly BLUE=$'\033[1;34m'
-readonly MAGENTA=$'\033[35m'
+readonly GIT_CLEAN=$'\033[30;42m'
+readonly GIT_STAGED=$'\033[30;43m'
+readonly GIT_DIRTY=$'\033[30;48;5;208m'
 readonly SEP="${DIM} | ${RESET}"
 readonly GAUGE_WIDTH=10
 
@@ -54,6 +56,41 @@ reset_time() {
 	fi
 }
 
+# git <dir> [worktree] -> branch segment colored by state, like bobthefish
+# clean: green, staged only: yellow, unstaged or untracked: orange
+git_segment() {
+	local dir=$1 worktree=$2 status head="" oid="" staged=0 dirty=0 untracked=0 xy label flags="" color
+	status=$(git -C "$dir" --no-optional-locks status --porcelain=v2 --branch 2>/dev/null) || return
+	while IFS= read -r l; do
+		case $l in
+		'# branch.head '*) head=${l#\# branch.head } ;;
+		'# branch.oid '*) oid=${l#\# branch.oid } ;;
+		'1 '* | '2 '*)
+			xy=${l:2:2}
+			[[ ${xy:0:1} != . ]] && staged=1
+			[[ ${xy:1:1} != . ]] && dirty=1
+			;;
+		'u '*) dirty=1 ;;
+		'? '*) untracked=1 ;;
+		esac
+	done <<<"$status"
+	[[ $head == '(detached)' ]] && head="➦ ${oid:0:7}"
+	label=$head
+	[[ -n "$worktree" ]] && label="${worktree}: ${head}"
+
+	((staged)) && flags+="+"
+	((dirty)) && flags+="●"
+	((untracked)) && flags+="…"
+	if ((dirty || untracked)); then
+		color=$GIT_DIRTY
+	elif ((staged)); then
+		color=$GIT_STAGED
+	else
+		color=$GIT_CLEAN
+	fi
+	printf '%s%s %s%s %s' "$SEP" "$color" "$label" "${flags:+ $flags}" "$RESET"
+}
+
 rate_limit() {
 	local label=$1 pct=$2 resets_at=$3 out
 	[[ -z "$pct" ]] && return
@@ -63,10 +100,11 @@ rate_limit() {
 }
 
 main() {
-	local model project_dir worktree ctx_pct five_pct five_reset week_pct week_reset line
+	local model current_dir project_dir worktree ctx_pct five_pct five_reset week_pct week_reset line
 	# // cSpell:disable
 	eval "$(jq -r '
 		@sh "model=\(.model.display_name // "")",
+		@sh "current_dir=\(.workspace.current_dir // "")",
 		@sh "project_dir=\(.workspace.project_dir // .workspace.current_dir // "")",
 		@sh "worktree=\(.workspace.git_worktree // "")",
 		@sh "ctx_pct=\(.context_window.used_percentage // "")",
@@ -78,7 +116,7 @@ main() {
 	# // cSpell:enable
 
 	line="${model}${SEP}${BLUE}${project_dir/#$HOME/\~}${RESET}"
-	[[ -n "$worktree" ]] && line+=" ${MAGENTA}[${worktree}]${RESET}"
+	line+=$(git_segment "${current_dir:-$project_dir}" "$worktree")
 	[[ -n "$ctx_pct" ]] && line+="${SEP}ctx $(gauge "$ctx_pct")"
 	line+=$(rate_limit 5h "$five_pct" "$five_reset")
 	line+=$(rate_limit 7d "$week_pct" "$week_reset")
