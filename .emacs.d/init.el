@@ -36,6 +36,7 @@
 (require '99_rust)
 (require '99_lua)
 (require '99_hcl)
+(require '99_pine)
 
 (setq custom-file (expand-file-name "emacs-custom.el" user-emacs-directory))
 (load-file (expand-file-name "emacs-custom.el" user-emacs-directory))
