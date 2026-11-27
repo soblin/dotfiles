@@ -3,7 +3,8 @@
   "enabledPlugins": {
     "soblin-skills@soblin-skills": true,
     "imozuru@imozuru": true,
-    "pstack@pstack-claude": true
+    "pstack@pstack-claude": true,
+    "planning-with-files@planning-with-files": true
   },
   "extraKnownMarketplaces": {
     "planning-with-files": {
