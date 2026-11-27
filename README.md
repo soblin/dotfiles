@@ -91,6 +91,22 @@ fishについては[こちらの記事を参照](https://zenn.dev/kenji_miyake/a
 
 ## Emacs
 
+### パッケージ管理
+
+以下のコマンドでパッケージとロックファイル`.emacs.d/straight/versions/default.el`が更新される．
+
+```console
+emacs --batch \
+  -l ~/.emacs.d/early-init.el \
+  -l ~/.emacs.d/init.el \
+  --eval '(let ((failed (straight-pull-all)))
+            (when failed
+              (message "pull failed: %S"
+                       (mapcar (lambda (r) (plist-get r :package)) failed))
+              (kill-emacs 1))
+            (straight-freeze-versions t))'
+```
+
 ### Docker over TRAMP
 
 `/docker:<user>@<container_name>:/workspace/foo.txt`を開く．
